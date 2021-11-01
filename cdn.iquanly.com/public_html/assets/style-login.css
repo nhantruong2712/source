@@ -1,0 +1,201 @@
+html, body{ color:#fff; font-size:14px; margin:0; padding:0; height:100%;}
+*{font-family:Roboto, Helvetica, Arial, sans-serif;}
+*:focus { outline:none}
+::-moz-selection{ background: #5dba00; color:#fff; text-shadow: none; }
+::selection { background:#5dba00; color:#fff; text-shadow: none; }
+a {color:#fff; text-decoration:none;}
+a:hover{color:#d2edd6; text-decoration:none;}
+a:active{border:none;}
+a img{border:none;}
+form{margin:0; padding:0;}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+a, a:visited, input, a:focus {
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    text-decoration: none;
+}
+
+.fll{float:left;}
+.flr{float:right;}
+.fln{float:none;}
+.clb{clear:both;}
+.txtB{font-weight:bold!important}
+.txtN{font-weight:normal!important}
+.txtC{text-align:center!important}
+.w100{width:100%!important;}
+.w99{width:99%!important;}
+.dpn{display:none!important;}
+.dpib{display:inline-block!important}
+.dpb{display:block!important}
+.ulN ul, .uln ul, .ulN{list-style:none; margin:0; padding:0;}
+.ovh{overflow:hidden!important}
+.mb0{margin-bottom:0px!important}
+.mb5{margin-bottom:5px!important}
+.mb15{margin-bottom:15px!important}
+.mb20{margin-bottom:20px!important}
+.split{padding:0 5px; display: inline-block}
+
+.mainWrap{background:#000 url("images/login_bg2.jpg") no-repeat center bottom; background-size:cover; overflow:hidden; min-height:100%}
+
+.quickaction_chk { margin:0}
+.quickaction_chk input{
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+.quickaction_chk span {
+    width: 24px;
+    height: 18px;
+    display: inline-block;
+    font-size: 16px!important;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family:FontAwesome!important;
+    position:relative;
+}
+.quickaction_chk span:before { 
+    content:"\f096"; position:absolute; top:50%; left:50%; margin:-9px 0 0 -9px; color:#5cba47
+}
+.quickaction_chk input:checked + span:before, .quickaction_chk input:checked ~ span:before {
+    content:"\f046"
+}
+.quickaction_chk.radio span:before{
+    content:"\f10c"
+}
+.quickaction_chk.radio input:checked + span:before, .quickaction_chk.radio input:checked ~ input[type="hidden"] + span:before {
+    content:"\f192"
+}
+
+.validation-summary-errors {
+    background: #db4e65;
+    padding: 10px 15px;
+    margin-bottom: 12px;
+    color: #fff;
+    font-size: 12px;
+}
+.validation-summary-errors ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.validation-summary-errors ul li {
+    display: inline-block;
+}
+.validation-summary-errors ul li + li {
+    margin: 0 0 0 10px;
+}
+
+header{background:#fff; border-radius:10px 10px 0 0;}
+/*.logo{background:url(../img/logo_login.jpg) no-repeat; height:42px; width:0; padding-left:104px; margin:15px 0;}*/
+.logo{height:42px; margin:15px 0;}
+
+.loginBox{width:440px; margin:110px auto 20px; z-index:5; overflow:hidden; color:#fff;}
+.loginFr{background:#005e94; box-shadow:inset 0 1px 4px #00324f; overflow:hidden; border-radius:0 0 10px 10px; padding:20px 35px 25px}
+.loginFr h3 { text-align:center; padding:0 0 11px; margin:0; font-size:26px; text-shadow:1px 1px 3px #00283f; font-weight:normal; line-height:28px;}
+.loginFr .kv {font-size:15px; color:#333; padding:0 10px; line-height:33px; border-radius:0 2px 2px 0; background:#e4e4e4; position:absolute; right:0; bottom:0;}
+.loginFr .remb { margin:15px 0 0}
+.loginFr .remb .prettycheckbox a:before, .loginFr .remb .prettyradio a:before { color:#fff; top:0;}
+.loginFr .remb label {font-size:14px; color:#fff; text-shadow:none; line-height:16px; white-space:nowrap}
+.loginFr label{display:block; font-size:16px; font-weight:bold; text-shadow:1px 1px 2px #002941; margin-bottom:8px;}
+.loginFr label.checkbox{ display: inline-block; font-size: 13px}
+.loginFr input[type="text"], .loginFr input[type="password"]{
+	border:none; background:#fff; color:#333;  font-size:16px;
+	margin:0; padding:6px 0; overflow:visible; display:block;
+    border-radius:2px; width:100%; text-indent:15px;
+    box-shadow:0 0 5px #004b77; box-sizing:border-box;
+}
+.loginFr input.captcha[type="text"]{width:50%; display:inline-block}
+.field-validation-error{background:#db4e65; border-radius:2px; font-size:12px; padding:6px 15px; color:#fff; position:absolute; right:0; bottom:-29px;}
+.loginFr input[type="text"]:-webkit-autofill, .loginFr input[type="password"]:-webkit-autofill,
+.loginFr input[type="text"]:focus, .loginFr input[type="password"]:focus{
+    background-color: rgb(250, 255, 189);
+    background-image: none;
+    color: rgb(0, 0, 0);
+}
+
+.loginFr input[type="text"]:focus, .loginFr input[type="password"]:focus{border-color:#29abe1}
+.loginFr img{vertical-align:top;}
+.loginFr .refresh{vertical-align:middle; display:inline-block; border-radius:100%; text-align:center; width:31px; height:31px; line-height:31px; background:#147dba}
+.loginFr .refresh:hover{background:#359e15}
+.loginFr .fa-refresh{font-size:18px; color:#fff; margin-top:6px}
+.loginFr a{text-decoration:underline}
+.loginFr .lgBtn { text-align:center; margin-top:30px}
+.loginFr .lgBtn .loginBtn + .loginBtn { margin-left:18px}
+.loginBtn{display:inline-block; background:#005484; border-radius:5px; padding:1px; cursor:pointer; position:relative}
+.loginBtn input {background:#0080c9; border-style:solid; border-width:1px; border-color:#6cb6e0 #00517f #003655 #369bd4; border-radius:4px; font-size:18px; font-weight:bold; height:42px; line-height:40px;  padding:0 25px 0 54px; text-shadow:2px 2px 2px #004E7B; color:#fff}
+.loginBtn .fa { font-size:24px; position:absolute; left:18px; top:12px; text-shadow:1px 1px 2px #003655}
+.loginBtn:hover input, .loginBtn input:focus {background:#004880;border-color:#6c96b6 #002d51 #001e36 #366f9b;text-shadow:2px 2px 2px #00223d;}
+.loginBtn:hover .fa {text-shadow:1px 1px 2px #00223d}
+.loginBtnSale input{background:#359e15;text-shadow:2px 2px 2px #194a0a; border-color:#8bc778 #21640d #164209 #60b347; padding-left:50px}
+.loginBtnSale .fa {text-shadow:1px 1px 2px #187212}
+.loginBtnSale:hover input, .loginBtnSale input:focus {background:#2a6e05;border-color:#84ab6f #1b4503 #122e02 #578d3a;text-shadow:2px 2px 2px #133202;}
+.loginBtnSale:hover .fa {text-shadow:1px 1px 2px #133202}
+.fgBtn input{ padding-left:48px}
+.fgBtn .fa { font-size:20px; top:14px}
+
+.loginNews{background:#f5f5f5; padding:10px; width:590px; margin:0 auto; top:-100px}
+.loginNews .loginNewsBtn a{display:inline-block; overflow:hidden; height:16px; width:0; padding-left:17px; background:url(../img/nextprev.png) no-repeat 0 0;}
+.loginNews .loginNewsBtn a:hover{background-position:0 -17px}
+.loginNews .loginNewsBtn a.next{background-position:-16px 0}
+.loginNews .loginNewsBtn a.next:hover{background-position:-17px -17px}
+
+.loginBox .other { font-size:13px; color:#969696; text-align:center; margin-top:12px}
+.loginBox .other a {color:#969696;}
+
+.captcha-bg{display:inline-block; vertical-align:top; width:90px; height:31px; background:url(../img/captcha.png) no-repeat center center; margin:0 5px 0 15px}
+
+.validation-summary-errors ul li {display:inline-block}
+.validation-summary-errors ul li + li {margin:0 0 0 10px}
+
+footer{border-top:1px solid #e8e8e8; padding:20px 0 15px; position:absolute; left:0; bottom:0; width:100%;}
+
+/*===========Custom radio chech box */
+.quickaction_chk span{width:20px}
+.quickaction_chk span:before{color:#fff}
+
+
+@media (max-width: 1030px){
+    .loginFr input[type="text"], .loginFr input[type="password"]{
+        padding:10px 0;
+    }
+    .prettycheckbox label, .prettyradio label{
+        padding:5px 0;
+        margin-left:10px;
+    }
+    .prettycheckbox a, .prettyradio a{
+        font-size:20px!important;
+    }
+    .loginFr .remb{margin-left:0;}
+    .loginFr .remb .prettycheckbox a:before, .loginFr .remb .prettyradio a:before{top:4px}
+    .loginBtn input{
+        height: 48px;
+        line-height: 46px;
+    }
+    .loginBtn .fa{top:14px}
+}
+
+@media (max-width: 460px){
+    .loginBox{width: 94%; margin-top:45px}
+    .loginFr {padding:15px 15px 25px}
+    .loginBtn .fa {font-size:22px; left:10px}
+    .loginBtn input {padding:0 20px 0 40px; font-size:16px}
+    .loginFr input.captcha[type="text"]{width:43%}
+    .loginBtnSale input {padding-left:40px}
+    .loginFr .lgBtn .loginBtn + .loginBtn { margin:0}
+}
+
+/* Landscape */
+@media only screen and (max-device-width: 568px)  and (orientation: landscape) {
+        .loginBox{width: 94%; margin-top:20px}
+}
+ 

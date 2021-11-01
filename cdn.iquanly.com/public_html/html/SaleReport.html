@@ -1,0 +1,1017 @@
+<style>
+.wrap-button-footer {
+    display: none;
+}
+
+.chartdiv {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}	
+.saleReport .report_purchaseDate .overlay_chart {
+    top: auto;
+    bottom: 0;
+    height: 480px;
+}
+ 
+.overlay_chart {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    text-align: center;
+    display: none;
+}	
+
+
+.mainWrapReport{
+    background: white;
+}			
+</style>
+<section class="mainLeft fll proLeft reportLeft ng-scope">
+  <div class="filter-report">
+    <article class="boxLeft uln mb10">
+      <aside class="boxLeftC posR fs14 txtB reportTitle" kv-report-title="">Báo cáo <span><i class="fa fa-clipboard"></i>Bán hàng</span></aside>
+      <div class="mb15 boxLeftC ng-hide" ng-show="report.ViewType == 'Profit' &amp;&amp; report.Mode != 'chart'"><a href="javascript:void(0)" ng-click="ExportAll()" class="kv2Btn kv2BtnExport fs12" title="Xuất file"><i class="fa fa-sign-out veaM fs16"></i> Xuất tất cả</a></div>
+    </article>
+    <article class="boxLeft uln sortTime" ng-show="report.ViewType != 'Discount'">
+      <h3 class="leftTitle ng-binding">Kiểu hiển thị</h3>
+      <aside class="boxLeftC posR">
+        <ul class="pretty-radio-mobile">
+          <li ng-show="report &amp;&amp; report.hasChart" class="has-pretty-child">
+            <div class="clearfix prettyradio labelright  blue">
+              <input type="radio" name="sView" kv-change="changeReportMode" value="chart" ng-model="report.Mode" kv-pretty-check="" kv-data-label="_l.report_SearchTypeViewChart" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-valid-parse"
+              data-label="Biểu đồ" style="display: none;">
+              <a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+              <label for="undefined" class="checked">Biểu đồ</label>
+            </div>
+          </li>
+          <li class="has-pretty-child hth-hide">
+            <div class="clearfix prettyradio labelright  blue">
+              <input type="radio" name="sView" kv-change="changeReportMode" value="data" ng-model="report.Mode" kv-pretty-check="" kv-data-label="_l.report_SearchTypeViewData" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty" data-label="Báo cáo"
+              style="display: none;">
+              <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+              <label for="undefined" class="">Báo cáo</label>
+            </div>
+          </li>
+        </ul>
+        <div class="reportView ng-hide" ng-show="hasBothType"><a href="javascript:;" ng-click="ChangeViewType(true)" class="view_v" title="Hiển thị theo chiều dọc">Dọc<i></i></a> <a href="javascript:;" ng-click="ChangeViewType(false)" class="view_h  active" title="Hiển thị theo chiều ngang">Ngang<i></i></a></div>
+      </aside>
+    </article>
+    <article class="boxLeft uln leftStatus">
+      <h3 class="leftTitle ng-binding">Mối quan tâm</h3>
+      <aside class="boxLeftC fr">
+        <ul class="pretty-radio-mobile">
+          <!-- ngRepeat: type in reportTypes -->
+          <li ng-repeat="type in reportTypes" class="ng-scope has-pretty-child">
+            <div class="clearfix prettyradio labelright  blue">
+              <input type="radio" kv-pretty-check="" name="reportType" value="PurchaseDate" kv-data-label="type.Name" ng-model="report.ViewType" kv-change="reportTypeChanged" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-valid-parse"
+              data-label="Thời gian" style="display: none;" checked="checked">
+              <a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+              <label for="undefined" class="checked">Thời gian</label>
+            </div>
+          </li>
+          <!-- end ngRepeat: type in reportTypes -->
+          <li ng-repeat="type in reportTypes" class="ng-scope has-pretty-child">
+            <div class="clearfix prettyradio labelright  blue">
+              <input type="radio" kv-pretty-check="" name="reportType" value="Profit" kv-data-label="type.Name" ng-model="report.ViewType" kv-change="reportTypeChanged" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty" data-label="Lợi nhuận"
+              style="display: none;">
+              <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+              <label for="undefined" class="">Lợi nhuận</label>
+            </div>
+          </li>
+          <!-- end ngRepeat: type in reportTypes -->
+          <li ng-repeat="type in reportTypes" class="ng-scope has-pretty-child hth-hide">
+            <div class="clearfix prettyradio labelright  blue">
+              <input type="radio" kv-pretty-check="" name="reportType" value="InvoiceDiscount" kv-data-label="type.Name" ng-model="report.ViewType" kv-change="reportTypeChanged" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty" data-label="Giảm giá HĐ"
+              style="display: none;">
+              <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+              <label for="undefined" class="">Giảm giá HĐ</label>
+            </div>
+          </li>
+          <!-- end ngRepeat: type in reportTypes -->
+          <li ng-repeat="type in reportTypes" class="ng-scope has-pretty-child hth-hide">
+            <div class="clearfix prettyradio labelright  blue">
+              <input type="radio" kv-pretty-check="" name="reportType" value="Refund" kv-data-label="type.Name" ng-model="report.ViewType" kv-change="reportTypeChanged" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty" data-label="Trả hàng"
+              style="display: none;">
+              <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+              <label for="undefined" class="">Trả hàng</label>
+            </div>
+          </li>
+          <!-- end ngRepeat: type in reportTypes -->
+          <li ng-repeat="type in reportTypes" class="ng-scope has-pretty-child ">
+            <div class="clearfix prettyradio labelright  blue">
+              <input type="radio" kv-pretty-check="" name="reportType" value="SoldBy" kv-data-label="type.Name" ng-model="report.ViewType" kv-change="reportTypeChanged" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty" data-label="Nhân viên"
+              style="display: none;">
+              <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+              <label for="undefined" class="">Nhân viên</label>
+            </div>
+          </li>
+          <!-- end ngRepeat: type in reportTypes -->
+        </ul>
+      </aside>
+    </article>
+    <kv-report-branch-filter kv-permission="SaleReport_" kv-model="filter" kv-change="refreshReport" class="ng-isolate-scope">
+      <article class="boxLeft uln sortBranch ng-hide" ng-show="branches.length>1">
+        <h3 class="leftTitle ng-binding">Chi nhánh</h3>
+        <aside class="boxLeftC">
+          <div class="k-widget k-multiselect k-header" unselectable="on" title="" style="">
+            <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
+              <ul role="listbox" unselectable="on" class="k-reset">
+                <li class="k-button ng-scope" unselectable="on"><span unselectable="on">Chi nhánh trung tâm</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-close">delete</span></span>
+                </li>
+              </ul>
+              <input class="k-input" style="width: 25px;" accesskey="" autocomplete="off" role="listbox" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="aee3cd33-236f-4dab-93e5-4790df403787"><span class="k-icon k-loading k-loading-hidden"></span></div>
+            <select k-filter="'contains'" k-data-source="branches" k-ng-model="kvModel.BranchIds" k-value-primitive="true" data-placeholder="_l.lblBranchFilterHolder" k-data-text-field="'Name'"
+            k-data-value-field="'Id'" k-change="refreshReport" multiple="multiple" kendo-multi-select="" data-role="multiselect" aria-disabled="false" aria-readonly="false" style="display: none;">
+              <option value="19918" selected="">Chi nhánh trung tâm</option>
+            </select><span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: normal; font-style: normal; font-weight: normal; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;"></span></div>
+        </aside>
+      </article>
+    </kv-report-branch-filter>
+    <article class="boxLeft uln reportsortTime customeSelect">
+      <h3 class="leftTitle ng-binding">Thời gian</h3>
+      <kv-report-time-filter kv-model="filter" kv-change="refreshReport" class="ng-isolate-scope">
+        <aside class="boxLeftC posR">
+          <ul id="">
+            <li class="reportsort reportsortDateTime has-pretty-child" ng-hide="kvChooseDate">
+              <div class="clearfix prettyradio labelright  blue">
+                <input type="radio" kv-pretty-check="" name="stime_" id="reportsortDateTimeIpt" value="range" ng-model="kvModel.typeDate" kv-change="filterTimeChangeType" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" style="display: none;"
+                checked="checked">
+                <a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+                <label for="reportsortDateTimeIpt" class="checked"></label>
+              </div>
+              <aside class="sortTime">
+                <label class="sortTimeLbl ng-binding" id="reportsortDateTimeLbl" ng-click="sortTimeType('.reportsortDateTime')">Tuần này</label>
+                <aside class="sortTimeHeight sortTimeList">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                      <h3>Theo ngày và tuần</h3>
+                      <ul>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('today')" class="ng-binding">Hôm nay</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('yesterday')" class="ng-binding">Hôm qua</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('thisweek')" class="ng-binding">Tuần này</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('lastweek')" class="ng-binding">Tuần trước</a></li>
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('7day')" class="ng-binding">7 ngày qua</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                      </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <h3>Theo tháng và quý</h3>
+                      <ul>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('month')" class="ng-binding">Tháng này</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('lastmonth')" class="ng-binding">Tháng trước</a></li>
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('monthlunar')" class="ng-binding">Tháng này (Âm lịch)</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('lastmonthlunar')" class="ng-binding">Tháng trước (Âm lịch)</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('30day')" class="ng-binding">30 ngày qua</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('quarter')" class="ng-binding">Quý này</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('lastquarter')" class="ng-binding">Quý trước</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <h3>Theo năm</h3>
+                      <ul>
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('year')" class="ng-binding">Năm này</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('lastyear')" class="ng-binding">Năm trước</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('yearlunar')" class="ng-binding">Năm này (Âm lịch)</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('lastyearlunar')" class="ng-binding">Năm trước (Âm lịch)</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: kvModel.typeFilter && kvModel.typeFilter == 'common' && (kvAlltime || kvBirthday) -->
+                      </ul>
+                    </div>
+                  </div>
+                </aside>
+              </aside>
+            </li>
+            <li class="reportsort reportsortDateTime reportsortDate has-pretty-child ng-hide" ng-show="kvChooseDate">
+              <div class="clearfix prettyradio labelright  blue">
+                <input type="radio" kv-pretty-check="" name="stime_" id="chooseDate" value="choose" ng-model="kvModel.typeDate" kv-change="filterTimeChangeType" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" style="display: none;">
+                <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                <label for="chooseDate" class=""></label>
+              </div>
+              <label class="sortTimeLbl ng-binding" id="reportsortDateTimeLbl" ng-click="sortTimeType('.reportsortDateTime')">Chọn ngày</label>
+              <aside class="sortTimeHeight sortDateTimeOtherBox fr">
+                <div class="row mb5">
+                  <div class="col-md-12">
+                    <h6 class="ng-binding">Chọn ngày: <span class="ng-binding">13/07/2017</span></h6>
+                    <div kendo-calendar="" id="transDate" required="required" kv-max="EndDate" k-max="EndDate" k-rebind="EndDate" k-ng-model="kvModel.TransDate" ng-click="filterByChooseDate()" data-role="calendar" class="k-widget k-calendar">
+                      <div class="k-header"><a href="#" role="button" class="k-link k-nav-prev" aria-disabled="false"><span class="k-icon k-i-arrow-w"></span></a><a href="#" role="button" aria-live="assertive" aria-atomic="true" class="k-link k-nav-fast" aria-disabled="false">Tháng Bảy 2017</a>
+                        <a
+                        href="#" role="button" class="k-link k-nav-next k-state-disabled" aria-disabled="true"><span class="k-icon k-i-arrow-e"></span></a>
+                      </div>
+                      <table tabindex="0" role="grid" class="k-content" cellspacing="0" data-start="2017/5/26" aria-activedescendant="transDate_cell_selected">
+                        <thead>
+                          <tr role="row">
+                            <th scope="col" title="Thứ Hai">H</th>
+                            <th scope="col" title="Thứ Ba">B</th>
+                            <th scope="col" title="Thứ Tư">T</th>
+                            <th scope="col" title="Thứ Năm">N</th>
+                            <th scope="col" title="Thứ Sáu">S</th>
+                            <th scope="col" title="Thứ Bảy">B</th>
+                            <th scope="col" title="Chủ Nhật">C</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr role="row">
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/26" title="26 Tháng Sáu 2017">26</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/27" title="27 Tháng Sáu 2017">27</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/28" title="28 Tháng Sáu 2017">28</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/29" title="29 Tháng Sáu 2017">29</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/30" title="30 Tháng Sáu 2017">30</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/1" title="01 Tháng Bảy 2017">1</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/2" title="02 Tháng Bảy 2017">2</a></td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/3" title="03 Tháng Bảy 2017">3</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/4" title="04 Tháng Bảy 2017">4</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/5" title="05 Tháng Bảy 2017">5</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/6" title="06 Tháng Bảy 2017">6</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/7" title="07 Tháng Bảy 2017">7</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/8" title="08 Tháng Bảy 2017">8</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/9" title="09 Tháng Bảy 2017">9</a></td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/10" title="10 Tháng Bảy 2017">10</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/11" title="11 Tháng Bảy 2017">11</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/12" title="12 Tháng Bảy 2017">12</a></td>
+                            <td class="k-today" role="gridcell" aria-selected="true" id="transDate_cell_selected"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/13" title="13 Tháng Bảy 2017">13</a></td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="k-footer"><a href="#" class="k-link k-nav-today" title="13 Tháng Bảy 2017">13 Tháng Bảy 2017</a></div>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </li>
+            <li class="reportsort reportsortOther has-pretty-child hth-hide">
+              <div class="clearfix prettyradio labelright  blue">
+                <input type="radio" kv-pretty-check="" name="stime_" value="other" id="sortTime" ng-model="kvModel.typeDate" kv-data-label="" kv-change="filterTimeChangeType" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" style="display: none;">
+                <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                <label for="sortTime" class=""></label>
+              </div>
+              <label class="sortTimeLbl ng-binding" id="reportsortOtherLbl" ng-click="sortTimeType('.reportsortOther')">Lựa chọn khác </label>
+              <aside class="sortTimeHeight sortDateTimeOtherBox fr">
+                <div class="row mb5">
+                  <div class="col-md-6 col-sm-6">
+                    <h6 class="ng-binding">Từ ngày: <!-- ngIf: !kvBirthday --><span ng-if="!kvBirthday" class="ng-binding ng-scope">13/07/2017</span><!-- end ngIf: !kvBirthday --><!-- ngIf: kvBirthday --></h6>
+                    <div kendo-calendar="" id="fromDate" required="required" kv-max="EndDate" k-max="EndDate" k-rebind="EndDate" k-ng-model="StartDate" data-role="calendar" class="k-widget k-calendar">
+                      <div class="k-header"><a href="#" role="button" class="k-link k-nav-prev" aria-disabled="false"><span class="k-icon k-i-arrow-w"></span></a><a href="#" role="button" aria-live="assertive" aria-atomic="true" class="k-link k-nav-fast" aria-disabled="false">Tháng Bảy 2017</a>
+                        <a
+                        href="#" role="button" class="k-link k-nav-next k-state-disabled" aria-disabled="true"><span class="k-icon k-i-arrow-e"></span></a>
+                      </div>
+                      <table tabindex="0" role="grid" class="k-content" cellspacing="0" data-start="2017/5/26" aria-activedescendant="fromDate_cell_selected">
+                        <thead>
+                          <tr role="row">
+                            <th scope="col" title="Thứ Hai">H</th>
+                            <th scope="col" title="Thứ Ba">B</th>
+                            <th scope="col" title="Thứ Tư">T</th>
+                            <th scope="col" title="Thứ Năm">N</th>
+                            <th scope="col" title="Thứ Sáu">S</th>
+                            <th scope="col" title="Thứ Bảy">B</th>
+                            <th scope="col" title="Chủ Nhật">C</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr role="row">
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/26" title="26 Tháng Sáu 2017">26</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/27" title="27 Tháng Sáu 2017">27</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/28" title="28 Tháng Sáu 2017">28</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/29" title="29 Tháng Sáu 2017">29</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/5/30" title="30 Tháng Sáu 2017">30</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/1" title="01 Tháng Bảy 2017">1</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/2" title="02 Tháng Bảy 2017">2</a></td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/3" title="03 Tháng Bảy 2017">3</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/4" title="04 Tháng Bảy 2017">4</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/5" title="05 Tháng Bảy 2017">5</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/6" title="06 Tháng Bảy 2017">6</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/7" title="07 Tháng Bảy 2017">7</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/8" title="08 Tháng Bảy 2017">8</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/9" title="09 Tháng Bảy 2017">9</a></td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/10" title="10 Tháng Bảy 2017">10</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/11" title="11 Tháng Bảy 2017">11</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/12" title="12 Tháng Bảy 2017">12</a></td>
+                            <td class="k-today k-state-selected" role="gridcell" aria-selected="true" id="fromDate_cell_selected"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/13" title="13 Tháng Bảy 2017">13</a></td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="k-footer"><a href="#" class="k-link k-nav-today" title="13 Tháng Bảy 2017">13 Tháng Bảy 2017</a></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <h6 class="ng-binding">Đến ngày: <!-- ngIf: !kvBirthday --><span ng-if="!kvBirthday" class="ng-binding ng-scope">13/07/2017</span><!-- end ngIf: !kvBirthday --><!-- ngIf: kvBirthday --></h6>
+                    <div kendo-calendar="" id="toDate" required="required" kv-min="StartDate" k-min="StartDate" k-rebind="StartDate" k-ng-model="EndDate" data-role="calendar" class="k-widget k-calendar">
+                      <div class="k-header"><a href="#" role="button" class="k-link k-nav-prev k-state-disabled" aria-disabled="true"><span class="k-icon k-i-arrow-w"></span></a><a href="#" role="button" aria-live="assertive" aria-atomic="true" class="k-link k-nav-fast" aria-disabled="false">Tháng Bảy 2017</a>
+                        <a
+                        href="#" role="button" class="k-link k-nav-next" aria-disabled="false"><span class="k-icon k-i-arrow-e"></span></a>
+                      </div>
+                      <table tabindex="0" role="grid" class="k-content" cellspacing="0" data-start="2017/5/26" aria-activedescendant="toDate_cell_selected">
+                        <thead>
+                          <tr role="row">
+                            <th scope="col" title="Thứ Hai">H</th>
+                            <th scope="col" title="Thứ Ba">B</th>
+                            <th scope="col" title="Thứ Tư">T</th>
+                            <th scope="col" title="Thứ Năm">N</th>
+                            <th scope="col" title="Thứ Sáu">S</th>
+                            <th scope="col" title="Thứ Bảy">B</th>
+                            <th scope="col" title="Chủ Nhật">C</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td role="gridcell">&nbsp;</td>
+                            <td class="k-today k-state-selected" role="gridcell" aria-selected="true" id="toDate_cell_selected"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/13" title="13 Tháng Bảy 2017">13</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/14" title="14 Tháng Bảy 2017">14</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/15" title="15 Tháng Bảy 2017">15</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/16" title="16 Tháng Bảy 2017">16</a></td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/17" title="17 Tháng Bảy 2017">17</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/18" title="18 Tháng Bảy 2017">18</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/19" title="19 Tháng Bảy 2017">19</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/20" title="20 Tháng Bảy 2017">20</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/21" title="21 Tháng Bảy 2017">21</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/22" title="22 Tháng Bảy 2017">22</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/23" title="23 Tháng Bảy 2017">23</a></td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/24" title="24 Tháng Bảy 2017">24</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/25" title="25 Tháng Bảy 2017">25</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/26" title="26 Tháng Bảy 2017">26</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/27" title="27 Tháng Bảy 2017">27</a></td>
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/28" title="28 Tháng Bảy 2017">28</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/29" title="29 Tháng Bảy 2017">29</a></td>
+                            <td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/30" title="30 Tháng Bảy 2017">30</a></td>
+                          </tr>
+                          <tr role="row">
+                            <td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/6/31" title="31 Tháng Bảy 2017">31</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/7/1" title="01 Tháng Tám 2017">1</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/7/2" title="02 Tháng Tám 2017">2</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/7/3" title="03 Tháng Tám 2017">3</a></td>
+                            <td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/7/4" title="04 Tháng Tám 2017">4</a></td>
+                            <td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/7/5" title="05 Tháng Tám 2017">5</a></td>
+                            <td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/7/6" title="06 Tháng Tám 2017">6</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="k-footer"><a href="#" class="k-link k-state-disabled" title="13 Tháng Bảy 2017">13 Tháng Bảy 2017</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="boxBtn mb15 txtR"><a ng-click="filterByDateRange()" class="kv2Btn ng-binding"><i class="fa fa-filter"></i>Tạo báo cáo</a></div>
+              </aside>
+            </li>
+          </ul>
+        </aside>
+      </kv-report-time-filter>
+    </article>
+    <kv-report-user-filter kv-model="filter" kv-change="refreshReport" ng-show="report.ViewType == 'SoldBy'" class="ng-isolate-scope ng-hide">
+      <article class="boxLeft uln sortBranch" ng-show="hasView">
+        <h3 class="leftTitle ng-binding">Nhân viên</h3>
+        <aside class="boxLeftC">
+          <div class="k-widget k-multiselect k-header" unselectable="on" title="" style="">
+            <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
+              <ul role="listbox" unselectable="on" class="k-reset"></ul>
+              <input class="k-input k-readonly" style="width: 127px;" accesskey="" autocomplete="off" role="listbox" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-activedescendant="52e37866-328c-43b8-9ea2-9b3c3c6af9ab"
+              aria-busy="false"><span class="k-icon k-loading k-loading-hidden"></span></div>
+            <select k-data-source="users" k-ng-model="EmployeeIds" data-placeholder="kvModel.fromUser?_l.choose_employeeSale:_l.lblUserFilterHolder" k-data-text-field="'GivenName'" k-data-value-field="'Id'"
+            k-change="filterUserChange" k-value-primitive="true" multiple="multiple" kendo-multi-select="" data-role="multiselect" aria-disabled="false" aria-readonly="false" style="display: none;">
+              <option value="60516">Hoàng - Kinh Doanh</option>
+              <option value="60517">Hương - Kế Toán</option>
+              <option value="60513">trần đình đàn</option>
+            </select><span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: normal; font-style: normal; font-weight: normal; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn nhân viên...</span></div>
+        </aside>
+      </article>
+    </kv-report-user-filter>
+  </div>
+  <div class="wrap-button-footer">
+    <button kv-mobile="" type="button" class="kv2Btn">Hoàn tất</button>
+  </div>
+</section>
+
+<section class="mainRight proRight reportRight ng-scope">
+  <a href="javascript:void(0);" class="mobileIcon" kv-mobile=""></a>
+  <section class="mainWrap fll w100 mainWrapReport" style="position: relative; top: auto; bottom: auto; width: auto;">
+    <div class="posR wrapper-report ng-hide" ng-show="report.showing">
+      <div class="trv-error-pane report-loading" style="display: none;">
+        <div class="centered k-tooltip-validation k-widget">
+          <div class="trv-error-message">Loading report...</div>
+        </div>
+      </div>
+      <div id="reportViewer" class="k-widget ng-binding">
+        <div class="trv-report-viewer">
+          <div class="trv-side-menu k-content" data-role="telerik_ReportViewer_SideMenu">
+            <ul data-role="panelbar" class="k-widget k-reset k-header k-panelbar" tabindex="0" role="menu">
+              <li class="k-item k-state-default k-first" role="menuitem"><a data-command="telerik_ReportViewer_historyBack" title="Navigate Backward" href="#" class="k-link k-header"><i class="fa fa-mail-reply icon-mail-reply"></i><span>Navigate Backward</span></a></li>
+              <li class="k-item k-state-default k-state-disabled" role="menuitem"><a data-command="telerik_ReportViewer_historyForward" title="Navigate Forward" href="#" class="k-link k-header"><i class="fa fa-mail-forward icon-mail-forward"></i><span>Navigate Forward</span></a></li>
+              <li class="k-item k-state-default" role="menuitem"><a data-command="telerik_ReportViewer_refresh" href="#" title="Refresh" class="k-link k-header"><i class="fa fa-refresh icon-refresh"></i><span>Refresh</span></a></li>
+              <li class="k-item k-state-default" role="menuitem"><a data-command="telerik_ReportViewer_print" title="Print" href="#" class="k-link k-header"><i class="fa fa-print icon-print"></i><span>Print...</span></a></li>
+              <li aria-expanded="false" class="k-item k-state-default" role="menuitem">
+                <a title="Export" href="#" data-command="telerik_ReportViewer_export" class="k-link k-header"><i class="fa fa-cloud-download icon-cloud-download"></i><span>Export</span><span class="k-icon k-i-arrow-s k-panelbar-expand"></span></a>
+                <ul data-command-list="export-format-list" class="k-group k-panel" role="group" aria-hidden="true" style="display: none;"></ul>
+              </li>
+              <li class="k-item k-state-default k-last" role="menuitem"><a data-command="telerik_ReportViewer_togglePrintPreview" title="Toggle Print Preview" href="#" class="k-link k-header"><i class="fa fa-print icon-print"></i><span>Toggle Print Preview</span></a></li>
+            </ul>
+          </div>
+          <div class="trv-content-wrapper k-content">
+            <div class="trv-nav k-widget">
+              <ul class="trv-menu-large k-widget k-reset k-header k-menu k-menu-horizontal" data-role="telerik_ReportViewer_MainMenu" tabindex="0" role="menubar">
+                <li class="k-item k-state-default k-first" role="menuitem"><a data-command="telerik_ReportViewer_historyBack" title="Về trước" href="#" class="k-link"><i class="fa fa-mail-reply icon-mail-reply"></i></a></li>
+                <li class="k-item k-state-default k-state-disabled" role="menuitem"><a data-command="telerik_ReportViewer_historyForward" title="Về sau" href="#" class="k-link"><i class="fa fa-mail-forward icon-mail-forward"></i></a></li>
+
+                <li class="k-item k-state-default" role="menuitem"><a data-command="telerik_ReportViewer_refresh" href="#" title="Làm mới" class="k-link"><i class="fa fa-refresh icon-refresh"></i></a></li>
+
+                <li class="k-item k-state-default k-state-disabled" role="menuitem"><a data-command="telerik_ReportViewer_goToFirstPage" title="Trang đầu" href="#" class="k-link"><i class="fa fa-fast-backward icon-fast-backward"></i></a></li>
+                <li class="k-item k-state-default k-state-disabled" role="menuitem"><a data-command="telerik_ReportViewer_goToPrevPage" title="Trang trước" href="#" class="k-link"><i class="fa fa-step-backward icon-step-backward"></i></a></li>
+
+                <li class="k-item k-state-default" role="menuitem">
+                  <span class="k-link"><input data-role="telerik_ReportViewer_PageNumberInput" type="number"><span>&nbsp;/&nbsp;</span><span data-role="telerik_ReportViewer_PageCountLabel">1</span></span>
+
+
+                </li>
+
+                <li class="k-item k-state-default k-state-disabled" role="menuitem"><a data-command="telerik_ReportViewer_goToNextPage" title="Trang sau" href="#" class="k-link"><i class="fa fa-step-forward icon-step-forward"></i></a></li>
+                <li class="k-item k-state-default k-state-disabled" role="menuitem"><a data-command="telerik_ReportViewer_goToLastPage" title="Trang cuối" href="#" class="k-link"><i class="fa fa-fast-forward icon-fast-forward"></i></a></li>
+
+                <li class="k-item k-state-default" role="menuitem"><a data-command="telerik_ReportViewer_togglePrintPreview" title="Xem trước bản in" href="#" class="k-link"><i class="fa fa-file-text icon-file-text"></i></a></li>
+
+                <li class="k-item k-state-default" role="menuitem">
+                  <a title="Export" href="#" data-command="telerik_ReportViewer_export" class="k-link"><i class="fa fa-cloud-download icon-cloud-download"></i><span class="k-icon k-i-arrow-s"></span></a>
+                  <ul data-command-list="export-format-list" class="k-group k-menu-group" role="menu" aria-hidden="true"></ul>
+                </li>
+
+                <li class="k-item k-state-default" role="menuitem"><a data-command="telerik_ReportViewer_print" title="In" href="#" class="k-link"><i class="fa fa-print icon-print"></i></a></li>
+
+                <!--<li><a data-command="telerik_ReportViewer_toggleDocumentMap" title="Toggle Document Map" href="#"><i class="t-font-icon t-i-book"></i></a></li>
+                        <li><a data-command="telerik_ReportViewer_toggleParametersArea" title="Toggle Parameters Area" href="#"><i class="t-font-icon t-i-filter"></i></a></li>-->
+
+                <li class="k-item k-state-default" role="menuitem"><a title="Phóng to" href="#" data-command="telerik_ReportViewer_zoomIn" class="k-link"><i class="fa fa-search-plus icon-zoom-in"></i></a></li>
+                <li class="k-item k-state-default" role="menuitem"><a title="Thu nhỏ" href="#" data-command="telerik_ReportViewer_zoomOut" class="k-link"><i class="fa fa-search-minus icon-zoom-out"></i></a></li>
+                <li class="k-item k-state-default" role="menuitem"><a title="Xem/bỏ chế độ toàn khung" href="#" data-command="telerik_ReportViewer_toggleZoomMode" class="k-link"><i class="fa fa-search icon-search"></i></a></li>
+                <li class="k-item k-state-default" role="menuitem"><a title="Xem toàn màn hình" href="javascript:;" class="fullscreen k-link"><i class="fa fa-expand"></i></a></li>
+                <li class="k-item k-state-default k-last" role="menuitem" style="display: none;"><a title="Bỏ toàn màn hình" href="javascript:;" class="unfullscreen ng-hide k-link"><i class="fa fa-compress"></i></a></li>
+              </ul>
+              <script>
+                $(function() {
+                  if ($("body div").hasClass("reportSale")) {
+                    $(".fullscreen").hide();
+                  }
+                  $(".fullscreen").click(function() {
+                    $(".wrapper-report").addClass("full-report");
+                    $(".unfullscreen").removeClass("ng-hide").parent().show();
+                    $(".zopim").addClass("ng-hide");
+                    $("body").addClass("ovh");
+                    $(this).addClass("ng-hide");
+                  });
+                  $(".unfullscreen").click(function() {
+                    $(".wrapper-report").removeClass("full-report");
+                    $(".fullscreen").removeClass("ng-hide");
+                    $(".zopim").removeClass("ng-hide");
+                    $("body").removeClass("ovh");
+                    $(this).addClass("ng-hide");
+                  });
+                  $(document).keyup(function(e) {
+                    if (e.keyCode == 27) $('.unfullscreen').click(); // esc
+                  });
+                });
+
+              </script>
+              <ul class="trv-menu-small k-widget k-reset k-header k-menu k-menu-horizontal" data-role="telerik_ReportViewer_MainMenu" tabindex="0" role="menubar">
+                <li class="k-item k-state-default k-first" role="menuitem"><a data-command="telerik_ReportViewer_toggleSideMenu" title="Toggle Side Menu" href="#" class="k-link"><i class="t-font-icon t-i-reorder"></i></a></li>
+                <li class="k-item k-state-default" role="menuitem">
+                  <span class="k-link"><input data-role="telerik_ReportViewer_PageNumberInput" type="number"><span>&nbsp;/&nbsp;</span><span data-role="telerik_ReportViewer_PageCountLabel">1</span></span>
+
+
+                </li>
+                <li class="k-item k-state-default k-state-disabled" role="menuitem"><a data-command="telerik_ReportViewer_toggleDocumentMap" title="Toggle Document Map" href="#" class="k-link"><i class="t-font-icon t-i-book"></i></a></li>
+                <li class="k-item k-state-default k-last k-state-disabled" role="menuitem"><a data-command="telerik_ReportViewer_toggleParametersArea" title="Toggle Parameters Area" href="#" class="k-link"><i class="t-font-icon t-i-filter"></i></a></li>
+              </ul>
+            </div>
+
+            <div class="trv-content">
+              <div class="trv-document-map k-widget hidden" data-role="telerik_ReportViewer_DocumentMapArea">
+                <div class="trv-document-map-overlay"></div>
+                <div data-role="treeview" class="k-widget k-treeview" tabindex="0">
+                  <ul class="k-group k-treeview-lines" role="tree"></ul>
+                </div>
+              </div>
+
+              <div class="trv-parameters-area k-widget hidden" data-role="telerik_ReportViewer_ParametersArea">
+                <div class="trv-parameters-area-content"></div>
+                <div class="trv-parameters-area-footer">
+                  <button class="k-button trv-parameters-area-preview-button">Preview</button>
+                </div>
+                <div class="trv-error-pane k-tooltip-validation k-widget">
+                  <div class="trv-error-message"></div>
+                </div>
+                <div class="trv-parameters-area-overlay"></div>
+              </div>
+
+              <div class="trv-pages-area k-widget interactive" data-role="telerik_ReportViewer_PagesArea">
+                <div class="trv-page-container">
+                  <div class="trv-page-wrapper active" data-role="touch" style="touch-action: pan-y;">
+                    <div class="trv-report-page" style="height: 302px; width: 1047px;">
+                      <div class="sheet page1" style="padding: 0px; width: 1047px; height: 302px; margin: 0px; transform: scale(1, 1); transform-origin: 0px 0px 0px;">
+                        <div class="layer">
+                          <div title="" class="SaleByTime s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:0px;width:1047px;height:266px;"></div>
+                          <div title="" class="Group s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:0px;width:1047px;height:266px;"></div>
+                          <div title="" class="reportHeaderSection1 s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:0px;width:1047px;height:100px;"></div>
+                          <div title="" class="textBox2 s1-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:5px;width:198px;height:19px;">
+                            <div style="position:absolute;top:0px;white-space:pre;left:0px;">Ngày lập:13/07/2017 14:22</div>
+                          </div>
+                          <div title="" class="title s2-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:349px;top:0px;width:341px;height:26px;">
+                            <div style="position:absolute;top:3px;white-space:pre;left:18px;">Báo cáo bán hàng theo thời gian</div>
+                          </div>
+                          <div title="" class="thoigiantuden s3-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:35px;width:1027px;height:22px;">
+                            <div style="position:absolute;top:0px;white-space:pre;left:402px;">Từ ngày 10/07/2017 đến ngày 13/07/2017</div>
+                          </div>
+                          <div title="" class="header_branchs s4-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:57px;width:1022px;height:42px;">
+                            <div class="s5-142215-ab9c142215-6f99" style="top:0px;left:428px;"><span class="s6-142215-ab9c142215-6f99">Chi nhánh: Chi nhánh trung tâm</span></div>
+                          </div>
+                          <div title="" class="group s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:100px;width:1047px;height:166px;"></div>
+                          <div title="" class="groupHeaderSection s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:100px;width:1047px;height:77px;"></div>
+                          <div title="" class="panelTitle s7-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:100px;width:1027px;height:36px;"></div>
+                          <div title="" class="giatritra s8-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:725px;top:100px;width:122px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">Giá trị trả</div>
+                          </div>
+                          <div title="" class="sldontra s9-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:624px;top:100px;width:86px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">SL Đơn trả</div>
+                          </div>
+                          <div title="" class="doanhthuthuan s10-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:863px;top:100px;width:159px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">Doanh thu (thuần)</div>
+                          </div>
+                          <div title="" class="chietkhauTT s9-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:372px;top:100px;width:110px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">Giảm giá HĐ</div>
+                          </div>
+                          <div title="" class="thoigian s11-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:100px;width:111px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;left:8px;">Thời gian</div>
+                          </div>
+                          <div title="" class="doanhthu s8-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:497px;top:100px;width:111px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">Doanh thu</div>
+                          </div>
+                          <div title="" class="slhoadon s9-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:136px;top:100px;width:86px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">SL Đơn bán</div>
+                          </div>
+                          <div title="" class="giatritruocCK s9-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:237px;top:100px;width:120px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">Tổng tiền hàng</div>
+                          </div>
+                          <div title="" class="panelTotal s12-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:137px;width:1027px;height:39px;"></div>
+                          <div title="" class="textBox7 s13-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:725px;top:137px;width:122px;height:26px;">
+                            <div style="position:absolute;top:12px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox6 s13-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:372px;top:137px;width:109px;height:26px;">
+                            <div style="position:absolute;top:12px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox5 s14-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:237px;top:137px;width:120px;height:26px;">
+                            <div style="position:absolute;top:12px;white-space:pre;right:8px;">512,500</div>
+                          </div>
+                          <div title="" class="textBox10 s14-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:624px;top:137px;width:86px;height:26px;">
+                            <div style="position:absolute;top:12px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox8 s15-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:863px;top:137px;width:159px;height:26px;">
+                            <div style="position:absolute;top:12px;white-space:pre;right:8px;">512,500</div>
+                          </div>
+                          <div title="" class="textBox9 s13-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:497px;top:137px;width:111px;height:26px;">
+                            <div style="position:absolute;top:12px;white-space:pre;right:8px;">512,500</div>
+                          </div>
+                          <div title="" class="textBox3 s16-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:137px;width:213px;height:26px;">
+                            <div style="position:absolute;top:12px;white-space:pre;right:8px;">3</div>
+                          </div>
+                          <div title="" class="detail s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:177px;width:1047px;height:38px;"></div>
+                          <div title="" class="panelContent s17-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:177px;width:1027px;height:38px;"></div>
+                          <div title="" class="textBox15 s18-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:372px;top:178px;width:109px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox16 s19-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:237px;top:178px;width:120px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">362,500</div>
+                          </div><img alt="" src="/webapi/reports/clients/142103-38e8/instances/142215-ecfe/documents/142215-ab9c142215-6f99/resources/expand.png/" style="position:absolute;left:22px;top:190px;width:11px;height:11px;z-index:100;cursor:pointer;"
+                          data-reporting-action="_67241328ffeb4e4eabef9b722fc03b63" class="icon-expand">
+                          <div title="" class="textBox18 s20-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:178px;width:90px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;left:28px;">13/07/2017</div>
+                          </div>
+                          <div title="" class="textBox11 s19-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:624px;top:178px;width:86px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox13 s21-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:863px;top:178px;width:159px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">362,500</div>
+                          </div>
+                          <div title="" class="textBox14 s18-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:725px;top:178px;width:122px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox12 s18-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:497px;top:178px;width:111px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">362,500</div>
+                          </div>
+                          <div title="" class="textBox4 s19-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:136px;top:178px;width:86px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">2</div>
+                          </div>
+                          <div title="" class="detail s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:215px;width:1047px;height:38px;"></div>
+                          <div title="" class="panelContent s17-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:215px;width:1027px;height:38px;"></div>
+                          <div title="" class="textBox15 s18-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:372px;top:216px;width:109px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox16 s19-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:237px;top:216px;width:120px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">150,000</div>
+                          </div><img alt="" src="/webapi/reports/clients/142103-38e8/instances/142215-ecfe/documents/142215-ab9c142215-6f99/resources/expand.png/" style="position:absolute;left:22px;top:228px;width:11px;height:11px;z-index:100;cursor:pointer;"
+                          data-reporting-action="_bd5033bb48dd4bb9b25cb289661e6f57" class="icon-expand">
+                          <div title="" class="textBox18 s20-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:10px;top:216px;width:90px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;left:28px;">11/07/2017</div>
+                          </div>
+                          <div title="" class="textBox11 s19-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:624px;top:216px;width:86px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox13 s21-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:863px;top:216px;width:159px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">150,000</div>
+                          </div>
+                          <div title="" class="textBox14 s18-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:725px;top:216px;width:122px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">0</div>
+                          </div>
+                          <div title="" class="textBox12 s18-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:497px;top:216px;width:111px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">150,000</div>
+                          </div>
+                          <div title="" class="textBox4 s19-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:136px;top:216px;width:86px;height:25px;">
+                            <div style="position:absolute;top:11px;white-space:pre;right:8px;">1</div>
+                          </div>
+                          <!--div title="" class="groupFooterSection s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:253px;width:1047px;height:13px;"></div>
+                          <div title="" class="pageFooterSection1 s0-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:0px;top:266px;width:1047px;height:36px;"></div>
+                          <div title="" class="pageNumber s22-142215-ab9c142215-6f99" style="position:absolute;overflow:hidden;left:679px;top:274px;width:357px;height:19px;"></div-->
+                        </div>
+                      </div>
+                      <div class="trv-page-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="trv-error-pane">
+                  <div class="centered k-tooltip-validation k-widget">
+                    <div class="trv-error-message">Done. Total 1 pages loaded.</div>
+                  </div>
+                  <div style="clear: both;"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="posR report-chart wrapper-report-chart" ng-hide="report.showing">
+      <div class="report-box saleReport">
+        <div class="chart-wrapper report_PurchaseDate mb20" ng-show="report.ViewType == 'PurchaseDate'">
+          <div id="chart_PurchaseDate" class="chartdiv"></div>
+          <div class="overlay_chart nochart_sale">
+            <div class="ng-binding">Không có dữ liệu</div>
+          </div>
+        </div>
+        <div class="chart-wrapper report_profit mb20 ng-hide" ng-show="report.ViewType == 'Profit'">
+          <div kendo-chart="saleProfitDayChart" k-options="saleProfitByDayCols" style="height: 520px; position: relative; touch-action: pan-y;" data-role="chart" class="k-chart">
+             
+          </div>
+          <div class="overlay_chart nochart_profit">
+            <div class="ng-binding">Không có dữ liệu</div>
+          </div>
+        </div>
+        <div class="chart-wrapper report_branch mb20 ng-hide" ng-show="report.ViewType == 'Branch'">
+          <div kendo-chart="branchPieChart" k-options="branchPie" style="height: 520px; background: rgb(255, 255, 255); position: relative; touch-action: pan-y;" data-role="chart" class="k-chart">
+             
+          </div>
+          <div class="overlay_chart nochart_branch">
+            <div class="ng-binding">Không có dữ liệu</div>
+          </div>
+        </div>
+        <div class="chart-wrapper report_soldBy mb20 ng-hide" ng-show="report.ViewType == 'SoldBy'">
+          <div kendo-chart="salepersonChart" k-options="salepersonBars" style="height: 520px; position: relative; touch-action: pan-y;" data-role="chart" class="k-chart">
+             
+          </div>
+          <div class="overlay_chart nochart_soldBy">
+            <div class="ng-binding">Không có dữ liệu</div>
+          </div>
+        </div>
+        <div class="chart-wrapper report_customer mb20 ng-hide" ng-show="report.ViewType == 'Customer'">
+          <div kendo-chart="customerChart" k-options="customerBarOptions" style="height: 520px; position: relative; touch-action: pan-y;" data-role="chart" class="k-chart">
+             
+          </div>
+          <div class="overlay_chart nochart_customer">
+            <div class="ng-binding">Không có dữ liệu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+<script>
+/*
+today
+yesterday
+thisweek
+7day
+month
+lastmonth
+monthlunar
+lastmonthlunar
+30day
+quarter
+lastquarter
+year
+lastyear
+yearlunar
+lastyearlunar
+*/
+
+var rngs = {
+    today:'Hôm nay',
+    yesterday:'Hôm qua',
+    thisweek:'Tuần này',
+    '7day':'7 ngày qua',
+    month:'Tháng này',
+    lastmonth:'Tháng trước',
+    monthlunar:'Tháng này (ÂL)',
+    lastmonthlunar:'Tháng trước (ÂL)',
+    '30day':'30 ngày qua',
+    quarter:'Quý này',
+    lastquarter:'Quý trước',
+    year:'Năm này',
+    lastyear:'Năm trước',
+    yearlunar:'Năm này (ÂL)',
+    lastyearlunar   :'Năm trước (ÂL)'
+}
+
+var filter = {
+    ViewType: 'PurchaseDate',
+    Mode: 'chart',
+    range: 'thisweek'
+}
+
+function labelF ( value, valueText, valueAxis ) {
+  var m = String(value)  
+   
+  return m.replace(/[0]{6}$/,"tr").replace(/[0]{3}$/,"k")
+          .replace(/([1-9])[0]{5}$/,".$1tr").replace(/([1-9])[0]{2}$/,".$1k")
+ 
+}
+
+function labelFX ( value, valueText, valueAxis ) {
+  var m = String(value)  
+   
+  return m.replace(/([0-9]+)-([0-9]+)$/,"$2/$1")
+ 
+}
+
+function _g(){
+    
+    if(!cb){
+        setTimeout(function(){_g()},500)
+        return
+    }
+    $.getJSON( "ajax.php?action=turnover&range="+filter.range+"&ViewType="+filter.ViewType+"&branch="+cb, function( data ) {
+        dataProvider = []
+        for(var i in data){
+            dataProvider.push((filter.ViewType=='SoldBy'||filter.ViewType=='PurchaseDate')?{
+                //"date": filter.ViewType=='PurchaseDate'? data[i].d.substr(-2): data[i].d,
+                "date": data[i].d,
+                "visits": data[i].turnover
+            }:{                
+                "date": data[i].d,
+                "visits": data[i].turnover,
+                "cost": data[i].cost,
+                "profit": data[i].turnover-data[i].cost,
+            })
+        }  
+        var opz = {
+            "titles": [
+        		{
+        			"text": (filter.ViewType=='Profit'?"Lợi nhuận ":"Doanh thu thuần ")+rngs[filter.range],
+        			"size": 15
+        		}
+        	],
+          "type": "serial",
+          "theme": "none",
+          "dataProvider": dataProvider,
+          "gridAboveGraphs": true,
+          "startDuration": 1,
+          "graphs": [ {
+            "balloonText": "[[category]]: <b>[[value]]</b>",
+            "fillAlphas": 0.8,
+            "lineAlpha": 0.2,
+            "type": "column",
+            "valueField": "visits"
+          } ],
+          "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+          },
+          "categoryField": "date",
+          "categoryAxis": {
+            "gridPosition": "start",
+            "gridAlpha": 0,
+            "tickPosition": "start",
+            "tickLength": 20
+          },
+          "export": {
+            "enabled": true
+          }
+        
+        }
+        
+        if(filter.ViewType=='SoldBy'){
+            opz.rotate = true
+            opz.categoryAxis= {
+                "gridPosition": "start",
+                "position": "left"
+              }
+            opz.valueAxes = [{
+                "id": "ValueAxis-1",
+                "position": "bottom",
+                "axisAlpha": 0,
+                labelFunction: labelF
+              }]
+        }else if(filter.ViewType=='PurchaseDate'){
+            opz.valueAxes = [{
+                labelFunction: labelF
+              }]
+            opz.categoryAxis.labelFunction = labelFX
+        }else{
+            opz.categoryAxis= {
+                "gridPosition": "start",
+                "position": "bottom",
+                labelFunction: labelFX
+              }
+            opz.valueAxes = [{
+                "id": "ValueAxis-1",
+                "position": "left",
+                "axisAlpha": 0,
+                labelFunction: labelF
+              }]
+            opz.graphs = [
+                {
+        			"balloonText": "Lợi nhuận:[[value]]",
+        			"fillAlphas": 0.8,
+        			 
+        			"lineAlpha": 0.2,
+        			"title": "Lợi nhuận",
+        			"type": "column",
+        			"valueField": "profit"
+        		},
+        		{
+        			"balloonText": "Doanh thu:[[value]]",
+        			"fillAlphas": 0.8,
+        			 
+        			"lineAlpha": 0.2,
+        			"title": "Doanh thu",
+        			"type": "column",
+        			"valueField": "visits"
+        		},
+        		{
+        			"balloonText": "Giá vốn:[[value]]",
+        			"fillAlphas": 0.8,
+        			 
+        			"lineAlpha": 0.2,
+        			"title": "Giá vốn",
+        			"type": "column",
+        			"valueField": "cost"
+        		}
+        	]
+            opz.legend= {
+                "useGraphSettings": true,
+                "align":"center"
+              }
+        }
+        
+        var chart = AmCharts.makeChart( "chart_PurchaseDate", opz );             
+    });
+}
+
+function loadTableLeft(){
+     
+    console.log('loadTableLeft');
+    
+    $('#reportsortDateTimeLbl').unbind('click')
+    $('#reportsortDateTimeLbl').click(function(e){
+        var pp = $(this).parent().parent()
+        pp.toggleClass('reportsortActive')
+        $('[ng-click^="filterbyRange"]').unbind('click')
+        $('[ng-click^="filterbyRange"]').click(function(e){
+            var x = $(this).attr('ng-click').slice(15,-2)
+            filter.range = x
+            pp.toggleClass('reportsortActive')
+            $('#reportsortDateTimeLbl').html($(this).html())
+            _g()
+        })
+    }) 
+    
+    pretty('.mainLeft',function(d){
+        if($(d).attr('ng-model')=='report.ViewType'){                     
+            var oo = filter.ViewType+''
+            var oo2 = $('.mainLeft [ng-model="report.ViewType"][checked]').attr('value')
+            if(oo==oo2) return false
+            filter.ViewType = oo2
+            _g(); 
+        }
+    })
+     
+    _g(); 
+}
+
+loadTableLeft()
+//
+setTitle(loadBranch(cb).name+' - Báo cáo') 
+</script>

@@ -1,0 +1,109 @@
+.header .headNav li:last-child{
+    display: none;
+}
+
+.kv2CoffeePay .boxBtn{
+    width: 120px;
+}
+
+@media(max-width:1024px){
+    .header .headNav li:last-child{
+        display: block;
+    }
+    .header{
+        margin-bottom: 50px;
+    }
+    .searchCustomer{
+        position: absolute!important;
+        top: 40px;
+    }
+    .kv2Left {
+        margin-right: -10px;
+        
+    }
+    .kv2Right{
+        margin-right: -545px;
+    }
+    
+    .showRight .kv2Right{
+        position: absolute;
+        top: 90px;
+        background: greenyellow;
+        z-index: 1111;
+        width: 100%;
+    }
+    
+    .showRight #wrapper{
+        overflow-y: scroll!important;
+    }
+}
+@media(max-width:768px){
+    .header .header-l{
+        top: 40px;
+        position: absolute;
+        
+        margin-right: 0px;
+    }
+    .header {
+        margin-bottom: 90px;
+    }
+    .showRight .kv2Right {         
+        top: 130px;         
+    }
+}
+
+@media(max-width:425px){
+    .proTabs.saleOff{
+        left: 350px!important;
+    }
+    .fll.mainWrapper{
+        width: 200px!important;
+    }
+    .kvTabs.tab1{
+        margin-top: 30px;
+    }
+    
+    .kv2CoffeePay {
+        padding-left: 0px!important;
+        
+        overflow-y: scroll!important;
+        height: 320px;
+    }
+    
+    .kv2CoffeePay .boxBtn {        
+        bottom: 0; /*auto*/
+        top: auto;  /*180px*/
+        width: 100%;       
+    }
+    
+    div.k-window-content{
+        padding: 20px 0px 30px;        
+    }
+}
+@media(max-width:375px){
+    .proTabs.saleOff{
+        left: 310px!important;
+    }
+    
+    
+}
+@media(max-width:320px){
+    .searchCustomer input {
+        width: 220px;    
+    }
+    .proTabs.saleOff {
+        left: 260px!important;
+    }
+    .searchCustomer {       
+        border-right: none;
+    }
+    .searchCustomer {
+        width: 100%;
+    }
+}
+
+/* 11/08/2019 fixed */
+.fillterBox{
+    width: auto;
+    max-width: 460px;
+}

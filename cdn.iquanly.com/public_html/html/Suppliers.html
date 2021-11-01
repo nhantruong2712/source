@@ -1,0 +1,1228 @@
+<section class="mainLeft fll ng-scope">
+    <kv-supplier-filter><article class="boxLeft uln leftStatus  ">
+    <h3 class="leftTitle ng-binding">Tìm kiếm</h3>
+    <aside class="boxLeftC fr">
+        <input type="text" ng-model="custFilter.Code" placeholder="Theo mã, tên, điện thoại" class="w99 ng-pristine ng-untouched ng-valid ng-empty" kv-select-text="" ng-blur="filterByCode()" ng-keyup="$event.keyCode == 13 ? filterByCode() : null">
+    </aside>
+</article>
+
+<article class="boxLeft uln reportsortTime sortTime hth-hide" ng-show="rights.canViewInvoice">
+    <h3 class="leftTitle cursor ng-binding" ng-click="showStatus = !showStatus">Tổng mua <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+    <aside class="boxLeftC fr" ng-hide="showStatus">
+        <div class="sortTimeOtherBox pd0">
+            <div class="form-group ovh">
+                <label class="control-label ng-binding">Từ</label>
+                <div class="sort-ipt">
+                    <input type="text" placeholder="Giá trị" class="w100 ng-pristine ng-untouched ng-valid ng-empty" id="supplierFrom" kv-auto-numeric="{mDec:0}" ng-model="custFilter.TotalInvoiced.From" ng-blur="filterByTotalInvoiced()" kv-select-text="">
+                </div>
+            </div>
+            <div class="form-group ovh">
+                <label class="control-label ng-binding">Tới</label>
+                <div class="sort-ipt">
+                    <input type="text" placeholder="Giá trị" class="w100 ng-pristine ng-untouched ng-valid ng-empty" id="supplierTo" kv-auto-numeric="{mDec:0}" ng-model="custFilter.TotalInvoiced.To" ng-blur="filterByTotalInvoiced()" kv-select-text="">
+                </div>
+            </div>
+        </div>
+    </aside>
+    <kv-report-time-filter kv-model="filterDate" kv-change="filterByDateRange" kv-alltime="true" class="ng-isolate-scope"><aside class="boxLeftC posR">
+    <ul id="">
+        <li class="reportsort reportsortDateTime has-pretty-child">
+            <div class="clearfix prettyradio labelright  blue"><input type="radio" kv-pretty-check="" name="stime_" id="reportsortDateTimeIpt" value="range" ng-model="typeDate" kv-change="filterTimeChangeType" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" style="display: none;" checked="checked"><a href="javascript:void(0)" class="checked"></a>
+<label for="reportsortDateTimeIpt" class="checked"></label></div>
+            <aside class="sortTime">
+                <label class="sortTimeLbl ng-binding" id="reportsortDateTimeLbl" ng-click="sortTimeType('.reportsortDateTime')">Toàn thời gian</label>
+                <aside class="sortTimeList">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <h3>Theo ngày và tuần</h3>
+                            <ul>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('today')" class="ng-binding">Hôm nay</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('yesterday')" class="ng-binding">Hôm qua</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('thisweek')" class="ng-binding">Tuần này</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('lastweek')" class="ng-binding">Tuần trước</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('7day')" class="ng-binding">7 ngày qua</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <h3>Theo tháng và quý</h3>
+                            <ul>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('month')" class="ng-binding">Tháng này</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('lastmonth')" class="ng-binding">Tháng trước</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('monthlunar')" class="ng-binding">Tháng này (Âm lịch)</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('lastmonthlunar')" class="ng-binding">Tháng trước (Âm lịch)</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('30day')" class="ng-binding">30 ngày qua</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('quarter')" class="ng-binding">Quý này</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('lastquarter')" class="ng-binding">Quý trước</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <h3>Theo năm</h3>
+                            <ul>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('year')" class="ng-binding">Năm này</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('lastyear')" class="ng-binding">Năm trước</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('yearlunar')" class="ng-binding">Năm này (Âm lịch)</a></li>
+                                <li><a href="javascript:void(0);" ng-click="filterbyRange('lastyearlunar')" class="ng-binding">Năm trước (Âm lịch)</a></li>
+                                <!-- ngIf: kvModel.typeFilter && kvModel.typeFilter == 'common' && kvAlltime --><li ng-if="kvModel.typeFilter &amp;&amp; kvModel.typeFilter == 'common' &amp;&amp; kvAlltime" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('alltime')" class="ng-binding">Toàn thời gian</a></li><!-- end ngIf: kvModel.typeFilter && kvModel.typeFilter == 'common' && kvAlltime -->
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </aside>
+            <!--<select id="mainView" kendo-drop-down-list ng-model="timerange" k-on-change="filterbyRange('thisweek')" k-data-source="timeType" k-data-text-field="'text'" k-data-value-field="'value'"></select>-->
+        </li>
+        <li class="reportsort reportsortOther has-pretty-child">
+            <div class="clearfix prettyradio labelright  blue"><input type="radio" kv-pretty-check="" name="stime_" value="other" id="sortTime" ng-model="typeDate" kv-data-label="" kv-change="filterTimeChangeType" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" style="display: none;"><a href="javascript:void(0)" class=" "></a>
+<label for="sortTime" class=""></label></div>
+            <label class="sortTimeLbl ng-binding" id="reportsortOtherLbl" ng-click="sortTimeType('.reportsortOther')">Lựa chọn khác </label>
+            <aside class="sortDateTimeOtherBox fr">
+                <div class="row mb5">
+                    <div class="col-md-6 col-sm-6">
+                        <h6 class="ng-binding">Từ ngày: <span class="ng-binding">23/06/2016</span></h6>
+                        <!--<div ng-show="StartDate" class="datetxt">{{(StartDate |date: 'longDate')}}</div>-->
+                        <!--<input k-ng-model="StartDate" id="fromDate" required kv-max="EndDate" k-format="'dd/MM/yyyy'" kendo-calendar placeholder="{{_l.from}}" />-->
+                        <div kendo-calendar="" id="fromDate" required="required" kv-max="EndDate" k-max="EndDate" k-rebind="EndDate" k-ng-model="StartDate" data-role="calendar" class="k-widget k-calendar"><div class="k-header"><a href="#" role="button" class="k-link k-nav-prev" aria-disabled="false"><span class="k-icon k-i-arrow-w"></span></a><a href="#" role="button" aria-live="assertive" aria-atomic="true" class="k-link k-nav-fast" aria-disabled="false">Tháng Sáu 2016</a><a href="#" role="button" class="k-link k-nav-next k-state-disabled" aria-disabled="true"><span class="k-icon k-i-arrow-e"></span></a></div><table tabindex="0" role="grid" class="k-content" cellspacing="0" data-start="2016/4/30" aria-activedescendant="fromDate_cell_selected"><thead><tr role="row"><th scope="col" title="Thứ Hai">H</th><th scope="col" title="Thứ Ba">B</th><th scope="col" title="Thứ Tư">T</th><th scope="col" title="Thứ Năm">N</th><th scope="col" title="Thứ Sáu">S</th><th scope="col" title="Thứ Bảy">B</th><th scope="col" title="Chủ Nhật">C</th></tr></thead><tbody><tr role="row"><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/4/30" title="30 Tháng Năm 2016">30</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/4/31" title="31 Tháng Năm 2016">31</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/1" title="01 Tháng Sáu 2016">1</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/2" title="02 Tháng Sáu 2016">2</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/3" title="03 Tháng Sáu 2016">3</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/4" title="04 Tháng Sáu 2016">4</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/5" title="05 Tháng Sáu 2016">5</a></td></tr><tr role="row"><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/6" title="06 Tháng Sáu 2016">6</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/7" title="07 Tháng Sáu 2016">7</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/8" title="08 Tháng Sáu 2016">8</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/9" title="09 Tháng Sáu 2016">9</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/10" title="10 Tháng Sáu 2016">10</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/11" title="11 Tháng Sáu 2016">11</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/12" title="12 Tháng Sáu 2016">12</a></td></tr><tr role="row"><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/13" title="13 Tháng Sáu 2016">13</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/14" title="14 Tháng Sáu 2016">14</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/15" title="15 Tháng Sáu 2016">15</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/16" title="16 Tháng Sáu 2016">16</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/17" title="17 Tháng Sáu 2016">17</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/18" title="18 Tháng Sáu 2016">18</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/19" title="19 Tháng Sáu 2016">19</a></td></tr><tr role="row"><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/20" title="20 Tháng Sáu 2016">20</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/21" title="21 Tháng Sáu 2016">21</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/22" title="22 Tháng Sáu 2016">22</a></td><td class="k-today k-state-selected" role="gridcell" aria-selected="true" id="fromDate_cell_selected"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/23" title="23 Tháng Sáu 2016">23</a></td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td></tr><tr role="row"><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td></tr><tr role="row"><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td></tr></tbody></table><div class="k-footer"><a href="#" class="k-link k-nav-today" title="23 Tháng Sáu 2016">23 Tháng Sáu 2016</a></div></div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <h6 class="ng-binding">Đến ngày: <span class="ng-binding">23/06/2016</span></h6>
+                        <!--<div ng-show="EndDate" class="datetxt">{{(EndDate | date: 'longDate')}}</div>-->
+                        <div kendo-calendar="" id="toDate" required="required" kv-min="StartDate" k-min="StartDate" k-rebind="StartDate" k-ng-model="EndDate" data-role="calendar" class="k-widget k-calendar"><div class="k-header"><a href="#" role="button" class="k-link k-nav-prev k-state-disabled" aria-disabled="true"><span class="k-icon k-i-arrow-w"></span></a><a href="#" role="button" aria-live="assertive" aria-atomic="true" class="k-link k-nav-fast" aria-disabled="false">Tháng Sáu 2016</a><a href="#" role="button" class="k-link k-nav-next" aria-disabled="false"><span class="k-icon k-i-arrow-e"></span></a></div><table tabindex="0" role="grid" class="k-content" cellspacing="0" data-start="2016/4/30" aria-activedescendant="toDate_cell_selected"><thead><tr role="row"><th scope="col" title="Thứ Hai">H</th><th scope="col" title="Thứ Ba">B</th><th scope="col" title="Thứ Tư">T</th><th scope="col" title="Thứ Năm">N</th><th scope="col" title="Thứ Sáu">S</th><th scope="col" title="Thứ Bảy">B</th><th scope="col" title="Chủ Nhật">C</th></tr></thead><tbody><tr role="row"><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td></tr><tr role="row"><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td></tr><tr role="row"><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td></tr><tr role="row"><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td role="gridcell">&nbsp;</td><td class="k-today k-state-selected" role="gridcell" aria-selected="true" id="toDate_cell_selected"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/23" title="23 Tháng Sáu 2016">23</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/24" title="24 Tháng Sáu 2016">24</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/25" title="25 Tháng Sáu 2016">25</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/26" title="26 Tháng Sáu 2016">26</a></td></tr><tr role="row"><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/27" title="27 Tháng Sáu 2016">27</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/28" title="28 Tháng Sáu 2016">28</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/29" title="29 Tháng Sáu 2016">29</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/5/30" title="30 Tháng Sáu 2016">30</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/1" title="01 Tháng Bảy 2016">1</a></td><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/2" title="02 Tháng Bảy 2016">2</a></td><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/3" title="03 Tháng Bảy 2016">3</a></td></tr><tr role="row"><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/4" title="04 Tháng Bảy 2016">4</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/5" title="05 Tháng Bảy 2016">5</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/6" title="06 Tháng Bảy 2016">6</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/7" title="07 Tháng Bảy 2016">7</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/8" title="08 Tháng Bảy 2016">8</a></td><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/9" title="09 Tháng Bảy 2016">9</a></td><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2016/6/10" title="10 Tháng Bảy 2016">10</a></td></tr></tbody></table><div class="k-footer"><a href="#" class="k-link k-state-disabled" title="23 Tháng Sáu 2016">23 Tháng Sáu 2016</a></div></div>
+                        <!--<input kendo-calendar required id="toDate" kv-min="StartDate" k-format="'dd/MM/yyyy'" k-ng-model="EndDate" placeholder="{{_l.to}}" />-->
+                    </div>
+                </div>
+                
+                <div class="boxBtn mb15 txtR">
+                    <a ng-click="filterByDateRange()" class="kv2Btn ng-binding"><i class="fa fa-filter"></i>Tìm kiếm</a>
+                </div>
+            </aside>
+        </li>
+    </ul>
+</aside>
+</kv-report-time-filter>
+</article>
+<article class="boxLeft uln leftStatus  ">
+    <h3 class="leftTitle cursor ng-binding" ng-click="showDebt = !showDebt">Nợ hiện tại <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+    <aside class="boxLeftC fr" ng-hide="showDebt">
+        <div class="sortTimeOtherBox pd0">
+            <div class="form-group ovh">
+                <label class="control-label ng-binding">Từ</label>
+                <div class="sort-ipt">
+                    <input type="text" placeholder="Giá trị" class="w100 ng-pristine ng-untouched ng-valid ng-empty" kv-auto-numeric="{vMin:'-999999999.99', mDec:0}" ng-model="custFilter.Debt.From" ng-blur="filterByDebt()" kv-select-text="">
+                </div>
+            </div>
+            <div class="ovh">
+                <label class="control-label ng-binding">Tới</label>
+                <div class="sort-ipt">
+                    <input type="text" placeholder="Giá trị" class="w100 ng-pristine ng-untouched ng-valid ng-empty" kv-auto-numeric="{vMin:'-999999999.99', mDec:0}" ng-model="custFilter.Debt.To" ng-blur="filterByDebt()" kv-select-text="">
+                </div>
+            </div>
+        </div>
+    </aside>
+</article>
+<!--<article class="boxLeft uln sortTime">
+    <h3 class="leftTitle">{{_l.lblTimeFilter}}</h3>
+    <aside class="boxLeftC posR">
+        
+    </aside>
+</article>-->
+<article class="boxLeft uln sortTime sortView">
+
+    <h3 class="leftTitle ng-binding">Số bản ghi</h3>
+    <aside class="boxLeftC">
+        <!--<ul>
+            <li><input type="radio" kv-pretty-check name="sview"  value="{{typeList}}" ng-model="viewtype" data-label="Danh sách" kv-change="changeView" /></li>
+            <li><input type="radio" kv-pretty-check name="sview" value="{{typeEmail}}" ng-model="viewtype" data-label="Email" kv-change="changeView" /></li>
+        </ul>-->
+        <aside ng-show="viewtype == typeList">
+            <span title="" class="k-widget k-dropdown k-header ng-pristine ng-untouched ng-valid ng-not-empty" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="mainView_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="958fdd66-25be-4ca6-971a-bb1d25486ef9" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">10</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select id="mainView" ng-model="pageSize" k-on-change="refresh()" k-data-source="pageSizes" kendo-drop-down-list="" class="ng-pristine ng-untouched ng-valid ng-not-empty" data-role="dropdownlist" style="display: none;"><option value="? number:10 ?"></option><option value="10" selected="selected">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option></select></span>
+        </aside>
+    </aside>
+</article></kv-supplier-filter>
+  <div class="wrap-button-footer">
+    <button kv-mobile="" type="button" class="kv2Btn">Hoàn tất</button>
+  </div>
+</section>
+<section class="mainRight proRight customerPage ng-scope">
+    <section class="mainWrap fll w100" style="position: relative; top: auto; bottom: auto; width: auto;">
+        <article class="headerContent posR mb10 uln fll w100">
+
+            <h1><a href="javascript:void(0);" class="mobileIcon" kv-mobile=""></a><span class="ng-binding">Nhà cung cấp</span></h1>
+
+            <aside class="flr">
+                <!--<a ng-href="#/{{viewUrl.customerList}}/new?g={{selectedGroupId}}" class="kv2Btn" ng-show="rights.canCreate"><i class="fa fa-plus"></i> {{_l.customer_AddNew}}</a>-->
+                <a onclick="addSupplier()" class="kv2Btn ng-binding" kv-btn-scroll="" ng-show="rights.canCreate"><i class="fa fa-plus"></i> Nhà cung cấp</a>
+                <!-- ngIf: _setting.SMSEmailMarketing && (_p.has('SmsEmailTemplate_SendSMS') || _p.has('SmsEmailTemplate_SendEmail')) && (_setting.IsConnectVG || _setting.MailServiceType > 0) -->
+                <a ng-show="_p.has('Customer_Import')" href="javascript:void(0)" ng-click="import()" class="kv2Btn kv2BtnImport ng-binding"><i class="fa fa-sign-in"></i> Import</a>
+                <a ng-show="_p.has('Customer_Export')" href="javascript:void(0)" kv-taga-disabled="customers.total()==0" ng-click="export()" class="kv2Btn kv2BtnExport ng-binding"><i class="fa fa-sign-out"></i> Xuất  file</a>
+                <div id="columnSelection" kv-column-selection="" class="columnView k-widget k-reset k-header k-menu k-menu-horizontal" binded-grid="bindedGrid" data-role="menu" tabindex="0" role="menubar">
+                <li class="k-item k-state-default k-first k-last" role="menuitem" aria-haspopup="true"><span class="k-link"><span class="k-icon k-i-arrow-s"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Code"><span></span>Mã khách hàng</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Name"><span></span>Tên khách hàng</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="ContactNumber"><span></span>Điện thoại</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="GroupsText"><span></span>Nhóm khách hàng</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Gender"><span></span>Giới tính</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="BirthDate"><span></span>Ngày sinh</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Email"><span></span>Email</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Address"><span></span>Địa chỉ</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="LocationName"><span></span>Khu vực</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Debt"><span></span>Nợ cần thu hiện tại</label></span></li><li class="k-item k-state-default k-last" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="TotalInvoiced"><span></span>Tổng bán</label></span></li></ul></li></div>
+            </aside>
+            <!-- ngIf: selectedCustomers.length > 0 && _setting.SMSEmailMarketing && (_p.has('SmsEmailTemplate_SendSMS') || _p.has('SmsEmailTemplate_SendEmail')) -->
+        </article>
+        <div class="clb ovh">&nbsp;</div>
+        <article class="k-gridNone k-grid-Scroll">
+            <div id="grdCustomers" kendo-grid="" k-data-source="customers" k-sortable="true" k-resizable="true" k-pageable="{ &quot;pageSize&quot;: 10, &quot;refresh&quot;: false, &quot;pageSizes&quot;: false , buttonCount: 5,messages:{display:_l.pagerInfo + _l.customer_Paging, first:_l.paging_First, previous:_l.paging_Prev, next: _l.paging_Next, last: _l.paging_Last}}" k-columns="grdColumns" kv-grid-expan-row="" data-title="customer_Paging" k-data-bound="emptyGridFix" k-data-binding="grvdataBinding" k-detail-template="detailTemplate" k-detail-init="grvDetailInit" k-detail-expand="grvDetailExpand" data-role="grid" class="k-grid k-widget">
+            <div class="k-grid-header" style="padding-right: 17px;">
+            <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
+            <table role="grid">
+            <colgroup><col class="k-hierarchy-col"><col><col><col><col><col><col></colgroup>
+            <thead role="rowgroup">
+            <tr role="row"><th class="k-hierarchy-cell k-header ng-scope" scope="col">&nbsp;</th>
+            <th scope="col" role="columnheader" data-field="Code" rowspan="1" data-title="Mã nhà cung cấp" data-index="0" id="d464d9c2-982d-4228-9a27-9480fa4916d2" class="tdName k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Mã nhà cung cấp</a></th>
+            <th scope="col" role="columnheader" data-field="Name" rowspan="1" data-title="Tên nhà cung cấp" data-index="1" id="d94c4d19-63a3-41a8-8529-2fea5e104b4f" class="tdMin k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Tên nhà cung cấp</a></th>
+            <th scope="col" role="columnheader" data-field="Phone" rowspan="1" data-title="Điện thoại" data-index="2" id="c725f798-9ece-4505-b738-5818c7c340a3" class="tdPhone k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Điện thoại</a></th>
+            <th scope="col" role="columnheader" data-field="Email" rowspan="1" data-title="Email" data-index="3" id="899776e6-fadb-4957-b1bd-083443abb41c" class="tdBranch k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Email</a></th>
+            <th scope="col" role="columnheader" data-field="Address" rowspan="1" data-title="Địa chỉ" data-index="4" id="4ce997c2-ad18-4341-96a4-2129494d83d1" class="tdBranch k-header ng-scope" style="display:none" data-role="columnsorter"><a class="k-link" href="#">Địa chỉ</a></th>
+            <th scope="col" role="columnheader" data-field="Company" rowspan="1" data-title="Công ty" data-index="5" id="242c8096-f9bc-4a6b-9daa-161d8ebcdd23" class="tdMin k-header ng-scope" style="display:none" data-role="columnsorter"><a class="k-link" href="#">Công ty</a></th>
+            <th scope="col" role="columnheader" data-field="Debt" rowspan="1" data-title="Nợ hiện tại" data-index="6" id="3e44577f-a376-4d51-b373-73614a2f07d9" class="tdDebt txtR k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Nợ hiện tại</a></th>
+            <th scope="col" role="columnheader" data-field="TotalInvoiced" rowspan="1" data-title="Tổng mua" data-index="7" id="156f96b6-6add-4683-85d4-a274a51225fd" class="tdTotal txtR k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Tổng mua</a></th>
+            </tr>
+            </thead>
+            </table>
+            </div>
+            </div>
+            <div class="k-grid-content k-auto-scrollable"><!--  k-grid-content-ac -->
+            <table role="treegrid">
+            <colgroup><col class="k-hierarchy-col"><col><col><col><col><col><col></colgroup>
+            <tbody role="rowgroup">
+             
+    </tbody>
+    </table>
+    </div>
+    <div class="paging-box">
+    <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
+    <a href="javascript:void(0)" title="Trang đầu" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-w">Trang đầu</span></a>
+    <a href="javascript:void(0)" title="Trang trước" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+    <span class="k-icon k-i-arrow-w">Trang trước</span>
+    </a>
+    <ul class="k-pager-numbers k-reset">
+    <li class="k-current-page"><span class="k-link k-pager-nav">1</span></li>
+    <li><span class="k-state-selected">1</span></li>
+    </ul>
+    <a href="javascript:void(0)" title="Trang sau" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+    <span class="k-icon k-i-arrow-e">Trang sau</span></a>
+    <a href="javascript:void(0)" title="Trang cuối" class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1" tabindex="-1">
+    <span class="k-icon k-i-seek-e">Trang cuối</span></a>
+    <span class="k-pager-info k-label">Hiển thị 1 - 6 trên tổng số 6 khách hàng</span>
+    </div>
+    </div>
+    </div>
+        </article>
+    </section>
+</section>
+<div style="display:none" class="ng-scope">
+<script type="text/x-kendo-template" id="templBranch0">
+       
+       <tr class="k-master-row ng-scope cssSummaryRow" data-uid="3f1f062e-91b0-4048-9f71-73612ae189b2" role="row" style="font-weight: bold; background: rgb(254, 252, 237);">
+       <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="#" tabindex="-1" style="display: none;"></a></td>
+       <td class="tdName" role="gridcell"><span ng-bind="dataItem.Code" class="ng-binding"></span></td>
+       <td class="tdMin" role="gridcell"><span ng-bind="dataItem.Name" class="ng-binding"></span></td>
+       <td class="tdPhone" role="gridcell"><span ng-bind="dataItem.Phone" class="ng-binding"></span></td>
+       <td class="tdBranch" role="gridcell"><span ng-bind="dataItem.Email" class="ng-binding"></span></td>
+       <td class="tdBranch" style="display:none" role="gridcell"><span ng-bind="dataItem.Address" class="ng-binding"></span></td>
+       <td class="tdMin" style="display:none" role="gridcell"><span ng-bind="dataItem.Company" class="ng-binding"></span></td>
+       <td class="tdDebt txtR" role="gridcell">0</td><td class="tdTotal txtR" role="gridcell">8,692,000</td>
+       </tr>
+       
+        </script>
+<script type="text/x-kendo-template" id="templBranch">
+        
+            
+        <tr class="{{dataItem.class}} k-master-row ng-scope" data-uid="{{dataItem.id}}" role="row">
+        <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="javascript:void(0)" tabindex="-1"></a></td>
+        <td class="tdName" role="gridcell"><span ng-bind="dataItem.Code" class="ng-binding">{{dataItem.code}}</span></td>
+        <td class="tdMin" role="gridcell"><span ng-bind="dataItem.Name" class="ng-binding">{{dataItem.name}}</span></td>
+        <td class="tdPhone" role="gridcell"><span ng-bind="dataItem.Phone" class="ng-binding">{{dataItem.phone}}</span></td>
+        <td class="tdBranch" role="gridcell"><span ng-bind="dataItem.Email" class="ng-binding">{{dataItem.email}}</span></td>
+        <td class="tdBranch" style="display:none" role="gridcell"><span ng-bind="dataItem.Address" class="ng-binding"></span></td>
+        <td class="tdMin" style="display:none" role="gridcell"><span ng-bind="dataItem.Company" class="ng-binding"></span></td>
+        <td class="tdDebt txtR" role="gridcell">{{dataItem.debt}}</td>
+        <td class="tdTotal txtR" role="gridcell">{{dataItem.bought}}</td>
+        </tr>    
+            
+        </script>
+        
+        
+    <script type="text/x-kendo-template" id="templBranchDetail">
+    <tr class="k-detail-row k-alt ng-scope" style="display: table-row;">
+    <td class="k-hierarchy-cell"></td>
+    <td class="k-detail-cell" colspan="6">
+        <div class="k-tabstrip-wrapper" style="width: 100%;">
+        <div class="tabstrip k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" data-role="tabstrip" tabindex="0" role="tablist">
+            <ul class="k-tabstrip-items k-reset">
+            <li class="ng-binding k-item k-state-default k-first k-tab-on-top k-state-active" role="tab" aria-controls="95f9f68c-d130-4b17-968f-36a4357c809e-1" aria-selected="true">
+            <span class="k-loading k-complete"></span><span class="k-link">Thông tin</span></li>
+            <li class="ng-binding k-item k-state-default hth-hide" role="tab" aria-controls="95f9f68c-d130-4b17-968f-36a4357c809e-2">
+            <span class="k-loading k-complete"></span><span class="k-link">Lịch sử nhập hàng</span></li>
+            <li class="ng-binding k-item k-state-default k-last hth-hide" role="tab" aria-controls="95f9f68c-d130-4b17-968f-36a4357c809e-3">
+            <span class="k-loading k-complete"></span><span class="k-link">Nợ cần trả NCC</span></li>
+            </ul>
+            <div class="k-content k-state-active" id="95f9f68c-d130-4b17-968f-36a4357c809e-1" role="tabpanel" aria-expanded="true" style="display: block;">
+                <article class="clb ovh mb20 tblBox">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody><tr>
+                                        <td class="lblCode ng-binding">Mã nhà cung cấp:</td>
+                                        <td><strong class="ng-binding">{{dataItem.code}}</strong></td>
+                                        <td rowspan="4" class="space"></td>
+                                        <td class="lblStatus ng-binding">Email:</td>
+                                        <td class="ng-binding">{{dataItem.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ng-binding">Tên nhà cung cấp:</td>
+                                        <td><strong class="ng-binding">{{dataItem.name}}</strong></td>
+                                        <td class="ng-binding">Điện thoại:</td>
+                                        <td class="ng-binding">{{dataItem.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ng-binding">Công ty:</td>
+                                        <td class="ng-binding">{{dataItem.company}}</td>
+                                        <td class="ng-binding">Địa chỉ:</td>
+                                        <td class="ng-binding">{{dataItem.address}}</td>
+                            
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="ng-binding">Mã số thuế:</td>
+                                        <td class="ng-binding">{{dataItem.taxcode}}</td>
+                                    </tr>
+                                </tbody></table>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div ng-modal="dataItem.Comment" ng-bind="dataItem.Comment?dataItem.Comment:'Ghi chú...'" class="tblBox_Des tblBox_Des2 ng-binding">{{dataItem.note}}</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="clb boxBtn ovh">
+                    <a href="javascript:void(0)" onclick="editSupplier({{dataItem.id}})" ng-show="rights.canUpdate" class="kv2Btn ng-binding" kv-btn-scroll=""><i class="fa fa-check-square"></i> Cập nhật</a>
+                    <a href="javascript:void(0)" onclick="deleteSupplier({{dataItem.id}})" class="kv2Btn kv2BtnDel ng-binding" ng-show="rights.canDelete"><i class="fa fa-trash"></i> Xóa</a>
+                </article>
+            </div>
+            <div class="k-content" id="95f9f68c-d130-4b17-968f-36a4357c809e-2" role="tabpanel" aria-expanded="false" style="display: none;" aria-hidden="true">
+                <div class="supplierOrderList ovh mb15 k-grid k-widget" data-role="grid">
+
+                <div class="k-grid-header" style="padding-right: 17px;">
+                <div class="k-grid-header-wrap k-auto-scrollable">
+                <table role="grid">
+                <colgroup><col><col><col><col></colgroup>
+                <thead role="rowgroup">
+                <tr role="row"><th scope="col" role="columnheader" data-field="Code" rowspan="1" data-title="Mã đặt hàng" data-index="0" id="6a7eed45-eb04-46af-a38c-8797d6937592" class="tdCode k-header">Mã đặt hàng</th>
+                <th scope="col" role="columnheader" data-field="PurchaseDate" rowspan="1" data-title="Thời gian" data-index="1" id="9c3edd29-60f2-43c1-9ef4-160acab6458f" class="tdDateTime k-header">Thời gian</th>
+                <th scope="col" role="columnheader" data-field="User.GivenName" rowspan="1" data-title="Người tạo" data-index="2" id="23ea9507-d9f1-4b7e-893b-0be6ebbe1af6" class="k-header">Người tạo</th>
+                <th scope="col" role="columnheader" data-field="Total" rowspan="1" data-title="Tổng cộng" data-index="3" id="a92ba411-e8df-4999-ae93-417b96bc68d3" class="tdTotal k-header">Tổng cộng</th>
+                </tr>
+                </thead>
+                </table>
+                </div>
+                </div>
+                <div class="k-grid-content k-auto-scrollable "><!--  k-grid-content-ac -->
+                <table role="grid">
+                <colgroup><col><col><col><col></colgroup>
+                <tbody role="rowgroup">
+                <tr data-uid="0e1c8f17-d011-493c-9bca-253b1d40663a" role="row">
+                <td class="tdCode" role="gridcell"><a href="javascript:void(0)" class="orderCode" data="5081259">PN000042</a></td>
+                <td class="tdDateTime" role="gridcell">13/06/2016 0:00</td><td role="gridcell">Hoàng - Kinh Doanh</td>
+                <td class="tdTotal" role="gridcell">512,500</td></tr>
+                
+                <tr class="k-alt" data-uid="f4a3bf9e-010e-4174-8b3f-2f2e37ca3fe6" role="row">
+                <td class="tdCode" role="gridcell"><a href="javascript:void(0)" class="orderCode" data="5081246">PN000029</a></td>
+                <td class="tdDateTime" role="gridcell">31/05/2016 0:00</td><td role="gridcell">Lê Thị Hà</td>
+                <td class="tdTotal" role="gridcell">307,500</td></tr>
+                
+                <tr data-uid="388b8cdd-2d43-4854-9ace-1c48d1709416" role="row">
+                <td class="tdCode" role="gridcell"><a href="javascript:void(0)" class="orderCode" data="5081241">PN000024</a></td>
+                <td class="tdDateTime" role="gridcell">26/05/2016 0:00</td><td role="gridcell">Hương - Kế Toán</td>
+                <td class="tdTotal" role="gridcell">410,000</td></tr>
+                
+                <tr class="k-alt" data-uid="882bade2-02e1-43d4-bcac-e2773ca75cd5" role="row">
+                <td class="tdCode" role="gridcell"><a href="javascript:void(0)" class="orderCode" data="5081228">PN000011</a></td>
+                <td class="tdDateTime" role="gridcell">13/05/2016 0:00</td><td role="gridcell">Hương - Kế Toán</td>
+                <td class="tdTotal" role="gridcell">266,500</td></tr>
+                
+                <tr data-uid="44d6e020-4b47-4b09-9f4b-7da8e90f4e11" role="row">
+                <td class="tdCode" role="gridcell"><a href="javascript:void(0)" class="orderCode" data="5081221">PN00004</a></td>
+                <td class="tdDateTime" role="gridcell">06/05/2016 0:00</td><td role="gridcell">Hương - Kế Toán</td>
+                <td class="tdTotal" role="gridcell">102,500</td></tr>
+                
+                </tbody>
+                </table>
+                </div>
+                
+                <div class="paging-box" style="display: none;"><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
+                <a href="#" title="Go to the first page" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1">
+                <span class="k-icon k-i-seek-w">Go to the first page</span></a>
+                <a href="#" title="Go to the previous page" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+                <span class="k-icon k-i-arrow-w">Go to the previous page</span></a>
+                <ul class="k-pager-numbers k-reset">
+                <li class="k-current-page"><span class="k-link k-pager-nav">1</span></li>
+                <li><span class="k-state-selected">1</span></li>
+                </ul>
+                
+                <a href="#" title="Go to the next page" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+                <span class="k-icon k-i-arrow-e">Go to the next page</span></a>
+                <a href="#" title="Go to the last page" class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1" tabindex="-1">
+                <span class="k-icon k-i-seek-e">Go to the last page</span></a>
+                <span class="k-pager-info k-label">Hiển thị 1 - 5 trên tổng số 5 </span>
+                </div>
+                </div>
+                </div>
+                
+                <article class="clb boxBtn ovh">
+                    <a href="javascript:void(0)" kv-taga-disabled="dataItem.orderCount == 0" ng-click="exportSupplierOrder()" class="kv2Btn kv2BtnYellow kv2BtnExport ng-binding"><i class="fa fa-sign-out"></i> Xuất  file</a>
+                </article>
+            </div>
+            <div class="k-content" id="95f9f68c-d130-4b17-968f-36a4357c809e-3" role="tabpanel" aria-expanded="false" style="display: none;" aria-hidden="true">
+                <div class="supplierDebtList ovh mb15 k-grid k-widget" data-role="grid">
+
+                <div class="k-grid-header" style="padding-right: 17px;">
+                <div class="k-grid-header-wrap k-auto-scrollable">
+                <table role="grid">
+                <colgroup><col><col><col><col><col></colgroup>
+                <thead role="rowgroup">
+                <tr role="row">
+                <th scope="col" role="columnheader" data-field="DocumentCode" rowspan="1" data-title="Mã phiếu" data-index="0" id="23faaa62-ea03-40d1-b03e-c0aff1685a85" class="tdCode k-header">Mã phiếu</th>
+                <th scope="col" role="columnheader" data-field="TransDate" rowspan="1" data-title="Thời gian" data-index="1" id="9b0fdad2-f10d-401e-8596-1eec442f0b01" class="tdDateTime k-header">Thời gian</th>
+                <th scope="col" role="columnheader" data-field="TypeStr" rowspan="1" data-title="Loại" data-index="2" id="66b7a771-aaf1-42d7-9252-2129c2cd430e" class="k-header">Loại</th>
+                <th scope="col" role="columnheader" data-field="Value" rowspan="1" data-title="Giá trị" data-index="3" id="bac20ad7-5913-436d-b016-60244ebc3465" class="tdTotal k-header">Giá trị</th>
+                <th scope="col" role="columnheader" data-field="Balance" rowspan="1" data-title="Nợ cần trả NCC" data-index="4" id="ba23c200-918c-46d3-afc0-95db843a7fff" class="tdCode txtR k-header">Nợ cần trả NCC</th>
+                </tr>
+                </thead>
+                </table>
+                </div>
+                </div>
+                <div class="k-grid-content k-auto-scrollable "> <!--  k-grid-content-ac -->
+                <table role="grid">
+                <colgroup><col><col><col><col><col></colgroup>
+                <tbody role="rowgroup">
+                <tr data-uid="c6ed9487-df72-4baa-ab52-51ca0560bb7d" role="row">
+                <td class="tdCode" role="gridcell">
+                <a href="javascript:void(0)" class="documentCode" data-id="2535682" data-code="TTPN000042" data-type="0">TTPN000042</a></td>
+                <td class="tdDateTime" role="gridcell">13/06/2016 0:00</td><td role="gridcell">Thanh toán</td>
+                <td class="tdTotal" role="gridcell">-512,500</td><td class="tdCode txtR" role="gridcell">0</td>
+                </tr>
+                
+                <tr class="k-alt" data-uid="a51b46d5-4754-4a26-9036-b440ee6b2902" role="row"><td class="tdCode" role="gridcell">
+                <a href="javascript:void(0)" class="documentCode" data-id="5081259" data-code="PN000042" data-type="2">PN000042</a></td>
+                <td class="tdDateTime" role="gridcell">13/06/2016 0:00</td><td role="gridcell">Nhập hàng</td>
+                <td class="tdTotal" role="gridcell">512,500</td><td class="tdCode txtR" role="gridcell">512,500</td></tr>
+                
+                <tr data-uid="a1bccc9a-6249-4a81-bfb5-5df3e95c9837" role="row">
+                <td class="tdCode" role="gridcell">
+                <a href="javascript:void(0)" class="documentCode" data-id="2535676" data-code="TTPN000029" data-type="0">TTPN000029</a></td>
+                <td class="tdDateTime" role="gridcell">31/05/2016 0:00</td>
+                <td role="gridcell">Thanh toán</td><td class="tdTotal" role="gridcell">-307,500</td>
+                <td class="tdCode txtR" role="gridcell">0</td>
+                </tr>
+                <tr class="k-alt" data-uid="e6801dc2-5c1b-4c48-bd66-b825bf6b4062" role="row">
+                <td class="tdCode" role="gridcell">
+                <a href="javascript:void(0)" class="documentCode" data-id="5081246" data-code="PN000029" data-type="2">PN000029</a></td>
+                <td class="tdDateTime" role="gridcell">31/05/2016 0:00</td><td role="gridcell">Nhập hàng</td>
+                <td class="tdTotal" role="gridcell">307,500</td><td class="tdCode txtR" role="gridcell">307,500</td>
+                </tr>
+                
+                <tr data-uid="019b0d23-249d-42fa-b016-75c73256ff98" role="row">
+                <td class="tdCode" role="gridcell">
+                <a href="javascript:void(0)" class="documentCode" data-id="2535672" data-code="TTPN000024" data-type="0">TTPN000024</a></td>
+                <td class="tdDateTime" role="gridcell">26/05/2016 0:00</td>
+                <td role="gridcell">Thanh toán</td>
+                <td class="tdTotal" role="gridcell">-410,000</td>
+                <td class="tdCode txtR" role="gridcell">0</td></tr>
+                </tbody>
+                </table>
+                </div>
+                
+                <div class="paging-box">
+                <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
+                <a href="#" title="Go to the first page" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1">
+                <span class="k-icon k-i-seek-w">Go to the first page</span></a>
+                <a href="#" title="Go to the previous page" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+                <span class="k-icon k-i-arrow-w">Go to the previous page</span></a>
+                <ul class="k-pager-numbers k-reset">
+                <li class="k-current-page"><span class="k-link k-pager-nav">1</span></li>
+                <li><span class="k-state-selected">1</span></li>
+                <li><a tabindex="-1" href="#" class="k-link" data-page="2">2</a></li>
+                </ul>
+                <a href="#" title="Go to the next page" class="k-link k-pager-nav" data-page="2" tabindex="-1">
+                <span class="k-icon k-i-arrow-e">Go to the next page</span></a>
+                <a href="#" title="Go to the last page" class="k-link k-pager-nav k-pager-last" data-page="2" tabindex="-1">
+                <span class="k-icon k-i-seek-e">Go to the last page</span></a>
+                <span class="k-pager-info k-label">Hiển thị 1 - 5 trên tổng số 10 bản ghi</span></div></div></div>
+                <article class="clb boxBtn ovh">
+                    <a ng-click="updateBalance(dataItem)" ng-show="rights.canAdjustDebt" class="kv2Btn ng-binding"><i class="fa fa-refresh"></i> Điều chỉnh</a>            
+                    <a href="javascript:void(0)" ng-click="makePayment(dataItem)" class="kv2Btn ng-binding" ng-show="rights.canCreatePayment" kv-btn-scroll=""><i class="fa fa-calculator"></i> Thanh toán</a>
+                    <a href="javascript:void(0)" kv-taga-disabled="dataItem.recordCount == 0" ng-click="exportSupplierDebt()" class="kv2Btn kv2BtnYellow kv2BtnExport ng-binding"><i class="fa fa-sign-out"></i> Xuất  file</a>
+                </article>
+
+            </div>
+
+        </div></div>
+    </td></tr>
+    
+     
+    </script>
+
+    <div ng-controller="BalancePopupCtrl" class="ng-scope">
+        
+    </div>
+    <div ng-controller="PointPopupCtrl" class="ng-scope">
+        
+    </div>
+    <kv-customer-import-popup kv-name="importCustomerPopup" class="ng-isolate-scope">
+</kv-customer-import-popup>
+
+    <kv-payment-form kv-name="paymentFormPopup" class="ng-isolate-scope"></kv-payment-form>
+    <kv-invoice-popup kv-name="invoicePopup" class="ng-isolate-scope"></kv-invoice-popup>
+    <kv-order-popup kv-name="orderPopup" class="ng-isolate-scope"></kv-order-popup>
+    <kv-return-popup kv-name="returnPopup" class="ng-isolate-scope"></kv-return-popup>
+    <kv-payment-popup kv-name="paymentPopup" class="ng-isolate-scope">  </kv-payment-popup>   
+    <div ng-controller="CustomerFormPopupCtrl" class="ng-scope">
+        
+    </div>
+    
+     <kv-supplier-form form-name="supplierForm" kv-width="780" class="ng-isolate-scope">
+     <section class="showAnimate addCustomer customerPop uln lbl-cl control-poup addSupplier">
+    <section class="boxInfo">
+        <article class="boxForm uln ovh">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="formBox ovh fr">
+                        <li>
+                            <label>
+                                <span class="titleFr ng-binding">Mã nhà cung cấp</span>
+                                <input onblur="checkCode(this)" type="text" class="ng-pristine ng-untouched ng-valid ng-empty" ng-model="supplier.code" placeholder="Mã mặc định">
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="titleFr ng-binding">Tên nhà cung cấp</span>
+                                <input type="text" class="iptFocus ng-pristine ng-valid ng-touched ng-empty" ng-model="supplier.name">
+                                <input type="hidden" ng-model="supplier.id">
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-md-right">
+                    <ul class="formBox ovh fr">
+                        <li>
+                            <label>
+                                <span class="titleFr ng-binding">Điện thoại</span>
+                                <input type="text" class="ng-pristine ng-valid ng-empty ng-touched" ng-model="supplier.phone">
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span class="titleFr ng-binding">Địa chỉ</span>
+                                <input type="text" class="ng-pristine ng-untouched ng-valid ng-empty" ng-model="supplier.address">
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </article>
+    </section>
+
+    <article class="ovh clb addMore">
+        <a href="javascript:void(0)" ng-click="toggleShowMore()" class="addMoreMain ng-binding">
+            <span class="icon"><i class="fa fa-plus-square" ng-class="{'fa-plus-square':!showMore,'fa-minus-square':showMore}"></i></span>Thêm thông tin
+        </a>
+    </article>
+
+    <section class="uln mb10 ovh addMoreBox ng-hide" ng-show="showMore">
+        <section class="boxInfo formMore">
+            <article class="boxForm uln ovh">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="formBox fr">
+                            <li>
+                                <label>
+                                    <span class="titleFr">Email</span>
+                                    <input type="text" class="ng-valid ng-dirty ng-touched ng-empty" ng-model="supplier.email">
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <span class="titleFr ng-binding">Công ty</span>
+                                    <input type="text" class="ng-pristine ng-untouched ng-valid ng-empty" ng-model="supplier.company">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-md-right">
+                        <ul class="formBox fr">
+                            <li>
+                                <label>
+                                    <span class="titleFr ng-binding">Mã số thuế</span>
+                                    <input type="text" class="ng-pristine ng-untouched ng-valid ng-empty" ng-model="supplier.taxcode">
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <span class="titleFr ng-binding">Ghi chú</span>
+                                    <textarea class="mg0 ng-valid ng-dirty ng-touched ng-empty" ng-model="supplier.note"></textarea>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </section>
+    <ul class="ovh fr">
+        <li class="boxBtn txtL">
+            <span class="titleFr ng-binding titleFr-cus"></span>
+            <a href="javascript:void(0)" class="kv2Btn ng-binding" onclick="saveSupplier()" ng-disabled="locked"><i class="fa fa-floppy-o"></i>Lưu</a>
+            <a href="javascript:void(0)" class="kv2Btn kv2BtnYellow ng-binding" onclick="cancel()"><i class="fa fa-ban"></i>Bỏ qua</a>
+        </li>
+    </ul>
+</section>
+</kv-supplier-form>  
+</div>
+
+<script>
+var custFilter={
+    Code:'',
+    Debt:{From:null,To:null}
+}
+if(get && get.Code){
+    custFilter.Code = get.Code
+    $('.mainLeft [ng-model="custFilter.Code"]').val(custFilter.Code)    
+}
+        cpage=0
+        if(!suppliers) loadJsonSuppliers(br);
+            else br();
+         
+        function br(){
+            loadTableLeft();
+        }
+        
+        function oBlur(e){
+            var oo = custFilter.Code+''
+            var oo2 = $(e).val().trim()
+            if(oo==oo2) return false
+            custFilter.Code = oo2
+            cpage=0
+            loadTables()
+        }
+        
+        function oBlur1(e){
+            var oo = custFilter.Debt.From+0
+            var oo2 = parseInt($(e).val().trim())
+            if(isNaN(oo2)){
+                $(e).val('') 
+                custFilter.Debt.From = null
+                //return false
+                oo2=null
+            }
+            if(oo==oo2) return false
+            custFilter.Debt.From = oo2
+            cpage=0
+            loadTables()
+        }
+        
+        function oBlur2(e){
+            var oo = custFilter.Debt.To+0
+            var oo2 = parseInt($(e).val().trim())
+            if(isNaN(oo2)){
+                $(e).val('') 
+                custFilter.Debt.To = null
+                //return false
+                oo2=null
+            }
+            if(oo==oo2) return false
+            custFilter.Debt.To = oo2
+            cpage=0
+            loadTables()
+        }
+         
+        function loadTableLeft(){
+            $('.mainLeft [ng-model="custFilter.Debt.From"]').unbind('blur')
+            $('.mainLeft [ng-model="custFilter.Debt.From"]').blur(function(e){
+                oBlur1(this)
+            })
+            $('.mainLeft [ng-model="custFilter.Debt.From"]').unbind('keyup')
+            $('.mainLeft [ng-model="custFilter.Debt.From"]').keyup(function(e){
+                if(e.which==13){
+                    oBlur1(this)    
+                }
+            })
+            
+            $('.mainLeft [ng-model="custFilter.Debt.To"]').unbind('blur')
+            $('.mainLeft [ng-model="custFilter.Debt.To"]').blur(function(e){
+                oBlur2(this)
+            })
+            $('.mainLeft [ng-model="custFilter.Debt.To"]').unbind('keyup')
+            $('.mainLeft [ng-model="custFilter.Debt.To"]').keyup(function(e){
+                if(e.which==13){
+                    oBlur2(this)    
+                }
+            })
+            
+            $('.mainLeft [ng-model="custFilter.Code"]').unbind('blur')
+            $('.mainLeft [ng-model="custFilter.Code"]').blur(function(e){
+                oBlur(this)
+            })
+            $('.mainLeft [ng-model="custFilter.Code"]').unbind('keyup')
+            $('.mainLeft [ng-model="custFilter.Code"]').keyup(function(e){
+                if(e.which==13){
+                    oBlur(this)    
+                }
+            })
+            
+            console.log('loadTableLeft');
+            $('.mainLeft .k-dropdown:nth(0) .k-dropdown-wrap').unbind('click')
+            $('.mainLeft .k-dropdown:nth(0) .k-dropdown-wrap').click(function(){
+                $(this).next().show();
+            });
+            $('.mainLeft h3').unbind('click')
+            $('.mainLeft h3').click(function(){
+                i = $(this).find('i');
+                
+                //console.log($(this).next());
+                
+                
+                if(i.hasClass('fa-chevron-circle-up')){
+                    $(this).parent().find('aside').addClass('ng-hide');
+                    i.removeClass('fa-chevron-circle-up');
+                    i.addClass('fa-chevron-circle-down');
+                }else{
+                    $(this).parent().find('aside').removeClass('ng-hide');
+                    i.addClass('fa-chevron-circle-up');
+                    i.removeClass('fa-chevron-circle-down');
+                }
+            });
+            
+            loadTables(); 
+        }
+              
+        function loadTables(){
+            
+            console.log('loadTables');
+            
+            if(suppliers===null || !vkl){
+                setTimeout(function(){loadTables()},500)
+                return false;
+            }
+            
+            if(vkl['4.2.1']==undefined){
+                $('#grdCustomers').addClass('ng-hide')
+            }
+            if(vkl['4.2.2']==undefined)
+                $('[ng-show="rights.canCreate"]').addClass('ng-hide')
+            
+            templBranch = $('#templBranch').html();
+            templBranch0 = $('#templBranch0').html();
+            
+            $('#grdCustomers>.k-grid-content>table>tbody').html('');
+            
+            var counttables = 0, countTableForGroup=0;
+            
+            $('#grdCustomers>.k-grid-content>table>tbody').append(templBranch0);
+            
+            for(var i in suppliers){
+                
+                if(custFilter.Debt.To!=null){
+                    if(suppliers[i].debt>custFilter.Debt.To) continue;
+                }
+                
+                if(custFilter.Debt.From!=null){
+                    if(suppliers[i].debt<custFilter.Debt.From) continue;
+                }
+                
+                if(custFilter.Code!=''){
+                    if(suppliers[i].code.toLowerCase().indexOf(custFilter.Code.toLowerCase())==-1 &&
+                       suppliers[i].name.toLowerCase().indexOf(custFilter.Code.toLowerCase())==-1 &&
+                       suppliers[i].phone.toLowerCase().indexOf(custFilter.Code.toLowerCase())==-1
+                    ) continue;
+                }
+                
+                countTableForGroup++;
+                 
+                if(countTableForGroup>cpage*record && countTableForGroup <= (cpage+1)*record){
+                  
+                templBranch2 = templBranch;
+                if(i%2==0) suppliers[i].class = 'k-alt';
+                else suppliers[i].class = '';
+                
+                
+                for(var j in suppliers[i]){
+                     
+                    templBranch2 = templBranch2.replace(new RegExp("{{dataItem."+j+"}}","gi"),suppliers[i][j]);
+                }
+                
+                
+                $('#grdCustomers>.k-grid-content>table>tbody').append(templBranch2);
+                
+                }
+            }
+            
+            templBranchDetail = $('#templBranchDetail').html();
+            templUsersInBranch = $('#templUsersInBranch').html();
+            $('#grdCustomers>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>td:not(:first-child)').unbind('click')
+            $('#grdCustomers>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>td:not(:first-child)').click(function(){
+                $(this).parent().find('>.k-hierarchy-cell>.k-icon').trigger('click');
+            });
+            $('#grdCustomers>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>.k-hierarchy-cell>.k-icon').unbind('click')
+            $('#grdCustomers>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>.k-hierarchy-cell>.k-icon').click(function(){
+                fixedfixed()
+                templBranchDetail2 = templBranchDetail;
+                n2= $(this).parent().parent();
+                n = n2.next();
+                // console.log(n2);
+                
+                if($(this).hasClass('k-plus')){
+                    //an het detail
+                    $(this).parent().parent().siblings('.k-detail-row').hide();
+                    //thay doi icon
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').removeClass('k-minus');
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').addClass('k-plus');
+                    
+                    if(n.hasClass('k-detail-row')){
+                        n.show();
+                    }else{
+                         
+                        //prepare content
+                        //find uid
+                        uid = n2.attr('data-uid');  
+                        b = loadSupplier(uid);  
+                         
+                        console.log(b) 
+                        
+                        for(var j in b){
+                             
+                            templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem."+j+"}}","gi"),b[j]);
+                        }
+                        
+                        
+                        //bo ngo  
+                        
+                        templBranchDetail2 = $(templBranchDetail2)
+                        if(vkl['4.2.3']==undefined)
+                            templBranchDetail2.find('[ng-show="rights.canUpdate"]').addClass('ng-hide')
+                        if(vkl['4.2.4']==undefined)
+                            templBranchDetail2.find('[ng-show="rights.canDelete"]').addClass('ng-hide')    
+                        
+                        //ins
+                        //$(templBranchDetail2).insertAfter(n2);
+                        n2.after(templBranchDetail2);
+                        tabstrip();
+                    }
+                     
+                    $(this).removeClass('k-plus');
+                    $(this).addClass('k-minus');
+                }else{
+                    
+                    n.hide();
+                    
+                    $(this).addClass('k-plus');
+                    $(this).removeClass('k-minus');
+                }
+            });
+            
+            if(countTableForGroup==1){
+                $('#grdCustomers>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>.k-hierarchy-cell>.k-icon:nth(0)').click()
+            }
+            
+            tpage = Math.ceil(countTableForGroup/record);
+            
+            $('#grdCustomers > .paging-box .k-label').html("Hiển thị "+((cpage)*record+1)+" - "+Math.min(countTableForGroup,(cpage+1)*record)+" trên tổng số "+countTableForGroup+" nhà cung cấp");
+            
+            $('#grdCustomers > .paging-box a').removeClass('k-state-disabled');
+            
+            if(cpage==0){
+                $('#grdCustomers > .paging-box a:nth(0)').addClass('k-state-disabled');
+                $('#grdCustomers > .paging-box a:nth(1)').addClass('k-state-disabled');
+            } 
+            
+            if(cpage==tpage-1){
+                $('#grdCustomers > .paging-box a:nth(2)').addClass('k-state-disabled');
+                $('#grdCustomers > .paging-box a:nth(3)').addClass('k-state-disabled');
+            } 
+            
+            $('#grdCustomers > .paging-box .k-state-selected, #grdCustomers > .paging-box .k-current-page span').html(cpage+1);
+            $('#grdCustomers > .paging-box a:nth(0)').unbind('click')
+            //first page click
+            $('#grdCustomers > .paging-box a:nth(0)').click(function(){
+                cpage = 0;
+                loadTables();
+            }); 
+            $('#grdCustomers > .paging-box a:nth(1)').unbind('click')
+            $('#grdCustomers > .paging-box a:nth(1)').click(function(){
+                cpage -= 1;
+                if(cpage>=0)
+                loadTables();
+                else cpage=0
+            }); 
+            $('#grdCustomers > .paging-box a:nth(2)').unbind('click')
+            $('#grdCustomers > .paging-box a:nth(2)').click(function(){
+                cpage += 1;
+                if(cpage<tpage)
+                loadTables();
+                else
+                cpage = tpage-1
+            }); 
+            $('#grdCustomers > .paging-box a:nth(3)').unbind('click')
+            $('#grdCustomers > .paging-box a:nth(3)').click(function(){
+                cpage = tpage-1;
+                loadTables();
+            });
+            
+            calc($('#grdCustomers tbody:nth(0)'));
+        }
+        
+        function calc(o){
+             
+            //o2 = o.find('>tr:not(:first-child)>td.tdTotal:last-child');
+            o2 = o.find('>tr>td.tdTotal:last-child');
+            
+            total = 0;
+            for(var i =1;i<o2.length;i++){
+                //console.log(o2[i])
+                //console.log(o2.get(i).innerHTML)
+                total += parseInt(o2.get(i).innerHTML);
+                //console.log(o2.get(i).className) 
+            }
+            o.find('>tr:nth(0)>td:last-child').html(total);
+            
+            o2 = o.find('>tr>td.tdDebt');
+            //console.log(o2 )
+            total = 0;
+            for(var i =1;i<o2.length;i++){
+                //console.log(o2[i])
+                //console.log(o2.get(i).innerHTML)
+                total += parseInt(o2.get(i).innerHTML);
+                //console.log(o2.get(i).className) 
+            }
+            o.find('>tr:nth(0)>td.tdDebt').html(total);
+        }
+        
+        var doo = '';
+        
+        function addSupplier(){
+            doo = 'add';
+            
+            //reset empty form
+            
+            $('kv-supplier-form [ng-model]').val('');
+             
+            $('kv-supplier-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 780),
+                title: 'Thêm nhà cung cấp', 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                },
+                open: function(){
+                    $('kv-supplier-form .addMore').unbind('click')
+                    //expand
+                    $('kv-supplier-form .addMore').click(function(){
+                        //console.log(showMore)
+                        if(!showMore){
+                            $(this).find('i').removeClass('fa-plus-square');
+                            $(this).find('i').addClass('fa-minus-square');
+                        }else{
+                            $(this).find('i').removeClass('fa-minus-square');
+                            $(this).find('i').addClass('fa-plus-square');
+                        }
+                        showMore = !showMore;
+                        $('kv-supplier-form .addMoreBox').toggleClass('ng-hide');
+                    });   
+                }
+            });
+        }
+        
+        function editSupplier(pid){
+            doo = 'edit';
+            
+            //set value field
+            branch = loadSupplier(pid);
+             
+            $('kv-supplier-form [ng-model]').each(function(k,v){
+                name = getname($(this).attr('ng-model'));
+                if(branch[name]!=undefined){
+                     
+                    $(this).val( branch[name]);
+                     
+                }
+                    
+            });
+             
+            $('kv-supplier-form').dialog({
+                title:'Sửa nhà cung cấp',
+                modal: true,
+                width: Math.min($('body').width()-5, 780),
+                 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                },
+                open: function(){
+                    $('kv-supplier-form .addMore').unbind('click')
+                     //expand
+                    $('kv-supplier-form .addMore').click(function(){
+                        //console.log(showMore)
+                        if(!showMore){
+                            $(this).find('i').removeClass('fa-plus-square');
+                            $(this).find('i').addClass('fa-minus-square');
+                        }else{
+                            $(this).find('i').removeClass('fa-minus-square');
+                            $(this).find('i').addClass('fa-plus-square');
+                        }
+                        showMore = !showMore;
+                        $('kv-supplier-form .addMoreBox').toggleClass('ng-hide');
+                    });  
+                     
+                }
+            });
+        }
+        
+        var showMore = false;
+        
+        function loadGroupPopup(){
+            
+            console.log('loadGroupPopup');
+             
+            sl = $('kv-customer-form .k-dropdown select');
+            
+            //console.log(sl);
+             
+            sl.html('');
+            
+            op2 = op;
+            op2 = op2.replace(/\{\{id\}\}/,'0');
+            op2 = op2.replace(/\{\{name\}\}/,'---Lựa chọn---');
+            sl.append(op2);
+            
+            for(var i in customer_groups){
+                op2 = op;
+                op2 = op2.replace(/\{\{id\}\}/,customer_groups[i].id);
+                op2 = op2.replace(/\{\{name\}\}/,customer_groups[i].name);
+                sl.append(op2);
+            }
+            $('kv-customer-form .k-dropdown .k-dropdown-wrap').unbind('click')
+            $('kv-customer-form .k-dropdown .k-dropdown-wrap').click(function(){
+                $(this).next().show();
+            });
+            
+            sl = $('kv-customer-form .k-dropdown .k-animation-container ul');
+             
+            sl.html('');
+            
+            opp2 = opp;
+            opp2 = opp2.replace(/\{\{i\}\}/,0);
+            opp2 = opp2.replace(/\{\{name\}\}/,'---Lựa chọn---');
+            sl.append(opp2);
+            
+            for(var j in customer_groups){
+                opp2 = opp;
+                opp2 = opp2.replace(/\{\{i\}\}/,parseInt(j)+1);
+                opp2 = opp2.replace(/\{\{name\}\}/,customer_groups[j].name);
+                sl.append(opp2);
+            }
+            
+            //set hover
+            $('kv-customer-form .k-dropdown .k-animation-container').hover(
+                function(){
+                    //$('kv-customer-form .k-dropdown .k-animation-container').show();
+                },
+                function(){
+                    $('kv-customer-form .k-dropdown .k-animation-container').hide();
+                }
+            );
+            
+            $('kv-customer-form .k-dropdown .k-animation-container ul li').hover(
+                function(){
+                    $(this).toggleClass('k-state-hover');
+                },function(){
+                    $(this).toggleClass('k-state-hover');
+                }
+            );
+            $('kv-customer-form .k-dropdown .k-animation-container ul li').unbind('click')
+            //set click
+            $('kv-customer-form .k-dropdown .k-animation-container ul li').click(
+                function(){
+                    
+                    //console.log($(this).data('offset-index'));
+                    
+                    offset = parseInt($(this).data('offset-index'))+1;
+                    
+                    $('kv-customer-form .k-dropdown select option').removeAttr('selected');                    
+                    $('kv-customer-form .k-dropdown select option:nth-child('+offset+')').attr('selected','selected');
+                    
+                    $('kv-customer-form .k-dropdown .k-dropdown-wrap .k-input').html($(this).html());
+                     
+                    $('kv-customer-form .k-dropdown .k-animation-container').hide();
+                     
+                     
+                }
+            );
+            $('kv-customer-form .addMore').unbind('click')
+            //expand
+            $('kv-customer-form .addMore').click(function(){
+                //console.log(showMore)
+                if(!showMore){
+                    $(this).find('i').removeClass('fa-plus-square');
+                    $(this).find('i').addClass('fa-minus-square');
+                }else{
+                    $(this).find('i').removeClass('fa-minus-square');
+                    $(this).find('i').addClass('fa-plus-square');
+                }
+                showMore = !showMore;
+                $('kv-customer-form .addMoreBox').toggleClass('ng-hide');
+            }); 
+            
+            searching = false;
+            locationItemTempl = $('#locationItemTempl').html();
+            //auto
+            $('#customerLocationSearchInput').keyup(function(){
+                console.log($(this).val().length);
+                if($(this).val().length>=2 && !searching){
+                    searching = true;
+                    $.ajax(cdn.replace('cdn.','')+'/api.php',{ //$.ajax('ajax.php?action=suggestzone',{
+                        data: 'zone='+$(this).val(),//data: 'kw='+$(this).val(),
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                //console.log(d);
+                                
+                                $('kv-customer-form .autocomplete > div ul').html('');
+                                
+                                if(d.data.length>0){
+                                    
+                                    for(var i in d.data){
+                                        locationItemTempl2 = locationItemTempl;
+                                        
+                                        //console.log(d.data[i].name);
+                                        
+                                        locationItemTempl2 = locationItemTempl2.replace(/\{\{name\}\}/g,d.data[i].province+' - '+d.data[i].description+' '+d.data[i].name );
+                                        locationItemTempl2 = locationItemTempl2.replace(/\{\{\$index\}\}/g,i);
+                                        
+                                        $('kv-customer-form .autocomplete > div ul').append(locationItemTempl2);
+                                    }
+                                    
+                                    $('kv-customer-form .autocomplete > div ').removeClass('ng-hide');
+                                    
+                                    //hover
+                                    $('kv-customer-form .autocomplete > div').hover(
+                                        function(){
+                                            //$('kv-customer-form .autocomplete > div').removeClass('ng-hide');
+                                        },
+                                        function(){
+                                            $('kv-customer-form .autocomplete > div').addClass('ng-hide');
+                                        }
+                                    );
+                                    
+                                    $('kv-customer-form .autocomplete > div ul li').hover(
+                                        function(){
+                                            $(this).toggleClass('k-state-hover');
+                                        },function(){
+                                            $(this).toggleClass('k-state-hover');
+                                        }
+                                    );
+                                    $('kv-customer-form .autocomplete > div ul li').unbind('click')
+                                    //click
+                                    $('kv-customer-form .autocomplete > div ul li').click(
+                                        function(){
+                                             
+                                            $('#customerLocationSearchInput').val($(this).attr('val'));
+                                             
+                                            $('kv-customer-form .autocomplete > div').hide();
+                                             
+                                             
+                                        }
+                                    );
+                                    
+                                }
+                                 
+                            }else{
+                                 //alert(d.error);
+                                 toastr["error"](d.error);
+                            } 
+                            searching = false;
+                        }
+                    });
+                }
+            })
+        }
+        
+        function saveSupplier(){
+             
+            //"code=&name=ncc&id=&phone=&address=&email=&company=&taxcode=&note="
+            
+            s = _serialize('kv-supplier-form',[1] );
+            
+            console.log(s);
+             
+            
+            if(s!=''){
+                 
+                $.ajax('ajax.php?action=supplier',{
+                    data: s +'&branch='+cb,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            
+                            cancel();
+                            loadJsonSuppliers(loadTables);
+                             
+                        }else{
+                             //alert(d.error);
+                             toastr["error"](d.error);
+                        } 
+                    }
+                });
+                
+            }else //alert('Điền tên nhóm');
+                toastr["error"]('Điền tên nhà cung cấp');  
+            
+            
+        }
+        function cancel(){
+            $('kv-supplier-form').dialog('close');
+        }
+        function checkCode(li ){
+            if(doo=='add') 
+            for(var i in suppliers){
+                if(suppliers[i].code.toLowerCase() == $(li).val().toLowerCase()){
+                    toastr["error"]("Trùng mã nhà cung cấp");
+                    $(li).val('');
+                    return;  
+                }
+            }
+             
+        }
+        
+        function deleteCustomer(pid){
+            if(confirm('Bạn có chắc chắn xóa khách hàng này?')){
+                $.ajax('ajax.php?action=deletecustomer',{
+                    data: 'id='+pid,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            
+                             
+                            loadJsonCustomers(loadTables);
+                            
+                         
+                        }else{
+                             
+                        } 
+                    }
+                })
+            }
+        }
+        setTitle(loadBranch(cb).name+' - Nhà cung cấp') 
+</script> 
+<style>
+
+</style>

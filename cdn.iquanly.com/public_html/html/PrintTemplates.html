@@ -1,0 +1,162 @@
+<style>
+.wp-seating-new .kvTabs > ul {
+    border-bottom: none;
+    position: absolute;
+    top: -64px;
+    left: 320px;
+    padding: 0px!important;
+}
+.wp-seating-new .bg-a{
+    width: 100%;
+}
+.wp-seating-new .kvTabs{
+    margin-top: 30px;
+}
+</style> 
+
+
+  <section class="mainWrap settingPage ng-scope">
+    <article class="headerContent uln ovh">
+      <h1><span class="ng-binding">Mẫu in</span></h1></article>
+    <kv-tabs ng-model="tabs" class="wp-seating-new ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty">
+      <div class="kvTabs clearfix ulN">
+        <ul class="mr-bg">
+          <!-- ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_0" onclick="selectTemplate(this, 'printinvoice')" class="tabBut_0  tabbut_new active" ng-class="{'active':pane.selected}">Hóa đơn</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_1" onclick="selectTemplate(this, 'printreturn')" class="tabBut_7  tabbut_new" ng-class="{'active':pane.selected}">Trả hàng</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_1" onclick="selectTemplate(this, 'printpurchase')" class="tabBut_1  tabbut_new" ng-class="{'active':pane.selected}">Nhập hàng</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_2" onclick="selectTemplate(this, 'printpurchasereturn')" class="tabBut_2  tabbut_new" ng-class="{'active':pane.selected}">Trả nhập hàng</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_3" onclick="selectTemplate(this, 'printdamage')" class="tabBut_3  tabbut_new" ng-class="{'active':pane.selected}">Xuất hủy</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_4" onclick="selectTemplate(this, 'printpay')" class="tabBut_4  tabbut_new" ng-class="{'active':pane.selected}">Phiếu thu</a></li> 
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_5" onclick="selectTemplate(this, 'printpaying')" class="tabBut_5  tabbut_new" ng-class="{'active':pane.selected}">Phiếu chi</a></li> 
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_6" onclick="selectTemplate(this, 'printstock')" class="tabBut_6  tabbut_new" ng-class="{'active':pane.selected}">Kiểm kho</a></li> 
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_6" onclick="selectTemplate(this, 'printbarcode')" class="tabBut_8  tabbut_new" ng-class="{'active':pane.selected}">In Tem</a></li>            
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_6" onclick="selectTemplate(this, 'printorder')" class="tabBut_9  tabbut_new" ng-class="{'active':pane.selected}">Phiếu đặt hàng</a></li>
+        </ul>
+        <div class="tabBg"></div>
+        <div ng-transclude="">
+          <kv-tab-pane title="_l.baseRetailerInfo" class="ng-scope ng-isolate-scope">
+            <div ng-show="selected" ng-transclude="" class="">
+              <section class="settingBox ng-scope" title="">
+                <div class="container-fluid">
+                  <div class="row form-wrapper">
+                     
+                    
+                    <div class="col-md-12">
+                        <textarea name="text" id="text" style="display: none;"></textarea>  
+                    </div>
+                    <div class="col-md-12 col-sm-12 text-right">
+                      <button class="kv2Btn kv2BtnSetting ng-binding" ng-click="uploadLogo()"><i class="fa fa-floppy-o"></i>Lưu</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </kv-tab-pane>
+           
+        </div>
+      </div>
+    </kv-tabs>
+  </section>
+  <kv-popup id="posSettingHelp" class="ng-scope ng-isolate-scope popupWrapper">
+    <div class="kv2Pop pop popArrow" ng-transclude=""><span class="ng-binding ng-scope"></span></div>
+  </kv-popup>
+
+
+<script>
+
+function selectTemplate(t,name){ 
+    cname = name
+    $.ajax({
+           url : 'ajax.php?action=loadprint&name='+name,
+           type : 'GET',
+            
+           success : function(data) {
+               var d = $(data);  
+               var d2 = d.get(-1).innerHTML; 
+               editorInstance.setData(d2)
+           }
+    }); 
+}
+
+var cname
+setTimeout(function(){
+    editorInstance = CKEDITOR.replace( 'text', cko() );
+    
+    /*editorInstance.addCommand('xxx', {
+            exec: function( editor ) {
+                 
+                editor.setData( '<p>This is the editor data.</p>' );
+            }
+        });
+    
+    editorInstance.ui.addButton( 'taomauin', {
+        label: 'Tạo mẫu in',
+        command: 'xxx',
+        toolbar: 'others,2',
+        icon: 'http://cerclecite.lu/wp-content/themes/cerclecite/images/plus.png'
+    } );*/
+    
+    editorInstance.on('instanceReady',function(ev){
+        $('.mr-bg li a.active').click()
+    
+        $('.mr-bg li a').click(function(e){
+            $('.mr-bg li a').removeClass('active')
+            $(this).addClass('active')
+            
+            
+        })
+    });
+    
+},1000)
+</script>
+  
+<script>
+//$(document).ready(function(){
+      
+    $('[ng-click="uploadLogo()"]').click(function(){
+        var ct = editorInstance.getData() ;
+        
+        ct = "<div id=\""+cname+"\" style=\"display: none;\">" + ct + "</div>"
+        //alert(ct)
+        //return
+        $.ajax({
+               url : 'ajax.php?action=updateConfigPrint',
+               type : 'POST',
+               data : {ct: ct,name: cname},
+                
+               dataType: 'json',
+               success : function(data) {
+                   if(data.error==''){                     
+                        //alert('Success'); 
+                        toastr.info('Cập nhật mẫu in thành công');
+                        //save local
+                        saveCachePrints(cname,ct)
+                        
+                        //document.location.reload()
+                   }else alert(data.error);
+               }
+        }); 
+        
+        return false
+    })
+        
+//})
+
+if(!(cfs.PrintBarCode==1)){
+    $('.tabBut_8').remove()    
+}
+if(!(cfs.SellAllowOrder==1)){
+    $('.tabBut_9').remove()    
+}
+
+</script>

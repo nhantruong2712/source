@@ -1,0 +1,129 @@
+﻿.topNav ul li.setting ul li a:hover, .user ul li a:hover, .saleNav ul li a:hover, .mainNav ul.sub li:hover a, #toTop, .dashboard-right .dashboard-Invoices span.dash_icon, .mainNav ul.sub li:hover a{
+   background: #d36015!important;
+}
+.wp-tpsx .kvTabs > ul li a{background: #d36015; color: #FFF;}
+.mainNav, .leftTitle, .header, .tabBg, .kv2Box .add, .kv2Pro .swiperList ul li .proPrice, .k-window-titlebar, .user .userName:hover, .user .userName.active, .user:hover .userName,
+ .kv2Pro .kv2ProIcon a:hover, .k-pager-numbers .k-state-selected, .k-pager-wrap .k-link:hover, .kvTabs > ul li a.active.other, .k-window-poup-tabs .kvTabs > ul li a.active, .tabs-snkh .kvTabs .active, .window-error .k-window-titlebar .k-link,
+.box-list-return .searchCustomer, .box-return .header-return{
+    background: #E67E22!important;
+}
+.box-list-return .header{border-bottom-color: transparent;}
+.mainNav ul.menu li.active a, 
+.kv2Box .add:hover, .topNav ul li.setting ul,.topNav ul li.setting a:hover, .topNav ul li.setting:hover > a,
+.user ul, .saleNav ul, .saleNavIcon:hover, .saleNavIcon.active, .proTabs .rightArrow,.proTabs .leftArrow
+ {
+    background: #e67e22;
+}
+.proTabs .addButton, .proTabs ul li a{
+    background: #c55c00;
+}
+.mainNav ul.menu li:hover a, .mainNav ul.menu li a.active{
+    background: #ba5b07;
+}
+.mainNav ul.menu li.shortcut a:before, .proTabs .addButton:hover, .proTabs .leftArrow:hover, .proTabs .rightArrow:hover, .mainNav ul.menu li.shortcut a:hover, .k-window-action .k-icon{
+    background: #BD4D03!important;
+}
+.mainNav ul.menu li.shortcut a{
+    background: #ab4125;
+}
+.mainNav ul.menu > li, .saleNav {
+    background: url(../img/mainNav-line-color.png) repeat-y top left;
+}
+.searchCustomer{
+    background: url(../img/mainNav-line-color.png) repeat-y right center;
+}
+/*.kv2Btn, .k-button, .columnView > li.k-item > .k-link, .addProductBtn ul{
+    background: #1194c2 
+}*/
+.mainNav ul.menu li .fa, .headerContent .kv2Btn .fa, .boxLeft .showhideicon .fa, .mainNav ul.menu li.shortcut a .fa{
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+.prettycheckbox a:before, .prettyradio a:before, .prettycheckbox a:after, .prettyradio a:after, .k-plus:before, .k-minus:before,
+.proTabs ul li a.active, .lbl-cl h3.title-top,.k-window-poup .addMore i, .boxForm h3, .control-poup i.fa-plus-square, .control-poup i.fa-minus-square, .k-window-poup .prettycheckbox label, .txtBlue
+, .dashboardTitle .k-dropdown .k-input, a, .chooseIcon{color: #d35400;}
+.k-grid-header .k-header, .tbl table th, .thHeader, div.k-grid-header{background: #ffe4d2 url(../img/thBg-color.png) no-repeat right top}
+.k-grid-header .k-header:first-child{background: #ffe4d2}
+.k-grid-header-wrap{
+    border-color: #f1cfb1;
+    background: #ffe4d2;
+}
+.kv2Btn:hover, .kv2Btn.active, .kv2Btn:focus, .k-button:hover, .k-button:focus, .k-button:active, .addProductBtn ul li a:hover, .columnView > li.k-item > .k-link:hover{
+    background: #0d88b2; /* color overlay */
+    -moz-box-shadow: inset 0 0 3px rgba(0,0,0,.42); /* inner shadow */
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.42); /* inner shadow */
+    box-shadow: inset 0 0 3px rgba(0,0,0,.42); /* inner shadow */
+}
+.kv2BtnDel {
+    background: #ed5c6a;
+}
+.kv2BtnYellow{background: #5dba00}
+.k-state-focused.k-state-selected, .k-list > .k-state-focused.k-state-selected, .k-listview > .k-state-focused.k-state-selected, td.k-state-focused.k-state-selected, .k-button:focus:active:not(.k-state-disabled):not([disabled]), .k-state-focused.k-state-selected.k-state-hover, .k-list > .k-state-focused.k-state-selected.k-state-hover, .k-listview > .k-state-focused.k-state-selected.k-state-hover, td.k-state-focused.k-state-selected.k-state-hover{
+    background: #0d76ba;
+}
+.kv2BtnDel:hover, .kv2BtnDel.active, .kv2BtnDel:focus {
+    background: #cc4f5b;
+    box-shadow: inset 0 0 3px 1px #bb414d;
+}
+.saleOff .fa {
+    background-image: url(../img/saleOff-pink.png);
+}
+.kvTabs > ul, .user .userName:hover, .user .userName.active, .user:hover .userName{
+    border-color: #d35400;
+}
+.k-window-poup .k-window-titlebar, .k-window-custom .k-window-titlebar{
+    border-color: #b44700;
+ }
+.catgMore {
+    background: url(../img/catgMoreAc-cl1.png) no-repeat top center;
+}
+.catgMore.active {
+    background-image: url(../img/catgMore-cl1.png);
+}
+.kv2Pro{
+    border: 1px solid #e68127;
+}
+.kv-pie{border: 3px solid #e77e23;}
+.kv-percents, .kv-50 .kv-progress .kv-progress-fill{border-color: #e77e23;}
+.kv2BtnYellow:hover, .kv2BtnYellow.active, .kv2BtnYellow:focus {
+    background: #509d02;
+    box-shadow: inset 0 0 3px 1px #509d02;
+}
+.k-icon, .k-state-disabled .k-icon, .k-column-menu .k-sprite {
+    opacity: 1;
+}
+/*.k-menu .k-animation-container .k-group{
+     background: #1093c1;
+}*/
+.k-animation-container .k-menu-group .k-state-hover .k-link{
+    background: #11799e!important;
+}
+/*.k-menu.columnView .k-animation-container .k-item > .k-link{
+    border-color: #11799e;
+}*/
+.kv2Right{
+    background: #ecf7fb;
+}
+.kv2BtnYellow {
+    background: #c6a06e;
+}
+.kv2BtnYellow:hover, .kv2BtnYellow.active, .kv2BtnYellow:focus {
+    background: #b88f59;
+    box-shadow: inset 0 0 3px 1px #ad8147;
+}
+.k-window-poup-tabs1 .kvTabs > ul li a.active{background: #FFF!important;}
+
+/****************************
+        BARCAFFE
+****************************/
+.wp-coffee, .wp-coffee .headNav li a.active, .wp-coffee .proTabs .rightArrow:hover, .wp-coffee .proTabs .leftArrow:hover, .wp-coffee .kv2ProList .proTabs{background: #c55c01}
+.wp-coffee .kv2Right{background: transparent}
+.wp-coffee .header, .wp-coffee .proTabs .addButton, .wp-coffee .proTabs ul li a, .wp-coffee .swipeBtn:hover{background: #e77e23}
+.wp-coffee .fa {background-image: url(../img/saleOff-pink.png);}
+.wp-coffee .proTabs ul li a.active{background: #FFF;}
+.wp-coffee .kv2Pro .swiperList ul li .proPrice{background: transparent!important;}
+.wp-coffee .headNav li + li{background: none;}
+
+*::-webkit-scrollbar-thumb
+{
+	background-color: #d36015;
+}

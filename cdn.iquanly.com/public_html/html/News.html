@@ -1,0 +1,2715 @@
+<style>
+.product-select.k-dropdown .k-animation-container ul li{
+    margin-left: 0px!important;
+}
+.product-select.k-dropdown .k-animation-container ul{
+    background: #ebebeb;
+}
+.product-select.k-dropdown .k-animation-container ul li.k-state-hover{
+    color: red;
+}
+
+.k-picker-wrap:before {
+    content: none;
+}
+
+
+ 
+input[type="text"]:not(.k-input),.form-control {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    padding: 0 8px;
+    vertical-align: middle;
+    height: 30px;
+    line-height: 30px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-weight: normal;
+}
+ 
+.kv2Btn{
+    text-align: center;
+}
+
+#reportViewer{     
+    width: 500px;
+    position: relative;
+} 
+ 
+.mask.mask-quick-sale {
+    width: 24px;
+    height: 24px;
+    background: url(/assets/images/quick-sale.svg);
+    position: absolute;
+}
+
+
+
+.alert:empty {
+    display: none;
+}
+.k-window-importProduct .k-upload-button input  {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font: 170px monospace!important;
+}
+.warning-content {
+    color: #7b5e2a;
+    background-color: #f9f9e0;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-style: italic;
+}
+#importproductform, #importTransfer {
+    padding: 25px 25px 20px;
+} 
+@media(min-width:768px){
+    aside.lbl-qlcb:not(.ng-hide)~aside.lbl-qlcb:not(.ng-hide){
+        margin-left: 40px;
+    }
+}
+
+
+
+.boxScr200, .boxScr300, .boxScr500 {
+    overflow: auto;
+}
+.boxScr300, .category-treeview {
+    max-height: 300px;
+}
+.product-RawMaterial table {
+    border-top: 1px solid #e8e8e8;
+}
+.addProduct * {
+    box-sizing: border-box;
+}
+.addProduct table th {
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+.product-RawMaterial table th {
+    background: #dcf5fc;
+    border-bottom: 1px solid #e8e8e8;
+    color: #2e2e2e;
+    padding: 15px 10px;
+    font-size: 12px;
+}
+.product-RawMaterial table th:first-child, .product-RawMaterial table tr td:first-child {
+    border-left: 1px solid #e8e8e8;
+}
+.product-RawMaterial table th:last-child, .product-RawMaterial table tr td:last-child {
+    border-right: 1px solid #e8e8e8;
+}
+.product-RawMaterial table td {
+    padding: 10px;
+    font-size: 12px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+
+.k-window-poup .boxForm {
+    clear: both;
+}
+</style>
+
+<section class="mainLeft ng-scope">
+    <kv-product-filter>
+<article class="boxLeft uln sortTime sortView mb20 fr ">
+
+    <h3 class="leftTitle ng-binding">Tìm kiếm</h3>
+    <aside class="boxLeftC">
+        <input type="text" ng-model="filter.keywordParam" placeholder="Theo tiêu đề" class="w100 mb10 ng-pristine ng-untouched ng-valid ng-empty" kv-select-text="" ng-blur="filterbyKeyword()" ng-keyup="$event.keyCode == 13 ? filterbyKeyword() : null">
+        
+</article>
+   
+<article class="boxLeft uln sortTime proGroup sortView mb20 posR">
+    <h3 class="leftTitle cursor ng-binding" ng-click="showGroup = !showGroup">Danh mục tin tức <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+    <a onclick="EditCategory(0)" href="javascript:void(0)" class="showhideicon" title="Thêm Danh mục tin tức" style="right:32px"><i class="fa fa-plus-circle"></i></a>
+    <aside class="boxLeftC" ng-hide="showGroup">
+        <div id="treeviewcat" kendo-tree-view="" k-options="treeviewcat" class="src proTree k-list k-widget k-treeview" data-role="treeview" tabindex="0">
+        <ul class="k-group k-treeview-lines" role="tree">
+        <li role="treeitem" class="k-item k-first" data-uid="93044d35-6149-485b-bebe-e8b1b9d9acc1" aria-selected="false " id="treeviewcat_tv_active">
+        <div class="k-top k-top ng-scope">
+        <span class="k-in">
+        <span class="nametreeview">Tất cả</span>
+        <a class="edittreeview" ng-click="EditCategory($event)" title="Sửa"><i class="fa fa-pencil-square-o"></i></a>
+        </span>
+        </div>
+        </li>
+         
+        <li role="treeitem" class="k-item" data-uid="61c74c47-7d18-40aa-8971-34338857139c" aria-selected="false "><div class="k-mid ng-scope"><span class="k-in"><span class="nametreeview">...</span><a class="edittreeview" ng-click="EditCategory($event)" title="Sửa"><i class="fa fa-pencil-square-o"></i></a></span></div></li>
+        <li role="treeitem" class="k-item k-last" data-uid="cc4ce698-9a99-490f-8db0-449f60a051e8" aria-selected="false "><div class="k-bot ng-scope"><span class="k-in"><span class="nametreeview">...</span><a class="edittreeview" ng-click="EditCategory($event)" title="Sửa"><i class="fa fa-pencil-square-o"></i></a></span></div></li>
+        </ul></div>
+    </aside>
+</article>
+<article class="boxLeft reportHide uln sortTime sortView mb20">
+    <h3 class="leftTitle cursor ng-binding">Lựa chọn hiển thị</h3>
+    <aside class="boxLeftC mb10  ">
+        <ul>
+            <li class="has-pretty-child"><div class="clearfix prettyradio labelright  blue"><input type="radio" kv-pretty-check="" name="ActiveRadio" value="1" kv-data-label="_l.product_all" ng-model="ShowInActiveProduct" kv-change="FilterActiveProduct" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-valid-parse" data-label="Tất cả" style="display: none;"><a href="javascript:void(0)" class="checked"></a>
+<label for="undefined" class="checked">Tất cả</label></div></li>
+            <li class="has-pretty-child"><div class="clearfix prettyradio labelright  blue"><input type="radio" kv-pretty-check="" name="ActiveRadio" value="2" kv-data-label="_l.product_notsell" ng-model="ShowInActiveProduct" kv-change="FilterActiveProduct" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Hàng ngừng Kinh doanh" style="display: none;"><a href="javascript:void(0)" class=" "></a>
+<label for="undefined" class="">Tin hoạt động</label></div></li>
+            <li class="has-pretty-child"><div class="clearfix prettyradio labelright  blue"><input type="radio" kv-pretty-check="" name="ActiveRadio" value="3" kv-data-label="_l.product_sell" ng-model="ShowInActiveProduct" kv-change="FilterActiveProduct" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Hàng đang Kinh doanh" style="display: none;"><a href="javascript:void(0)" class=""></a>
+<label for="undefined" class="">Tin vô hiệu</label></div></li>
+        </ul>
+    </aside>
+    <aside class="boxLeftC">
+        <aside ng-show="viewtype == typeList" class="br0 pd0 ng-binding">
+            Số bản ghi: <span title="" class="k-widget k-dropdown k-header mt0 ng-pristine ng-untouched ng-valid ng-not-empty" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="5955c347-42e8-4720-a41b-53656d975ee6" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">10</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select class="mt0 ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="pageSize" k-on-change="refresh()" k-data-source="pageSizes" kendo-drop-down-list="" data-role="dropdownlist" style="display: none;"><option value="? number:10 ?"></option><option value="10" selected="selected">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option></select></span>
+        </aside>
+    </aside>
+</article>
+
+</kv-product-filter>
+<div class="wrap-button-footer"><button kv-mobile="" type="button" class="kv2Btn">Hoàn tất</button></div>
+</section>
+
+<section class="mainRight ng-scope">
+    <section class="mainWrap fll w100" style="position: relative; top: auto; bottom: auto; width: auto;">
+        <article class="headerContent uln fll w100">
+            <h1><a href="javascript:void(0);" class="mobileIcon" kv-mobile=""></a><span class="ng-binding">Tin tức</span></h1>
+            
+            <aside class="flr">
+                <div class="dpib addProductBtn">
+                    <a ng-show="_p.has('Product_Create')" href="javascript:void(0)" class="kv2Btn ng-binding" title="Thêm mới"><i class="fa fa-plus"></i> Thêm mới <i class="fa fa-caret-down"></i></a>
+                    <ul>
+                         
+                        <li><a href="javascript:void(0)" onclick="AddProduct()" kv-btn-scroll="" title="Thêm tin tức" class="ng-binding"><i class="fa fa-plus"></i> Thêm tin tức</a></li>
+                         
+                        <li><a href="javascript:void(0)" onclick="EditCategory(0)" kv-btn-scroll="" title="Thêm Danh mục" class="ng-binding"><i class="fa fa-plus"></i> Thêm Danh mục</a></li>
+
+                    </ul>
+                </div>
+                <a ng-show="_p.has('Product_Import')" href="javascript:void(0)" ng-click="importProduct()" class="kv2Btn kv2BtnImport ng-binding"><i class="fa fa-sign-in"></i> Import</a>
+                <a ng-show="_p.has('Product_Export')" href="javascript:void(0)" ng-click="exportProduct()" class="kv2Btn kv2BtnExport ng-binding"><i class="fa fa-sign-out"></i> Xuất  file</a>
+                <div id="columnSelection" kv-column-selection="" class="hth-hide columnView k-widget k-reset k-header k-menu k-menu-horizontal" binded-grid="bindedGrid" data-role="menu" tabindex="0" role="menubar"><li class="k-item k-state-default k-first k-last" role="menuitem" aria-haspopup="true"><span class="k-link"><span class="k-icon k-i-arrow-s"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Name"><span></span>Tên chi nhánh</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Address"><span></span>Địa chỉ</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="ContactNumber"><span></span>Điện thoại</label></span></li><li class="k-item k-state-default k-last" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="TotalUser"><span></span>SL người dùng</label></span></li></ul></li></div>
+            </aside>
+
+        </article>
+        <article class="fll w100 k-gridNone productList k-grid-Scroll">
+            <div id="grdProducts" kendo-grid="" k-options="products" k-sortable="true" k-resizable="true" k-pageable="{ &quot;pageSize&quot;: 50, &quot;refresh&quot;: false, &quot;pageSizes&quot;: false , buttonCount: 5,messages:{display:_l.pagerInfo + _l.product_Paging, first:_l.paging_First, previous:_l.paging_Prev, next: _l.paging_Next, last: _l.paging_Last}}" kv-grid-expan-row="" data-title="product_Paging" data-headerformat="{0}" data-role="grid" class="k-grid k-widget">
+            <div class="k-grid-header" style="padding-right: 17px;">
+            <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
+            <table role="grid">
+            <colgroup><col class="k-hierarchy-col"><col><col><col><col><col></colgroup>
+            <thead role="rowgroup">
+            <tr role="row">
+            <th class="k-hierarchy-cell k-header ng-scope" scope="col">&nbsp;</th>
+            <th scope="col" role="columnheader" data-field="Code" rowspan="1" data-title="Mã tin tức" data-index="0" id="3e3e7421-980b-4045-82a2-cd786ed89ca0" class="tdCode k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Mã tin tức</a></th>
+            <th scope="col" role="columnheader" data-field="Name" rowspan="1" data-title="Tên tin tức" data-index="1" id="44389476-45d9-4ea3-89e0-c82c0c972917" class="tdMin k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Tên tin tức</a></th>
+            <th scope="col" role="columnheader" data-field="CategoryName" rowspan="1" data-title="Danh mục tin tức" data-index="2" id="75350a01-6e8f-465c-8231-e492754b058c" class="tdMin k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Danh mục</a></th>
+             
+            <th scope="col" role="columnheader" data-field="Image" rowspan="1" data-title="Hình ảnh" data-index="4" id="d4323ec8-c710-495c-9bf4-93e2522c3d08" class="tdTotal txtR k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Hình ảnh</a></th>
+            
+            <th scope="col" role="columnheader" data-field="isActive" rowspan="1" data-title="Trạng thái" data-index="9" id="063a6427-21f9-493e-ad2b-354575292895" class="tdDebt k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Trạng thái</a></th>
+            </tr>
+            </thead>
+            </table>
+            </div>
+            </div>
+            <div class="k-grid-content k-auto-scrollable k-grid-content-ac">
+            <table role="treegrid">
+            <colgroup><col class="k-hierarchy-col"><col><col><col><col><col></colgroup>
+            <tbody role="rowgroup">
+            
+    
+    </tbody>
+    </table>
+    </div>
+    
+    <div class="paging-box">
+    <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
+    <a href="javascript:void(0);" title="Trang đầu" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1">
+    <span class="k-icon k-i-seek-w">Trang đầu</span></a>
+    <a href="javascript:void(0);" title="Trang trước" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+    <span class="k-icon k-i-arrow-w">Trang trước</span></a>
+    <ul class="k-pager-numbers k-reset">
+    <li class="k-current-page"><span class="k-link k-pager-nav">1</span></li>
+    <li><span class="k-state-selected">1</span></li>
+     
+    </ul>
+    <a href="javascript:void(0);" title="Trang sau" class="k-link k-pager-nav" data-page="2" tabindex="-1">
+    <span class="k-icon k-i-arrow-e">Trang sau</span></a>
+    <a href="javascript:void(0);" title="Trang cuối" class="k-link k-pager-nav k-pager-last" data-page="3" tabindex="-1">
+    <span class="k-icon k-i-seek-e">Trang cuối</span>
+    </a>
+    <span class="k-pager-info k-label">Hiển thị 0 - 0 trên tổng số 0 tin tức</span>
+    </div>
+    </div>
+    </div>
+    
+        </article>
+        
+        
+        <div style="display: none">
+        
+        <div kendo-window="categoryWindow" k-visible="false" k-resizable="false" k-draggable="true" k-pinned="true" k-width="550" k-modal="true" style="padding-bottom: 20px; display: block;" data-role="window" class="k-window-content k-content" tabindex="0">
+    <section class="addCategory uln ovh lbl-cl control-poup">
+        <ul class="formBox ovh fr">
+
+            <li>
+                <label>
+                    <span class="titleFr ng-binding">Tên nhóm</span>
+                    <input onblur="autoCodeCategory(this)" type="text" class="iptName ng-pristine ng-valid-maxlength ng-touched ng-empty ng-invalid ng-invalid-required" ng-model="category.name" maxlength="100" required="" style="width: 270px" />
+                    <input type="hidden" ng-model="category.id" />
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span class="titleFr ng-binding">Mã nhóm</span>
+                    <input type="text" class="iptName ng-pristine ng-valid-maxlength ng-touched ng-empty ng-invalid ng-invalid-required" ng-model="category.code" maxlength="100" required="" style="width: 270px" />
+                     
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span class="titleFr ng-binding">Nhóm cha</span>
+                    <span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" style="width: 270px;" aria-activedescendant="985764ee-2929-4ee1-a1d1-5bad7d035d9a">
+                    <span unselectable="on" class="k-dropdown-wrap k-state-default">
+                    <span unselectable="on" class="k-input ng-scope">---Lựa chọn---</span>
+                    <span unselectable="on" class="k-select">
+                    <span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+                    </span>
+                    </span>
+                    <div class="k-animation-container" style="width: 270px; height: 202px; margin-left: 0px; padding-left: 0px; padding-right: 0px; padding-bottom: 0px; display: none; box-sizing: content-box; overflow: hidden; ">
+                    <div class="k-list-container k-popup k-group k-reset" data-role="popup" style="position: absolute; font-size: 12px; font-family: Arial, Helvetica, sans-serif; font-stretch: normal; font-style: normal; font-weight: normal; line-height: normal; width: 268px; height: 200px; ">
+                    <div class="k-group-header" style="display:none"></div>
+                    <div class="k-list-scroller" unselectable="on" style="height: 200px;">
+                    <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox">
+                    <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope k-state-selected k-state-focused" data-offset-index="0" id="985764ee-2929-4ee1-a1d1-5bad7d035d9a">---Lựa chọn---</li>
+                     
+                    </ul>
+                    </div>
+                    </div>
+                    </div>
+                    <select kendo-drop-down-list="" k-options="dropdownlistcat" ng-model="category.parent_id" k-value-primitive="true" style="width: 270px; display: none;" data-role="dropdownlist">
+                    <option value="0" selected="selected">---Lựa chọn---</option>
+                     
+                    </select>
+                    </span>
+                </label>
+            </li>
+            <li class="boxBtn txtL" style="margin-top: 15px;">
+                <span class="titleFr">&nbsp;</span>
+                <a href="javascript:void(0);" class="kv2Btn ng-binding" onclick="saveCategory()"><i class="fa fa-floppy-o"></i>Lưu</a>
+                <a href="javascript:void(0);" class="kv2Btn kv2BtnYellow ng-binding" onclick="cancelCategory()"><i class="fa fa-ban"></i>Bỏ qua</a>
+                <a href="javascript:void(0);" class="kv2Btn kv2BtnDel ng-binding ng-hide" ng-show="category.Id>0" onclick="deleteCategory()"><i class="fa fa-trash"></i>Xóa</a>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<kv-product-form form-name="productForm" kv-width="880" class="ng-isolate-scope">
+<form name="productForm" class="k-window-poup poup-sc ng-valid-maxlength ng-dirty ng-invalid ng-invalid-required ng-valid-parse">
+    <section class="boxInfo addProduct2 control-poup lbl-cl" style="padding: 20px 30px 30px;">
+        <article class="boxForm boxForm1 uln  fll w100 mb10">
+            <h3 class="ng-binding">Thông tin</h3>
+            <ul class="formBox fll   fr">
+                
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Tiêu đề tin tức</span>
+                        <input type="text" onblur="checkPrettyCheckbox(this)" placeholder="" tabindex="2" class="iptName ng-pristine ng-touched ng-empty ng-invalid ng-invalid-required" ng-model="news.name" required="" kv-select-text="" kv-valid-special-chars="Tên tin tức">
+                        <input type="hidden" ng-model="news.id" /> 
+                         
+                        <a href="javascript:void(0)" tabindex="0" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Tiêu đề tin tức"><i class="fa fa-info-circle"></i></a>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Mã tin tức</span>
+                        <input maxlength="100" type="text" onblur="checkCode(this,1)" ng-model="news.code" tabindex="1" kv-select-text="" placeholder="Mã tin tức" kv-valid-special-chars="Mã tin tức" class="ng-pristine ng-valid ng-empty ng-touched">
+                        
+                        <a href="javascript:void(0)" tabindex="0" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Mã tin tức là thông tin duy nhất"><i class="fa fa-info-circle"></i></a>
+                         
+                    </label>
+                </li>
+                
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Từ khóa</span>
+                        <input maxlength="100" type="text" ng-model="news.tags" tabindex="1" kv-select-text="" placeholder="Từ khóa ngăn cách bởi dấu phẩy" kv-valid-special-chars="Từ khóa" class="ng-pristine ng-valid ng-empty ng-touched">
+                         <a href="javascript:void(0)" tabindex="0" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Từ khóa ngăn cách bởi dấu phẩy"><i class="fa fa-info-circle"></i></a>
+                    </label>
+                </li>
+                
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Danh mục</span>
+                        <span title="" class="k-widget k-dropdown k-header product-select" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="3" aria-owns="" aria-disabled="false" aria-readonly="false" style="" aria-busy="false" aria-activedescendant="f09f387a-f7d1-4987-b4b4-d70c2e587ec9">
+                        <span unselectable="on" class="k-dropdown-wrap k-state-default">
+                        <span unselectable="on" class="k-input ng-scope">BIA &amp; THUỐC LÁ</span>
+                        <span unselectable="on" class="k-select">
+                        <span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+                        </span>
+                        </span>
+                        <div class="k-animation-container" style="position: absolute; top: 32px; z-index: 112; box-sizing: content-box; width: 230px; max-height: 300px; overflow-y: auto; overflow-x: hidden; display: none;"> 
+                        <div class="k-list-container k-popup k-group k-reset"> 
+                            <div class="k-list-scroller" unselectable="on" style="height: auto;">
+                            <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox">
+                            <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="0">---Lựa chọn---</li>
+                             
+                            </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <select kendo-drop-down-list="ddlCategory" k-options="dropdownlistcat" ng-model="news.category" class="product-select" data-role="dropdownlist" style="display: none;">
+                        <option value="" selected="selected">---</option>
+                        
+                        </select>
+                        </span>
+                        <a onclick="EditCategory(0)" href="javascript:void(0)" class="icon add" title="Thêm danh mục tin tức"><i class="fa fa-plus"></i></a>
+                         
+                        <a href="javascript:void(0)" tabindex="0" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Lựa chọn danh mục cho tin tức"><i class="fa fa-info-circle"></i></a>
+                    </label>
+                </li>
+                   
+                <li>
+                    <span class="titleFr label-checkbox">Lựa chọn khác</span>
+                     
+                    <aside class="frRadioCheck frRadioCheckNormal lbl-qlcb has-pretty-child">                        
+                        <a href="javascript:void(0)" tabindex="0" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Kích hoạt tin tức"><i class="fa fa-info-circle"></i></a>
+                        <div class="clearfix prettycheckbox labelright  blue">
+                        <input name="status" value="1" type="checkbox" kv-pretty-check="" ng-model="news.status" tabindex="5" class="ng-untouched ng-valid ng-isolate-scope ng-dirty ng-not-empty" data-label="Kích hoạt" style="display: none;" /><a href="javascript:void(0)"></a>
+<label for="undefined" class="checked">Kích hoạt</label></div>
+                    </aside>
+                      
+                </li>
+            </ul>
+             
+        </article>
+
+        <article class="ovh clb addMore">
+            <a href="javascript:void(0)" ng-click="showDetails = ! showDetails" kv-scroll="" class="addMoreMain ng-binding">
+                <i class="fa fa-plus-square"></i>Thông tin mở rộng
+            </a>
+        </article>        
+        <section class="ovh2 addMoreBox bd-bf" >
+             
+            <article class="boxForm uln ar-bf product-upload mb18">
+                <a class="fll icon toggle" ng-class="{'upBlue': showOther}" kv-scroll="" ng-click="showOther = !showOther"><i class="fa fa-plus-square" ng-class="{'fa-plus-square':!showOther,'fa-minus-square':showOther}"></i></a>
+                <h3 class="mb0 title_toggle ng-binding" kv-scroll="" ng-click="showOther = !showOther">Thông tin mở rộng</h3>
+                <ul class="formBox ovh fr bd-bt-box at-hd itemBox pd12 ng-hide" ng-show="showOther">
+ 
+                    <li class="li-odd ProductImageUpload ng-scope" ng-controller="ProductImageUploadCtrl">
+                        <div class="img-pr">
+                            <label class="img-pr-left">
+                                <span class="titleFr fll ng-binding">Hình ảnh</span>
+                                 
+                                <div class="k-widget k-upload k-header k-upload-empty">
+                                <div class="k-dropzone">
+                                <div class="k-button k-upload-button">
+                                <input accept="image/*;capture=camera" kendo-upload="" name="files" id="files2" type="file" k-options="uploadImages" data-role="upload" autocomplete="off">
+                                <input name="image" ng-model="news.image" type="hidden" />
+                                <span>Select files...</span>
+                                </div>
+                                <em>drop files here to upload</em>
+                                </div>
+                                </div>
+                            </label>
+                            <div style="color: red; max-height: 170px; overflow: auto;" ng-bind-html="UploadError" class="ng-binding"></div>
+                            <!--<div id="progressBar" kendo-progress-bar k-options="uploadProcess"></div>-->
+                        </div>
+                        <div>
+                            <article class="proListImg uln posR">
+                                <kv-swiper kv-page-load="loadPage" kv-count-page="updateTotalPage" template-id="productListTmpl" kv-height="88" item-per-page="pageSize" swiper-name="productSwiper" kv-item-selected="deleteImage" class="ng-isolate-scope"><div class="swiper-container swiperList"><div class="swiper-wrapper" style="height: 0px; width: 0px;"><!-- ngRepeat: slide in slides track by slide.Id --><div class="swiper-slide ng-scope" ng-repeat="slide in slides track by slide.Id" kv-swiper-slide="" style="width: 0px; height: 0px;">
+        <ul>
+            <li ng-repeat="p in slide.items track by p.Id" ng-click="itemClicked(p)" class="ng-scope">
+                <div style="width: 88px; height: 88px; overflow: hidden; background: #f9f9f9; display: table-cell; vertical-align: middle; text-align:center">
+                    <img ng-src="img/default-product.png" src="img/default-product.png">
+                </div>
+            </li>
+        </ul>
+    </div><!-- end ngRepeat: slide in slides track by slide.Id --></div></div></kv-swiper>
+                            </article>
+                        </div>
+                    </li>
+                     
+                    <li class="li-last li-even">
+                        <label class="dpb">
+                            <span class="titleFr mb10 nowrap ng-binding">Mô tả</span>
+                            <textarea ng-model="news.description" class="dpb ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" maxlength="254"></textarea>
+                        </label>
+                    </li>
+                    
+                    <li class="li-last li-even">
+                        <label class="dpb">
+                            <span class="titleFr mb10 nowrap ng-binding">Nội dung</span>
+                            <textarea ng-model="news.content" class="dpb ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength"></textarea>
+                        </label>
+                    </li>
+                </ul>
+            </article>
+            
+            
+        </section>
+        <article class="boxBtn txtL txtB">
+            <a ng-enter="SaveProduct()" onclick="SaveProduct()" class="kv2Btn txtN ng-binding" kv-taga-disabled="saving" tabindex="8"><i class="fa fa-floppy-o"></i>Lưu</a>
+            <a ng-enter="SaveAndContinue()" ng-click="SaveAndContinue()" class="kv2Btn txtN kv2Btnbrightblue ng-binding    ng-hide" kv-taga-disabled="saving" ng-show="news.Id==0&amp;&amp;(news.MasterProductId==null||news.MasterProductId==0)" tabindex="9"><i class="fa fa-floppy-o"></i>Lưu &amp; Thêm mới</a>
+            <a ng-enter="SaveAndContinueWithVariant()" ng-click="SaveAndContinueWithVariant()" kv-taga-disabled="saving" class="kv2Btn txtN ng-binding ng-hide" ng-show="news.HasVariants" tabindex="10"><i class="fa fa-plus"></i>Lưu &amp; Thêm tin tức cùng loại</a>
+            <a onclick="cancel()" class="kv2Btn txtN kv2BtnYellow ng-binding" tabindex="11"><i class="fa fa-ban"></i>Bỏ qua</a>
+        </article>
+    </section>
+</form>
+<kv-popup id="addProductHelp" class="popupWrapper"><div class="kv2Pop pop popArrow" ng-transclude="">
+    <div data-notify="showtext" class="ng-scope"></div>
+</div></kv-popup>
+<div style="display: none">
+    <kv-product-pricebook-form form-name="productPricebookPopup" class="ng-isolate-scope"></kv-product-pricebook-form>
+    <kv-category-form form-name="categoryForm" class="ng-isolate-scope"></kv-category-form>
+    <kv-attribute-form form-name="attributeForm" class="ng-isolate-scope"></kv-attribute-form>
+    <script type="text/x-angular-template" id="productSearchItemTempl">
+        <li suggestion ng-repeat="suggestion in suggestions track by $index"
+            index="{{$index}}" val="{{suggestion.Name}}" ng-class="{active:($index == selectedIndex)}" ng-click="itemClicked(suggestion)">
+            <p>{{suggestion.Name}}</p>
+            {{suggestion.Code}}
+        </li>
+    </script>
+    <script type="text/x-angular-template" id="productListTmpl">
+        <ul class="productListTmpl">
+            <li ng-repeat="p in slide.items track by p.Id">
+                <img ng-src="{{p.Image}}" width="88">
+                <a href="javascript:void(0)" class="imgDel icon" ng-show="p.Id!=-9999" ng-click="itemClicked(p)"></a>
+            </li>
+        </ul>
+    </script>
+</div>
+</kv-product-form>     
+<div class="k-overlay" style="display: none; z-index: 10004; opacity: 0.5;"></div>
+<div class=" k-window-alert  " data-role="draggable" style=" display: block;opacity: 1;  ">
+ 
+ 
+<p class="confirm-message txt-cbk txt-ltd">Bạn có chắc chắn muốn kích hoạt tin tức này</p>
+<article class="clb boxBtn txtC ovh">
+<button class="btn-confirm kv2Btn"><i class="fa fa-check"></i>Đồng ý</button>
+<button class="btn-cancel kv2Btn kv2BtnYellow"><i class="fa fa-ban"></i>Bỏ qua</button>
+</article>
+ 
+</div>
+
+
+<div class="  k-window-alert  " data-role="draggable" style=" display: block; opacity: 1; ">
+ 
+ 
+<p class="confirm-message txt-cbk txt-ltd">Bạn có chắc chắn VÔ HIỆU HÓA tin tức này?<br>Bạn có thể kích hoạt lại sau này nếu muốn.</p>
+<article class="clb boxBtn txtC ovh">
+<button class="btn-confirm kv2Btn"><i class="fa fa-check"></i>Đồng ý</button>
+<button class="btn-cancel kv2Btn kv2BtnYellow"><i class="fa fa-ban"></i>Bỏ qua</button>
+</article>
+ 
+</div>   
+        
+        <script type="text/x-kendo-template" id="templProductCategory2">
+        <div class="k-top ng-scope" onclick="selectCategory({{id}})">
+        <span class="k-in" style="{{style}}">
+        <span class="nametreeview">{{name}}</span>
+        <a class="edittreeview" onclick="EditCategory({{id}})" title="Sửa"><i class="fa fa-pencil-square-o"></i></a>
+        </span>
+        </div>
+        </script>
+        <script type="text/x-kendo-template" id="templUsersInBranch">
+        <tr class="{{dataItem.class}}" data-uid="{{dataItem.class}}" role="row">
+            <td class="" role="gridcell"><a href="/#/Users?Code={{dataItem.username}}" target="_blank">{{dataItem.name}}</a></td>
+            <td class="tdBranch" role="gridcell">{{dataItem.username}}</td>
+            <td class="tdBranch" role="gridcell">{{dataItem.role}}</td>
+        </tr>
+         
+        </script>
+        <script type="text/x-kendo-template" id="templBranchFirst">
+        <tr class="k-master-row ng-scope cssSummaryRow" data-uid="d41dc3d5-cf5d-422c-b959-7fca3718549c" role="row" style="font-weight: bold; background: rgb(254, 252, 237);">
+            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="javascript:void(0);" tabindex="-1" style="display: none;"></a></td>
+            <td class="tdCode" role="gridcell"><span ng-bind="dataItem.Code" class="ng-binding"></span></td>
+            <td class="tdMin" role="gridcell"><span ng-bind="dataItem.Name" class="ng-binding"></span></td>
+            <td class="tdMin" role="gridcell"><span ng-bind="dataItem.CategoryName" class="ng-binding"></span></td>
+            
+            <td class="tdTotal txtR ng-binding" role="gridcell"></td>
+             
+            <td class="tdDebt" role="gridcell"><span ng-bind="dataItem.isActive" class="ng-binding"></span></td></tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranch">
+        <tr class="{{dataItem.class}} k-master-row ng-scope" data-uid="{{dataItem.id}}" role="row">
+            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="javascript:void(0);" tabindex="-1"></a></td>
+            <td class="tdCode" role="gridcell"><span ng-bind="dataItem.Code" class="ng-binding">{{dataItem.code}}</span></td>
+            <td class="tdMin" role="gridcell"><span ng-bind="dataItem.Name" class="ng-binding">{{dataItem.name}}</span></td>
+            <td class="tdMin" role="gridcell"><span ng-bind="dataItem.CategoryName" class="ng-binding">{{dataItem.group}}</span></td>
+            
+            <td class="tdTotal txtR ng-binding" role="gridcell"><img src="{{dataItem.image}}" height="50" /></td>
+             
+            <td class="tdDebt" role="gridcell"><span ng-bind="dataItem.isActive" class="ng-binding">{{dataItem.status}}</span></td>
+            </tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranchDetail">
+            <tr class="k-detail-row k-alt ng-scope" >
+            <td class="k-hierarchy-cell"></td>
+            <td class="k-detail-cell" colspan="5">
+        <div class="k-tabstrip-wrapper" style=""><div class="tabstrip k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" data-role="tabstrip" tabindex="0" role="tablist" aria-activedescendant="tabInventory">
+            <ul class="k-tabstrip-items k-reset">
+            <li class="ng-binding k-item k-state-default k-first k-tab-on-top k-state-active" role="tab" aria-controls="{{dataItem.id}}-1" aria-selected="true"> <span class="k-loading k-complete"></span><span class="k-link">Thông tin</span></li>
+             
+            </ul>
+            <div id="{{dataItem.id}}-1" class="k-content k-state-active" role="tabpanel" aria-expanded="true" style="display:block;" >
+                <article class="title ng-binding">{{dataItem.name}}</article>
+                <p>
+                    <i class="fa fs16 fa-check {{dataItem.statusclass}}"></i> <span class="txtB ng-binding">{{dataItem.status}}</span>
+                     
+                </p>
+                <div class="ovh clb">
+                    <div class="col-left">
+                        <article class="clb mb15 ovh tblBox productInfo">
+                            <table class="w100">
+                                <tbody><tr>
+                                    <td width="220" class="veaT">
+                                        <img style="width: 180px; margin-top:5px;" ng-src="{{dataItem.image}}" src="{{dataItem.image}}">
+                                    </td>
+                                    <td class="veaT">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody><tr>
+                                                    <td width="100" class="br0 ng-binding">Mã tin tức:</td>
+                                                    <td class="br0"><strong class="ng-binding">{{dataItem.code}}</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="ng-binding">Danh mục tin tức:</td>
+                                                    <td class="ng-binding">{{dataItem.group}}</td>
+                                                </tr>
+                                                    
+                                                    
+                                                    
+                                            </tbody></table>
+                                        </div>
+                                    </td>
+                                    <td class="tdLine"><span>&nbsp;</span></td>
+                                    <td class="veaT" style="width:200px">
+                                        <section class="posR ovh w100">
+                                            <article class="proListImg uln ng-scope" ng-controller="ProductImageListCtrl" data="dataItem">
+                                                <kv-swiper kv-page-load="loadPage" kv-count-page="updateTotalPage" template-id="productListTmpl" kv-height="200" item-per-page="pageSize" swiper-name="productSwiper" kv-item-selected="changeImage" class="ng-isolate-scope"><div class="swiper-container swiperList"><div class="swiper-wrapper" style="height: 200px; width: 200px;"><!-- ngRepeat: slide in slides track by slide.Id --><div class="swiper-slide ng-scope" ng-repeat="slide in slides track by slide.Id" kv-swiper-slide="" style="width: 200px; height: 200px;">
+        <ul>
+            <li ng-repeat="p in slide.items track by p.Id" ng-click="itemClicked(p)" class="ng-scope">
+                <div style="width: 88px; height: 88px; overflow: hidden; background: #f9f9f9; display: table-cell; vertical-align: middle; text-align:center">
+                    <img ng-src="{{dataItem.image}}" src="{{dataItem.image}}">
+                </div>
+            </li>
+        </ul>
+    </div> </div></div></kv-swiper>
+                                                 
+                                            </article>
+                                        </section>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                        </article>
+                    </div>
+                    <div class="col-btn">
+                        <article class="txtL boxBtn">
+                            <a onclick="UpdateNews({{dataItem.id}})" class="kv2Btn ng-binding" kv-btn-scroll=""><i class="fa fa-check-square"></i> Cập nhật</a>
+                            <a onclick="ActiveNews({{dataItem.id}})" class="kv2Btn ng-binding" ng-show="!dataItem.status"><i class="fa fa-check"></i> Kích hoạt</a>                            
+                            <a onclick="DeleteNews({{dataItem.id}})" class="kv2Btn kv2BtnDel ng-binding" ng-show="_p.has('Product_Delete')"><i class="fa fa-trash"></i> Xóa</a>
+                            <a onclick="ActiveNews({{dataItem.id}})" class="kv2Btn kv2BtnDel ng-binding" ng-show="dataItem.status"><i class="fa fa-lock"></i> Vô hiệu</a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+ 
+        </div></div>
+
+    </td>
+    </tr>
+            </script>
+            
+        </div>
+    </section>
+</section>
+
+<style>
+.product-upload .li-last.li-even textarea {
+    height: 0;
+     
+}
+</style>
+
+    <script>
+   
+ 
+var url = "/Template/MauFileTinTuc.xlsx";
+ 
+var $cats  
+var $example={};
+ 
+var sheet_add_json = []
+
+function exportProductsExcelJS(co){ console.log(co);     
+    $cats = _convertProductCategories();
+    
+    /* set up async GET request */
+    var req = new XMLHttpRequest();
+    req.open("GET", url, true);
+    req.responseType = "arraybuffer";
+    
+    var first_sheet_name_new;
+    
+    req.onload = function(e) {
+        var data = new Uint8Array(req.response); 
+        var workbook = XLSX.read(data, {type:"array"}); console.log(workbook)
+        var first_sheet_name = workbook.SheetNames[0];
+        var first_sheet_name_old = first_sheet_name+''
+        first_sheet_name_new = 'Xuat Hang Hoa ngay '+moment().format('DD-MM-YYYY');
+        workbook.SheetNames[0] = first_sheet_name_new;
+        workbook.Sheets[first_sheet_name_new] = Object.assign({}, workbook.Sheets[first_sheet_name_old]);
+        delete workbook.Sheets[first_sheet_name_old]        
+        var worksheet = workbook.Sheets[first_sheet_name_new];
+        sheet_add_json = [];
+        for(var $r in $example){ 
+            var $e = $example[$r]; console.log($e)
+            var $f = {'A': $types[$e.type],
+            	'B': '',                	
+            	'C': $e.category>0?_catPath($e.category,$cats).join('>>'):'',
+                'D': $e.code,
+                'E': $e.name,                     
+            	'F': $e.price,
+                'G': $e.price2,
+                'H': $e.quantity,
+                'I': $e.minqty,
+                'J': $e.maxqty,  
+                'K': $e.uname?$e.uname:'',
+                'L': '', 
+                'M': $e.uvalue?$e.uvalue:1,
+                'N': '',
+                'O': '',
+                
+                'P': $e.image,                                
+            } ; console.log($f) 
+            
+            if(cfs.UseCod){ 
+                $f = Object.assign($f, {
+                    'Q': $e.weight?$e.weight:'0',
+                    'R': $e.extra==1?1:0,
+                    'S': $e.status==1?1:0,
+                    'T': $e.sell?1:0,
+                    'U': $e.description,
+                    'V': '',
+                    'W': $e.time==1?1:0,
+                    'X': ($e.expire==''||$e.expire=='0000-00-00')?'':moment($e.expire).format('DD/MM/YYYY')
+                }); console.log('$f1') 
+            }else{
+                $f = Object.assign($f, {
+                    'Q': $e.extra==1?1:0,
+                    'R': $e.status==1?1:0,
+                    'S': $e.sell?1:0,
+                    'T': $e.description,
+                    'U': '',
+                    'V': $e.time==1?1:0,
+                    'W': ($e.expire==''||$e.expire=='0000-00-00')?'':moment($e.expire).format('DD/MM/YYYY')
+                }); console.log('$f2') 
+            }
+            
+            var $parent=[];
+            if($e.parent>0){
+                $f.L = $example[$e.parent]['code'];
+                $parent = [$f.L];
+            }
+            if($e.topping){
+                var $t = $e.topping.split(",");
+                for(var kk in $t){
+                    $parent.push($example[$t[kk]]['code']);
+                }
+            }
+            if($parent.length){
+                $f.O = $parent.join(',')
+            }
+                        
+        	sheet_add_json.push($f)
+        }
+        delete_rows(worksheet,1,12); console.log(sheet_add_json)
+        XLSX.utils.sheet_add_json(worksheet, sheet_add_json, {skipHeader: true, origin: "A2"});
+ 
+        var buffer = XLSX.write(workbook, {bookType:"xlsx", bookSST:true, type: "array"	}) 
+         
+        var blob = new Blob([buffer], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+        saveAs(blob,first_sheet_name_new+".xlsx");
+        console.log(first_sheet_name_new)
+        var d= {
+            code: co,
+            status: 1,
+            content: 'Đã xuất file xong! Vui lòng Ctr+J để xem file download',
+            file: first_sheet_name_new+".xlsx"
+        }
+        changeimpexp(d)         
+    }
+    
+    req.send();
+}
+   
+    var filter = {         
+        ShowInActiveProduct: 1,
+        keywordParam:'',         
+    }
+        var lipc = '<li role="treeitem" class="k-item {{class}}" data-uid="{{id}}" aria-selected="false ">';
+        var ulpc = '<ul class="k-group k-treeview-lines" role="tree">';
+         
+        var news,news_categories;
+        
+        var _lb2 = false,_lb3 = false;
+        
+        function qui(lo){
+            if(!do1 || !do2){
+                setTimeout(function(){
+                    qui(lo)
+                },500)
+                return
+            }
+            try{  
+                console.log('db.tables 2',JSON.stringify(db.tables))
+                 
+                db.close();  
+                db.version(dbver=3).stores(schema1)//dbver==1?(dbver=2,2):(dbver)
+                console.log('then')
+                
+                _poi(lo)  
+                 
+            }catch(e){
+                console.log('EEroor',e.name,dbver,schema1)
+                 
+                db.close();  
+                db.version(dbver=3).stores(schema1)//dbver==1?(dbver=2,2):(dbver=dbver+1,dbver)
+                console.log('then',dbver)
+                
+                _poi(lo) 
+                return;       
+                 
+            };
+             
+        }
+        
+        function iuq(lo){
+            if(!do1 || !do2){
+                setTimeout(function(){
+                    iuq(lo)
+                },500)
+                return
+            }
+            try{  
+                console.log('db.tables 2',JSON.stringify(db.tables))
+                 
+                db.close();  
+                db.version(dbver=3).stores(schema1)//dbver==1?(dbver=2,2):(dbver)
+                console.log('then')
+                
+                _iop(lo)  
+                 
+            }catch(e){
+                console.log('EEroor',e.name,dbver,schema1)
+                 
+                db.close();  
+                db.version(dbver=3).stores(schema1)//dbver==1?(dbver=2,2):(dbver=dbver+1,dbver)
+                console.log('then',dbver)
+                
+                _iop(lo) 
+                return;                        
+            };             
+        }
+        
+        function _poi(lo){ console.log('_poi')
+            db.open().then(function(){
+                db.table("News") .toArray().then(function(x){  
+                    news = x; console.log('xxx:',x)    // .filter(function(a){return a.status==1})                         
+                }).catch(function(){
+                    news = [];
+                }).finally(function(){ console.log('finally')
+                    //ajax load current news from databases and merge
+                    $.ajax({
+                        url: '/ajax.php?action=news',
+                        dataType: 'JSON',
+                        success: function(data){
+                            /*
+                            if(news && news.length){
+                                 if(data && data.length){
+                                    //truong hop 1: co trong ca 2 news va data
+                                    for(var i in news){
+                                        for(var j in data){
+                                            
+                                            if(data[j].code==news[i].code){    
+                                                 
+                                                news[i] = $.extend({},data[j])
+                                                
+                                                db.table("News").where('id').equals(data[j].id).modify(news[i])  
+                                                break;
+                                            }
+                                            
+                                        }
+                                    }
+                                    //truong hop 2: co trong old(news) ma k co trong new(data)
+                                    for(var i in news){
+                                        var check = true
+                                        for(var j in data){
+                                            if(data[j].code==news[i].code){ 
+                                                check = false
+                                                break;   
+                                            }
+                                        }
+                                        if(check){
+                                            
+                                            if(check.id!=undefined){
+                                                db.table("News").where('id').equals(check.id).delete()  
+                                                news.splice(i,1)                                         
+                                            }
+                                                
+                                        }
+                                    }
+                                    //truong hop 3: co trong new(data) ma k co trong old(news)
+                                    for(var j in data){
+                                        var check = true
+                                        for(var i in news){
+                                            if(data[j].code==news[i].code){ 
+                                                check = false
+                                                break;   
+                                            }
+                                        }
+                                        if(check){
+                                             
+                                            news.push(data[j])
+                                            db.table("News").add(data[j]).then(function(a){  
+                                                console.log('add1:',a)
+                                            }).catch(function(a){
+                                                console.log('add1 e:',a)
+                                            }) 
+                                        }
+                                    }
+                                 }else{
+                                    //truong hop 2
+                                    for(var i in news){
+                                         
+                                        if(news[i].id!=undefined){
+                                            db.table("News").where('id').equals(news[i].id).delete()  
+                                            news.splice(i,1)                                    
+                                        }                                
+                                         
+                                    }
+                                 }
+                              }else{
+                                //luc nay chi co truong hop 3
+                                 
+                                for(var j in data){
+                                 
+                                    db.table("News").add(data[j]).then(function(a){  
+                                        console.log('add2:',a)
+                                    }).catch(function(a){
+                                        console.log('add2 e:',a)
+                                    })  
+                                }
+                                
+                                news = data;
+                                 
+                              }*/
+                              news = data;
+                              
+                              db.table("News").clear().then(function(){
+                                if(data && data.length) 
+                                db.News.bulkPut(data).then(function(lastKey) {
+                                     console.log('lastKey:',lastKey)
+                                }).catch(Dexie.BulkError, function (e) {                
+                                    console.error ("Some raindrops did not succeed. However, " +
+                                       data.length-e.failures.length + " raindrops was added successfully");                                                         
+                                }); 
+                              })
+                              
+                              _lb2 = true
+                              
+                              if(lo && lo.call) lo.call(null,null)
+                               
+                        },
+                        error: function(e){
+                            _lb2 = true
+                            if(lo && lo.call) lo.call(null,e)
+                        }
+                    })
+                }) 
+            })
+        } 
+        
+        function _iop(lo){ console.log('_iop')
+            db.open().then(function(){
+                db.table("NewsCategory") .toArray().then(function(x){  
+                    news_categories = x; console.log('xxx:',x)                          
+                }).catch(function(){
+                    news_categories = [];
+                }).finally(function(){ console.log('finally')
+                    //ajax load current news_categories from databases and merge
+                    $.ajax({
+                        url: '/ajax.php?action=news_categories',
+                        dataType: 'JSON',
+                        success: function(data){
+                            /*
+                            if(news_categories && news_categories.length){
+                                 if(data && data.length){
+                                    //truong hop 1: co trong ca 2 news_categories va data
+                                    for(var i in news_categories){
+                                        for(var j in data){
+                                            
+                                            if(data[j].code==news_categories[i].code){    
+                                                 
+                                                news_categories[i] = $.extend({},data[j])
+                                                
+                                                db.table("NewsCategory").where('id').equals(data[j].id).modify(news_categories[i])  
+                                                break;
+                                            }
+                                            
+                                        }
+                                    }
+                                    //truong hop 2: co trong old(news_categories) ma k co trong new(data)
+                                    for(var i in news_categories){
+                                        var check = true
+                                        for(var j in data){
+                                            if(data[j].code==news_categories[i].code){ 
+                                                check = false
+                                                break;   
+                                            }
+                                        }
+                                        if(check){
+                                            
+                                            if(check.id!=undefined){
+                                                db.table("NewsCategory").where('id').equals(check.id).delete()  
+                                                news_categories.splice(i,1)                                         
+                                            }
+                                                
+                                        }
+                                    }
+                                    //truong hop 3: co trong new(data) ma k co trong old(news_categories)
+                                    for(var j in data){
+                                        var check = true
+                                        for(var i in news_categories){
+                                            if(data[j].code==news_categories[i].code){ 
+                                                check = false
+                                                break;   
+                                            }
+                                        }
+                                        if(check){
+                                             
+                                            news_categories.push(data[j])
+                                            db.table("NewsCategory").add(data[j]).then(function(a){  
+                                                console.log('add1:',a)
+                                            }).catch(function(a){
+                                                console.log('add1 e:',a)
+                                            }) 
+                                        }
+                                    }
+                                 }else{
+                                    //truong hop 2
+                                    for(var i in news_categories){
+                                         
+                                        if(news_categories[i].id!=undefined){
+                                            db.table("NewsCategory").where('id').equals(news_categories[i].id).delete()  
+                                            news_categories.splice(i,1)                                    
+                                        }                                
+                                         
+                                    }
+                                 }
+                              }else{
+                                //luc nay chi co truong hop 3
+                                 
+                                for(var j in data){
+                                 
+                                    db.table("NewsCategory").add(data[j]).then(function(a){  
+                                        console.log('add2:',a)
+                                    }).catch(function(a){
+                                        console.log('add2 e:',a)
+                                    })  
+                                }
+                                
+                                news_categories = data;
+                                 
+                              }*/
+                              
+                              db.table("NewsCategory").clear()
+                              db.table('NewsCategory').bulkPut(data)
+                                .then(function(){})
+                                .catch(Dexie.BulkError, function(e){});
+                              news_categories = data;  
+                                
+                              _lb2 = true
+                              
+                              if(lo && lo.call) lo.call(null,null)
+                               
+                        },
+                        error: function(e){
+                            _lb2 = true
+                            if(lo && lo.call) lo.call(null,e)
+                        }
+                    })
+                }) 
+            }).catch(function(e){
+                console.log('EEEEROR',e)
+            })
+        } 
+        
+        
+        
+        function loadJsonNews(lo){ console.log('loadJsonNews',lo)
+             
+            _forIndexDB()
+            
+            qui(lo)
+        }
+        
+        function loadJsonNewsCategories(lo){ console.log('loadJsonNewsCategories',lo,db.tables.length,JSON.stringify(schema1))
+             
+            _forIndexDB()
+             
+            console.log('loadJsonNewsCategories',lo,db.tables.length,JSON.stringify(schema1))
+            
+            iuq(lo)
+        }
+         
+        loadJsonNewsCategories(br2);
+        if(news_categories) br2();
+         
+        function br(){ 
+            console.log('br'); 
+            loadTableLeft();
+        }
+        
+        function br2(){
+            console.log('br2'); 
+            if(!news) loadJsonNews(br);
+            else br();
+        }
+        
+        var ctg;
+        
+        function selectCategory(cid){
+            if(ctg != cid){
+                $('#treeviewcat li').removeClass('k-state-selected')                       
+                $('#treeviewcat li[data-uid="'+cid+'"]').addClass('k-state-selected')     
+                
+                ctg = cid;
+                cpage = 0;
+                loadTables();                        
+            }            
+        }
+        
+        function oBlur(e){
+            var oo = filter.keywordParam+''
+            var oo2 = $(e).val().trim()
+            if(oo==oo2) return false
+            filter.keywordParam = oo2
+            cpage=0
+            loadTables()
+        }
+         
+        function loadPC(){
+            console.log('loadPC')
+             
+            if(news_categories==undefined || news_categories==null){
+                setTimeout(function(){
+                    loadTableLeft()
+                },500)
+                return
+            }
+              
+            $('#treeviewcat >ul').html('');
+            
+            var lipc2 = lipc;
+            tplpc2 = tplpc;
+            
+            lipc2 = lipc2.replace('{{class}}','k-first');
+            lipc2 = lipc2.replace(/\{\{id\}\}/g,'0');
+            
+            tplpc2 = tplpc2.replace('{{name}}','Tất cả');
+            tplpc2 = tplpc2.replace(/\{\{id\}\}/g,'0');
+            tplpc2 = tplpc2.replace('{{style}}','');
+            
+            lipc2 = $(lipc2);
+            lipc2.append(tplpc2);
+            $('#treeviewcat >ul').append(lipc2);
+            
+            for(var i in news_categories){
+                var lipc2 = lipc;
+                tplpc2 = tplpc;
+                
+                lipc2 = lipc2.replace('{{class}}',i==news_categories.length-1?'k-last':'');
+                lipc2 = lipc2.replace(/\{\{id\}\}/g,news_categories[i].id);
+                
+                tplpc2 = tplpc2.replace('{{name}}',news_categories[i].name);
+                tplpc2 = tplpc2.replace(/\{\{id\}\}/g,news_categories[i].id);
+                tplpc2 = tplpc2.replace('{{style}}','padding-left: '+(parseInt(news_categories[i].level)*16+5)+'px;');
+                
+                lipc2 = $(lipc2);
+ 
+                lipc2.append(tplpc2);
+                $('#treeviewcat >ul').append(lipc2);
+            }
+        }
+         
+        function loadTableLeft(){
+            
+            console.log('loadTableLeft');
+             
+            $('.mainLeft [ng-model="filter.keywordParam"]').unbind('blur')
+            $('.mainLeft [ng-model="filter.keywordParam"]').blur(function(e){
+                oBlur(this)
+            })
+            $('.mainLeft [ng-model="filter.keywordParam"]').unbind('keyup')
+            $('.mainLeft [ng-model="filter.keywordParam"]').keyup(function(e){
+                if(e.which==13){
+                    oBlur(this)    
+                }
+            })
+             
+            tplpc = $('#templProductCategory2').html();
+            //nhom hang
+            loadPC()
+            
+            $('.mainLeft h3').unbind('click')
+            $('.mainLeft h3').click(function(){
+                i = $(this).find('i');
+                
+                //console.log($(this).next());
+                                
+                if(i.hasClass('fa-chevron-circle-up')){
+                    $(this).parent().find('aside').addClass('ng-hide');
+                    i.removeClass('fa-chevron-circle-up');
+                    i.addClass('fa-chevron-circle-down');
+                }else{
+                    $(this).parent().find('aside').removeClass('ng-hide');
+                    i.addClass('fa-chevron-circle-up');
+                    i.removeClass('fa-chevron-circle-down');
+                }
+            });
+            
+            pretty('.mainLeft',function(d){
+                //console.log($(d))
+                 
+                if($(d).attr('ng-model')=='ShowInActiveProduct'){
+                    var oo = filter.ShowInActiveProduct+0
+                    var oo2 = parseInt($('.mainLeft [ng-model="ShowInActiveProduct"][checked]').attr('value'))
+                    if(oo==oo2) return false
+                    filter.ShowInActiveProduct = oo2
+                    cpage=0
+                    loadTables(); 
+                } 
+            });
+            
+            loadTables(); 
+        }
+         
+        var doo;
+        function EditCategory(pid){
+            if(pid==0){
+                doo = 'add';
+                
+                $('[kendo-window="categoryWindow"] [onclick="deleteCategory()"]').addClass('ng-hide');
+                
+                $('[kendo-window="categoryWindow"] [ng-model]').val('');
+            
+                loadCategoriesPopup();
+                
+                $('[kendo-window="categoryWindow"] .k-dropdown select option').removeAttr('selected');
+                $('[kendo-window="categoryWindow"] .k-dropdown .k-dropdown-wrap .k-input').html($('[kendo-window="categoryWindow"] .k-dropdown select option:nth(0)').html());
+                
+                $('[kendo-window="categoryWindow"]').dialog({
+                    modal: true,
+                    width: 550,
+                    title: 'Thêm danh mục tin tức',
+                    close: function( event, ui ) {
+                        //$('.ui-dialog.ui-widget.ui-widget-content').remove();
+                        //$('.ui-dialog.ui-widget.ui-widget-content').last().remove();
+                    },
+                    beforeClose: function( event, ui ) {
+                        //return false
+                         
+                    },
+                    open: function( event, ui ){
+                        $('[kendo-window="categoryWindow"]').siblings().find('.ui-dialog-titlebar-close').unbind('click')
+                        $('[kendo-window="categoryWindow"]').siblings().find('.ui-dialog-titlebar-close').click(function(){
+                            //$('[kendo-window="categoryWindow"]').dialog('close')
+                            cancelCategory()
+                            return false
+                        })
+                    }
+                });
+            }else{
+                doo = 'edit';
+                
+                $('[kendo-window="categoryWindow"] [onclick="deleteCategory()"]').removeClass('ng-hide');
+                
+                loadCategoriesPopup();
+                
+                branch = loadNewsCategory(pid);
+                
+                $('[kendo-window="categoryWindow"] [ng-model]').each(function(k,v){
+                     $(this).val(branch[getname($(this).attr('ng-model'))]);
+                });
+                
+                if(branch.parent_id){
+                    $('[kendo-window="categoryWindow"] .k-dropdown select option[value="'+branch.parent_id+'"]').attr('selected','selected');
+                    $('[kendo-window="categoryWindow"] .k-dropdown .k-dropdown-wrap .k-input').html($('[kendo-window="categoryWindow"] .k-dropdown select option[value="'+branch.parent_id+'"]').html());
+                }
+                
+                $('[kendo-window="categoryWindow"]').dialog({
+                    modal: true,
+                    width: 550,
+                    title: 'Sửa danh mục tin tức',
+                    close: function( event, ui ) {
+                        $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                    }
+                });
+            }
+        }
+        
+        function loadCategoriesPopup(){
+            console.log('loadCategoriesPopup');
+            
+            sl = $('[kendo-window="categoryWindow"] .k-dropdown select');
+            
+            //console.log(sl);
+            sl.html('');
+            
+            op2 = op;
+            op2 = op2.replace(/\{\{id\}\}/,'0');
+            op2 = op2.replace(/\{\{name\}\}/,'---Lựa chọn---');
+            sl.append(op2);
+            
+            for(var i in news_categories){
+                op2 = op;
+                op2 = op2.replace(/\{\{id\}\}/,news_categories[i].id);
+                op2 = op2.replace(/\{\{name\}\}/,('--'.repeat(parseInt(news_categories[i].level)))+news_categories[i].name);
+                sl.append(op2);
+            }
+            
+            sl = $('[kendo-window="categoryWindow"] .k-dropdown .k-animation-container ul');
+             
+            sl.html('');
+            
+            opp2 = opp;
+            opp2 = opp2.replace(/\{\{i\}\}/,0);
+            opp2 = opp2.replace(/\{\{name\}\}/,'---Lựa chọn---');
+            sl.append(opp2);
+            
+            for(var j in news_categories){
+                opp2 = opp;
+                opp2 = opp2.replace(/\{\{i\}\}/,parseInt(j)+1);
+                opp2 = opp2.replace(/\{\{name\}\}/,('--'.repeat(parseInt(news_categories[j].level)))+news_categories[j].name);
+                sl.append(opp2);
+            }
+            $('[kendo-window="categoryWindow"] .k-dropdown .k-dropdown-wrap').unbind('click')
+            $('[kendo-window="categoryWindow"] .k-dropdown .k-dropdown-wrap').click(function(){
+                $(this).next().show();
+            });
+            
+            //set hover
+            $('[kendo-window="categoryWindow"] .k-dropdown .k-animation-container').hover(
+                function(){
+                    //$('[kendo-window="categoryWindow"] .k-dropdown .k-animation-container').show();
+                },
+                function(){
+                    $('[kendo-window="categoryWindow"] .k-dropdown .k-animation-container').hide();
+                }
+            );
+            
+            $('[kendo-window="categoryWindow"] .k-dropdown .k-animation-container ul li').hover(
+                function(){
+                    $(this).toggleClass('k-state-hover');
+                },function(){
+                    $(this).toggleClass('k-state-hover');
+                }
+            );
+            
+            $('[kendo-window="categoryWindow"] .k-dropdown .k-animation-container ul li').unbind('click')
+            //set click
+            $('[kendo-window="categoryWindow"] .k-dropdown .k-animation-container ul li').click(
+                function(){
+                    
+                    //console.log($(this).data('offset-index'));
+                    
+                    offset = parseInt($(this).data('offset-index'))+1;
+                    
+                    $('[kendo-window="categoryWindow"] .k-dropdown select option').removeAttr('selected');                    
+                    $('[kendo-window="categoryWindow"] .k-dropdown select option:nth-child('+offset+')').attr('selected','selected');
+                    
+                    $('[kendo-window="categoryWindow"] .k-dropdown .k-dropdown-wrap .k-input').html($(this).html());
+                     
+                    $('[kendo-window="categoryWindow"] .k-dropdown .k-animation-container').hide();
+                     
+                     
+                }
+            );
+        }
+        
+        function _loadGroupPopup(x){
+            console.log('_loadGroupPopup',x);
+            
+            sl = $('kv-product-form .k-dropdown select');
+            
+            //console.log(sl);
+             
+            sl.html('');
+            
+            op2 = op;
+            op2 = op2.replace(/\{\{id\}\}/,'0');
+            op2 = op2.replace(/\{\{name\}\}/,'---Lựa chọn---');
+            sl.append(op2);
+            
+            console.log('_loadGroupPopup 1');
+            
+            for(var i in news_categories){
+                op2 = op;
+                op2 = op2.replace(/\{\{id\}\}/,news_categories[i].id);
+                
+                
+                
+                op2 = op2.replace(/\{\{name\}\}/,('--'.repeat(parseInt(news_categories[i].level)))+news_categories[i].name);
+                sl.append(op2);
+            }
+            $('kv-product-form .k-dropdown .k-dropdown-wrap').unbind('click')
+            $('kv-product-form .k-dropdown .k-dropdown-wrap').click(function(){
+                $(this).next().show();
+            });
+            
+            console.log('_loadGroupPopup 2');
+            
+            sl = $('kv-product-form .k-dropdown .k-animation-container ul');
+             
+            sl.html('');
+            
+            opp2 = opp;
+            opp2 = opp2.replace(/\{\{i\}\}/,0);
+            opp2 = opp2.replace(/\{\{name\}\}/,'---Lựa chọn---');
+            sl.append(opp2);
+            
+            console.log('_loadGroupPopup 3');
+            
+            for(var j in news_categories){
+                opp2 = opp;
+                opp2 = opp2.replace(/\{\{i\}\}/,parseInt(j)+1);
+                opp2 = opp2.replace(/\{\{name\}\}/,('--'.repeat(parseInt(news_categories[j].level)))+news_categories[j].name);
+                sl.append(opp2);
+            }
+            
+            //set hover
+            $('kv-product-form .k-dropdown .k-animation-container').hover(
+                function(){
+                    //$('kv-table-form .k-dropdown .k-animation-container').show();
+                },
+                function(){
+                    $('kv-product-form .k-dropdown .k-animation-container').hide();
+                }
+            );
+            
+            console.log('_loadGroupPopup 4');
+            
+            $('kv-product-form .k-dropdown .k-animation-container ul li').hover(
+                function(){
+                    $(this).toggleClass('k-state-hover');
+                },function(){
+                    $(this).toggleClass('k-state-hover');
+                }
+            );
+            $('kv-product-form .k-dropdown .k-animation-container ul li').unbind('click')
+            //set click
+            $('kv-product-form .k-dropdown .k-animation-container ul li').click(
+                function(){
+                    
+                    //console.log($(this).data('offset-index'));
+                    
+                    offset = parseInt($(this).data('offset-index'))+1;
+                    
+                    $('kv-product-form .k-dropdown select option').removeAttr('selected');                    
+                    $('kv-product-form .k-dropdown select option:nth-child('+offset+')').attr('selected','selected');
+                    
+                    $('kv-product-form .k-dropdown .k-dropdown-wrap .k-input').html($(this).html());
+                     
+                    $('kv-product-form .k-dropdown .k-animation-container').hide();
+                     
+                     
+                }
+            );
+            
+            if(x!=undefined){
+                //change k-input va select
+                $('kv-product-form .k-dropdown select option[selected]').removeAttr('selected');
+                 
+                $('kv-product-form .k-dropdown select option[value="'+x+'"]').attr('selected','selected');
+                 
+                $('kv-product-form .k-dropdown .k-dropdown-wrap .k-input').html(
+                    $('kv-product-form .k-dropdown select option[value="'+x+'"]').html()
+                );                
+            }
+            
+            console.log('_loadGroupPopup 5');
+        }
+        
+        function loadGroupPopup(){
+            
+            console.log('loadGroupPopup');
+             
+            _loadGroupPopup()
+             
+            console.log('loadGroupPopup 1');
+                                  
+        }
+        
+        function loadNewsCategory(id){
+            return loadObject(id,news_categories,'id')
+        }
+         
+        function catRecur(cid){
+            cid = parseInt(cid)
+            var x = loadNewsCategory(cid)
+            if(x.haschild){
+                var start = false
+                var ret = []
+                for(var i in news_categories){
+                    if(!start){
+                        if(news_categories[i].id==cid)  {
+                            ret.push(cid)
+                            start = true
+                        }                          
+                    }else{
+                        if(news_categories[i].level>x.level)
+                            ret.push(parseInt(news_categories[i].id))
+                        else
+                            break;
+                    }
+                }
+                return ret
+            }else{
+                return [cid]
+            }
+        }
+         
+        function loadTables(){
+            
+            console.log('loadNews');
+            
+            if(news===null || !vkl){
+                setTimeout(function(){loadTables()},500)
+                return false;
+            }
+            
+            if(vkl['8.1.1']==undefined){
+                $('#grdProducts').addClass('ng-hide')
+            }
+            if(vkl['8.1.2']==undefined)             
+                $('[ng-show="_p.has(\'Product_Create\')"],[onclick="EditCategory(0)"],.mainLeft .edittreeview').addClass('ng-hide')
+            
+            
+            templBranch = $('#templBranch').html();
+            templBranchFirst = $('#templBranchFirst').html();
+            
+            $('#grdProducts>.k-grid-content>table>tbody').html(templBranchFirst);
+            
+            
+            var counttables = 0, countTableForGroup=0 ;
+            
+            $example = {}
+            for(var i in news){
+                
+                if(filter.keywordParam!=''){
+                    if(news[i].code.toLowerCase().indexOf(filter.keywordParam.toLowerCase())==-1 &&
+                       news[i].name.toLowerCase().indexOf(filter.keywordParam.toLowerCase())==-1
+                    ) continue;
+                }
+                 
+                if(filter.ShowInActiveProduct==2){
+                    //if(news[i].sell==1) continue;
+                    if(news[i].status==1) continue;
+                }else
+                if(filter.ShowInActiveProduct==3){
+                    //if(news[i].sell==0) continue;
+                    if(news[i].status==0) continue;
+                }
+                  
+                news[i].category = parseInt(news[i].category)
+                if(ctg>0){
+                    //if(news[i].category==ctg) 
+                    //if(catRecur(news[i].category).indexOf(ctg)>=0)
+                    if(catRecur(ctg).indexOf(news[i].category)>=0)
+                    countTableForGroup++;
+                }
+                else 
+                countTableForGroup++;
+                
+                $example[news[i].id]=news[i]
+                
+                if(countTableForGroup>cpage*record && countTableForGroup <= (cpage+1)*record){
+                
+                //if(ctg>0 &&  news[i].category!=ctg) continue;
+                //if(ctg>0 &&  catRecur(news[i].category).indexOf(ctg)==-1) continue;
+                if(ctg>0 &&  catRecur(ctg).indexOf(news[i].category)==-1) continue;
+                
+                if(news[i].category) 
+                    news[i].group_object = loadNewsCategory(news[i].category);
+                else
+                    news[i].group_object = {name:''};
+                 
+                templBranch2 = templBranch;
+                if(i%2==0) news[i].class = 'k-alt';
+                else news[i].class = '';
+                 
+                for(var j in news[i]){
+                     
+                     
+                    if(j=='category') continue;
+                    if(j=='group_object'){
+                        if(news[i][j].name!=undefined) templBranch2 = templBranch2.replace(new RegExp("{{dataItem.group}}","gi"),news[i][j].name);
+                        else templBranch2 = templBranch2.replace(new RegExp("{{dataItem.group}}","gi"),'');
+                    }
+                    else if(j=='status'){  
+                        templBranch2 = templBranch2.replace(new RegExp("{{dataItem."+j+"}}","gi"),news[i][j]==1?'Kích hoạt':'Vô hiệu'); 
+                        templBranch2 = templBranch2.replace(new RegExp("{{dataItem."+j+"class}}","gi"),news[i][j]==1?'txtGreen':'txtRed');
+                    }
+                    else    
+                        templBranch2 = templBranch2.replace(new RegExp("{{dataItem."+j+"}}","gi"),news[i][j]);
+                }
+                 
+                
+                $('#grdProducts>.k-grid-content>table>tbody').append(templBranch2);
+                 
+                }
+            }
+             
+            templBranchDetail = $('#templBranchDetail').html();
+            templUsersInBranch = $('#templUsersInBranch').html();
+            $('#grdProducts>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>td:not(:first-child)').unbind('click')
+            $('#grdProducts>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>td:not(:first-child)').click(function(){
+                $(this).parent().find('>.k-hierarchy-cell>.k-icon').trigger('click');
+            });
+            $('#grdProducts>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>.k-hierarchy-cell>.k-icon').unbind('click')
+            $('#grdProducts>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>.k-hierarchy-cell>.k-icon').click(function(){
+                fixedfixed()
+                console.log('abc');
+                
+                templBranchDetail2 = templBranchDetail;
+                n2= $(this).parent().parent();
+                n = n2.next();
+                //console.log(n);
+                
+                if($(this).hasClass('k-plus')){
+                    //an het detail
+                    $(this).parent().parent().siblings('.k-detail-row').hide();
+                    //thay doi icon
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').removeClass('k-minus');
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').addClass('k-plus');
+                    
+                    if(n.hasClass('k-detail-row')){
+                        n.show();
+                    }else{
+                         
+                        //prepare content
+                        //find uid
+                        uid = n2.attr('data-uid');
+                        b = loadNews(uid); 
+                         
+                        console.log(b) 
+                         
+                        if(b.category>0)
+                            b.group_object = loadNewsCategory(b.category);
+                        for(var j in b){
+                            console.log('j:',j) 
+                            if(j=='category') continue;
+                             
+                            else if(j=='group_object'){  
+                                if(b[j].name!=undefined)
+                                    templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem.group}}","gi"),b[j].name); 
+                                else
+                                   templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem.group}}","gi"),'');
+                            } 
+                            
+                            else if(j=='status'){ 
+                                templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem."+j+"}}","gi"),b[j]==1?'Kích hoạt':'Vô hiệu');
+                                templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem."+j+"class}}","gi"),b[j]==1?'txtGreen':'txtRed');
+                            }  
+                            else 
+                                templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem."+j+"}}","gi"),b[j]);
+                                
+                                
+                        }
+                        templBranchDetail2 = templBranchDetail2.replace('{{dataItem.group}}','');	
+                        
+                        templBranchDetail2 = $(templBranchDetail2);
+                         
+                        //bo ngo 
+                        
+                        
+                         
+                         
+                        //ins
+                        
+                        //ng-show="dataItem.status"
+                        //ng-show="!dataItem.status"
+                        
+                         
+                        if(b.status=='1'){
+                            templBranchDetail2.find('[ng-show="!dataItem.status"]').addClass('ng-hide');
+                        }else{
+                            templBranchDetail2.find('[ng-show="dataItem.status"]').addClass('ng-hide');
+                        }
+                        
+                        if(vkl['8.1.3']==undefined)
+                            templBranchDetail2.find('[ng-show="_p.has(\'Product_Update\')"],[ng-show="dataItem.status"],[ng-show="!dataItem.status"]').addClass('ng-hide')
+                        if(vkl['8.1.4']==undefined)
+                            templBranchDetail2.find('[ng-show="_p.has(\'Product_Delete\')"]').addClass('ng-hide')     
+                         
+                        n2.after(templBranchDetail2);
+                        
+                        tabstrip();
+                    }
+                     
+                    $(this).removeClass('k-plus');
+                    $(this).addClass('k-minus');
+                }else{
+                    
+                    n.hide();
+                    
+                    $(this).addClass('k-plus');
+                    $(this).removeClass('k-minus');
+                }
+            });
+            
+            tpage = Math.ceil(countTableForGroup/record);
+            
+            $('#grdProducts > .paging-box .k-label').html("Hiển thị "+((cpage)*record+1)+" - "+Math.min(countTableForGroup,(cpage+1)*record)+" trên tổng số "+countTableForGroup+" tin tức");
+            
+            $('#grdProducts > .paging-box a').removeClass('k-state-disabled');
+            
+            if(cpage==0){
+                $('#grdProducts > .paging-box a:nth(0)').addClass('k-state-disabled');
+                $('#grdProducts > .paging-box a:nth(1)').addClass('k-state-disabled');
+            } 
+            
+            if(cpage==tpage-1){
+                $('#grdProducts > .paging-box a:nth(2)').addClass('k-state-disabled');
+                $('#grdProducts > .paging-box a:nth(3)').addClass('k-state-disabled');
+            } 
+            
+            $('#grdProducts > .paging-box .k-state-selected, #grdProducts > .paging-box .k-current-page span').html(cpage+1);
+            $('#grdProducts > .paging-box a:nth(0)').unbind('click')
+            //first page click
+            $('#grdProducts > .paging-box a:nth(0)').click(function(){
+                cpage = 0;
+                loadTables();
+            });        $('#grdProducts > .paging-box a:nth(1)').unbind('click')
+            $('#grdProducts > .paging-box a:nth(1)').click(function(){
+                if(cpage>0){
+                    cpage -= 1;
+                    loadTables();
+                }
+            });        $('#grdProducts > .paging-box a:nth(2)').unbind('click')
+            $('#grdProducts > .paging-box a:nth(2)').click(function(){
+                if(cpage<tpage-1){
+                    cpage += 1;
+                    loadTables();
+                }
+            });        $('#grdProducts > .paging-box a:nth(3)').unbind('click')
+            $('#grdProducts > .paging-box a:nth(3)').click(function(){
+                cpage = tpage-1;
+                loadTables();
+            });
+             
+        }
+         
+        function saveCategory(){
+             
+            s = _serialize('[kendo-window="categoryWindow"]',[0]);
+            
+            console.log(s);
+            
+            if(s!=''){
+                 
+                $.ajax('ajax.php?action=newscategory',{
+                    data: s  ,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                             
+                            loadJsonNewsCategories(function(){
+                                var s2 = parse_str(s)
+                                if(s2.id == ""){
+                                    //is add
+                                    if($('kv-product-form').is(':visible')){
+                                        _loadGroupPopup(d.id)
+                                    }
+                                }
+                                loadPC()
+                            });
+                            cancelCategory();
+                             
+                        }else{
+                             //alert(d.error);
+                             toastr["error"](d.error);
+                        } 
+                    }
+                });
+                
+            }else //alert('Điền tên nhóm');
+                toastr["error"]('Điền tên nhóm hoặc mã nhóm');  
+            
+            
+        }
+        
+        
+        function cancelCategory(){
+            $('[kendo-window="categoryWindow"]').dialog('close');
+        }
+        
+        var editorInstance=null,editorInstance2=null
+        
+        function loadNews(id){
+            return loadObject(id,news,'id')
+        }
+        
+        function UpdateNews(pid){
+            console.log('UpdateNews',pid)
+            
+            doo = 'edit';
+            
+            pr = loadNews(pid);
+             
+            //reset empty form
+            
+            $('kv-product-form [ng-model]').val('');
+             
+            loadGroupPopup();
+            
+            console.log('UpdateNews x1')    
+              
+            $('kv-product-form [ng-model]').each(function(){
+                 
+                name = getname($(this).attr('ng-model'));
+                if(pr[name]!=undefined)
+                    $(this).val(pr[name]);
+            })
+            
+            console.log('UpdateNews x3')    
+            
+            if(editorInstance==null){
+                $('[ng-model="news.description"]').attr('id','_id')
+                console.log('UpdateNews x4')    
+                editorInstance = CKEDITOR.replace( '_id', cko() );   
+                console.log('UpdateNews x5')    
+            }else{
+                console.log('UpdateNews x6')    
+                editorInstance.setData(pr.description)
+                console.log('UpdateNews x7')    
+            }
+            
+            if(editorInstance2==null){
+                $('[ng-model="news.content"]').attr('id','_id2')
+                console.log('UpdateNews x4')    
+                editorInstance2 = CKEDITOR.replace( '_id2', cko() );   
+                console.log('UpdateNews x5')    
+            }else{
+                console.log('UpdateNews x6')    
+                editorInstance2.setData(pr.content)
+                console.log('UpdateNews x7')    
+            }
+             
+            console.log('UpdateNews 1')    
+             
+            
+            $('kv-product-form .img-pr+div img').attr('src',pr.image);
+            
+            if(pr.sell==1){
+                $('.prettycheckbox>[name="sell"]+a').addClass('checked');
+                $('.prettycheckbox>[name="sell"]').attr('checked','checked').val(1);
+            }else{
+                $('.prettycheckbox>[name="sell"]+a').removeClass('checked');
+                $('.prettycheckbox>[name="sell"]').removeAttr('checked');
+            }
+            
+            if(pr.time==1){
+                $('.prettycheckbox>[name="time"]+a').addClass('checked');
+                $('.prettycheckbox>[name="time"]').attr('checked','checked');
+            }else{
+                $('.prettycheckbox>[name="time"]+a').removeClass('checked');
+                $('.prettycheckbox>[name="time"]').removeAttr('checked');
+            }
+            
+            console.log('UpdateNews 2')    
+            
+            if(pr.extra==1){
+                $('.prettycheckbox>[name="extra"]+a').addClass('checked');
+                $('.prettycheckbox>[name="extra"]').attr('checked','checked');
+            }else{
+                $('.prettycheckbox>[name="extra"]+a').removeClass('checked');
+                $('.prettycheckbox>[name="extra"]').removeAttr('checked');
+            }
+            
+            pretty('kv-product-form');
+            /**setTimeout(function(){
+                pretty('kv-product-form');
+            },2000);*/
+            
+            //added 04/02/2019
+            $('kv-product-form [ng-model="news.price2"]').parents('li').hide();
+            
+            console.log('UpdateNews 3')    
+            
+            //change k-input va select
+            $('kv-product-form .k-dropdown select option[selected]').removeAttr('selected');
+             
+            $('kv-product-form .k-dropdown select option[value="'+pr.category+'"]').attr('selected','selected');
+            $('kv-product-form .k-dropdown .k-dropdown-wrap .k-input').html(
+                $('kv-product-form .k-dropdown select option[value="'+pr.category+'"]').html()
+            );
+             
+            //tooltip
+            $('kv-product-form [data-toggle="tooltip"]').tooltip()
+             
+            if(pr.type==2)
+                $('kv-product-form [ng-show="news.type==2"]').removeClass('ng-hide');
+            else
+                $('kv-product-form [ng-show="news.type==2"]').addClass('ng-hide');
+                
+            if(pr.type!=1)
+                $('kv-product-form [ng-hide="news.type==1"]').removeClass('ng-hide');
+            else
+                $('kv-product-form [ng-hide="news.type==1"]').addClass('ng-hide');    
+            
+            console.log('UpdateNews 4')    
+            
+            if(pr.type==1)
+                $('kv-product-form [ng-show="news.type==1"]').removeClass('ng-hide');
+            else
+                $('kv-product-form [ng-show="news.type==1"]').addClass('ng-hide');
+            
+            //image             
+            $('#files2').unbind('change');  
+            $('#files2').change(function(){  
+                var formData = new FormData();
+                formData.append('files', this.files[0]);
+                 
+                $.ajax({
+                       url : cdn+'/ajax.php?action=uploadimage',
+                       type : 'POST',
+                       data : formData,
+                       processData: false,   
+                       contentType: false,   
+                       dataType: 'json',
+                       success : function(data) {
+                           if(data.error==''){
+                                // $('#result').append($('<img src="'+data.image+'" />'));
+                                if(document.location.protocol=="http:"){
+                                    data.image = data.image.replace('https:',"http:")
+                                }
+                                $('[ng-src="img/default-product.png"]').attr('src',data.image);
+                                $('[ng-model="news.image"]').val(data.image);
+                           }else alert(data.error);
+                       }
+                }); 
+                
+                this.value = '';
+            })
+            $('[ng-src="img/default-product.png"]').unbind('click')  
+            $('[ng-src="img/default-product.png"]').click(function(){
+                //ajax delete image
+                
+                
+                $('[ng-model="news.image"]').val('');
+                $('[ng-src="img/default-product.png"]').attr('src','img/default-product.png');
+                
+                
+            });
+             
+             
+            
+             
+            //setTimeout(function(){   
+                $('a.fll.icon.toggle').unbind('click')    
+                //click
+                $('a.fll.icon.toggle').click(function(){
+                    if($(this).find('i').hasClass('fa-plus-square')){
+                        $(this).siblings(':last-child').removeClass('ng-hide');
+                        $(this).find('i').removeClass('fa-plus-square')
+                        $(this).find('i').addClass('fa-minus-square')
+                    }else{
+                        $(this).siblings(':last-child').addClass('ng-hide');
+                        $(this).find('i').addClass('fa-plus-square')
+                        $(this).find('i').removeClass('fa-minus-square')
+                    }
+                });    $('a.fll.icon.toggle+h3').unbind('click')    
+                $('a.fll.icon.toggle+h3').click(function(){   
+                    $(this).prev().click();
+                });  
+            //},3000)
+            
+            $('kv-product-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 770),
+                title: 'Sửa tin tức', 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove(); //2017     
+                },
+                open: function( event, ui ) {
+                    if(cfs.UseExpireTime==1){
+                        $('kv-product-form [ng-model="news.expire"]').removeClass('hasDatepicker')
+                        $('kv-product-form [ng-model="news.expire"]').datepicker()
+                        $('kv-product-form [ng-model="news.expire"]+span').click(function(){
+                            $(this).prev().focus()
+                        })
+                    }else{
+                        $('kv-product-form [ng-hide="!cfs.UseExpireTime"]').addClass('ng-hide')
+                    }
+                },
+                beforeClose: function( event, ui ) {
+                    //return false
+                    editorInstance.destroy()
+                    editorInstance = null
+                },
+            });
+        } 
+
+        
+        function AddProduct(type){
+            doo = 'add';
+            
+            //reset empty form
+            
+            $('kv-product-form [ng-model]').val('');
+            $('kv-product-form [ng-model="news.type"]').val(type);
+            
+            loadGroupPopup();
+             
+            //load default
+            $('kv-product-form .k-dropdown select option').removeAttr('selected');
+            $('kv-product-form .k-dropdown .k-dropdown-wrap .k-input').html($('kv-product-form .k-dropdown select option:nth(0)').html());
+            
+            //tooltip
+            $('kv-product-form [data-toggle="tooltip"]').tooltip()
+            
+            pretty('kv-product-form')
+               
+            //click
+            ////setTimeout(function(){
+                $('a.fll.icon.toggle').unbind('click')  
+                $('a.fll.icon.toggle').click(function(){
+                    if($(this).find('i').hasClass('fa-plus-square')){
+                        $(this).siblings(':last-child').removeClass('ng-hide');
+                        $(this).find('i').removeClass('fa-plus-square')
+                        $(this).find('i').addClass('fa-minus-square')
+                    }else{
+                        $(this).siblings(':last-child').addClass('ng-hide');
+                        $(this).find('i').addClass('fa-plus-square')
+                        $(this).find('i').removeClass('fa-minus-square')
+                    }
+                });    $('a.fll.icon.toggle+h3').unbind('click')  
+                $('a.fll.icon.toggle+h3').click(function(){   
+                    $(this).prev().click();
+                });
+            ////},4000)
+              
+            if(editorInstance==null){
+                $('[ng-model="news.description"]').attr('id','_id')
+                editorInstance = CKEDITOR.replace( '_id', cko() );   
+            }
+            
+            if(editorInstance2==null){
+                $('[ng-model="news.content"]').attr('id','_id2')
+                
+                editorInstance2 = CKEDITOR.replace( '_id2', cko() );   
+                 
+            } 
+            
+            //image
+            //$('[ng-model="news.image"]').val('');
+            $('[ng-src="img/default-product.png"]').attr('src',"img/default-product.png");
+            $('#files2').unbind('change');  
+            $('#files2').change(function(){  
+                var formData = new FormData();
+                formData.append('files', this.files[0]);
+                 
+                $.ajax({
+                       url : cdn+'/ajax.php?action=uploadimage',
+                       type : 'POST',
+                       data : formData,
+                       processData: false,   
+                       contentType: false,   
+                       dataType: 'json',
+                       success : function(data) {
+                           if(data.error==''){
+                                // $('#result').append($('<img src="'+data.image+'" />'));
+                                if(document.location.protocol=="http:"){
+                                    data.image = data.image.replace('https:',"http:")
+                                }
+                                $('[ng-src="img/default-product.png"]').attr('src',data.image);
+                                $('[ng-model="news.image"]').val(data.image);
+                           }else alert(data.error);
+                       }
+                }); 
+                
+                this.value = '';
+            })
+            $('[ng-src="img/default-product.png"]').unbind('click')  
+            $('[ng-src="img/default-product.png"]').click(function(){
+                //ajax delete image
+                
+                
+                $('[ng-model="news.image"]').val('');
+                $('[ng-src="img/default-product.png"]').attr('src','img/default-product.png');
+                
+                
+            });
+             
+            $('.prettycheckbox>[name="status"]+a').addClass('checked');
+            $('.prettycheckbox>[name="status"]').attr('checked','checked').val(1);
+              
+               
+            $('kv-product-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 770),
+                title: 'Thêm tin tức', 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                },
+                open: function( event, ui ) {
+                      
+                },
+                beforeClose: function( event, ui ) {
+                    //return false
+                    editorInstance.destroy()
+                    editorInstance = null
+                    
+                    editorInstance2.destroy()
+                    editorInstance2 = null
+                },
+            });
+        }
+         
+        function cancel(){
+            $('kv-product-form').dialog('close');
+        }
+        
+        function SaveProduct(){
+            console.log('SaveProduct'); 
+            console.log(doo);
+            
+            $('[ng-model="news.description"]').val(editorInstance.getData())
+            $('[ng-model="news.content"]').val(editorInstance2.getData())
+                
+            //end validate
+            xunits = array_filter(parse_str(_serialize('kv-product-form',[0])),function(x){return !x.match(/[A-Z]/)},1);
+            if(xunits.name==undefined){
+                toastr['error']('Nhập tiêu đề tin tức');
+                return;
+            }
+            if(xunits.code==undefined){
+                toastr['error']('Nhập mã tin tức');
+                return;
+            }
+            xunits.status = $('kv-product-form [ng-model="news.status"]:checked').length>0?1:0
+            
+            var xunits3 = $.extend({},xunits)
+            xunits3.name = decodeURIComponent(xunits3.name)            
+            xunits3.description = decodeURIComponent(xunits3.description)
+            xunits3.content = decodeURIComponent(xunits3.content)
+            xunits3.tags = decodeURIComponent(xunits3.tags)
+            xunits3.image = decodeURIComponent(xunits3.image)
+            if($('kv-product-form [name=status]').is('[checked]')) 
+                xunits3.status = 1
+            else  
+                xunits3.status = 0
+               
+            $.ajax('ajax.php?action=onenews',{
+                data: xunits3,//decodeURIComponent(decodeURIComponent( http_build_query(xunits) )) ,
+                method: "POST",
+                dataType: 'json',
+                success: function(d){
+                    console.log(d);
+                    if(d.status=='1'){
+                        
+                        cancel();
+                        loadJsonNews(loadTables);
+                         
+                    }else{
+                         //alert(d.error);
+                         toastr["error"](d.error);
+                    } 
+                }
+            });
+        }
+         
+           
+        function deleteCategory(){
+            
+            //console.log($('[ng-model="category.id"]').value());
+            
+             
+            if(confirm('Bạn có chắc chắn xóa nhóm này?')){ // nếu danh mục này có con hoặc tin tức thì k xóa được
+                var ng = $('[ng-model="category.id"]').val()
+                $.ajax('ajax.php?action=deletenewscategory',{
+                    data: 'id='+ng,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            
+                            cancelCategory();
+                            
+                            if(ctg==ng) ctg=0
+                             
+                            loadJsonNewsCategories(loadTableLeft);
+                             
+                        }else{
+                            if(d.error){
+                                toastr.warning(d.error)
+                            } 
+                        } 
+                    }
+                });
+            }
+             
+        }
+          
+        function checkCode(li,x){
+            
+            if(doo!='add') {
+                 
+                if(x==undefined) //cac unit
+                {
+                     
+                    if($(li).is('[readonly]'))
+                    
+                    return;
+                    
+                    else{
+                        //check cac news da co
+                        for(var i in news){
+                            if(news[i].code.toLowerCase() == $(li).val().toLowerCase()){
+                                toastr["error"]("Trùng mã tin tức");
+                                $(li).val('');
+                                return;  
+                            }
+                        }
+                        //check voi news chinh
+                        if( $(li).val()!='' && $(li).val().toLowerCase()== $('kv-product-form [ng-model="news.code"]').val().toLowerCase()
+                        ){
+                            toastr["error"]("Trùng mã tin tức");
+                            $(li).val('');
+                            return;  
+                        }
+                         
+                    }
+                
+                }else{ //sp chinh
+                 
+                    for(var i in news){
+                        if(news[i].id != pr.id && news[i].code.toLowerCase() == $(li).val().toLowerCase()){
+                            toastr["error"]("Trùng mã tin tức");
+                            //$(li).val('');
+                            $(li).val(pr.code);
+                            return;  
+                        }
+                    }  
+                }
+                return true;
+            }
+            
+            if(x==undefined) //cac unit
+            //check voi product chinh
+            if( $(li).val()!='' && $(li).val().toLowerCase()== $('kv-product-form [ng-model="news.code"]').val().toLowerCase()
+            ){
+                toastr["error"]("Trùng mã tin tức");
+                $(li).val('');
+                return;  
+            }
+            
+            for(var i in news){
+                if(news[i].code.toLowerCase() == $(li).val().toLowerCase()){
+                    toastr["error"]("Trùng mã tin tức");
+                    $(li).val('');
+                    return;  
+                }
+            }
+            
+             
+        }
+         
+        function checkPrettyCheckbox(that){ console.log('checkPrettyCheckbox')
+            old = $('kv-product-form [ng-model="news.status"]').val();
+            $('kv-product-form [ng-model="news.status"]').parent('.prettycheckbox').click();
+            if($('kv-product-form [ng-model="news.status"]').val()==old){
+                pretty('kv-product-form');
+            }else{
+                $('kv-product-form [ng-model="news.status"]').parent('.prettycheckbox').click();
+            }
+            
+            $('kv-product-form [ng-model="news.code"]').val(createAlias(that.value))
+        }
+        
+         
+        function autoCodeCategory(that){ console.log('autoCodeCategory')             
+            $('[kendo-window="categoryWindow"] [ng-model="category.code"]').val(createAlias(that.value))
+        }
+         
+         
+        function DeleteNews(pid){
+            var ty = loadNews(pid)
+            $('.k-window-alert:nth(2) .confirm-message strong').html(ty.code)
+            $('.k-window-alert:nth(2)').show()
+            $('.k-overlay').show()
+            $('.k-window-alert:nth(2) .k-i-close').unbind('click')
+            $('.k-window-alert:nth(2) .k-i-close').click(function(e){
+                $('.k-window-alert:nth(2)').hide()
+                $('.k-overlay').hide()
+                return false
+            })
+            $('.k-window-alert:nth(2) [ng-enter="onCancel()"]').unbind('click')
+            $('.k-window-alert:nth(2) [ng-enter="onCancel()"]').click(function(e){
+                $('.k-window-alert:nth(2) .k-i-close').click()
+                return false
+            })
+            
+            $('.k-window-alert:nth(2) [ng-enter="onConfirm()"]').unbind('click')
+            $('.k-window-alert:nth(2) [ng-enter="onConfirm()"]').click(function(e){
+                $.ajax('ajax.php?action=deletenews',{
+                    data: 'id='+pid,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            
+                            $('.k-window-alert:nth(2) .k-i-close').click()
+                             
+                            loadJsonNews(loadTables);
+                             
+                        }else{
+                             
+                        } 
+                    }
+                });
+                return false;                
+            })
+        }
+        
+        function ActiveNews(pid){
+            pr = loadNews(pid);
+            var idh = '.k-window-alert.ui-dialog-content'  
+            $('.k-window-alert:nth('+(pr.status=='1'?'1':'0')+')').dialog({
+                modal: true,
+                width: 550,
+                title: 'Xác nhận',
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                },
+                open: function(){
+                    
+                    $('.ui-dialog .btn-confirm').unbind('click')  
+                    $('.ui-dialog .btn-confirm').click(function(){
+                        $.ajax('ajax.php?action=activenews',{
+                            data: 'id='+pid,
+                            method: "POST",
+                            dataType: 'json',
+                            success: function(d){
+                                console.log(d);
+                                if(d.status=='1'){                                                                          
+                                    pr.status = pr.status=='1'?'0':'1';
+                                     
+                                    ////saveProducts();
+                                    db.table('News').where('id').equals(d.id).modify(pr)
+                                     
+                                    $('.k-window-alert:visible').dialog('close');
+                                    
+                                    loadTables();
+                                }else{
+                                     
+                                } 
+                            }
+                        })
+                    }); 
+                    $('.ui-dialog .btn-cancel').unbind('click')  
+                    $('.ui-dialog .btn-cancel').click(function(){
+                        $(idh).dialog('close');
+                    })
+                }
+            })
+            
+        }
+           
+        setTitle(loadBranch(cb).name+' - Tin tức');
+        
+        $('[ng-click="exportProduct()"]').click(function(){
+            exportProduct()
+        }) 
+        
+        $('[ng-click="importProduct()"]').click(function(){
+            importProduct()
+        }) 
+        
+        function importProduct(){
+            toastr.warning('Chức năng đang phát triển'); return false;
+            
+            $('.linksample').attr('href',cfs.UseCod==1?'/Template/MauFileSanPhamCOD.xlsx':'/Template/MauFileSanPham.xlsx') 
+            $('.k-window-importProduct').show() 
+            $('.k-overlay').show()
+            $('.k-window-importProduct .k-header .k-i-close').unbind('click')
+            $('.k-window-importProduct .k-header .k-i-close').click(function(e){
+                $('.k-window-importProduct').hide()
+                $('.k-overlay').hide()
+                return false
+            })
+            
+            pretty('#importproductform',function(d){
+                
+            })
+            
+            $('#importproductform .k-progress').css({
+                width: '0%',
+                background: 'none'
+            })
+            
+            $('.k-window-importProduct .k-delete').unbind('click')
+            $('.k-window-importProduct .k-delete').click(function(e){
+                $('#importproductform #files').val('')
+                $('#importproductform .k-upload-files, button.k-button.k-upload-selected').addClass('ng-hide')
+                return false
+            })
+            
+            //width: 50%; background: #4bac4d;
+            
+            //_serialize('#importproductform')
+            //"IsReplaceExisting=false&IsReplaceExistingByCode=false&IsCreateProductCategory=true"
+            
+            $('#importproductform #files').unbind('change')
+            $('#importproductform #files').change(function(e){
+                ChangeImage(this)
+            })
+        }
+        
+        function exportProduct(){
+            
+            toastr.warning('Chức năng đang phát triển'); return false;
+            
+            var code = getCodeImpExp();
+            addItemImpExp(code,2,'DSSP-'+code+'.xlsx','Đang xuất dữ liệu tin tức',0,'')
+            
+            exportProductsExcelJS(code)
+            
+            /*$.ajax({
+                url: '/ajax.php?action=exportProduct',
+                type: 'POST',
+                data: $.extend({cb:cb,code:code,category:ctg},filter),//'cb='+cb+'&code='+code,
+                dataType: 'JSON',
+                success: function(data){
+                    if(!data.error){
+                        var d = $.extend(data.data,{code:data.code});
+                         
+                    }else{
+                        var d = {
+                            content: data.error,
+                            status: -1,
+                            code:data.code
+                        }
+                         
+                    }
+                    changeimpexp(d)
+                },
+                error: function( jqXHR, textStatus, errorThrown){
+                    var d = {
+                        content: errorThrown,
+                        status: -1,
+                        code:data.code
+                    }
+                    changeimpexp(d)
+                }
+            })*/
+        }
+
+function ChangeImage(that){
+    //console.log(that.files[0])
+    /*
+lastModified: 1553276358180
+lastModifiedDate: Sat Mar 23 2019 00:39:18 GMT+0700 (Indochina Time) {}
+name: "sp.xlsx"
+size: 10012
+type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+webkitRelativePath: ""    
+    */
+    if(that.files.length){
+        if(that.files[0].name.match(/\.xlsx$/i)){
+            $('#importproductform .k-upload-files, button.k-button.k-upload-selected').removeClass('ng-hide')
+            $('#importproductform .k-upload-files .k-filename').html(that.files[0].name).attr('title',that.files[0].name)
+        }else{
+            toastr.warning('Chỉ chấp nhận file XLSX')
+            $(that).val('')
+            $('#importproductform .k-upload-files, button.k-button.k-upload-selected').addClass('ng-hide')
+        }
+    }else{
+        $('#importproductform .k-upload-files, button.k-button.k-upload-selected').addClass('ng-hide')
+    }
+}
+
+(function addXhrProgressEvent($) {
+    var originalXhr = $.ajaxSettings.xhr;
+    $.ajaxSetup({
+        progress: function() { console.log("standard progress callback"); },
+        progressUpload: function() { console.log("standard upload progress callback"); },
+        code: null,
+        xhr: function() {
+            var req = originalXhr(), that = this;
+            if (req.upload) {
+                if (typeof req.upload.addEventListener == "function") {
+                    req.upload.addEventListener("progress", function(evt) {
+                        that.progressUpload(evt);
+                    },false);
+                }
+            }
+            req.code = that.code;
+            return req;
+        }
+    });
+})(jQuery);
+        
+function doimportProduct(th){ //alert('a')
+    th.onclick = null
+    $(th).unbind('click')
+    $(th).click(function(){
+        toastr.warning("Đang tải file xlsx")
+    })
+    var that = $('#importproductform #files')[0]
+    var formData = new FormData();
+    var fname = that.files[0].name;
+    formData.append('files', that.files[0]);
+    formData.append('branch', cb);
+    var code = getCodeImpExp();
+    formData.append('code', code);
+    
+    var mk = parse_str(_serialize('#importproductform'))
+    for(var i in mk){
+        formData.append(i, mk[i]=='true'?1:0);
+    }
+     
+    $.ajax({
+           url : '/ajax.php?action=importProduct',
+           code: code,
+           global: true,
+           type : 'POST',
+           data : formData,
+           processData: false,   
+           contentType: false,   
+           dataType: 'json',
+           success : function(data) {
+               // th.onclick = 'doimportProduct(this)'
+               th.onclick = null
+                $(th).unbind('click')
+                $(th).click(function(){
+                    doimportProduct(this)
+                })
+               if(data.error==''){   
+                    var d= {
+                        code: data.code,
+                        status: 1,
+                        content: 'Đã import xong! Vui lòng F5 để xem các tin tức mới'
+                    }
+                    changeimpexp(d)                   
+               }else{
+                    //alert(data.error);
+                    var d = {
+                        content: 'Import lỗi: '+ data.error,
+                        status: -1,
+                        code:data.code
+                    }
+                    changeimpexp(d) 
+               } 
+           },
+           error: function(j,s,e){
+                //th.onclick = 'doimportProduct(this)'
+                th.onclick = null
+                $(th).unbind('click')
+                $(th).click(function(){
+                    doimportProduct(this)
+                })
+                var d = {
+                    content: 'Import lỗi: '+ e,
+                    status: -1,
+                    code:j.code
+                }
+                changeimpexp(d) 
+           },
+           progressUpload: function (e) {
+                if (e.lengthComputable) {
+                    $('#importproductform .k-progress').css({
+                        width: (e.loaded / e.total * 100) + '%',
+                        background: '#54A602'
+                    })
+                    console.log('Loaded '+ (e.loaded / e.total * 100) + '%');
+                    if(e.loaded == e.total){
+                        $('.k-window-importProduct .k-delete').click()
+                        $('.k-window-importProduct .k-window-titlebar.k-header .k-i-close').click()
+                        
+                        //add job                        
+                        addItemImpExp(code,1,fname,'Đang import dữ liệu tin tức',0,'#/Products/')
+                        
+                        //console.log(code,1,fname,'Đang import dữ liệu tin tức',0,'')
+                    }
+                } else {
+                    console.log('Length not computable.');
+                }
+            }
+             
+    }); 
+     
+    that.value = '';
+}
+ 
+    </script>
+
+<style>
+.pl16{
+    padding-left: 16px;
+}
+.tooltip{
+    width: 250px;
+}
+.kv-window-footer, .kv-group-btn {
+    padding: 0;
+    text-align: right;
+    clear: both;
+}
+</style>
+<div class="k-overlay" style="display: none; z-index: 10004; opacity: 0.5;"></div>
+<div class="k-widget k-window k-window-poup k-window-masstel k-window-alert kv-window kv-close-popup window-error" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 500px; display: none; top: 531px; left: 429px; touch-action: pan-y; z-index: 10005; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Xóa tin tức</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div data-role="window" class="k-window-content k-content" tabindex="0">
+    <div class="form-wrapper">
+      <div class="form-group">
+        <p class="confirm-message"><!--Bạn có chắc chắn muốn xóa tin tức <strong> SP000020</strong> khỏi danh sách không?-->Hệ thống sẽ xóa hoàn toàn tin tức <strong>SP000028</strong>. Bạn có chắc chắn muốn xóa?</p>
+      </div>
+    </div>
+    <div class="kv-window-footer">
+      <button class="btn-confirm kv2Btn" ng-enter="onConfirm()" ng-hide="noYes"><i class="fa fa-check"></i>Đồng ý</button>
+      <button class="btn-cancel kv2Btn kv2BtnYellow" ng-enter="onCancel()"><i class="fa fa-ban"></i>Bỏ qua</button>
+    </div>
+  </div>
+</div>
+
+ 
+<div class="k-widget k-window k-window-poup k-window-poup2 k-window-masstel k-window-importProduct kv-window" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 550px; display: none; top: 0px; left: 404px; position: absolute; touch-action: pan-y; z-index: 10009; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title" id="importproductform_wnd_title">Nhập tin tức từ File dữ liệu</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div id="importproductform" class="control-poup control-poup2 ng-scope k-window-content k-content" kendo-window="importWindow" k-title="_l.product_ImportTitle" k-visible="false" k-resizable="false" k-draggable="true" k-pinned="true" k-width="550" k-modal="true"
+    k-close="onCloseImport" data-role="window" tabindex="0" role="dialog" aria-labelledby="importproductform_wnd_title" style="">
+    <div class="form-wrapper">
+      <div class="bd-bt-poup bd-bt-poup ng-binding">Xử lý dữ liệu (Tải về File mẫu: <a class="linksample" title="Download" href="/Template/MauFileSanPhamCOD.xlsx">Excel File</a>):</div>
+      <div class="bd-bt-poup bd-bt-poup ng-binding">
+        <p ng-bind-html="_l.import_IsUpdateStockTitle" class="ng-binding"><strong>Có cập nhật giá trị tồn kho không?</strong></p>
+        <aside class="frRadioCheck frRadioCheckNormal has-pretty-child">
+          <div class="clearfix prettyradio labelright  blue"><input type="radio" ng-model="IsReplaceExisting" ng-value="false" name="importStatus" kv-pretty-check="" kv-data-label="_l.product_IsReplaceExistingStock" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Không (chỉ  cập nhật thông tin tin tức)"
+              style="display: none;" value="false" checked="checked"><a href="javascript:void(0)" tabindex="0" class="checked"></a>
+            <label for="undefined" class="checked">Không (chỉ  cập nhật thông tin tin tức)</label></div>
+        </aside><br>
+        <aside class="frRadioCheck frRadioCheckNormal has-pretty-child">
+          <div class="clearfix prettyradio labelright  blue"><input kv-disabled="!rights.editOnHand" type="radio" ng-model="IsReplaceExisting" name="importStatus" ng-value="true" kv-pretty-check="" kv-data-label="_l.product_UpdateAllInfoStock" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty"
+              data-label="Có (cập nhật tất cả thông tin tin tức và tồn kho)" style="display: none;" value="true"><a href="javascript:void(0)" tabindex="0" class=""></a>
+            <label for="undefined" class="">Có (cập nhật tất cả thông tin tin tức và tồn kho)</label></div>
+        </aside>
+      </div>
+      <div class="bd-bt-poup bd-bt-poup ng-binding">
+        <p ng-bind-html="_l.import_IsReplaceProductSameCodeTitle" class="ng-binding"><strong>Xử lý <i>trùng</i> mã hàng, <i>khác</i> tên tin tức?</strong></p>
+        <aside class="frRadioCheck frRadioCheckNormal has-pretty-child">
+          <div class="clearfix prettyradio labelright  blue"><input type="radio" ng-model="IsReplaceExistingByCode" name="importReplaceProduct" ng-value="false" kv-pretty-check="" kv-data-label="_l.import_WarningProductCategory" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Báo lỗi và dừng import"
+              style="display: none;" value="false" checked="checked"><a href="javascript:void(0)" tabindex="0" class="checked"></a>
+            <label for="undefined" class="checked">Báo lỗi và dừng import</label></div>
+        </aside><br>
+        <aside class="frRadioCheck frRadioCheckNormal has-pretty-child">
+          <div class="clearfix prettyradio labelright  blue"><input type="radio" ng-model="IsReplaceExistingByCode" name="importReplaceProduct" ng-value="true" kv-pretty-check="" kv-data-label="_l.import_InsertProductCategory" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Thay thế tên hàng cũ bằng tên hàng mới"
+              style="display: none;" value="true"><a href="javascript:void(0)" tabindex="0" class=""></a>
+            <label for="undefined" class="">Thay thế tên hàng cũ bằng tên hàng mới</label></div>
+        </aside>
+      </div>
+      
+      <div class="bd-bt-poup bd-bt-poup ng-binding">
+        <p ng-bind-html="_l.import_IsCreateProductCategoryTitle" class="ng-binding"><strong>Danh mục sản phẩm không tồn tại</strong></p>
+        <aside class="frRadioCheck frRadioCheckNormal has-pretty-child">
+          <div class="clearfix prettyradio labelright  blue"><input type="radio" ng-model="IsCreateProductCategory" name="importProductCategory" ng-value="false" kv-pretty-check="" kv-data-label="_l.import_WarningProductName" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Báo lỗi và dừng import"
+              style="display: none;" value="false"><a href="javascript:void(0)" tabindex="0" class=""></a>
+            <label for="undefined" class="">Báo lỗi và dừng import</label></div>
+        </aside><br>
+        <aside class="frRadioCheck frRadioCheckNormal has-pretty-child">
+          <div class="clearfix prettyradio labelright  blue"><input type="radio" ng-model="IsCreateProductCategory" name="importProductCategory" ng-value="true" kv-pretty-check="" kv-data-label="_l.import_ReplaceProductName" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Tạo danh mục sản phẩm mới"
+              style="display: none;" value="true" checked="checked"><a href="javascript:void(0)" tabindex="0" class="checked"></a>
+            <label for="undefined" class="checked">Tạo danh mục sản phẩm mới</label></div>
+        </aside>
+      </div>
+      
+      <div class="warning-content">
+        <h5 class="title-alert"><i class="fa fa-warning"></i> Lưu ý</h5>
+        <p>Hệ thống cho phép nhập tối đa 5.000 mặt hàng mỗi lần từ file .
+          <!--{{_l.product_NoteImport}}-->
+        </p>
+        <p>Mã hàng chứa kí tự đặc biệt (@, #, $, *, /, -, _,...) và chữ có dấu sẽ gây khó khăn khi In và sử dụng mã vạch.</p>
+        <p class="ng-binding">Với hình ảnh tin tức, hệ thống sẽ lưu trữ và hiển thị theo link hình ảnh được nhập trên file excel (không lưu trữ ảnh).</p>
+      </div>
+    </div>
+    <div class="kv-window-footer">
+      <div class="k-widget k-upload k-header k-upload-empty">
+        <div class="k-dropzone">
+          <div class="k-button k-upload-button"><input kendo-upload="" name="files" id="files" type="file" k-options="ImportFile" title="Chọn file dữ liệu" data-role="upload" autocomplete="off"><span>Chọn file dữ liệu</span></div><em>drop files here to upload</em>
+        </div>
+        <ul class="k-upload-files k-reset ng-hide">
+            <li class="k-file" data-uid="c6166e3b-e9b9-454a-87c5-4237bd140028">
+                <span class="k-progress"></span>
+                <span class="k-icon k-i-xlsx"></span>
+                <span class="k-filename" title="sp.xlsx">sp.xlsx</span>
+                <strong class="k-upload-status">
+                    <button type="button" class="k-button k-button-bare k-upload-action"><span class="k-icon k-i-close k-delete" title="Remove"></span></button>
+                </strong>
+            </li>
+        </ul>
+        <button type="button" class="k-button k-upload-selected ng-hide" onclick="doimportProduct(this)">Thực hiện</button>
+      </div>
+    </div>
+    <div class="alert alert-danger ng-binding" ng-bind-html="ImportError"></div>
+    <!-- ngIf: IsLoadingImportProduct -->
+  </div>
+</div>
+<style>
+.control-poup2 .k-button span:before {
+    font-family: FontAwesome;
+    position: absolute;
+    left: 16px;
+    content: "\f0c5";
+    font-size: 16px;
+    font-weight: 400;
+}
+
+button.k-button-bare .k-icon:before {
+    font-family: FontAwesome;
+    font-size: 12px!important;
+    color: #fff;
+    position: absolute;
+    left: 3px!important;
+    top: 8px!important;
+}
+
+.k-button:hover .k-i-close:before {
+    color: #fff!important;
+}
+
+button.k-button-bare .k-icon.k-delete:before {
+    content: "\f00d"!important;
+}
+
+#importproductform .k-upload .k-upload-selected{
+    width: auto;
+}
+</style>
+ 

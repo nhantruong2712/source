@@ -1,0 +1,893 @@
+<style>
+.productTreeSearch {
+    position: relative;
+    margin-bottom: 0;
+}
+.productTreeSearch .fa {
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    position: absolute;
+    left: 0px;
+    top: 5px;
+}
+.productTreeSearch input[type="text"] {
+    padding: 5px 0 10px 22px;
+    border: none;
+    border-bottom: 1px solid #eeeeee;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.productTreeSearch input[type="text"]:focus {
+    border: none;
+    border-bottom: 1px solid #4bac4d;
+    outline: none;
+} 
+.productCatTree {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.productCatTree .treeAll {
+    padding: 8px 5px 8px 22px;
+    border-bottom: 1px solid #eeeeee;
+}
+.edittreeview {
+    position: absolute;
+    right: 3px;
+    cursor: pointer;
+    top: 50%;
+    margin-top: -8px;
+    display: none;
+}
+.productCatTree .treeAll.kv-state-selected {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    background: rgb(237, 246, 228);
+}	
+
+
+.priceBookPop .form-wrapper .form-group {
+    float: left;
+    clear: inherit;
+}
+.priceBookPop .form-wrapper .form-group.calc-price {
+    width: 29%;
+    margin-top: 13px;
+}
+.pop .form-wrapper .form-group+.form-group {
+    margin-top: 10px;
+}
+.priceBookPop .form-wrapper .form-group.price-type {
+    width: 39%;
+}
+.priceBookPop .form-wrapper .form-group.calc-value {
+    width: 32%;
+    padding-left: 15px;
+}
+.priceBookPop .form-wrapper .form-group.calc-zone {
+    margin-left: 29%;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.priceBookPop .form-wrapper .form-group.calc-zone .prettycheckbox {
+    position: relative;
+    padding-left: 16px;
+}
+
+.wrap-kv-toggle {
+    padding-right: 70px;
+}
+.form-wrap.wrap-icon, .form-wrap.wrap-icon-edit, .form-wrap.wrap-icon-help, .form-wrap.wrap-inside-btn, .form-wrap.wrap-kv-toggle, .wrap-kv-toggle {
+    position: relative;
+}
+.form-wrap.wrap-icon .icon, .wrap-kv-toggle .kv-toggle, .wrap-kv-toggle kv-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+</style>
+<section class="mainLeft proLeft fll ng-scope">
+  <kv-price-book-filter>
+    <article class="boxLeft uln sortTime sortView fr">
+      <h3 class="leftTitle ng-binding">Bảng giá</h3><a ng-click="AddPriceBook()" href="javascript:void(0)" class="showhideicon hth-hide" ng-show="canCreate" title="Thêm bảng giá"><i class="fa fa-plus-circle"></i></a>
+      <aside class="boxLeftC"><span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="074051fd-625e-47c6-ad2f-c7a77e221950"
+          style="width: 153px;"><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">Bảng giá chung</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+        </span><select kendo-drop-down-list="" k-ng-model="SelectedPriceBookId" style="width: 153px; display: none;" k-options="comboPriceBook" data-role="dropdownlist"><option value="0">Bảng giá chung</option><option selected="selected">0</option></select></span>&nbsp;
+        <a class="editBox kv2BtnGra hth-hide" ng-click="EditPriceBook()" kv-taga-disabled="!canUpdate || SelectedPriceBookId==0" title="Sửa bảng giá"><i class="fa fa-pencil-square-o"></i></a></aside>
+    </article>
+    <article class="boxLeft uln sortTime proGroup sortView fr posR">
+      <h3 class="leftTitle ng-binding">Tìm kiếm</h3>
+      <aside class="boxLeftC"><input type="text" ng-model="ProductKey" placeholder="Theo mã, tên hàng (F3)" class="w99 ng-pristine ng-untouched ng-valid ng-empty" kv-select-text="" ng-blur="filterbyKeyword()" ng-keyup="$event.keyCode == 13 ? filterbyKeyword() : null"></aside>
+    </article>
+    <article class="boxLeft uln sortTime proGroup sortView posR priceBookCatg">
+      <h3 class="leftTitle cursor ng-binding" ng-click="showSortTime = !showSortTime">Nhóm hàng <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+      <aside class="boxLeftC" ng-hide="showSortTime">
+        <kv-product-category-selector use-custom-action="canUpdate" custom-title="Thêm" custom-icon="fa-long-arrow-right" on-custom-action="AddCategoryToPriceBook" on-selected="onSelectCategory" class="ng-isolate-scope"><label class="productTreeSearch"><i class="fa fa-search"></i> <input type="text" style="width: 190px;" ng-model="catSearchParam" placeholder="Tìm kiếm nhóm hàng" kv-select-text="" ng-change="onCatSearchTermChange()" class="ng-pristine ng-untouched ng-valid ng-empty"></label>
+          <div
+            class="productCatTree">
+            <!-- ngIf: !isSearchMatch -->
+            <div ng-click="clearSelected()" ng-show="!catSearchParam" id="idProductCatTreeAll" class="treeAll kv-state-selected ng-binding">Tất cả <a class="edittreeview" ng-click="customAction($event, dataItem)" title="Thêm"><i class="fa fa-long-arrow-right" ng-class="customIcon"></i></a></div>
+            <div id="productCatTreeView" class="productCatTreeView k-widget k-treeview" kendo-tree-view="productCatTreeView"
+              k-options="productCatTreeOptions" k-data-source="categoryTreeData" data-role="treeview" tabindex="0" style="touch-action: pan-y;">
+              <ul class="k-group k-treeview-lines" role="tree">
+                <li role="treeitem" class="k-item k-first" data-uid="0cff0e0d-1a53-487c-bc69-dcce4257604e" aria-selected="false ">
+                  <div class="k-top k-top ng-scope"><span class="k-in"><span xmlns="http://www.w3.org/1999/xhtml"><span class="nametreeview" id="ob-0cff0e0d-1a53-487c-bc69-dcce4257604e">Kẹo bánh</span><a class="edittreeview" ng-show="useCustomAction" ng-click="customAction($event, dataItem)"
+                      title="Thêm"><i class="fa fa-long-arrow-right" ng-class="customIcon"></i></a></span>
+                    </span>
+                  </div>
+                </li>
+                <li role="treeitem" class="k-item" data-uid="1e669ce2-b30c-4674-9255-9f7dfe9407c0" aria-selected="false ">
+                  <div class="k-mid ng-scope"><span class="k-in"><span xmlns="http://www.w3.org/1999/xhtml"><span class="nametreeview" id="ob-1e669ce2-b30c-4674-9255-9f7dfe9407c0">Mỹ phẩm</span><a class="edittreeview" ng-show="useCustomAction" ng-click="customAction($event, dataItem)"
+                      title="Thêm"><i class="fa fa-long-arrow-right" ng-class="customIcon"></i></a></span>
+                    </span>
+                  </div>
+                </li>
+                <li role="treeitem" class="k-item" data-uid="eb105f4f-5f67-47e2-988f-4278fca670b9" aria-selected="false ">
+                  <div class="k-mid ng-scope"><span class="k-in"><span xmlns="http://www.w3.org/1999/xhtml"><span class="nametreeview" id="ob-eb105f4f-5f67-47e2-988f-4278fca670b9">Nước ngọt</span><a class="edittreeview" ng-show="useCustomAction" ng-click="customAction($event, dataItem)"
+                      title="Thêm"><i class="fa fa-long-arrow-right" ng-class="customIcon"></i></a></span>
+                    </span>
+                  </div>
+                </li>
+                <li role="treeitem" class="k-item" data-uid="f35c8082-d8a5-45d3-b854-85e1d06ce971" aria-selected="false ">
+                  <div class="k-mid ng-scope"><span class="k-in"><span xmlns="http://www.w3.org/1999/xhtml"><span class="nametreeview" id="ob-f35c8082-d8a5-45d3-b854-85e1d06ce971">Thuốc lá</span><a class="edittreeview" ng-show="useCustomAction" ng-click="customAction($event, dataItem)"
+                      title="Thêm"><i class="fa fa-long-arrow-right" ng-class="customIcon"></i></a></span>
+                    </span>
+                  </div>
+                </li>
+                <li role="treeitem" class="k-item k-last" data-uid="7f288fd3-032d-441b-8476-0db9c9dd6888" aria-selected="false ">
+                  <div class="k-bot ng-scope"><span class="k-in"><span xmlns="http://www.w3.org/1999/xhtml"><span class="nametreeview" id="ob-7f288fd3-032d-441b-8476-0db9c9dd6888">Văn phòng phẩm</span><a class="edittreeview" ng-show="useCustomAction" ng-click="customAction($event, dataItem)"
+                      title="Thêm"><i class="fa fa-long-arrow-right" ng-class="customIcon"></i></a></span>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            </div>
+        </kv-product-category-selector>
+      </aside>
+    </article>
+    <article class="boxLeft reportHide uln sortTime sortView">
+      <h3 class="leftTitle cursor ng-binding">Lựa chọn hiển thị</h3>
+      <aside class="boxLeftC">
+        <aside ng-show="viewtype == typeList" class="br0 pd0 ng-binding">Số bản ghi:<span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="mainView_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false"
+            aria-activedescendant="6a781809-919f-4909-bad7-9919f42521d5" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">10</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+          </span><select id="mainView" k-ng-model="pageSize" k-change="refresh" k-data-source="pageSizes" k-value-primitive="true" kendo-drop-down-list="" data-role="dropdownlist" style="display: none;"><option value="10" selected="selected">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option><option value="50">50</option></select></span>
+        </aside>
+      </aside>
+    </article>
+    <script>
+      //hidden sidebar
+      $(document).ready(function() {
+        $('.icon__close').click(function(e) {
+          $('.mainLeft').removeClass('mainLeft__h');
+        });
+      });
+
+    </script>
+  </kv-price-book-filter>
+  <div class="wrap-button-footer"><button kv-mobile="" type="button" class="kv2Btn">Hoàn tất</button></div>
+</section>
+
+<section class="mainRight proRight pricebookRight ng-scope">
+  <section class="mainWrap fll w100" style="position: relative; top: auto; bottom: auto; width: auto;">
+    <article class="headerContent w100 fll uln">
+      <h1>
+        <kv-mobile-new on-click-call-back="filterbyKeyword()" class="ng-isolate-scope"><a href="javascript:void(0);" class="mobileIcon"></a></kv-mobile-new><span class="ng-binding">Bảng giá chung</span></h1>
+      <aside class="flr posR"><a ng-show="SelectedPriceBookId!=0 &amp;&amp; _p.has('PriceBook_Import')" href="javascript:void(0)" ng-click="importPriceBook()" class="kv2Btn kv2BtnImport ng-binding ng-hide"><i class="fa fa-sign-in"></i> Import</a> <a ng-show="_p.has('PriceBook_Export')"
+          href="javascript:void(0)" ng-click="exportPriceBook()" class="kv2Btn kv2BtnExport ng-binding"><i class="fa fa-sign-out"></i> Xuất  file</a>
+        <div id="columnSelection" class="columnView k-widget k-reset k-header k-menu k-menu-horizontal hth-hide" data-role="menu"
+          tabindex="0" role="menubar">
+          <li class="k-item k-state-default k-first k-last" role="menuitem" aria-haspopup="true"><span class="k-link"><span class="k-icon k-i-arrow-s"></span></span>
+            <ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true">
+              <li class="k-item k-state-default k-first" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Code"><span></span>Mã hàng hóa</label>
+                </span>
+              </li>
+              <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Name"><span></span>Tên hàng</label>
+                </span>
+              </li>
+              <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Cost"><span></span>Giá vốn</label>
+                </span>
+              </li>
+              <li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="LatestPurchasePrice"><span></span>Đơn giá nhập cuối</label>
+                </span>
+              </li>
+              <li class="k-item k-state-default k-last" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Price"><span></span>Giá mới</label>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </div>
+      </aside>
+      <aside class="flr fr ng-hide" ng-show="SelectedPriceBookId!=0">
+        <div ng-controller="PriceBookAutoCompleteCtrl" class="autoCompleteBox ng-scope">
+          <autocomplete ng-model="productSearchTerm" attr-placeholder="Thêm hàng hóa vào bảng giá" template-id="productSearchItemTempl" attr-inputid="productSearchInput" attr-inputclass="productSearchInput" data="products" on-type="searchTermChanged" on-select="addProductToList"
+            class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty">
+            <div class="autocomplete " id=""><input type="text" autocomplete="off" ng-model="searchParam" placeholder="Thêm hàng hóa vào bảng giá" class="productSearchInput ng-empty" id="productSearchInput" tabindex="" ng-disabled="kvDisable" kv-select-text="">
+              <div ng-show="completing"
+                class="output-complete ng-hide">
+                <ul>
+                  <!-- ngRepeat: suggestion in suggestions track by $index -->
+                </ul>
+                <div class="autoNotFound ng-hide" ng-show="searchParam &amp;&amp; suggestions.length == 0">Không tìm thấy kết quả nào phù hợp</div>
+              </div>
+            </div>
+          </autocomplete>
+        </div>
+      </aside>
+    </article>
+    <article class="w100 fll k-gridNone k-grid-Scroll pricebookPage tblfr">
+      <div kendo-grid="grdPriceBookDetails" k-options="pricebookDetails" k-sortable="true" k-resizable="true" k-pageable="{ &quot;pageSize&quot;: pageSize, &quot;refresh&quot;: false, buttonCount: 5,messages:{display:_l.pagerInfo + _l.pricebook_Paging, first:_l.paging_First, previous:_l.paging_Prev, next: _l.paging_Next, last: _l.paging_Last}}"
+        k-data-bound="grvdataBound" k-data-binding="grvdataBinding" data-title="pricebook_Paging" data-role="grid" class="k-grid k-widget" style="">
+        <div class="k-grid-header" style="padding-right: 8px;">
+          <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable" style="touch-action: pan-y;">
+            <table role="grid">
+              <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+              </colgroup>
+              <thead role="rowgroup">
+                <tr role="row">
+                  <th scope="col" role="columnheader" data-field="Id" rowspan="1" data-title=" " data-index="0" id="0f4de35f-1892-4406-ae42-ab37c7d7cff1" class="tdDel txtC k-header ng-scope" style="display:none"><a title="Xóa tất cả" ng-click="deleteAllItems()" class="icon del">Del</a></th>
+                  <th scope="col" role="columnheader" data-field="Code" rowspan="1" data-title="Mã hàng hóa" data-index="1" id="66cfaf6a-6208-4378-988c-ce59b93b2d29" class="tdCode k-header ng-scope"
+                    data-role="columnsorter"><a class="k-link" href="#">Mã hàng hóa</a></th>
+                  <th scope="col" role="columnheader" data-field="Name" rowspan="1" data-title="Tên hàng" data-index="2" id="f88222ae-0a38-487d-be40-a27924878009" class="tdMin k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Tên hàng</a></th>
+                  <th scope="col" role="columnheader" data-field="Cost" rowspan="1" data-title="Giá vốn" data-index="3" id="8d7fbd60-694e-4a54-8bb0-81aa9147b9cd" class="tdTotal txtR k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Giá vốn</a></th>
+                  <th scope="col" role="columnheader" data-field="LatestPurchasePrice" rowspan="1" data-title="Đơn giá nhập cuối" data-index="4" id="d713d5fb-ff30-41b8-af77-74abeef9f84f" class="tdfrName txtR k-header ng-scope"
+                    data-role="columnsorter"><a class="k-link" href="#">Đơn giá nhập cuối</a></th>
+                  <th scope="col" role="columnheader" data-field="BasePrice" rowspan="1" data-title="Giá chung" data-index="5" id="eda42a0d-f5af-413e-addf-7f5bb087b416" class="tdTotal txtR k-header ng-scope"
+                    data-role="columnsorter" style="display: none;"><a class="k-link" href="#">Giá chung</a></th>
+                  <th scope="col" role="columnheader" data-field="Price" rowspan="1" data-title="Giá mới" data-index="6" id="e3edec2c-3b79-4ee4-9476-64c1fc9f2cf6" class="tdSLC txtR k-header ng-scope" data-role="columnsorter"><a class="k-link" href="#">Giá mới</a></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div class="k-grid-content k-auto-scrollable">
+          <table role="grid">
+            <colgroup>
+              <col>
+              <col>
+              <col>
+              <col>
+              <col>
+            </colgroup>
+            <tbody role="rowgroup">
+              
+            </tbody>
+          </table>
+        </div>
+        <div class="paging-box">
+          <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><a href="javascript:void(0);" title="Trang đầu" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-w">Trang đầu</span></a><a href="javascript:void(0);" title="Trang trước" class="k-link k-pager-nav  k-state-disabled"
+              data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-w">Trang trước</span></a>
+            <ul class="k-pager-numbers k-reset">
+              <li class="k-current-page"><span class="k-link k-pager-nav">1</span></li>
+              <li><span class="k-state-selected">1</span></li>              
+            </ul><a href="javascript:void(0);" title="Trang sau" class="k-link k-pager-nav" data-page="2" tabindex="-1"><span class="k-icon k-i-arrow-e">Trang sau</span></a><a href="javascript:void(0);" title="Trang cuối" class="k-link k-pager-nav k-pager-last" data-page="3" tabindex="-1"><span class="k-icon k-i-seek-e">Trang cuối</span></a>
+            <span class="k-pager-info k-label">Hiển thị 1 - 0 trên tổng số 0 hàng hóa</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</section>
+
+<kv-popup id="calcPriceItem" kv-popup-full="true" class="pricebookPop ng-scope ng-isolate-scope popupWrapper">
+  <div class="kv2Pop pop popArrow fullwidth fr arrow-bottom-right" ng-transclude="" style="left: 652px; top: 285px;">
+    <div class="ovh uln priceBookPop popck form-custom form-wrapper form-labels-60 ng-scope" ng-controller="CalcPriceCtrl">
+      <div class="form-wrapper">
+        <div class="form-group calc-price"><label class="control-label form-label ng-binding">Giá mới<font color="green" class="ng-binding">[20,000]</font>=</label></div>
+        <div class="form-group price-type">
+          <div class="wrap-kv-toggle"><span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" style="width: 100%;" aria-activedescendant="35806883-e50d-4872-8d82-171f81e7e183">
+          <span unselectable="on" class="k-dropdown-wrap k-state-default">
+          <span unselectable="on" class="k-input ng-binding ng-scope">Giá hiện tại</span>
+            <span
+              unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+              </span><select kendo-drop-down-list="" style="width: 100%; display: none;" k-ng-model="CalcPriceType" k-on-change="calc()" k-value-primitive="true" data-role="dropdownlist"><option value="0">{{_l.pricebook_price1}}</option><option value="1" selected="selected">{{_l.pricebook_price2}}</option><option value="2">{{_l.pricebook_price3}}</option><option value="3">{{_l.pricebook_price4}}</option></select></span>
+              <span
+                class="kv-toggle"><a href="" class="kv2CK active" ng-class="{'active': (calcActive === undefined || calcActive==1)}" ng-click="calcActive = 1"><i class="fa fa-plus"></i></a><a href="" class="kv2CK" ng-class="{'active': (calcActive==2)}" ng-click="calcActive=2"><i class="fa fa-minus"></i></a></span>
+          </div>
+        </div>
+        <div class="form-group calc-value">
+          <div class="wrap-kv-toggle"><input type="text" ng-model="CalcValue" kv-auto-numeric="{mDec:0}" style="width:100%!important" class="txtR iptR form-control ng-valid ng-not-empty ng-touched ng-dirty ng-valid-parse" ng-change="calc()" kv-select-text="">
+            <kv-toggle ng-model="CalcValueType"
+              kv-on-change="calcValueTypeChanged" kv-options="discountTypes" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-valid-parse">
+              <!-- ngRepeat: item in items track by $index --><a href="" ng-repeat="item in items track by $index" class="kv2CK ng-binding ng-scope active" ng-class="{active:(selected==item)}" tabindex="" ng-click="select(item)" ng-enter="select(item)" kv-next-focus="">VND</a>
+              <!-- end ngRepeat: item in items track by $index --><a href="" ng-repeat="item in items track by $index" class="kv2CK ng-binding ng-scope" ng-class="{active:(selected==item)}" tabindex="" ng-click="select(item)" ng-enter="select(item)" kv-next-focus="">%</a>
+              <!-- end ngRepeat: item in items track by $index -->
+            </kv-toggle>
+          </div>
+        </div>
+        <div class="form-group calc-zone has-pretty-child">
+          <div class="clearfix prettycheckbox labelright  blue"><input style="display: none;" type="checkbox" ng-checked="CalcZone" kv-pretty-check="" kv-data-label="gettext()" ng-model="CalcZone" kv-change="applyToAllProducts" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Áp dụng công thức cho 0 sản phẩm trong bảng giá?">
+            <a
+              href="javascript:void(0)" tabindex="0" class=""></a>
+              <label for="undefined" class="">Áp dụng công thức cho 26 sản phẩm trong bảng giá?</label></div>
+        </div>
+      </div>
+      <div class="kv-group-btn"><a class="kv2Btn" ng-click="applyPrice()">OK</a></div>
+    </div>
+  </div>
+</kv-popup>
+<div class="k-animation-container" style="width: 150px; height: 141px; margin-left: 0px; padding-left: 0px; padding-right: 0px; padding-bottom: 0px; display: none; box-sizing: content-box; overflow: hidden; position: absolute; top: 294px; z-index: 10002; left: 811.828px;">
+  <div class="k-list-container k-popup k-group k-reset" data-role="popup" style="position: absolute; font-size: 13px; font-family: Arial, Helvetica, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; width: 150px; height: auto; display: none;">
+    <div class="k-group-header" style="display:none"></div>
+    <div class="k-list-scroller" unselectable="on" style="height: auto;">
+      <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox">
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-binding ng-scope" data-offset-index="0">Giá vốn</li>
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-binding ng-scope k-state-selected k-state-focused" data-offset-index="1" id="35806883-e50d-4872-8d82-171f81e7e183">Giá hiện tại</li>
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-binding ng-scope" data-offset-index="2">Giá nhập lần cuối</li>
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-binding ng-scope" data-offset-index="3">Giá chung</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/x-kendo-template" id="templProductCategory2">
+        <div class="k-top ng-scope" onclick="selectCategory({{id}})">
+        <span class="k-in" style="{{style}}">
+        <span class="nametreeview">{{name}}</span>
+        <a class="edittreeview" ng-show="useCustomAction" onclick="addCategoryPriceBook({{id}})" title="Thêm"><i class="fa fa-long-arrow-right" ng-class="customIcon"></i></a>
+        </span>
+        </div>
+</script>
+
+<script type="text/x-kendo-template" id="templRowProductPriceBook">
+<tr data-uid="{{id}}" role="row" class="ng-scope">
+    <td class="tdDel txtC" style="display:none" role="gridcell"><a title="Xóa" ng-click="deleteItem(dataItem)" class="icon del">Del</a></td>
+    <td class="tdCode" role="gridcell"><span ng-bind="dataItem.Code" class="ng-binding">{{code}}</span></td>
+    <td class="tdMin" role="gridcell"><span ng-bind="dataItem.Name" class="ng-binding">{{name}}</span></td>
+    <td class="tdTotal txtR ng-binding" role="gridcell">{{price2}}</td>
+    <td class="tdfrName txtR ng-binding" role="gridcell">{{pricelast}}</td>
+    <td class="tdTotal txtR ng-binding" role="gridcell" style="display: none;">{{price}}</td>
+    <td class="tdSLC txtR fr" role="gridcell"><input value="{{price}}" type="text" class="txtR iptR w100 ng-pristine ng-untouched ng-valid ng-not-empty" ignore-focus="" ng-model="dataItem.NewPrice" ng-focus="setCurrentRow($event)" ng-blur="savePrice($event)" ng-class="{txtRed :(dataItem.NewPrice < dataItem.Cost)}" k-min="0" kv-auto-numeric="{mDec:0}" kv-placement="bottomright" kv-focus-item="iptFocus" kv-popup-anchor="calcPriceItem"></td>
+</tr>
+</script>
+
+<script>
+
+
+var filter = {
+     
+    ProductKey: '',
+     
+    ProductCategory: 0,
+}
+
+function catRecur(cid){
+    cid = parseInt(cid)
+    var x = loadProductCategory(cid)
+    if(x.haschild){
+        var start = false
+        var ret = []
+        for(var i in product_categories){
+            if(!start){
+                if(product_categories[i].id==cid)  {
+                    ret.push(cid)
+                    start = true
+                }                          
+            }else{
+                if(product_categories[i].level>x.level)
+                    ret.push(parseInt(product_categories[i].id))
+                else
+                    break;
+            }
+        }
+        return ret
+    }else{
+        return [cid]
+    }
+}
+var cuid, priceFunc = {a:1,b:1,c:0,d:'VND',e:0}
+
+function calcPrice(uid){
+    var ght = $('[data-uid="'+uid+'"] [ng-model="dataItem.NewPrice"]').val()
+    ght = parseInt(ght);
+    var cpp = loadProduct(uid);
+    var ght = [parseInt(cpp.price2),ght,parseInt(cpp.pricelast),parseInt(cpp.price)];
+    var ret = ght[priceFunc.a];
+    var ret2 = priceFunc.c;
+    if(priceFunc.d=='%'){
+        ret2 = Math.round(ret2*ret/100)
+    }
+    ret2 *= priceFunc.b==2?-1:1;
+    return Math.max(0,ret+ret2);
+}
+
+function _calc(uid){
+    $('#calcPriceItem label:nth(0)').html('Giá mới<font color="green" class="ng-binding">['+calcPrice(uid)+']</font>=')
+}
+
+function setCurrentRow(that){
+    
+    console.log('focus')
+    
+    var uid = $(that).parent().parent().attr('data-uid')
+    cuid = uid = parseInt(uid)
+     
+    setTimeout(function(){
+        $('#calcPriceItem').addClass('popping')
+    },500)
+    
+    $('#calcPriceItem label:nth(1)').html('Áp dụng công thức cho '+countTableForGroup+' sản phẩm trong bảng giá?')
+    _calc(uid)
+     
+    //console.log($(that).position(),$(that).offset())
+    
+    $('#calcPriceItem>.kv2Pop').css({
+        top: $(that).offset().top + 30,
+        left: $(that).offset().left-$('#calcPriceItem>.kv2Pop').width()+30
+    })
+    $('#calcPriceItem span.k-dropdown').unbind('click')
+    $('#calcPriceItem span.k-dropdown').click(function(e){
+        $('.main>.k-animation-container').show()
+        $('.main>.k-animation-container>.k-list-container').show()
+        
+        $('.main>.k-animation-container').css({
+            top: $(this).offset().top + 30,
+            left: $(this).offset().left
+        })
+        
+        $('.main>.k-animation-container ul li').unbind('hover')
+        $('.main>.k-animation-container ul li').hover(function(){
+            $(this).siblings('.k-state-focused:not(.k-state-selected)').removeClass('k-state-focused')
+            $(this).addClass('k-state-focused')
+        })
+        
+        $('.main>.k-animation-container ul li').unbind('click')
+        $('.main>.k-animation-container ul li').click(function(e){
+            var ok = $(this).attr('data-offset-index')
+            ok = parseInt(ok)
+            priceFunc.a = ok
+            $('#calcPriceItem select').val(ok)
+            $('#calcPriceItem>.kv2Pop .k-input').html($(this).html())
+            $(this).siblings('.k-state-selected').removeClass('k-state-selected')
+            $(this).addClass('k-state-selected')
+            $('.main>.k-animation-container').hide()
+            $('.main>.k-animation-container>.k-list-container').hide()
+            
+            _calc(cuid)
+        })
+        
+        
+    })
+    
+     
+    $('#calcPriceItem>.kv2Pop .kv-toggle a').attr('href','javascript:void(0);')
+    
+    $('#calcPriceItem>.kv2Pop .kv-toggle a').unbind('click')
+    $('#calcPriceItem>.kv2Pop .kv-toggle a').click(function(e){
+        var calcActive;
+        eval($(this).attr('ng-click'))
+        priceFunc.b = calcActive
+        $(this).siblings().removeClass('active')
+        $(this).addClass('active')
+        
+        _calc(cuid)
+    })
+    
+    $('[ng-model="CalcValue"]').unbind('blur')
+    $('[ng-model="CalcValue"]').blur(function(e){
+        var val = $(this).val()
+        
+        if(val==''){
+            $(this).val(priceFunc.c)
+        }else
+        if(!val.match(/^\d+$/)){
+            toastr.warning('Invalid number')
+            
+            $(this).val(priceFunc.c)
+             
+        }else{    
+            priceFunc.c = parseInt(val)
+        }
+        
+        _calc(cuid)
+    })
+    
+    $('#calcPriceItem>.kv2Pop kv-toggle a').attr('href','javascript:void(0);')
+    
+    $('#calcPriceItem>.kv2Pop kv-toggle a').unbind('click')
+    $('#calcPriceItem>.kv2Pop kv-toggle a').click(function(e){         
+        priceFunc.d = $(this).html()
+        $(this).siblings().removeClass('active')
+        $(this).addClass('active')
+        
+        _calc(cuid)
+    })
+    
+    $('#calcPriceItem>.kv2Pop .prettycheckbox').unbind('click')
+    $('#calcPriceItem>.kv2Pop .prettycheckbox').click(function(e){
+        $(this).find('>*').toggleClass('checked')
+        priceFunc.e = $(this).find('>a').hasClass('checked')?1:0;
+    })
+    
+    $('[ng-click="applyPrice()"]').unbind('click')
+    $('[ng-click="applyPrice()"]').click(function(){
+        applyPrice()
+    })
+}
+
+function applyPrice(){
+    $('#calcPriceItem').removeClass('popping')
+    
+    if(priceFunc.e){
+        $('[ng-model="dataItem.NewPrice"]').each(function(i,v){
+            //console.log(v,i)
+            var uid = $(v).parent().parent().attr('data-uid');
+            var np = calcPrice(uid);
+            $(v).val(np);
+            $(v).parent().prev().html(np);
+            var p = loadProduct(uid);
+            p.price = np;
+        })
+        
+        for(var i in products){
+            if(products[i].parent>0) continue;
+            var uid = products[i].id
+            if($('[data-uid="'+uid+'"]').length) continue;
+            
+            var p = loadProduct(uid);
+            var np = calcPrice(uid);
+            p.price = np;
+             
+        }
+        
+        $.ajax('ajax.php?action=bookpricesaveall',{
+            data: $.extend(priceFunc,{cb:cb,ids:listIds.join(',')}),
+            method: "POST",
+            dataType: 'json',
+            success: function(d){
+                console.log(d);
+                if(d.status=='1'){
+                    toastr["info"]('Saved ok'); 
+                     
+                }else{
+                     //alert(d.error);
+                     toastr["error"](d.error);
+                } 
+            },
+            error: function(e){
+                console.log(e)
+                 toastr["error"]('Error save price');
+            }
+        });
+    }
+        
+    else{
+        var np = calcPrice(cuid);
+        var v = $('[data-uid="'+cuid+'"] [ng-model="dataItem.NewPrice"]');
+        v.val(np);
+        v.parent().prev().html(np);
+        ////var p = loadProduct(cuid);
+        ////p.price = np;
+        
+        $.ajax('ajax.php?action=bookpricesave',{
+            data: {price:np,id:cuid,cb:cb}  ,
+            method: "POST",
+            dataType: 'json',
+            success: function(d){
+                console.log(d);
+                if(d.status=='1'){
+                    toastr["info"]('Saved ok'); 
+                    var kk=loadProduct(cuid)
+                    kk.price = np
+                     
+                }else{
+                     //alert(d.error);
+                     toastr["error"](d.error);
+                } 
+            },
+            error: function(e){
+                console.log(e)
+                 toastr["error"]('Error save price');
+            }
+        });
+    }
+}
+
+function savePrice(that){
+    //$('#calcPriceItem').removeClass('popping')
+    
+    //delete cuid;
+    //console.log(that);return;
+    
+    if(!cuid) return
+    
+    var op = $(that).parent().prev().html()
+    op = parseInt(op)
+    
+    //alert(uid)
+    var val = $(that).val()
+    
+    if(!val.match(/^\d+$/)){
+        toastr.warning('Invalid number')
+        
+        $(that).val(op)
+         
+    }else{
+        var kk=loadProduct(cuid)
+        if(kk.price == val) return;
+        val = parseInt(val)
+        $.ajax('ajax.php?action=bookpricesave',{
+            data: {price:val,id:cuid,cb:cb}  ,
+            method: "POST",
+            dataType: 'json',
+            success: function(d){
+                console.log(d);
+                if(d.status=='1'){
+                     toastr["info"]('Saved ok'); 
+                    var kk=loadProduct(cuid);
+                    kk.price = val;
+                    
+                    var v = $('[data-uid="'+cuid+'"] [ng-model="dataItem.NewPrice"]');
+                     
+                    v.parent().prev().html(v.val());
+                     
+                }else{
+                     //alert(d.error);
+                     toastr["error"](d.error);
+                } 
+            },
+            error: function(e){
+                console.log(e)
+                 toastr["error"]('Error save price');
+            }
+        });
+    }
+    
+    //delete cuid;
+}
+
+var rtpl;
+var counttables = 0,countTableForGroup=0, totalquantity=0, listIds=[] ;
+ 
+function _g(){
+    $('.pricebookPage table tbody').html('')
+    
+    $('#calcPriceItem').removeClass('popping')
+    
+    if(products===null || !vkl){
+        setTimeout(function(){_g()},500)
+        return false;
+    }
+    
+    if(rtpl==undefined)
+        rtpl = $('#templRowProductPriceBook').html();
+    
+    counttables = 0,countTableForGroup=0, totalquantity=0, listIds=[] ;
+    
+    for(var i in products){
+              
+        if(filter.ProductKey!=''){
+            if(products[i].code.toLowerCase().indexOf(filter.ProductKey.toLowerCase())==-1 &&
+               products[i].name.toLowerCase().indexOf(filter.ProductKey.toLowerCase())==-1
+            ) continue;
+        }
+         
+        if(filter.ProductCategory>0){   
+            products[i].category = parseInt(products[i].category)
+            if(catRecur(filter.ProductCategory).indexOf(products[i].category)>=0)
+            countTableForGroup++;
+            else
+            continue;
+        }
+        else 
+            countTableForGroup++;
+        
+        listIds.push(products[i].id)
+        
+        if(countTableForGroup>cpage*record && countTableForGroup <= (cpage+1)*record){
+            if(products[i].category) 
+                products[i].group_object = loadProductCategory(products[i].category);
+            else
+                products[i].group_object = {name:''};
+                
+            
+            var rtpl2 = rtpl,
+            name2 = products[i].name;
+            if(products[i].uname){
+                name2 += ' ('+products[i].uname+')'
+            }
+            
+            for(var j in products[i]){
+                   
+                if(j=='category') continue;
+                if(j=='group_object'){
+                    if(products[i][j].name!=undefined) rtpl2 = rtpl2.replace(new RegExp("{{group}}","gi"),products[i][j].name);
+                    else rtpl2 = rtpl2.replace(new RegExp("{{group}}","gi"),'');
+                }
+                    
+                else 
+                if(j=='quantity'){
+                    rtpl2 = rtpl2.replace(new RegExp("{{"+j+"}}","gi"),products[i][j]!=null?products[i][j]:'0');
+                    totalquantity += products[i].main==1 && products[i][j]!=null?parseInt(products[i][j]):0;
+                }  
+                    
+                else if(j=='price'||j=='price2'){  
+                    rtpl2 = rtpl2.replace(new RegExp("{{"+j+"}}","gi"),products[i][j]!=null?products[i][j]:'---');
+                }
+                else if(j=='name')  
+                    rtpl2 = rtpl2.replace(new RegExp("{{"+j+"}}","gi"),name2);
+                else    
+                    rtpl2 = rtpl2.replace(new RegExp("{{"+j+"}}","gi"),products[i][j]);
+            }
+            
+            $('.pricebookPage table>tbody').append(rtpl2);
+        }
+    }
+     
+    $('[ng-focus="setCurrentRow($event)"]').focus(function(e){
+        setCurrentRow(this)
+    })
+    
+    $('[ng-blur="savePrice($event)"]').blur(function(e){
+        savePrice(this)
+    })
+    
+    $('[ng-blur="savePrice($event)"]').on('click keyup',function(e){
+        console.log(e)
+        //alert($('#calcPriceItem').hasClass('popping'))
+        if($('#calcPriceItem').hasClass('popping'))
+            $('#calcPriceItem').removeClass('popping')
+    })
+    
+    tpage = Math.ceil(countTableForGroup/record);
+            
+    $('.pricebookPage .paging-box .k-label').html("Hiển thị "+((cpage)*record+1)+" - "+Math.min(countTableForGroup,(cpage+1)*record)+" trên tổng số "+countTableForGroup+" sản phẩm");
+    
+    $('.pricebookPage .paging-box a').removeClass('k-state-disabled');
+    
+    if(cpage==0){
+        $('.pricebookPage .paging-box a:nth(0)').addClass('k-state-disabled');
+        $('.pricebookPage .paging-box a:nth(1)').addClass('k-state-disabled');
+    } 
+    
+    if(cpage==tpage-1){
+        $('.pricebookPage .paging-box a:nth(2)').addClass('k-state-disabled');
+        $('.pricebookPage .paging-box a:nth(3)').addClass('k-state-disabled');
+    } 
+    
+    $('.pricebookPage .paging-box .k-state-selected, .pricebookPage .paging-box .k-current-page span').html(cpage+1);
+    $('.pricebookPage .paging-box a:nth(0)').unbind('click')
+    //first page click
+    $('.pricebookPage .paging-box a:nth(0)').click(function(){
+        cpage = 0;
+        _g();
+    });        
+    $('.pricebookPage .paging-box a:nth(1)').unbind('click')
+    $('.pricebookPage .paging-box a:nth(1)').click(function(){
+        if(cpage>0){
+            cpage -= 1;
+            _g();
+        }
+    });        
+    $('.pricebookPage .paging-box a:nth(2)').unbind('click')
+    $('.pricebookPage .paging-box a:nth(2)').click(function(){
+        if(cpage<tpage-1){
+            cpage += 1;
+            _g();
+        }
+    });        
+    $('.pricebookPage .paging-box a:nth(3)').unbind('click')
+    $('.pricebookPage .paging-box a:nth(3)').click(function(){
+        cpage = tpage-1;
+        _g();
+    });
+}
+
+function addCategoryPriceBook(id){
+    
+}
+
+function selectCategory(cid){
+    if(filter.ProductCategory != cid){
+        $('#productCatTreeView li').removeClass('k-state-selected')
+        if(cid!=0){            
+            $('#productCatTreeView li[data-uid="'+cid+'"]').addClass('k-state-selected')            
+            $('#idProductCatTreeAll').removeClass('kv-state-selected')
+        }else{
+            $('#idProductCatTreeAll').addClass('kv-state-selected')
+        }
+         
+        filter.ProductCategory = cid    
+        _g();    
+    }    
+}
+
+
+var lipc = '<li role="treeitem" class="k-item {{class}}" data-uid="{{id}}" aria-selected="false ">';
+
+function loadPC(v){
+    console.log('loadPC')
+    
+    if(v==undefined) v=''
+     
+    if(product_categories==undefined || product_categories==null){
+        setTimeout(function(){
+            loadTableLeft()
+        },500)
+        return
+    }
+     
+    $('#productCatTreeView >ul').html('');
+     
+    for(var i in product_categories){
+        
+        if(v && !product_categories[i].name.match(new RegExp(v,'gi'))) continue
+        
+        var lipc2 = lipc;
+        tplpc2 = tplpc;
+        
+        //lipc2 = lipc2.replace('{{class}}',i==product_categories.length-1?'k-last':'');
+        lipc2 = lipc2.replace('{{class}}',i==0?'k-first':(i==product_categories.length-1?'k-last':''));
+        lipc2 = lipc2.replace(/\{\{id\}\}/g,product_categories[i].id);
+        
+        tplpc2 = tplpc2.replace('{{name}}',product_categories[i].name);
+        tplpc2 = tplpc2.replace(/\{\{id\}\}/g,product_categories[i].id);
+        tplpc2 = tplpc2.replace('{{style}}','padding-left: '+(parseInt(product_categories[i].level)*16+5)+'px;');
+        
+        lipc2 = $(lipc2);
+
+        lipc2.append(tplpc2);
+        $('#productCatTreeView >ul').append(lipc2);
+    }
+}
+var tplpc
+function loadTableLeft(){
+    
+    console.log('loadTableLeft');
+    
+    tplpc = $('#templProductCategory2').html();
+    
+    loadPC()
+    
+    $('#idProductCatTreeAll').unbind('click')
+    $('#idProductCatTreeAll').click(function(){
+        selectCategory(0)
+    })
+    
+    $('[ng-model="catSearchParam"]').unbind('keyup')
+    $('[ng-model="catSearchParam"]').keyup(function(){
+        var v = $(this).val()
+        if(v!=''){
+            $('[ng-show="!catSearchParam"]').addClass('ng-hide')
+        }else{
+            $('[ng-show="!catSearchParam"]').removeClass('ng-hide')
+        }
+        loadPC(v)
+    })
+    
+    $('.mainLeft h3[ng-click]').unbind('click')
+    $('.mainLeft h3[ng-click]').click(function(){
+        i = $(this).find('i');
+         
+        if(i.hasClass('fa-chevron-circle-up')){
+            $(this).parent().find('aside').addClass('ng-hide');
+            i.removeClass('fa-chevron-circle-up');
+            i.addClass('fa-chevron-circle-down');
+        }else{
+            $(this).parent().find('aside').removeClass('ng-hide');
+            i.addClass('fa-chevron-circle-up');
+            i.removeClass('fa-chevron-circle-down');
+        }
+    });
+     
+    $('[ng-model="kvModel.ProductKey"]').unbind('keyup')
+    $('[ng-model="kvModel.ProductKey"]').keyup(function(e){
+        if(e.which==13){
+            filter.ProductKey = $(this).val()
+            _g()
+        }
+    })
+     
+    _g(); 
+}
+
+loadTableLeft()
+//
+setTitle(loadBranch(cb).name+' - Thiết lập giá') 
+</script>

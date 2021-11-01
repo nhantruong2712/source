@@ -1,0 +1,19 @@
+.he3>div>label{
+    width: 150px;
+    display: inline-block;
+} 
+
+.he3{
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
+.fo{
+    font-weight: bold;
+    text-align: center;
+}
+
+.fo>div{
+    float:left;
+    width: 33%;
+}

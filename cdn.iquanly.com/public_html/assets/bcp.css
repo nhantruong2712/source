@@ -1,0 +1,17 @@
+.barcode-container{
+    width: 105px; 
+    height: 90px;
+    float: left;
+    /*margin-right: 5px;*/
+    text-align: center;
+}
+.ten,.gia{
+    font-size: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+svg {
+    max-width: 100%!important;
+}

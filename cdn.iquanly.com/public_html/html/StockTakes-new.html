@@ -1,0 +1,1181 @@
+<style>
+ .saleQty ~ input[type="text"], .saleQty + input[type="text"] {
+    text-align: right!important;
+}
+.qtyBox input[type="text"] {
+    width: calc(100% - 74px) !important;
+    display: inline-block;
+    margin: 0 2px;
+    padding: 0!important;
+    text-align: right;
+}
+.form-custom input[type="text"]:not(.k-input), .form-custom input[type="number"], .form-custom button:not(.arrow):not(.saleQty):not(.k-upload-selected), .form-custom .ipt {
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-bottom-color: #a0a0a0;
+    
+    box-shadow:none;
+     
+    padding: 0 0 1px;
+    background-color: transparent;
+    height: 24px;
+    line-height: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    vertical-align: middle;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    -ms-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.kv2Left .k-grid table td {
+    padding: 8px 10px;
+    border-color: #d7d7d7;
+    font-size: 14px;
+    color: #111111;
+    /* height: 36px; */
+}
+.k-grid td {
+     
+    line-height: 1em;
+     
+}
+.k-grid td > span {
+ 
+    white-space: normal;
+}
+.desPop .kv2Pop textarea {
+    min-height: 70px;
+    max-height: 70px;
+    width: 282px;
+    line-height: 20px;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    padding: 5px 8px;
+}
+.kvTabs > ul li a.active{
+    background-color: transparent!important;
+}
+
+.headerContent .headerAuto a.icon{
+    right: 4px;
+    bottom: 3px;
+    height: 27px;
+    line-height: 27px;
+     
+    color: #666666;
+    background: #f2f2f2;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    width: 27px;
+     
+    position: absolute;
+    
+}
+.iconImg.list:before{
+    position: absolute;
+    top: 50%;
+     
+    width: 13px;
+    height: 10px;
+    margin: -5px 0 0 -6.5px;
+    background-position: 0 -37px;
+}
+.iconImg.list:hover,.iconImg.list:focus {
+    background: #0094da!important;
+}
+.iconImg.list:hover:before,.iconImg.list:focus:before{
+    background-position-x: -13px;
+}
+
+.k-tabstrip-wrapper{
+    margin-left: 0px;
+} 
+.kv-tab {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #d9d9d9;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.main_wrapper .k-tabstrip-wrapper {
+    height: 100%;
+    border: none;
+    padding: 0;
+}
+.main_wrapper .kv2Left .tbl .k-tabstrip-wrapper {
+    border-bottom: none !important;
+}
+.main_wrapper .k-tabstrip-wrapper .tabstrip {
+    height: 100%;
+}
+.main_wrapper .k-tabstrip-wrapper .tabstrip > ul {
+    position: relative;
+    z-index: 2;
+}
+.kv-tab li {
+    font-size: 13px;
+    color: #666666;
+    border: 1px solid #d9d9d9;
+    border-bottom-color: transparent;
+    background: #eeeeee;
+    line-height: 34px;
+    height: 32px;
+    padding: 0 22px;
+    display: inline-block;
+    margin-right: 4px;
+    cursor: pointer;
+    outline: none;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+}
+.kv-tab li.active {
+    background: #ffffff;
+    color: #121212;
+    border-bottom-color: #ffffff;
+}
+.main_wrapper .k-tabstrip-wrapper .tabstrip > ul > li {
+    margin-bottom: -1px;
+    border-bottom-color: #d9d9d9;
+}
+.main_wrapper .k-tabstrip-wrapper .tabstrip > ul > li.active {
+    border-bottom-color: #ffffff;
+}
+
+
+
+@media (max-width: 992px){
+    .kv2Right {
+        width: 100%;
+        float: left;
+    } 
+    
+     
+    .kv2Left {
+        width: auto;
+        float: left;
+         
+    }
+    
+ 
+    .boxBtn {
+        float: right;
+        width: 100%;
+    }
+}
+
+
+</style> 
+<kv-enter-serial-popup-new kv-name="serialpopup" class="ng-scope ng-isolate-scope">
+</kv-enter-serial-popup-new>
+
+<div class="kv2Left purchaseorder ng-scope">
+    <article class="headerContent uln fll w100">
+        <h1 class="ng-binding">Kiểm kho</h1>
+        <aside class="fll headerAuto posR fr">
+            <div class="autoCompleteBox">
+                <autocomplete ng-model="productSearchTerm" attr-placeholder="Tìm hàng hóa theo mã hoặc tên" template-id="productSearchItemTempl" attr-inputid="productSearchInput" data="products" on-type="searchTermChanged" on-select="addProduct" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty">
+                <div class="autocomplete " id=""><input type="text" ng-model="searchParam" placeholder="Tìm hàng hóa theo mã hoặc tên" class="ng-empty" id="productSearchInput" ng-disabled="kvDisable" kv-select-text=""><div ng-show="completing" class="ng-hide"><ul>
+             
+        </ul><div class="autoNotFound ng-hide" ng-show="searchParam &amp;&amp; suggestions.length == 0">Không tìm thấy kết quả nào phù hợp</div></div></div></autocomplete>
+            </div>
+            <a href="javascript:void(0)" class="icon iconImg list" title="Chọn nhóm hàng" ng-enter="addByCategory()" ng-click="addByCategory()" tabindex="2"></a>
+        </aside>
+         
+    </article>
+
+    <div class="k-gridNone tbl  tbl-imei fr src fll w100 fr-input purchaseorder-tbl form-custom">
+        <div class="k-tabstrip-wrapper">
+          <div class="tabstrip">
+            <ul class="kv-tab">
+              <li id="all" ng-class="stocktakeState.activeTab == 'all' ? 'active' : ''" data-ng-click="tabSelected($event)" class="ng-binding active">Tất cả (0)</li>
+              <li id="match" ng-class="stocktakeState.activeTab == 'match' ? 'active' : ''" data-ng-click="tabSelected($event)" class="ng-binding">Khớp (0)</li>
+              <li id="notMatch" ng-class="stocktakeState.activeTab == 'notMatch' ? 'active' : ''" data-ng-click="tabSelected($event)" class="ng-binding">Lệch (0)</li>
+              <li id="notControl" ng-class="stocktakeState.activeTab == 'notControl' ? 'active' : ''" data-ng-click="tabSelected($event)" class="ng-binding">Chưa kiểm (0)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div kendo-grid="" id="cartGrid" k-options="cartGridoption" data-role="grid" class="k-grid k-widget">
+        <div class="k-grid-header" style="padding-right: 17px;">
+        <div class="k-grid-header-wrap k-auto-scrollable">
+            <table role="grid"><colgroup><col><col><col><col><col><col><col><col></colgroup>
+                <thead role="rowgroup">
+                    <tr role="row">
+                        <th scope="col" role="columnheader" rowspan="1" data-index="0" id="bd1a01ff-2ae6-4a2b-b77e-d7836c8f66ca" class="tdDel k-header ng-scope"></th>
+                        <th scope="col" role="columnheader" data-field="ProductId" rowspan="1" data-title=" " data-index="1" id="517d8d0d-7acc-4fc5-bf09-3f536d350d68" class="tdDel k-header ng-scope"> </th>
+                        <th scope="col" role="columnheader" data-field="Product.Code" rowspan="1" data-title="Mã hàng hóa" data-index="2" id="94b8b093-70ce-4798-9ffc-569a143af42d" class="tdDateTime k-header ng-scope">Mã hàng hóa</th>
+                        <th scope="col" role="columnheader" data-field="Product.Name" rowspan="1" data-title="Tên hàng hóa" data-index="3" id="55519968-7e1c-4a6c-8b38-fe0bf947731b" class="tdNone k-header ng-scope">Tên hàng hóa</th>
+                        <th scope="col" role="columnheader" data-field="Price" rowspan="1" data-title="Tồn kho" data-index="4" id="bb96b48e-9a06-4075-abe6-102dfa089422" class="txtR tdDateTime k-header ng-scope">Tồn kho</th>
+                        <th scope="col" role="columnheader" data-field="Discount" rowspan="1" data-title="Thực tế" data-index="5" id="e374ce9d-1043-4ef5-934a-b7b1a5b77ac8" class="txtR tdSLC k-header ng-scope">Thực tế</th>
+                        <th scope="col" role="columnheader" data-field="Quantity" rowspan="1" data-title="SL lệch" data-index="6" id="8d3a9781-4985-4dff-a9cd-dede076f30db" class="tdDateTime txtR k-header ng-scope">SL lệch</th>
+                        <th scope="col" role="columnheader" data-field="Quantity" rowspan="1" data-title="Giá trị lệch" data-index="7" id="2c2c4288-04dd-4389-970d-1cd66d8549d3" class="tdTotal k-header ng-scope">Giá trị lệch</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="k-grid-content k-auto-scrollable"><table role="grid" style="display: none;"><colgroup><col><col><col><col><col><col><col><col></colgroup><tbody role="rowgroup"></tbody></table><div class="k-grid-content-expander" style="width: 796px;"></div><div class="empty-grid txtC">Không tìm thấy kết quả nào phù hợp</div></div><div class="paging-box" style="display: none;"><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><a href="#" title="Go to the first page" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-w">Go to the first page</span></a><a href="#" title="Go to the previous page" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-w">Go to the previous page</span></a><ul class="k-pager-numbers k-reset"><li class="k-current-page"><span class="k-link k-pager-nav">0</span></li><li><span class="k-state-selected">0</span></li></ul><a href="#" title="Go to the next page" class="k-link k-pager-nav  k-state-disabled" data-page="0" tabindex="-1"><span class="k-icon k-i-arrow-e">Go to the next page</span></a><a href="#" title="Go to the last page" class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="0" tabindex="-1"><span class="k-icon k-i-seek-e">Go to the last page</span></a><span class="k-pager-info k-label">No items to display</span></div></div></div>
+    </div>
+</div>
+
+<section class="kv2Right purchaseorder flr ng-scope">
+    <article class="clb fll w100 mb15 posR fr-input zd5 fr">
+        <kv-tabs class="ng-isolate-scope">
+        <div class="kvTabs ulN">
+        <ul class="mr-bg"><!-- ngRepeat: pane in panes -->
+        <li ng-repeat="pane in panes" class="ng-scope"><a href="javascript:void(0)" skip-disable="" onclick="select(this, false, 0)" class="tabBut_0  tabbut_new active" ng-class="{'active':pane.selected}">Thông tin</a></li><!-- end ngRepeat: pane in panes -->
+        <li ng-repeat="pane in panes" class="ng-scope"><a href="javascript:void(0)" skip-disable="" onclick="select(this, false, 1)" class="tabBut_1  tabbut_new" ng-class="{'active':pane.selected}">Mở rộng</a></li><!-- end ngRepeat: pane in panes -->
+        <li ng-repeat="pane in panes" class="ng-scope"><a href="javascript:void(0)" skip-disable="" onclick="select(this, false, 2)" class="tabBut_2  tabbut_new" ng-class="{'active':pane.selected}">Ghi chú</a></li><!-- end ngRepeat: pane in panes -->
+        </ul>
+        <div class="tabBg" style="width: 72px;"></div>
+        <div ng-transclude="">
+            <kv-tab-pane title="_l.purchaseOrder_Info" class="ng-scope ng-isolate-scope"><div ng-show="selected" ng-transclude="">
+                <div class="ng-scope" ng-controller="PurchaseOrderSupplierCtrl" title=" ">
+                    <div class="kv2Box">
+                        <ul class="formBox">
+                              
+                            <li title=" ">
+                                <span class="titleFr ng-binding">Trạng thái:</span>
+                                <span class="ng-binding">Phiếu tạm</span>
+                            </li>
+                            <li title=" ">
+                                <span class="titleFr ng-binding">Mã phiếu kiểm:</span>
+                                <input type="text" title=" " ng-change="UpdateCart()" placeholder="Mã phiếu tự động" ng-model="cart.code" class="codeAuto ng-pristine ng-untouched ng-valid ng-empty">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div></kv-tab-pane>
+            <kv-tab-pane title="_l.purchaseorder_TextExtra" class="ng-scope ng-isolate-scope"><div ng-show="selected" ng-transclude="" class="ng-hide">
+                <div class="kv2Box ng-scope" title=" ">
+                    <ul class="formBox">
+                         
+                        <li title="Người tạo">
+                            <span class="titleFr ng-binding">Người tạo</span>
+                            <span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="579117ff-a4d5-4994-a047-4aba7d34072a" style="">
+                            <span unselectable="on" class="k-dropdown-wrap k-state-default">
+                            <span unselectable="on" class="k-input ng-scope">Lê Thị Hà</span>
+                            <span unselectable="on" class="k-select">
+                            <span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+                            </span>
+                            </span>
+                            <div class="k-animation-container" style="position: absolute;z-index: 112; display: none; box-sizing: content-box;width: 195px;"> 
+                            <div class="k-list-container k-popup k-group k-reset"> 
+                                <div class="k-list-scroller" unselectable="on" style="height: auto;">
+                                <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox">
+                                 
+                                </ul>
+                                </div>
+                                </div>
+                            </div>
+                            <select kendo-drop-down-list="" k-options="buyerOptions" ng-model="cart.user" data-role="dropdownlist" style="display: none;">
+                            <option value="336067" selected="selected">Lê Thị Hà</option>
+                            </select>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="titleFr ng-binding">Ngày tạo</span>
+                            <span class="k-widget k-datetimepicker k-header">
+                            <span class="k-picker-wrap k-state-default">
+                            <input kendo-date-time-picker="" title=" " placeholder="21/06/2016 00:11" ng-model="cart.date" k-change="UpdatePurchaseDate" k-format="'dd/MM/yyyy HH:mm'" k-time-format="'HH:mm'" data-role="datetimepicker" type="text" class="k-input" role="combobox" aria-expanded="false" aria-disabled="false" aria-readonly="false" style="width: 100%;">
+                            <span unselectable="on" class="k-select">
+                            <span unselectable="on" class="k-icon k-i-calendar" role="button">select</span>
+                            <span unselectable="on" class="k-icon k-i-clock" role="button">select</span>
+                            </span>
+                            </span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div></kv-tab-pane>
+            <kv-tab-pane title="_l.note" class="ng-scope ng-isolate-scope"><div ng-show="selected" ng-transclude="" class="ng-hide">
+                <div class="kv2Box ng-scope" title=" ">
+                    <textarea placeholder="Ghi chú" title="Ghi chú" ng-model="cart.note" ng-change="UpdateCart()" class="ng-pristine ng-untouched ng-valid ng-empty"></textarea>
+                </div>
+            </div></kv-tab-pane>
+        </div></div></kv-tabs>
+    </article>
+
+    <div class="kv2Pay fr-input fr kvTabs ulN clb hth-hide">
+        <ul>
+            <li><a href="javascript:;" class="active other ng-binding">Kiểm gần đây</a></li>
+        </ul>
+        <div class="kv2Box posR ovh">
+             
+
+        </div>
+    </div>
+    <div class="boxBtn">
+        <a ng-click="goBack()" class="kv2Btn kv2BtnBlue ng-binding">Trở về</a>
+        <a ng-click="saveData(false)" kv-taga-disabled="saving" ng-show="cart.Status==orderMap.Draft" class="kv2Btn kv2BtnYellow ng-binding">Lưu tạm</a>
+        <a ng-click="saveData(true)" kv-taga-disabled="saving" class="kv2Btn ng-binding">Hoàn thành</a>
+    </div>
+</section>
+<kv-popup id="discountOrderHelp" class="ng-scope popupWrapper"><div class="kv2Pop pop popArrow" ng-transclude="">
+    <div data-notify="showtext" class="ng-scope"></div>
+</div></kv-popup>
+
+<kv-purchase-import-popup kv-name="importPopup" class="ng-scope ng-isolate-scope">
+</kv-purchase-import-popup>
+    <kv-popup id="discountOnOrder" class="ng-scope popupWrapper"><div class="kv2Pop pop popArrow arrow-left" ng-transclude="" style="left: 850.5px; top: 386px;">
+        <div class="ovh fr popCK ng-scope" ng-controller="DiscountCtrl">
+            <span class="ng-binding">
+                Giảm giá
+            </span>
+            <input type="text" ng-model="DiscountValue" kv-auto-numeric="" ng-change="discountOnOrderChanged()" kv-select-text="" class="ng-pristine ng-valid ng-not-empty ng-touched">
+            <kv-toggle ng-model="DiscountType" kv-on-change="discountTypeChanged" kv-options="discountTypes" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty"><!-- ngRepeat: item in items --><a href="" ng-repeat="item in items" class="kv2CK ng-binding ng-scope active" ng-class="{active:(selected==item)}" ng-click="select(item)">VND</a><!-- end ngRepeat: item in items --><a href="" ng-repeat="item in items" class="kv2CK ng-binding ng-scope" ng-class="{active:(selected==item)}" ng-click="select(item)">%</a><!-- end ngRepeat: item in items --></kv-toggle>
+        </div>
+    </div></kv-popup>
+    <!-- Templates-->
+<div style="display:none" class="ng-scope">
+    <kv-add-product-popup form-name="addproductPopup" class="ng-isolate-scope">
+</kv-add-product-popup>
+    <kv-category-form form-name="categoryForm" class="ng-isolate-scope"></kv-category-form>
+    <script type="text/x-angular-template" id="productSearchItemTempl">
+            <li suggestion ng-repeat="suggestion in suggestions track by $index"
+                index="{{$index}}" val="{{suggestion.name}}" ng-class="{active:($index == selectedIndex)}" ng-click="itemClicked(suggestion)">
+                <p>{{suggestion.name}}<span class="pl5 txtI txtRed">{{suggestion.uname}}</span></p>
+                {{suggestion.code}}<span class="split">&nbsp;</span>Tồn kho: {{suggestion.quantity}}
+            </li>
+        </script>
+     
+<script type="text/x-angular-template" id="productItemTempl">        
+<tr data-uid="fc7a008c-010a-43de-a3ce-2c5da4052179" role="row" class="ng-scope tr-odd {{$index%2==1?'k-alt':''}}">
+  <td class="txtC cell-numb tdDel" role="gridcell"><span ng-show="dataItem.MasterProductId == null" class="row-number-1876602 ng-binding">{{parseInt($index)+1}}</span></td>
+  <td class="txtC cell-del tdDel" role="gridcell">
+    <a title="Xóa" kv-focus-item="productSearchInput" tabindex="20" ng-click="removeItem(dataItem)" ng-enter="removeItem(dataItem)" class="icon del dele" ng-show="dataItem.MasterProductId == null"></a>
+  </td>
+  <td class="cell-code tdDateTime" role="gridcell"><span ng-show="dataItem.MasterProductId == null">{{dataItem.code}}</span></td>
+  <td class="tdNone" role="gridcell">
+    <span ng-show="dataItem.MasterProductId == null">{{dataItem.name}}<span class="pl5 txtI txtRed">{{dataItem.uname}}</span></span>
+  </td>
+  
+  <td class="txtR cell-price tdDateTime" role="gridcell">
+    <span >{{dataItem.deliveryqty}}</span>
+  </td>
+   
+  <td class="cell-qty-numb tdSLC txtC" role="gridcell">
+    <div class="qtyBox">
+      <button class="saleQty down veaM" title="Giảm số lượng"></button>
+      <input ng-disabled="dataItem.isSerialProduct" tabindex="23" type="text" kv-select-text="" kv-select-text-quantity="" kv-auto-numeric="{isQuantity:!dataItem.isSerialProduct, vMin:0, mDec:3, vMax: int.MaxValue,  isCheckEnter : true}" class="row-qty-number-1876602 isQuantity ng-pristine ng-untouched ng-valid ng-not-empty"
+      value="{{dataItem.quantity}}" ng-class="dataItem.isSerialProduct?'w100':''" ng-change="UpdateItemCart(dataItem)" ng-model="dataItem.Quantity">
+      <button class="saleQty up veaM" title="Tăng số lượng"></button>
+    </div>
+  </td>
+  <td class="txtR cell-price tdDateTime" role="gridcell">
+    <span >{{dataItem.quantity==undefined?'':(dataItem.quantity-dataItem.deliveryqty)}}</span>
+  </td>
+  <td class="cell-total txtR ng-binding tdTotal" role="gridcell">{{dataItem.quantity==undefined?'':formatCurrency((dataItem.quantity-dataItem.deliveryqty)*dataItem.price2)}}</td>
+   
+</tr>
+</script>
+
+
+
+</div>
+    <div ng-controller="SupplierFormPopupCtrl" class="ng-scope">
+        
+    </div>
+ 
+<script>
+  
+        var productSearchItemTempl,productItemTempl 
+        var purchase = cache_orders.getItem('stocktake')
+        var ctab = localStorage.ctab ? localStorage.ctab:'all'
+        
+        if(!purchase || purchase.id) purchase= emptyST()
+        
+        function saveCachePurchase( ){
+			try{
+            cache_orders.setItem("stocktake",purchase,{expirationAbsolute: null,
+             expirationSliding: 3600,
+             priority: Cache.Priority.HIGH,
+             callback: function(k, v) { console.log('Cache removed: ' + k); }
+            });
+			}catch(e){console.log('Save cache error')}
+        }
+        
+        function deleteCachePurchase( ){
+            cache_orders.removeItem("stocktake");
+        }
+        
+        function tabstrip2(){
+            $('.tabstrip > ul >li').unbind('click')
+            $('.tabstrip > ul >li').click(function(){
+                var t = $(this);
+                 
+                t.parent().siblings().removeClass('active');
+                t.parent().siblings().hide(); 
+                 
+                t.parent().find('li').removeClass('active');
+                 
+                t.addClass('active');
+                var ctab2 = t.attr('id')
+                //if(ctab!=ctab2){
+                    ctab = localStorage.ctab = ctab2
+                    displayProducts(purchase)
+                //}
+            })
+        }
+        function countX(ps){
+            if(ps==undefined)
+                ps = purchase.products
+            var ret = {
+                all: 0,
+                match: 0,
+                notMatch: 0,
+                notControl: 0,
+            }
+            for(var i in ps){
+                ret.all ++
+                ret[checkItem(ps[i])] ++
+            }
+            return ret;
+        }
+        function checkItem(item){
+            //khop
+            //lech
+            //chua kiem
+            if(item.quantity==undefined) return 'notControl'
+            if(item.quantity==item.deliveryqty) return 'match'
+            return 'notMatch'
+        }
+        
+        function addProductInvoice(ob){ console.log('addProductInvoice')
+            console.log(ob)
+            var check = loadObject(ob.id,purchase.products),item
+            if(check){
+                /*
+                //update quantity
+                if(check.quantity!=undefined)
+                    check.quantity-=-1//check.quantity++
+                
+                item =$.extend( { }, check )*/
+                
+                displayProducts(purchase)
+            }else{ 
+                //add
+                item = $.extend( { }, 
+                {                     
+                    code :ob.code,
+                    name:ob.name,                     
+                    uname:ob.uname ,
+                    id:ob.id ,
+                    price2:ob.price2==null?0:ob.price2,
+                     
+                    deliveryqty: ob.quantity==null?0:ob.quantity,
+                } )
+                item.product = item.id
+                purchase.products.push(item)  ; 
+                
+                addInvoiceItem(item,purchase,purchase.products.length-1)
+                displayPrice(purchase)
+            }
+            
+            doReCount()
+        }
+        
+        function addInvoiceItem(item,ob,$index){ console.log('addInvoiceItem',item)
+            $('.purchaseorder-tbl .empty-grid').addClass('ng-hide')
+        
+            var dataItem = item 
+            var _productInvoiceTmpl = productItemTempl+''
+             
+            var ret2x = {}
+            var mx = _productInvoiceTmpl.match(/\{\{([^\}]+)\}\}/g)
+            for(var k=0;k<mx.length;k++){
+                 
+                var rt = mx[k].substr(2,mx[k].length-4)
+                if(rt.match(/\|/) && !rt.match(/\|\|/)){
+                    var tr = rt.split('|')
+                    if(tr[1].match(/\:/)){
+                        var tr1 = tr[1].split(':')
+                        var tr11 = tr1.shift()
+                        rt = tr11+"("+tr[0]+","+tr1.join(',')+")"
+                    }else{
+                        rt = tr[1]+"("+tr[0]+")"
+                    }
+                }
+                console.log(rt)
+                ret2x[mx[k]] = eval(rt)
+                _productInvoiceTmpl = _productInvoiceTmpl.replace(mx[k],ret2x[mx[k]]==null?'':ret2x[mx[k]])
+            } 
+            console.log(ret2x)
+            var ll = $(_productInvoiceTmpl)
+                        
+            //remove item
+            ll.find('[ng-click="removeItem(dataItem)"]').click(function(e){
+                $(this).parent().parent().remove()
+                for(var i in ob.products){
+                    if(ob.products[i].id == item.id){
+                         
+                        ob.products.splice(i,1)
+                        break
+                    }
+                }
+                /*
+                if(ob.products.length==0){
+                    $('.purchaseorder-tbl .empty-grid').removeClass('ng-hide')
+                }else{
+                    //re count
+                    $('.purchaseorder-tbl table>tbody tr').each(function(i,v){$(this).find('td:first-child span').html(i+1)})
+                }*/
+                 
+                thongbaonhabep(ob)
+                
+                displayProducts(ob) ; doReCount();
+                ////displayPrice(ob)
+                return false
+            })   
+             
+            ll.find('[ng-model="dataItem.Quantity"]').val(item.quantity)
+             
+            ll.find('.saleQty.down').click(function(e){
+                var r = ll.find('[ng-model="dataItem.Quantity"]')
+                var l = r.val()//parseInt(r.val())
+                //if(l-1>0){ //removed 05/20/2020
+                    r.val(checknum(l-1,4,0))
+                    if(item.quantity==undefined) item.quantity=0//var oldQ = item.quantity-0
+                    item.quantity --
+                    
+                    doReCount() 
+                    //ll.find('td:last-child').html(formatCurrency((item.quantity - item.deliveryqty) * item.price2))
+                    
+                    displayProducts(ob) 
+                    //displayPrice(ob)
+                //}
+            })
+            ll.find('.saleQty.up').click(function(e){
+                var r = ll.find('[ng-model="dataItem.Quantity"]')
+                var l = r.val()//parseInt(r.val())
+                r.val(checknum(l-(-1),4,0))
+                if(item.quantity==undefined) item.quantity=0 
+                item.quantity -= -1//item.quantity ++
+                
+                doReCount() ;  
+                //ll.find('td:last-child').html(formatCurrency((item.quantity - item.deliveryqty) * item.price2))
+                
+                displayProducts(ob) 
+                //displayPrice(ob)
+            })
+            ll.find('[ng-model="dataItem.Quantity"]').unbind('change')
+            ll.find('[ng-model="dataItem.Quantity"]').change(function(e){
+                var tu = $(this).val()
+                //try{
+                    /*tu=parseInt(tu); if(isNaN(tu)){tu = 0;$(this).val(tu)} 
+                    if(tu<0){
+                        tu=-tu
+                        $(this).val(tu)
+                    } */
+                    tu1=parseInt(tu); 
+                    tu2=parseFloat(tu); 
+                    if(isNaN(tu1)){tu = 0;$(this).val(tu)} 
+                    tu = tu2
+                    
+                    //removed 05/20/2020
+                    /*if(tu<0){
+                        tu=-tu
+                        $(this).val(tu)
+                    } */
+                //}catch(t){
+                //    tu=0
+                //}
+                if(item.quantity!=tu){
+                    if(ob.status==0){
+                        ob.status = -2
+                    }
+                     
+                    item.quantity=tu
+                     
+                    displayProducts(ob)
+                    doReCount()  
+                }
+            })
+              
+            $('.purchaseorder-tbl table').show()
+            
+            $('.purchaseorder-tbl table>tbody').append(ll)
+        }
+        
+        function displayProducts(ob){ console.log('displayProducts',ob)
+            $('.purchaseorder-tbl table>tbody').html('')
+             
+            if(ob.products.length){
+                for(var kk in ob.products){
+                    if(ctab=='all'||checkItem(ob.products[kk])==ctab)
+                        addInvoiceItem(ob.products[kk],ob,kk)                     
+                }
+                $('.purchaseorder-tbl .empty-grid').addClass('ng-hide')
+            }else{
+                $('.purchaseorder-tbl .empty-grid').removeClass('ng-hide')
+            }
+            
+            displayPrice(ob) 
+        }
+        function displayPrice(ob){ console.log('displayPrice')
+             
+            saveCachePurchase()
+             
+            _displayPrice(ob)
+             
+        }
+        function _displayPrice(ob){ console.log('_displayPrice')
+               
+             
+            thongbaonhabep(ob) 
+        }
+        
+        function thongbaonhabep(ob){}
+        
+        function reCount(){
+            var cX = countX(); console.log(cX)
+            $('.kv-tab>li[id]').each(function(i,v){
+                var id = $(v).attr('id')
+                var html = $(v).html()
+                $(v).html(
+                    html.replace(/\(\d+\)/,"("+cX[id]+")")
+                )    
+            })
+        }
+        
+        $(document).ready(function(){
+            productSearchItemTempl = $('#productSearchItemTempl').html()
+            productItemTempl = $('#productItemTempl').html()
+             
+            //$('li#'+ctab).click() 
+            
+            //reCount()
+            
+            //products
+            //displayProducts(purchase)
+             
+            //autocomplete Product search
+            $('#productSearchInput').keyup(function(e){
+                var v = $(this).val().toLowerCase()
+                //alert($(this).next())
+                if(v.length>0){
+                    var cp = $(this).next()
+                    cp.removeClass('ng-hide')
+                    
+                    var h = []
+                    
+                    for(var i in products){
+                        
+                        if(products[i].type==2 && (products[i].name.toLowerCase().indexOf(v)>=0 || products[i].code.toLowerCase().indexOf(v)>=0)){
+                            h.push(products[i])
+                        }
+                    }
+                    
+                    cp.find('ul').html('')
+                    
+                    if(h.length){
+                        for(var i in h){
+                            var suggestion = h[i];
+                            var $index = i
+                            
+                            var _productSearchItemTempl = productSearchItemTempl+''
+                            var ret2x = {}
+                            
+                            var mx = _productSearchItemTempl.match(/\{\{([^\}]+)\}\}/g)
+                            for(var k=0;k<mx.length;k++){
+                                 
+                                var rt = mx[k].substr(2,mx[k].length-4)
+                                if(rt.match(/\|/) && !rt.match(/\|\|/)){
+                                    var tr = rt.split('|')
+                                    if(tr[1].match(/\:/)){
+                                        var tr1 = tr[1].split(':')
+                                        var tr11 = tr1.shift()
+                                        rt = tr11+"("+tr[0]+","+tr1.join(',')+")"
+                                    }else{
+                                        rt = tr[1]+"("+tr[0]+")"
+                                    }
+                                }
+                                console.log(rt)
+                                ret2x[mx[k]] = eval(rt)
+                                _productSearchItemTempl = _productSearchItemTempl.replace(mx[k],ret2x[mx[k]]==null?'':ret2x[mx[k]])
+                            } 
+                             
+                            var ll = $(_productSearchItemTempl)
+                            ll.hover(function(){
+                                $(this).addClass('active')
+                            },function(){
+                                $(this).removeClass('active')
+                            })
+                            
+                            ll.click(function(e){
+                                var ii = $(this).attr('index')
+                                var ob = h[ii]
+                                console.log(ob)
+                                addProductInvoice(ob)
+                                $(this).parent().parent().addClass('ng-hide')
+                                doReCount()
+                            })
+                            
+                            if(e.which==13){
+                                ll.click()
+                                //cp.addClass('ng-hide')
+                                break
+                            }
+                            
+                            cp.find('ul').append(ll)
+                        }
+                        
+                        cp.find('ul').unbind('hover')
+                        cp.find('ul').hover(function(){
+                            
+                        },function(){
+                            $(this).parent().addClass('ng-hide')
+                        })
+                        
+                        cp.find('.autoNotFound').addClass('ng-hide')
+                        cp.find('ul').removeClass('ng-hide')
+                    }else{
+                        cp.find('ul').addClass('ng-hide')
+                        cp.find('.autoNotFound').removeClass('ng-hide')
+                    }
+                }
+            })
+            
+             $('[ng-click="addByCategory()"]').click(function(e){
+                 
+                    $('.main>.k-window-catWindows').show()
+                     
+                    $('.main>.k-window-catWindows .k-i-close,.main>.k-window-catWindows [ng-click="cancelCategory()"]').unbind('click')
+                    $('.main>.k-window-catWindows .k-i-close,.main>.k-window-catWindows [ng-click="cancelCategory()"]').click(function(e){
+                        $('.main>.k-window-catWindows').hide()
+                         
+                        return false
+                    })
+                     
+                    $('.main>.k-window-catWindows [ng-model="addCatId"]').html('<option value="0" selected="selected">---Lựa chọn---</option>')
+                    var ll0_ = $('<li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope k-state-selected k-state-focused" data-offset-index="0" id="54cedff2-c07f-4d5a-a0ad-d3bc988bfc4a">---Lựa chọn---</li>')
+                    var g1_ = function(e){
+                        var ii = parseInt($(this).attr('data-offset-index'))
+                        //console.log(product_categories[ii])
+                        
+                        if(ii>0){
+                             
+                            $('.main>.k-window-catWindows [ng-model="addCatId"] option').removeAttr('selected')
+                            $('.main>.k-window-catWindows [ng-model="addCatId"] option[value="'+product_categories[ii-1].id+'"]').attr('selected','selected')
+                            $('.main>.k-window-catWindows .k-dropdown .k-input').html(product_categories[ii-1].name)
+                        }else{
+                            $('.main>.k-window-catWindows [ng-model="addCatId"] option').removeAttr('selected')
+                            $('.main>.k-window-catWindows [ng-model="addCatId"] option[value="0"]').attr('selected','selected')
+                            $('.main>.k-window-catWindows .k-dropdown .k-input').html($('.main>.k-window-catWindows [ng-model="addCatId"] option[value="0"]').html())
+                        }
+                        $('.main>.k-animation-container').hide() 
+                    }
+                    ll0_.click(g1_)
+                    $('.main>.k-animation-container ul').html(ll0_)
+                    $('.main>.k-window-catWindows .k-dropdown .k-input').html($('.main>.k-window-catWindows [ng-model="addCatId"] option[value="0"]').html())
+                    for(var i in product_categories){
+                        $('.main>.k-window-catWindows [ng-model="addCatId"]').append('<option value="'+product_categories[i].id+'">'+product_categories[i].name+'</option>')
+                        var ll = $('<li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="'+(parseInt(i)+1)+'">'+product_categories[i].name+'</li>')
+                        ll.hover(function(e){
+                            $(this).addClass('k-state-hover')
+                        },function(e){
+                            $(this).removeClass('k-state-hover')
+                        })
+                        ll.click(g1_)
+                        $('.main>.k-animation-container ul').append(ll)
+                    }
+                    $('.main>.k-window-catWindows .k-dropdown').unbind('click')
+                    $('.main>.k-window-catWindows .k-dropdown').click(function(e){
+                        var that = $(this)
+                        $('.main>.k-animation-container').css({
+                            display: 'block',
+                            top: that.offset().top+that.height(),
+                            left: that.offset().left,
+                        })
+                        
+                        $('.main>.k-animation-container>div').css({
+                            display: 'block',
+                            transform: 'translateY(0px)'
+                        })
+                    })
+                    $('.main>.k-animation-container ul').unbind('hover')
+                    $('.main>.k-animation-container ul').hover(function(e){
+                            
+                    },function(e){
+                        $('.main>.k-animation-container').hide() 
+                    })   
+                    
+                    //$('[ng-model="addCatId"]').val()
+                    $('.main>.k-window-catWindows [ng-click="addProductByCategory()"]').unbind('click')
+                    $('.main>.k-window-catWindows [ng-click="addProductByCategory()"]').click(function(e){
+                         
+                        var x = $('[ng-model="addCatId"]').val()
+                        if(x<=0){
+                            toastr.warning('Bạn chưa chọn nhóm hàng hóa')
+                            return false
+                        }
+                         
+                        for(var i in products){
+                            if(products[i].type==2 && products[i].category==x)
+                                //addInvoiceItem(products[i],purchase,i)
+                                addProductInvoice(products[i])
+                        }
+                        
+                        $('.k-window-catWindows .k-i-close').click()
+                                     
+                        
+                        return false
+                    })
+             })
+             
+             setTitle(loadBranch(cb).name+' - Kiểm kho mới') 
+        })
+        
+        if(!products) loadJsonProducts( );
+         
+        if(!users) 
+            loadJsonUsers(br);
+        else 
+            br();
+            
+        function br(){
+            if(bankaccounts==null){
+                loadJsonBankAccount(loadTableLeft);
+            }else loadTableLeft();
+        }    
+         
+        function loadTableLeft(){
+            
+            console.log('loadTableLeft');
+            
+            tabstrip2()
+            
+            //date
+            $('[kendo-date-time-picker]').datetimepicker({
+                format:'d/m/Y H:i'
+            });
+            $('[kendo-date-time-picker]+span>span').unbind('click')
+            $('[kendo-date-time-picker]+span>span').click(function(){
+                $(this).parent().prev().datetimepicker('show'); //support hide,show and destroy command
+            });
+            
+            //users
+            //$('.kv2Right .k-dropdown:nth(0)')
+            sl = $('.kv2Right .k-dropdown:nth(0) select');
+            sl.html('');
+             
+            for(var i in users){
+                op2 = op;
+                op2 = op2.replace(/\{\{id\}\}/,users[i].id);
+                op2 = op2.replace(/\{\{name\}\}/,users[i].name);
+                sl.append(op2);
+            }
+            $('.kv2Right .k-dropdown:nth(0) .k-dropdown-wrap').unbind('click')
+            $('.kv2Right .k-dropdown:nth(0) .k-dropdown-wrap').click(function(){
+                $(this).next().show();
+            });
+            
+            sl = $('.kv2Right .k-dropdown:nth(0) .k-animation-container ul');
+             
+            sl.html('');
+             
+            for(var j in users){
+                opp2 = opp;
+                opp2 = opp2.replace(/\{\{i\}\}/,parseInt(j)+1);
+                opp2 = opp2.replace(/\{\{name\}\}/,users[j].name);
+                sl.append(opp2);
+            }
+              
+            br22 = users[0];
+            
+            ////$('.kv2Right .k-dropdown:nth(0) .k-dropdown-wrap .k-input').html(br22.name);
+            ////$('.kv2Right .k-dropdown:nth(0) select option[value="'+br22.id+'"]').attr('selected','selected');
+            
+            
+            //set hover
+            $('.kv2Right .k-dropdown:nth(0) .k-animation-container').hover(
+                function(){
+                    //$('.kv2Right .k-dropdown:nth(0) .k-animation-container').show();
+                },
+                function(){
+                    $('.kv2Right .k-dropdown:nth(0) .k-animation-container').hide();
+                }
+            );
+            
+            $('.kv2Right .k-dropdown:nth(0) .k-animation-container ul li').hover(
+                function(){
+                    $(this).toggleClass('k-state-hover');
+                },function(){
+                    $(this).toggleClass('k-state-hover');
+                }
+            );
+            $('.kv2Right .k-dropdown:nth(0) .k-animation-container ul li').unbind('click')
+            //set click
+            $('.kv2Right .k-dropdown:nth(0) .k-animation-container ul li').click(
+                function(){
+                    
+                    //console.log($(this).data('offset-index'));
+                    
+                    offset = parseInt($(this).data('offset-index')); //+1
+                    
+                    $('.kv2Right .k-dropdown:nth(0) select option').removeAttr('selected');                    
+                    $('.kv2Right .k-dropdown:nth(0) select option:nth-child('+offset+')').attr('selected','selected');
+                    
+                    $('.kv2Right .k-dropdown:nth(0) .k-dropdown-wrap .k-input').html($(this).html());
+                     
+                    $('.kv2Right .k-dropdown:nth(0) .k-animation-container').hide();
+                    
+                     
+                    purchase.user = $('.kv2Right .k-dropdown:nth(0) select option:nth-child('+offset+')').attr('value')
+                    saveCachePurchase()
+                    
+                }
+            );
+            var tj
+            if(purchase.user>0){
+                tj = $('.kv2Right .k-dropdown:nth(0) select option[value="'+purchase.user+'"]')                
+            }else{
+                tj = $('.kv2Right .k-dropdown:nth(0) select option:first-child')    
+                purchase.user = $('.kv2Right .k-dropdown:nth(0) select option:first-child').attr('value')     
+                saveCachePurchase()        
+            }
+            tj.attr('selected','selected');
+            $('.kv2Right .k-dropdown:nth(0) .k-dropdown-wrap .k-input').html(tj.html()); 
+            //end user (create)
+            
+             
+            $('[ng-click="saveData(false)"]').unbind('click')
+            //luu tam
+            $('[ng-click="saveData(false)"]').click(f1=function(e){
+                
+                $(this).addClass('kv2BtnGray')
+                $(this).unbind('click')
+                
+                //purchase.status=0
+                saveData(false)
+            })
+            $('[ng-click="saveData(true)"]').unbind('click')
+            //hoan thanh
+            $('[ng-click="saveData(true)"]').click(f2=function(e){
+                
+                $(this).addClass('kv2BtnGray')
+                $(this).unbind('click')
+                
+                //purchase.status=1
+                saveData(true)
+            })
+            $('[ng-click="goBack()"]').unbind('click')
+            //tro ve
+            $('[ng-click="goBack()"]').click(function(e){
+                history.go(-1)
+            })
+            
+            //purchaseDate
+            $('.purchaseorder [k-change="UpdatePurchaseDate"]').val(purchase.date)
+            $('.purchaseorder [k-change="UpdatePurchaseDate"]').change(function(e){
+                purchase.date = $(this).val()
+                saveCachePurchase()
+            })
+            
+            //ghi chu
+            $('.purchaseorder [ng-model="cart.note"]').val(purchase.note)
+            $('.purchaseorder [ng-model="cart.note"]').change(function(e){
+                purchase.note = $(this).val()
+                saveCachePurchase()
+            })
+            
+            //code
+            if(purchase.code)
+                $('.purchaseorder [ng-model="cart.code"]').val(purchase.code)
+            else
+                $('.purchaseorder [ng-model="cart.code"]').val('')
+                
+            $('.purchaseorder [ng-model="cart.code"]').change(function(e){
+                //check cac code cu xem co trung k
+                var that = this
+                $.ajax('ajax.php?action=checkcode',{
+                    data: 'code='+$(this).val(),
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                         //console.log(d)
+                         if(d.error){
+                             toastr.warning('Trùng mã phiếu kiểm')
+                             $(that).val('')
+                             purchase.code = ''
+                             saveCachePurchase()
+                         }else{
+                             purchase.code = $(that).val()
+                             saveCachePurchase()
+                         }
+                    },
+                    error:function(e){
+                        console.log(e)
+                        toastr.warning('Có lỗi xảy ra')
+                        
+                        $(that).val('')
+                         purchase.code = ''
+                         saveCachePurchase()
+                    }
+                })
+                //purchase.code = $(this).val()
+                //saveCachePurchase()
+            })   
+            
+            
+            doReCount()
+        } 
+        
+        function doReCount(){
+            $('li#'+ctab).click() 
+            reCount() 
+        }
+        
+        function saveData(x){
+             
+            //check san pham
+            if(purchase.products.length==0){
+                toastr.warning('Chưa có sản phẩm kiểm')
+                $('[ng-click="saveData('+(x?'true':'false')+')"]').removeClass('kv2BtnGray')
+                $('[ng-click="saveData('+(x?'true':'false')+')"]').click(x?f2:f1)
+                return false
+            }
+            
+            //chi save nhung cai da kiem
+            var z=[]
+            for(var i in purchase.products){
+                if(checkItem(purchase.products[i])!='notControl'){
+                    z.push(purchase.products[i])
+                }
+            }
+            
+            if(z.length==0){
+                toastr.warning('Chưa có sản phẩm kiểm')
+                $('[ng-click="saveData('+(x?'true':'false')+')"]').removeClass('kv2BtnGray')
+                $('[ng-click="saveData('+(x?'true':'false')+')"]').click(x?f2:f1)
+                return false
+            }
+            
+            toastr.info('Chỉ lưu những sản phẩm đã kiểm')
+            
+            //console.log($.extend(purchase,{products:z,branch:cb}))
+            
+            //return false
+             
+            purchase.status = x?1:0
+             
+            $.ajax('ajax.php?action=stocktake',{
+                data: 'data='+JSON.stringify($.extend(purchase,{branch:cb})),
+                method: "POST",
+                dataType: 'json',
+                success: function(d){
+                     //console.log(d)
+                     if(d.error){
+                        alert(d.error)
+                        purchase.status=-1
+                        $('[ng-click="saveData('+(x?'true':'false')+')"]').removeClass('kv2BtnGray')
+                        $('[ng-click="saveData('+(x?'true':'false')+')"]').click(x?f2:f1)
+                     }else{
+                        //deleteCachePurchase( )
+                        purchase = emptyPurchase()
+                        saveCachePurchase()
+                        
+                        
+                        if(x){
+                            
+                            loadJsonProducts( function(){
+                            
+                                //print
+                                
+                                document.location.href='/#/StockTakes/'
+                            })
+                        }else{
+                            document.location.href='/#/StockTakes/'
+                            //loadload()
+                        }
+                            
+                     }
+                },
+                error:function(e){
+                    purchase.status=-1
+                    $('[ng-click="saveData('+(x?'true':'false')+')"]').removeClass('kv2BtnGray')
+                    $('[ng-click="saveData('+(x?'true':'false')+')"]').click(x?f2:f1)
+                }
+            })
+            
+        }
+        
+        function select(li, bo, index){
+            //bg
+            //console.log($(li).position())
+            $(li).parent().siblings().find('a').removeClass('active');
+            $(li).addClass('active');
+            
+            $(li).parents('kv-tabs').find('.tabBg').animate({
+                left: $(li).position().left,
+                width: $(li).parent().width()
+            })
+            
+            $(li).parents('kv-tabs').find('kv-tab-pane>div').addClass('ng-hide');
+            $(li).parents('kv-tabs').find('kv-tab-pane:nth('+index+')>div').removeClass('ng-hide');
+        }
+        
+        $('[data-role="draggable"]').draggable()
+        
+        
+</script> 
+<div class="k-overlay" style="display: none; z-index: 10006; opacity: 0.5;"></div>
+
+
+<div class="k-animation-container" style="width: 366px; height: 170px; margin-left: 0px; padding-left: 0px; padding-right: 0px; padding-bottom: 0px; display: none; box-sizing: content-box; overflow-x: hidden;overflow-y: scroll; position: absolute; top: 306.5px; z-index: 10015; left: 581px;">
+  <div class="k-list-container k-popup k-group k-reset" id="idDropdownlistCat-list" data-role="popup" style="position: absolute; font-size: 13px; font-family: Arial, Helvetica, sans-serif; font-stretch: normal; font-style: normal; font-weight: normal; line-height: normal; width: 364px; height: auto; display: none; transform: translateY(-170px);">
+    <div class="k-group-header" style="display:none"></div>
+    <div class="k-list-scroller" unselectable="on" style="height: auto;">
+      <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" id="idDropdownlistCat_listbox" aria-live="off" data-role="staticlist" role="listbox">
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope k-state-selected k-state-focused" data-offset-index="0" id="54cedff2-c07f-4d5a-a0ad-d3bc988bfc4a">---Lựa chọn---</li>
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="1">BIA &amp; THUỐC LÁ</li>
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="2">CLASSIC COCKTAILS</li>
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="3">MÓN KHAI VỊ</li>
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="4">SÚP</li>
+        <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="5">TEA</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="k-widget k-window k-window-poup k-window-masstel k-window-catWindows kv-window" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 460px; height: 130px; display: none; top: 201px; left: 449px; touch-action: pan-y; z-index: 10005; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Thêm hàng hóa từ nhóm hàng</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div kendo-window="catWindows" k-options="catWindowsOption" k-width="460" k-on-close="focusSearchProduct()" class="ng-scope k-window-content k-content" data-role="window" tabindex="0" style="min-height: 120px;">
+    <div class="form-wrapper form-labels-80">
+      <div class="form-group">
+        <label class="form-label control-label">Nhóm hàng</label>
+        <div class="form-wrap"><span title="" class="k-widget k-dropdown k-header ng-pristine ng-valid ng-not-empty ng-valid-parse ng-touched" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false"
+          aria-busy="false" aria-activedescendant="f2ff90d3-a02d-4756-b768-11cb8f9bd271" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">---Lựa chọn---</span><span unselectable="on"
+          class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+          </span>
+          <select kendo-drop-down-list="dropdownstocktakeCat" k-options="dropdownstocktakeCatOptions" ng-model="addCatId" class="ng-valid ng-not-empty ng-valid-parse ng-pristine ng-touched" data-role="dropdownlist" style="display: none;">
+            <option value="0" selected="selected">---Lựa chọn---</option>
+            <option value="212719">Kẹo bánh</option>
+            <option value="212718">Mỹ phẩm</option>
+            <option value="212717">Nước ngọt</option>
+            <option value="212716">Thuốc lá</option>
+            <option value="212720">Văn phòng phẩm</option>
+          </select>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="kv-window-footer"><a href="" class="kv2Btn ng-binding" ng-click="addProductByCategory()" ng-enter="addProductByCategory()"><i class="fa fa-check-square"></i>Xong</a>
+      <a href="" class="kv2Btn kv2BtnYellow ng-binding" ng-click="cancelCategory()" ng-enter="cancelCategory()"><i class="fa fa-ban"></i>Bỏ qua</a>
+    </div>
+  </div>
+</div>
+

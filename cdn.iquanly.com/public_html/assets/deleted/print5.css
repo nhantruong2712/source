@@ -1,0 +1,28 @@
+table{
+    width: 100%;
+    border-top: dashed 1px black;
+    border-bottom: dashed 1px black;
+}
+
+tr td {
+    text-align: center;
+}
+ 
+tfoot tr td:nth-child(2){
+    text-align: right!important;
+}
+
+.he3{
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
+.fo{
+    font-weight: bold;
+    text-align: center;
+}
+
+.fo>div{
+    float:left;
+    width: 50%;
+}

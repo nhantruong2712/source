@@ -1,0 +1,676 @@
+<style>
+.formBox .boxBtn {
+    margin-top: 0px;
+    margin-bottom: 40px;
+}
+</style>
+<section class="mainLeft fll ng-scope">
+    <kv-branch-filter><article class="boxLeft uln leftStatus hth-hide">
+    <h3 class="leftTitle ng-binding">Tìm kiếm</h3>
+    <aside class="boxLeftC fr">
+        <input ng-change="filterByName()" type="text" class="w99 ng-pristine ng-valid ng-empty ng-touched" ng-model="filterName" placeholder="Theo tên chi nhánh">
+    </aside>
+</article>
+
+<article class="boxLeft uln sortTime sortView">
+    <h3 class="leftTitle ng-binding">Số bản ghi</h3>
+    <aside class="boxLeftC">
+        <aside>
+            <span title="" class="k-widget k-dropdown k-header ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="mainView_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="563a8348-79e7-4261-8465-669f1e303b76" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">10</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select id="mainView" ng-model="pageSize" k-on-change="filterByPageSize()" k-data-source="pageSizes" kendo-drop-down-list="" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" data-role="dropdownlist" style="display: none;"><option value="10">10</option><option value="15">15</option><option value="20" selected="selected">20</option><option value="30">30</option></select></span>
+        </aside>
+    </aside>
+</article>
+</kv-branch-filter>
+<div class="wrap-button-footer"><button kv-mobile="" type="button" class="kv2Btn">Hoàn tất</button></div>
+</section>
+<section class="mainRight ng-scope">
+    <section class="mainWrap fll w100" style="position: relative; top: auto; bottom: auto; width: auto;">
+        <article class="headerContent uln fll w100">
+            <h1><a href="javascript:void(0);" class="mobileIcon" kv-mobile=""></a><span class="ng-binding">Chi nhánh</span></h1>
+            <!--<aside class="flr">
+                <a href="javascript:void(0)" kv-taga-disabled="branches.total()==0" ng-click="export()" class="kv2Btn kv2BtnExport"><i class="kv2BtnIcon kv2Export"></i>{{_l.export}}</a>
+            </aside>-->
+            <aside class="flr">
+                <a href="javascript:void(0)" onclick="redirectToAdd()" class="kv2Btn ng-binding" ng-show="rights.canAdd"><i class="fa fa-plus"></i> Chi nhánh</a>
+                <div id="columnSelection" kv-column-selection="" class="hth-hide columnView k-widget k-reset k-header k-menu k-menu-horizontal" binded-grid="bindedGrid" data-role="menu" tabindex="0" role="menubar"><li class="k-item k-state-default k-first k-last" role="menuitem" aria-haspopup="true"><span class="k-link"><span class="k-icon k-i-arrow-s"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Name"><span></span>Tên chi nhánh</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Address"><span></span>Địa chỉ</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="ContactNumber"><span></span>Điện thoại</label></span></li><li class="k-item k-state-default k-last" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="TotalUser"><span></span>SL người dùng</label></span></li></ul></li></div>
+            </aside>
+
+        </article>
+        <article class="clb k-gridNone k-grid-Scroll">
+            <div id="grdBranchs" kendo-grid="" k-data-source="branches" k-sortable="true" k-resizable="true" k-selectable="true"  kv-grid-expan-row="" k-data-bound="emptyGridFix" k-data-binding="grvdataBinding" data-title="branch_Paging" k-detail-template="detailTemplate" k-detail-init="grvDetailInit" k-detail-expand="grvDetailExpand" data-role="grid" class="k-grid k-widget">
+            <div class="k-grid-header" style="padding-right: 17px;">
+            <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
+            <table role="grid">
+            <colgroup>
+            <col class="k-hierarchy-col"><col><col><col><col></colgroup>
+            <thead role="rowgroup">
+            <tr role="row">
+            <th class="k-hierarchy-cell k-header ng-scope" scope="col">&nbsp;</th>
+            <th scope="col" role="columnheader" data-field="Name" rowspan="1" data-title="Tên chi nhánh" data-index="0" id="e7e15aa7-161b-4807-9721-da9a9abb94b7" class="tdBranch k-header ng-scope" data-role="columnsorter">
+            <a class="k-link" href="javascript:void(0);">Tên chi nhánh</a></th><th scope="col" role="columnheader" data-field="Address" rowspan="1" data-title="Địa chỉ" data-index="1" id="c563cae7-3a18-4aba-a53d-621035a98943" class="tdMin k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Địa chỉ</a></th>
+            
+            <th scope="col" role="columnheader" data-field="ContactNumber" rowspan="1" data-title="Điện thoại" data-index="2" id="8977b66a-0c78-45b4-bdb5-91403756d56a" class="tdCode k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Điện thoại</a></th><th scope="col" role="columnheader" data-field="TotalUser" rowspan="1" data-title="SL người dùng" data-index="3" id="58350a06-6dbd-459e-a375-5d5309a73fa2" class="tdCode txtR k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">SL người dùng</a></th></tr>
+            
+            </thead>
+            </table>
+            </div></div>
+            <div class="k-grid-content k-auto-scrollable">
+            <table role="treegrid" data-role="selectable" class="k-selectable">
+            <colgroup><col class="k-hierarchy-col"><col><col><col><col></colgroup>
+            <tbody role="rowgroup">
+             
+            </tbody></table></div>
+            <div class="paging-box" style="display: block;"><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><a href="javascript:void(0);" title="Trang đầu" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-w">Trang đầu</span></a><a href="javascript:void(0);" title="Trang trước" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-w">Trang trước</span></a><ul class="k-pager-numbers k-reset"><li class="k-current-page"><span class="k-link k-pager-nav">1</span></li><li><span class="k-state-selected">1</span></li></ul><a href="javascript:void(0);" title="Trang sau" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-e">Trang sau</span></a><a href="javascript:void(0);" title="Trang cuối" class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-e">Trang cuối</span></a><span class="k-pager-info k-label">Hiển thị 0 - 0 trên tổng số 0 chi nhánh</span></div></div></div>
+        </article>
+        <div style="display: none">
+        
+        <script type="text/x-kendo-template" id="templUsersInBranch">
+        <tr class="{{dataItem.class}}" data-uid="{{dataItem.class}}" role="row">
+                                <td class="" role="gridcell"><a href="/#/Users?Code={{dataItem.username}}" target="_blank">{{dataItem.name}}</a></td>
+                                <td class="tdBranch" role="gridcell">{{dataItem.username}}</td>
+                                <td class="tdBranch" role="gridcell">{{dataItem.role}}</td>
+                                </tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranch">
+        <tr class="{{dataItem.class}} k-master-row ng-scope" data-uid="{{dataItem.id}}" role="row">
+            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="javascript:void(0);" tabindex="-1"></a></td>
+            <td class="tdBranch" role="gridcell"><span ng-bind="dataItem.name" class="ng-binding">{{dataItem.name}}</span></td>
+            <td class="tdMin" role="gridcell"><span ng-bind="dataItem.address" class="ng-binding">{{dataItem.address}}</span></td>
+            <td class="tdCode" role="gridcell"><span ng-bind="dataItem.phone" class="ng-binding">{{dataItem.phone}}</span></td>
+            <td class="tdCode txtR" role="gridcell"><span ng-bind="dataItem.totaluser" class="ng-binding">{{dataItem.totaluser}}</span></td></tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranchDetail">
+              <tr class="k-detail-row ng-scope">
+            <td class="k-hierarchy-cell"></td>
+            <td class="k-detail-cell" colspan="4">
+                <div class="k-tabstrip-wrapper" style="width: 100%;">
+                <div class="tabstrip k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" data-role="tabstrip" tabindex="0" role="tablist">
+                    <ul class="k-tabstrip-items k-reset">
+                    <li class="k-state-active ng-binding k-item k-tab-on-top k-state-default k-first" role="tab" aria-selected="true" aria-controls="{{dataItem.id}}-1"><span class="k-loading k-complete"></span><span class="k-link">Thông tin</span></li>
+                    <li class="ng-binding k-item k-state-default k-last " role="tab" aria-controls="{{dataItem.id}}-2"><span class="k-loading k-complete"></span><span class="k-link">Người dùng</span></li>
+                    </ul>
+
+                    <div class="k-content k-state-active" id="{{dataItem.id}}-1" role="tabpanel" aria-expanded="true" style="display: block;">
+                        <article class="clb ovh mb20 tblBox">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody><tr>
+                                                <td class="lblCode ng-binding">Tên chi nhánh:</td>
+                                                <td><strong class="ng-binding">{{dataItem.name}}</strong></td>
+                                                <td rowspan="2" class="space"></td>
+                                                <td class="lblStatus ng-binding">Địa chỉ:</td>
+                                                <td class="ng-binding">{{dataItem.address}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ng-binding">Điện thoại:</td>
+                                                <td class="ng-binding">{{dataItem.phone}}</td>
+                                                <td class="ng-binding">Email:</td>
+                                                <td class="ng-binding">{{dataItem.email}}</td>
+                                            </tr>
+                                        </tbody></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="clb boxBtn ovh">
+                            <a href="javascript:void(0);" onclick="updateBranch('{{dataItem.id}}')" class="kv2Btn ng-binding" ng-show="rights.canUpdate"><i class="fa fa-check-square"></i> Cập nhật</a>
+                            <a href="javascript:void(0);" onclick="deleteBranch('{{dataItem.id}}')" class="kv2Btn kv2BtnDel ng-binding" ng-show="rights.canDelete"><i class="fa fa-trash"></i> Xóa</a>
+                        </article>
+                    </div>
+                    <div class="k-content" id="{{dataItem.id}}-2" role="tabpanel" aria-hidden="true" aria-expanded="false">
+
+                        <article class="clb ovh mb20">
+                            <div id="tblsub" data-role="grid" class="k-grid k-widget">
+                                <div class="k-grid-header" style="padding-right: 17px;">
+                                <div class="k-grid-header-wrap k-auto-scrollable">
+                                <table role="grid"><colgroup><col><col><col></colgroup>
+                                <thead role="rowgroup">
+                                <tr role="row">
+                                <th scope="col" role="columnheader" data-field="User.GivenName" rowspan="1" data-title="Người dùng" data-index="0" id="cf798fe7-9ff0-4e4c-b30e-706f8a05f3d6" class="k-header">Người dùng</th>
+                                <th scope="col" role="columnheader" data-field="User.UserName" rowspan="1" data-title="Tên đăng nhập" data-index="1" id="5346baf1-d245-4463-9b71-5dd7aa8f3c27" class="tdBranch k-header">Tên đăng nhập</th>
+                                <th scope="col" role="columnheader" data-field="Role.Name" rowspan="1" data-title="Phân quyền" data-index="2" id="8deac954-c35b-4d31-8d49-3dfbdabca56d" class="tdBranch k-header">Phân quyền</th>
+                                </tr>
+                                 
+                                </thead>
+                                </table>
+                                </div>
+                                </div>
+                                <div class="k-grid-content k-auto-scrollable k-grid-content-ac">
+                                <table role="grid">
+                                <colgroup><col><col><col></colgroup>
+                                <tbody role="rowgroup"> 
+                                <!--{{dataItem.usersHTML}}-->
+                                </tbody></table></div>
+                                
+                                <div class="paging-box" style="display: block;">
+                                <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><a href="javascript:void(0);" title="Go to the first page" class="k-link k-pager-nav k-pager-first " data-page="1" tabindex="-1"><span class="k-icon k-i-seek-w">Go to the first page</span></a><a href="javascript:void(0);" title="Go to the previous page" class="k-link k-pager-nav " data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-w">Go to the previous page</span></a><ul class="k-pager-numbers k-reset"><li class="k-current-page"><span class="k-link k-pager-nav">1</span></li><li><span class="k-state-selected">1</span></li></ul><a href="javascript:void(0);" title="Go to the next page" class="k-link k-pager-nav " data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-e">Go to the next page</span></a><a href="javascript:void(0);" title="Go to the last page" class="k-link k-pager-nav k-pager-last " data-page="1" tabindex="-1"><span class="k-icon k-i-seek-e">Go to the last page</span></a><span class="k-pager-info k-label">Hiển thị 1 - 1 trên tổng số 1 </span></div></div></div>
+                        </article>
+
+                        <article class="clb boxBtn ovh"></article>
+                    </div>
+                </div></div>
+
+
+            </td></tr>
+
+
+            </script>
+            <kv-branch-form style="display:none;" form-name="branchForm" kv-width="680" class="ng-isolate-scope" title="Chi nhánh">
+<section class="addCustomer showAnimate uln  fll w100 lbl-cl control-poup">
+    <section class="boxInfo">
+        <article class="boxForm uln ovh">
+            <h3 class="ng-binding">Thông tin</h3>
+
+            <ul class="formBox ovh fr">
+                <li>
+                    <label class="lbl-tcn">
+                        <span class="titleFr ng-binding">Tên chi nhánh <font color="red">*</font></span>
+                        <input type="text" class="iptBranch ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-model="Branch.name" maxlength="28" />
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Điện thoại</span>
+                        <input type="text" class="iptPhone ng-pristine ng-untouched ng-valid ng-empty" ng-model="Branch.phone" />
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Email</span>
+                        <input type="text" class="iptEmail ng-pristine ng-untouched ng-valid ng-empty" ng-model="Branch.email" />
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Địa chỉ</span>
+                        <input type="text" class="iptAddress ng-pristine ng-untouched ng-valid ng-empty" ng-model="Branch.address" />
+                        <input type="hidden" ng-model="Branch.id" />
+                    </label>
+                </li>
+                <li class=" boxBtn txtL clb"><!--ovh -->
+                    <span class="titleFr">&nbsp;</span>
+                    <a href="javascript:void(0);" class="kv2Btn ng-binding" onclick="saveBranch()" ng-disabled="locked"><i class="fa fa-floppy-o"></i>Lưu</a>
+                    <a href="javascript:void(0);" class="kv2Btn txtN kv2BtnYellow ng-binding" onclick="cancel()" ng-disabled="locked"><i class="fa fa-ban"></i>Bỏ qua</a>
+                </li>
+            </ul>
+        </article>
+    </section>
+</section>
+<script type="text/x-angular-template" id="userSearchItemTempl">
+    <li suggestion ng-repeat="suggestion in suggestions track by $index"
+        index="{{$index}}" val="{{suggestion.Name}}" ng-class="{active:($index == selectedIndex)}" ng-click="itemClicked(suggestion)">
+        <p>{{suggestion.GivenName}}</p>
+        {{suggestion.Id}}
+    </li>
+</script>
+</kv-branch-form>
+        </div>
+    </section>
+</section>
+
+
+    <script>
+        cpage=0
+        $(document).ready(function(){
+            if(!users) loadJsonUsers(br);
+            else br();    
+        })
+        
+        
+        function br(){
+            //if(!branches) 
+            loadJsonBranches(loadBranches);
+            //else loadBranches();
+        }
+        
+        function loadUsersInBranch(coo){
+            uid = $('tr.k-detail-row:visible').prev().data('uid')
+            if(!uid) return
+                
+            cpid = parseInt($('tr.k-detail-row:visible span.k-state-selected').html())
+            if(isNaN(cpid) || cpid<=0) cpid=1
+            
+            tpage = Math.ceil(b.users.length/record);
+            
+            //first,prev,next,last
+            switch(coo){
+                case "first":
+                    cpid=1
+                break;
+                
+                case "prev":
+                    cpid-=1
+                    if(cpid<1) cpid=1
+                break;
+                
+                case "next":
+                    cpid-=-1
+                    if(cpid>tpage) cpid=tpage
+                break;
+                
+                case "last":
+                    cpid=tpage
+                break;
+            }
+            $('tr.k-detail-row:visible span.k-state-selected').html(cpid)
+            
+            b = loadObject(uid,branches)
+            
+            ttbb = $('tr.k-detail-row:visible [id$="-2"] .k-grid-content table tbody')
+            ttbb2 = $('tr.k-detail-row:visible [id$="-2"] span.k-pager-info')
+            
+            loadBU()
+            
+            
+        }
+        
+        function loadBU( ){
+            
+            if(branches[0].users == undefined){
+                for(var i in branches) 
+                    branches[i].users = _loadU(i)
+            }
+                        
+            ttbb.html('')
+                         
+            for(var jj in b.users){
+                
+                if(jj<(cpid-1)*record || jj >= cpid*record)
+                    continue
+                
+                jj2 = b.users[jj];
+                templUsersInBranch2 = templUsersInBranch;
+                
+                for(var jjj in jj2){
+                    if(jjj=='permission'){
+                        templUsersInBranch2 = templUsersInBranch2.replace(new RegExp("{{dataItem.role}}","gi"),jj2.id==1?'Quản trị tối cao':loadObject(jj2[jjj],user_roles).name);//roles[jj2[jjj]]
+                    }else
+                        templUsersInBranch2 = templUsersInBranch2.replace(new RegExp("{{dataItem."+jjj+"}}","gi"),jj2[jjj]);
+                }
+                
+                templUsersInBranch2 = templUsersInBranch2.replace(new RegExp("{{dataItem.class}}","gi"),jj%2==1?'k-alt':'');
+                
+                ttbb.append(templUsersInBranch2)
+            }
+            
+             
+            ttbb2.html(
+                "Hiển thị "+(record*(cpid-1)+1)+" - "+Math.min(b.users.length,record*cpid)+" trên tổng số "+b.users.length
+            )
+            
+        }
+        
+        function _loadU(i){
+            branches[i].users = [];
+            //load users
+            for(var i2 in users){
+                i3 = users[i2].permissions;
+                for(var j2 in i3){
+                    i4 = i3[j2];
+                    if(i4.branch == branches[i].id){
+                        branches[i].users.push({
+                            id: users[i2].id,//i4.id,
+                            permission: i4.permission, 
+                            name:users[i2].name, 
+                            username:users[i2].username
+                        });
+                    }
+                }
+            } //alert(branches[i].users)
+            
+            //saveBranches(branches);
+            
+            return branches[i].users;
+        }
+         
+        function loadBranches(){
+            
+            console.log('loadBranches');
+            
+            if(branches==null || !vkl){
+                setTimeout(function(){loadBranches()},500)
+                return
+            }
+            
+            templBranch = $('#templBranch').html();
+            $('#grdBranchs>.k-grid-content>table>tbody').html('');
+            
+            var countTableForGroup=0;
+            
+            for(var i in branches){
+                
+                if(branches[i].users == undefined)
+                    branches[i].users = _loadU(i)
+                //alert('a') 
+                
+                //alert(vkl['admin']) 
+                //alert(create) 
+                //alert(loadObject(create,branches[i].users)) 
+                
+                if(vkl['admin']==undefined){
+                    if(!loadObject(create,branches[i].users)) continue;
+                } 
+                
+                countTableForGroup++
+                
+                /////
+                if(countTableForGroup<=cpage*record || countTableForGroup > (cpage+1)*record)
+                    continue
+                /////
+                
+                templBranch2 = templBranch;
+                /*if(i%2==1) branches[i].class = 'k-alt';
+                else branches[i].class = '';*/
+                if(countTableForGroup%2==0) branches[i].class = 'k-alt';
+                else branches[i].class = '';
+                
+                branches[i].totaluser = branches[i].users.length;
+                
+                for(var j in branches[i]){
+                    templBranch2 = templBranch2.replace(new RegExp("{{dataItem."+j+"}}","gi"),branches[i][j]);
+                }
+                
+                
+                $('#grdBranchs>.k-grid-content>table>tbody').append(templBranch2);
+            }
+            
+            templBranchDetail = $('#templBranchDetail').html();
+            templUsersInBranch = $('#templUsersInBranch').html();
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>td:not(:first-child)').unbind('click')
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>td:not(:first-child)').click(function(){
+                $(this).parent().find('>.k-hierarchy-cell>.k-icon').trigger('click');
+            });
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>.k-hierarchy-cell>.k-icon').unbind('click')
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>.k-hierarchy-cell>.k-icon').click(function(){
+                fixedfixed()
+                templBranchDetail2 = templBranchDetail;
+                n2= $(this).parent().parent();
+                n = n2.next();
+                //console.log(n);
+                
+                if($(this).hasClass('k-plus')){
+                    //an het detail
+                    $(this).parent().parent().siblings('.k-detail-row').hide();
+                    //thay doi icon
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').removeClass('k-minus');
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').addClass('k-plus');
+                    
+                    if(n.hasClass('k-detail-row')){
+                        n.show();
+                    }else{
+                        //prepare content
+                        //find uid
+                        uid = n2.attr('data-uid');
+                        b = loadBranch(uid);
+                        
+                        for(var j in b){
+                            templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem."+j+"}}","gi"),b[j]);
+                        }
+                        
+                        /*templUsersInBranch3 = '';
+                         
+                        for(var jj in b.users){
+                            jj2 = b.users[jj];
+                            templUsersInBranch2 = templUsersInBranch;
+                            
+                            for(var jjj in jj2){
+                                if(jjj=='permission'){
+                                    templUsersInBranch2 = templUsersInBranch2.replace(new RegExp("{{dataItem.role}}","gi"),jj2.id==1?'Quản trị tối cao':loadObject(jj2[jjj],user_roles).name);//roles[jj2[jjj]]
+                                }else
+                                    templUsersInBranch2 = templUsersInBranch2.replace(new RegExp("{{dataItem."+jjj+"}}","gi"),jj2[jjj]);
+                            }
+                            
+                            templUsersInBranch2 = templUsersInBranch2.replace(new RegExp("{{dataItem.class}}","gi"),jj%2==1?'k-alt':'');
+                            
+                            templUsersInBranch3 += templUsersInBranch2;
+                        }
+                        templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem.usersHTML}}","gi"),templUsersInBranch3);
+                        
+                        templBranchDetail2 = $(templBranchDetail2)
+                        */
+                        
+                        templBranchDetail2 = $(templBranchDetail2)
+                        
+                        cpid = 1
+                        
+                        ttbb = templBranchDetail2.find('[id$="-2"] .k-grid-content table tbody')
+                        ttbb2 = templBranchDetail2.find('[id$="-2"] span.k-pager-info')
+                        
+                        loadBU()
+                        
+                        templBranchDetail2.find('[id$="-2"] .paging-box a:nth(0)').unbind('click')
+                        //first page click
+                        templBranchDetail2.find('[id$="-2"] .paging-box a:nth(0)').click(function(){                             
+                            loadUsersInBranch('first');
+                        }); templBranchDetail2.find('[id$="-2"] .paging-box a:nth(1)').unbind('click')
+                        templBranchDetail2.find('[id$="-2"] .paging-box a:nth(1)').click(function(){
+                             
+                            loadUsersInBranch('prev');
+                             
+                        }); templBranchDetail2.find('[id$="-2"] .paging-box a:nth(2)').unbind('click')
+                        templBranchDetail2.find('[id$="-2"] .paging-box a:nth(2)').click(function(){
+                             
+                            loadUsersInBranch('next');
+                             
+                        }); templBranchDetail2.find('[id$="-2"] .paging-box a:nth(3)').unbind('click')
+                        templBranchDetail2.find('[id$="-2"] .paging-box a:nth(3)').click(function(){
+                             
+                            loadUsersInBranch('last');
+                        });
+                        
+                        if(vkl['1.2.3']==undefined){
+                            templBranchDetail2.find('[ng-show="rights.canUpdate"]').addClass('ng-hide')   
+                        }
+                        if(vkl['1.2.4']==undefined || b.id==1){
+                            templBranchDetail2.find('[ng-show="rights.canDelete"]').addClass('ng-hide')   
+                        }
+                        
+                        //ins
+                        //$(templBranchDetail2).insertAfter(n2);
+                        n2.after(templBranchDetail2);
+                        tabstrip();
+                    }
+                     
+                    $(this).removeClass('k-plus');
+                    $(this).addClass('k-minus');
+                }else{
+                    
+                    n.hide();
+                    
+                    $(this).addClass('k-plus');
+                    $(this).removeClass('k-minus');
+                }
+            })
+            
+            if(countTableForGroup==1){
+                $('#grdBranchs>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>.k-hierarchy-cell>.k-icon:nth(0)').click()
+            }
+            
+            if(vkl['1.2.1']==undefined){
+                $('#grdBranchs').addClass('ng-hide')
+            }
+            
+            if(vkl['1.2.2']==undefined){
+                $('[ng-show="rights.canAdd"]').addClass('ng-hide')
+            }
+            
+            
+            tpage = Math.ceil(countTableForGroup/record);
+            
+            $('#grdBranchs > .paging-box .k-label').html("Hiển thị "+((cpage)*record+1)+" - "+Math.min(countTableForGroup,(cpage+1)*record)+" trên tổng số "+countTableForGroup+" chi nhánh");
+            
+            $('#grdBranchs > .paging-box a').removeClass('k-state-disabled');
+            
+            if(cpage==0){
+                $('#grdBranchs > .paging-box a:nth(0)').addClass('k-state-disabled');
+                $('#grdBranchs > .paging-box a:nth(1)').addClass('k-state-disabled');
+            } 
+            
+            if(cpage==tpage-1){
+                $('#grdBranchs > .paging-box a:nth(2)').addClass('k-state-disabled');
+                $('#grdBranchs > .paging-box a:nth(3)').addClass('k-state-disabled');
+            } 
+            
+            $('#grdBranchs > .paging-box .k-state-selected, #grdBranchs > .paging-box .k-current-page span').html(cpage+1);
+            $('#grdBranchs > .paging-box a:nth(0)').unbind('click')
+            //first page click
+            $('#grdBranchs > .paging-box a:nth(0)').click(function(){
+                cpage = 0;
+                loadBranches();
+            }); $('#grdBranchs > .paging-box a:nth(1)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(1)').click(function(){
+                cpage -= 1;
+                if(cpage>=0)
+                loadBranches();
+                else cpage=0
+            }); $('#grdBranchs > .paging-box a:nth(2)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(2)').click(function(){
+                cpage += 1;
+                if(cpage<tpage)
+                loadBranches();
+                else
+                cpage = tpage-1
+            }); $('#grdBranchs > .paging-box a:nth(3)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(3)').click(function(){
+                cpage = tpage-1;
+                loadBranches();
+            });
+        }
+         
+         
+        var doo = '';
+        
+        function redirectToAdd(){
+            doo = 'add';
+            
+            //reset empty form
+            
+            $('kv-branch-form [ng-model]').val('');
+             
+            $('kv-branch-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 680),
+                 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                }
+            });
+        }
+        
+        function updateBranch(pid){
+            doo = 'edit';
+            
+            //set value field
+            branch = loadBranch(pid);
+            
+            $('kv-branch-form [ng-model]').each(function(k,v){
+                 $(this).val(branch[getname($(this).attr('ng-model'))]);
+            });
+            
+            $('kv-branch-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 680),
+                 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                }
+            });
+        }
+        
+        function cancel(){
+            $('kv-branch-form').dialog('close');
+        }
+        
+        function saveBranch(){
+            
+            if(doo == 'add'){
+            
+                s = _serialize('kv-branch-form',[0]);
+                if(s){
+                    $.ajax('ajax.php?action=branch',{
+                        data: s,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                cancel();
+                                loadJsonBranches(loadBranches);
+                                
+                             
+                            }else{
+                                 
+                            } 
+                        }
+                    })
+                }else{
+                     
+                    toastr["error"]("Điền tên Chi nhánh")
+                }
+            
+            }else if(doo == "edit"){
+                s = _serialize('kv-branch-form',[0]);
+                
+                if(s){
+                    $.ajax('ajax.php?action=branch',{
+                        data: s,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                cancel();
+                                loadJsonBranches(loadBranches);
+                                
+                             
+                            }else{
+                                 
+                            } 
+                        }
+                    })
+                }else{
+                    toastr["error"]("Điền tên Chi nhánh")
+                     
+                }
+            }
+        }
+        
+        function deleteBranch(pid){
+            if(pid==cb){
+                toastr.warning('Bạn không thể xóa chi nhánh bạn đang dùng, hãy chuyển sang chi nhánh khác trước')
+                return
+            }
+            if(pid==1){
+                toastr.warning('Bạn không thể xóa chi nhánh mặc định này')
+                return
+            }
+            if(confirm('Bạn có chắc chắn xóa chi nhánh này?')){
+                $.ajax('ajax.php?action=deletebranch',{
+                    data: 'id='+pid,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            
+                             
+                            loadJsonBranches(loadBranches);
+                            
+                         
+                        }else{
+                             
+                        } 
+                    }
+                })
+            }
+        }
+        
+        setTitle(loadBranch(cb).name+' - Chi nhánh')
+         
+    </script>
+

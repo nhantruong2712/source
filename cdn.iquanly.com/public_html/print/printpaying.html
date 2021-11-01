@@ -1,0 +1,49 @@
+<!-- print1 -->
+<div id="printpaying" style="display: none;">
+<div class="he">
+    <div>{{ten_cua_hang}}</div>
+    <div>Chi nhánh: <span>{{ten_chi_nhanh}}</span></div>
+    <div>Điện thoại: <span>{{dien_thoai_chi_nhanh}}</span></div>
+</div>
+<hr />
+<style>
+.he3>div>label{
+    width: 150px;
+    display: inline-block;
+} 
+
+.he3{
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
+.fo{
+    font-weight: bold;
+    text-align: center;
+}
+
+.fo>div{
+    float:left;
+    width: 33%;
+}
+</style> 
+<center>
+    <div class="he1">PHIẾU CHI</div>
+    <div class="he2">Mã phiếu chi: {{ma_hoa_don}}</div>
+    <div class="hd">Ngày: {{ngay_ban}}</div>
+</center>
+<div class="he3">
+<div><label>Họ tên người nhận tiền:</label> <span>{{ten_khach_hang}}</span></div>
+<div><label>Địa chỉ:</label> <span>{{dia_chi_khach_hang}}</span></div>
+<div><label>Điện thoại:</label> <span>{{dien_thoai_khach_hang}}</span></div>
+<div><label>Lý do:</label> <span>{{ghi_chu}}</span></div>
+</div>
+<div class="he3">
+     
+    <div>Số tiền: <span>{{so_tien}}</span></div>
+    <div>Bằng chữ: <span>{{bang_chu}}</span></div>
+</div>  
+ 
+<div class="fo"><div>Người lập phiếu</div><div>Người nhận</div><div>Thủ quỹ</div></div>
+</div>
+ 

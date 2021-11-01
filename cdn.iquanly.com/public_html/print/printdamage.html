@@ -1,0 +1,78 @@
+<!-- print1 -->
+<div id="printdamage" style="display: none;">
+<div class="he">
+    <div>{{ten_cua_hang}}</div>
+    <div>Chi nhánh: <span>{{ten_chi_nhanh}}</span></div>
+    <div>Ðiện thoại: <span>{{dien_thoai_chi_nhanh}}</span></div>
+</div>
+<hr />
+<div class="hd">
+Ngày xuất hủy: <span>{{ngay_ban}}</span>
+</div>
+<center>
+    <div class="he1">PHIẾU XUẤT HỦY</div>
+    <div class="he2">{{ma_hoa_don}}</div>
+</center>
+<style>
+table.print10{
+    width: 100%;
+    border-top: dashed 1px black;
+    border-bottom: dashed 1px black;
+}
+
+.print10 tr td {
+    text-align: center;
+}
+ 
+.print10 tfoot tr td:nth-child(2){
+    text-align: right!important;
+}
+
+.he3{
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
+.fo{
+    font-weight: bold;
+    text-align: center;
+}
+
+.fo>div{
+    float:left;
+    width: 50%;
+}
+</style> 
+<div class="he3">Người xuất hủy: <span>{{nguoi_ban}}</span></div>
+<table class="print10">
+<thead>
+<th>STT</th>
+<th>Mã hàng</th>
+<th>Tên hàng</th>
+<th>Giá vốn</th>
+ 
+<th>SL</th>
+<th>Giá trị hủy</th>  
+<th>Ghi chú</th>  
+</thead>
+<tbody>
+<tr>
+<td>{{stt}}</td>
+<td>{{ma_hang_hoa}}</td>
+<td>{{ten_hang_hoa}}</td>
+<td>{{gia_hang_hoa}}</td>
+ 
+<td>{{so_luong}}</td>
+<td>{{tong_tien}}</td>
+<td>{{ghi_chu_hang_hoa}}</td>
+</tr>
+<tr>
+</tbody>
+<tfoot></tfoot>
+</table>
+<div class="nt">
+Ghi chú: <span>{{ghi_chu}}</span>
+</div>
+<div class="fo"><div>&nbsp;</div><div>Người lập</div></div>
+</div>
+ 

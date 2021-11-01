@@ -1,0 +1,1851 @@
+<section class="mainLeft fll ng-scope">
+    <article class="boxLeft uln leftStatus ">
+        <h3 class="leftTitle ng-binding">Tìm kiếm</h3>
+        <aside class="boxLeftC fr">
+            <input ng-change="filterByUserName()" type="text" class="w99 ng-valid ng-touched ng-dirty ng-valid-parse ng-empty" ng-model="filters.Username" placeholder="Theo tên ĐN, người dùng">
+        </aside>
+    </article>
+    <article class="boxLeft uln sortBranch hth-hide" ng-show="branches.Data.length>1">
+        <h3 class="leftTitle ng-binding">Chi nhánh</h3>
+        <aside class="boxLeftC">
+            <div class="k-widget k-multiselect k-header ng-valid ng-valid-parse ng-touched ng-dirty ng-empty" unselectable="on" title="" style=""><div class="k-multiselect-wrap k-floatwrap" unselectable="on"><ul role="listbox" unselectable="on" class="k-reset" id="sortBranch_taglist"></ul><input class="k-input" style="width: 25px;" accesskey="" autocomplete="off" role="listbox" aria-expanded="false" tabindex="0" aria-owns="sortBranch_taglist sortBranch_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="34e3f824-2a42-49ac-9738-b5ed7e76339e"><span class="k-icon k-loading k-loading-hidden"></span></div><select k-data-source="branches.Data" ng-model="filters.branchids" data-placeholder="_l.lblBranchFilterHolder" k-data-text-field="'Name'" k-data-value-field="'Id'" ng-change="filterbyBranch()" id="sortBranch" multiple="multiple" kendo-multi-select="" class="ng-valid ng-valid-parse ng-touched ng-dirty ng-empty" data-role="multiselect" aria-disabled="false" aria-readonly="false" style="display: none;"><option value="120328">1</option><option value="119358">Chi nhánh trung tâm</option></select><span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-stretch: normal; font-style: normal; font-weight: normal; letter-spacing: normal; text-transform: none; line-height: 15.72px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;"></span></div>
+        </aside>
+    </article>
+
+    <article class="boxLeft uln sortBranch hth-hide">
+        <h3 class="leftTitle ng-binding">Phân quyền</h3>
+        <aside class="boxLeftC">
+            <div class="k-widget k-multiselect k-header ng-valid ng-valid-parse ng-touched ng-dirty ng-empty" unselectable="on" title="" style=""><div class="k-multiselect-wrap k-floatwrap" unselectable="on"><ul role="listbox" unselectable="on" class="k-reset"></ul><input class="k-input k-readonly" style="width: 131px;" accesskey="" autocomplete="off" role="listbox" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="06ef08c3-1450-4293-a44d-4cee9488fe22"><span class="k-icon k-loading k-loading-hidden"></span></div><select k-data-source="roles" ng-model="filters.roleIds" data-placeholder="_l.lblPrivilegesFilterHolder" k-data-text-field="'Name'" k-data-value-field="'Id'" ng-change="filterbyBranch()" multiple="multiple" kendo-multi-select="" class="ng-valid ng-valid-parse ng-touched ng-dirty ng-empty" data-role="multiselect" aria-disabled="false" aria-readonly="false" style="display: none;"><option value="299246">Quản trị chi nhánh</option><option value="299247">Nhân viên kho</option><option value="299248">Nhân viên thu ngân</option></select><span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-stretch: normal; font-style: normal; font-weight: normal; letter-spacing: normal; text-transform: none; line-height: 15.72px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn phân quyền...</span></div>
+        </aside>
+    </article>
+    <article class="boxLeft uln leftStatus">
+    <h3 class="leftTitle cursor ng-binding" ng-click="showStatus = !showStatus">Trạng thái <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+    <aside class="boxLeftC" ng-hide="showStatus">
+    <ul class="pretty-radio-mobile">
+    <li class="has-pretty-child"><div class="clearfix prettyradio labelright  blue"><input type="radio" kv-pretty-check="" name="StatusRadio" value="0" kv-data-label="_l.product_all" ng-model="statusFilter" kv-change="filterbyStatus" class="ng-untouched ng-valid ng-isolate-scope ng-not-empty ng-dirty ng-valid-parse" data-label="Tất cả" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+<label for="undefined" class="checked">Tất cả</label></div></li>
+    <li class="has-pretty-child"><div class="clearfix prettyradio labelright  blue"><input type="radio" kv-pretty-check="" name="StatusRadio" value="1" kv-data-label="_l.user_Active" ng-model="statusFilter" kv-change="filterbyStatus" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Đang hoạt động" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Đang hoạt động</label></div></li>
+    <li class="has-pretty-child"><div class="clearfix prettyradio labelright  blue"><input type="radio" kv-pretty-check="" name="StatusRadio" value="2" kv-data-label="_l.user_unActive" ng-model="statusFilter" kv-change="filterbyStatus" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Ngừng hoạt động" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Ngừng hoạt động</label></div></li></ul></aside>
+    </article>
+    <div class="wrap-button-footer"><button kv-mobile="" type="button" class="kv2Btn">Hoàn tất</button></div>
+</section>
+<section class="mainRight ng-scope">
+    <section class="mainWrap fll w100" style="position: relative; top: auto; bottom: auto; width: auto;">
+        <article class="headerContent uln fll w100">
+            <h1><a href="javascript:void(0);" class="mobileIcon" kv-mobile=""></a><span class="ng-binding">Người dùng</span></h1>
+            
+            <aside class="flr">
+                <a href="javascript:void(0)" onclick="redirectToAdd()" class="kv2Btn ng-binding" ng-show="rights.canAdd"><i class="fa fa-plus"></i> Người dùng</a>
+                <div id="columnSelection" kv-column-selection="" class="columnView k-widget k-reset k-header k-menu k-menu-horizontal hth-hide" binded-grid="bindedGrid" data-role="menu" tabindex="0" role="menubar"><li class="k-item k-state-default k-first k-last" role="menuitem" aria-haspopup="true"><span class="k-link"><span class="k-icon k-i-arrow-s"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Name"><span></span>Tên chi nhánh</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Address"><span></span>Địa chỉ</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="ContactNumber"><span></span>Điện thoại</label></span></li><li class="k-item k-state-default k-last" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="TotalUser"><span></span>SL người dùng</label></span></li></ul></li></div>
+            </aside>
+
+        </article>
+        <article class="clb k-gridNone k-grid-Scroll">
+            <div id="grdBranchs" kendo-grid="" k-data-source="branches" k-sortable="true" k-resizable="true" k-selectable="true"  kv-grid-expan-row="" k-data-bound="emptyGridFix" k-data-binding="grvdataBinding" data-title="branch_Paging" k-detail-template="detailTemplate" k-detail-init="grvDetailInit" k-detail-expand="grvDetailExpand" data-role="grid" class="k-grid k-widget">
+            <div class="k-grid-header" style="padding-right: 17px;">
+            <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
+            <table role="grid">
+            <colgroup>
+            <col class="k-hierarchy-col"><col><col><col></colgroup>
+            <thead role="rowgroup">
+            <tr role="row">
+            <th class="k-hierarchy-cell k-header ng-scope" scope="col">&nbsp;</th>
+            <th scope="col" role="columnheader" data-field="Name" rowspan="1" data-title="Tên đăng nhập" data-index="0" id="e7e15aa7-161b-4807-9721-da9a9abb94b7" class="tdBranch k-header ng-scope" data-role="columnsorter">
+            <a class="k-link" href="javascript:void(0);">Tên đăng nhập</a></th>
+            
+            <th scope="col" role="columnheader" data-field="GivenName" rowspan="1" data-title="Tên người dùng" data-index="1" id="8d11c42e-bff4-4085-b358-f05cbc393aec" class="k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Tên người dùng</a></th>
+            
+            <th scope="col" role="columnheader" data-field="MobilePhone" rowspan="1" data-title="Điện thoại" data-index="2" id="036dacc8-a9d4-4da7-b01d-a2c57cef639a" class="tdPhone k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Điện thoại</a></th>
+            <th scope="col" role="columnheader" data-field="Status" rowspan="1" data-title="Trạng thái" data-index="2" id="036dacc8-a9d4-4da7-b01d-a2c57cef639a" class="tdStatusST k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Trạng thái</a></th>
+            </tr>
+            
+            </thead>
+            </table>
+            </div></div>
+            <div class="k-grid-content k-auto-scrollable">
+            <table role="treegrid" data-role="selectable" class="k-selectable">
+            <colgroup><col class="k-hierarchy-col"><col><col><col></colgroup>
+            <tbody role="rowgroup">
+             
+            </tbody></table></div>
+            <div class="paging-box" style="display: block;"><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><a href="javascript:void(0);" title="Trang đầu" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-w">Trang đầu</span></a><a href="javascript:void(0);" title="Trang trước" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-w">Trang trước</span></a><ul class="k-pager-numbers k-reset"><li class="k-current-page"><span class="k-link k-pager-nav">1</span></li><li><span class="k-state-selected">1</span></li></ul><a href="javascript:void(0);" title="Trang sau" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-e">Trang sau</span></a><a href="javascript:void(0);" title="Trang cuối" class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-e">Trang cuối</span></a><span class="k-pager-info k-label">Hiển thị 1 - 2 trên tổng số 2 người dùng</span></div></div></div>
+        </article>
+        <div style="display: none">
+        
+        
+        <script type="text/x-kendo-template" id="templBranch">
+        <tr class="{{dataItem.class}} k-master-row ng-scope" data-uid="{{dataItem.id}}" role="row">
+            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="javascript:void(0);" tabindex="-1"></a></td>
+            <td class="tdBranch" role="gridcell"><span ng-bind="dataItem.username" class="ng-binding">{{dataItem.username}}</span></td>
+            <td class="" role="gridcell"><span ng-bind="dataItem.name" class="ng-binding">{{dataItem.name}}</span></td> 
+            <td class="tdPhone" role="gridcell"><span ng-bind="dataItem.phone" class="ng-binding">{{dataItem.phone}}</span></td>
+            <td class="tdStatusST" role="gridcell"><span ng-bind="dataItem.status" class="ng-binding">{{dataItem.status}}</span></td>
+             </tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranchDetail">
+              <tr class="k-detail-row ng-scope"><td class="k-hierarchy-cell"></td><td class="k-detail-cell" colspan="4">
+        <div class="k-tabstrip-wrapper" style="width: 100%;"><div class="tabstrip k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" data-role="tabstrip" tabindex="0" role="tablist">
+            <ul class="k-tabstrip-items k-reset"><li class="k-state-active ng-binding k-item k-tab-on-top k-state-default k-first" role="tab" aria-selected="true" aria-controls="{{dataItem.id}}-1"><span class="k-loading k-complete"></span><span class="k-link">Thông tin</span></li><li class="ng-binding k-item k-state-default k-last" role="tab" aria-controls="{{dataItem.id}}-2"><span class="k-loading k-complete"></span><span class="k-link">Phân quyền</span></li></ul>
+            <div class="k-content k-state-active" id="{{dataItem.id}}-1" role="tabpanel" aria-expanded="true" style="display: block;">
+                <article class="clb ovh mb20 tblBox">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody><tr>
+                                        <td class="lblCode ng-binding">Tên đăng nhập:</td>
+                                        <td><strong class="ng-binding">{{dataItem.username}}</strong></td>
+                                        <td rowspan="3" class="space"></td>
+                                        <td class="lblStatus ng-binding">Email:</td>
+                                        <td class="ng-binding">{{dataItem.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ng-binding">Tên người dùng:</td>
+                                        <td><strong class="ng-binding">{{dataItem.name}}</strong></td>
+                                        <td class="ng-binding">Điện thoại:</td>
+                                        <td class="ng-binding">{{dataItem.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ng-binding">Ngày sinh</td>
+                                        <td class="ng-binding">{{dataItem.birthday}}</td>
+                                        <td class="ng-binding">Địa chỉ:</td>
+                                        <td class="ng-binding">{{dataItem.address}}</td>
+                                    </tr>
+                                </tbody></table>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="clb boxBtn ovh">
+                    
+                    <a onclick="editUser('{{dataItem.id}}')" class="kv2Btn ng-binding" ng-show="canUpdate &amp;&amp; !dataItem.IsAdmin" kv-btn-scroll=""><i class="fa fa-check-square"></i> Cập nhật</a>
+                    <a onclick="activeUser('{{dataItem.id}}')" class="kv2Btn kv2BtnDel" ng-show="canUpdate &amp;&amp; !dataItem.IsAdmin" ng-disabled="activeLocked"><i class="fa fa-lock"></i> Ngừng hoạt động </a>
+                    <a onclick="deleteUser('{{dataItem.id}}')" class="kv2Btn kv2BtnDel ng-binding" ng-show="canDelete &amp;&amp; !dataItem.IsAdmin"><i class="fa fa-trash"></i> Xóa</a>
+                </article>
+            </div>
+            <div class="uln tblBox userBox k-content" id="{{dataItem.id}}-2" role="tabpanel" aria-hidden="true" aria-expanded="false">
+                <!-- for admin, show nothing-->
+                <div ng-show="dataItem.IsAdmin" class="ng-binding {{dataItem.class1}}">
+                    Người dùng admin - có quyền truy cập tại mọi chi nhánh
+                </div>
+                <!-- privilege management-->
+                <div ng-hide="dataItem.IsAdmin" class="user_privileges {{dataItem.class2}}">
+                    
+                    <div class="ovh clb">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="userBranch">
+                                    <h4 class="ng-binding">Chi nhánh</h4>
+                                    <div class="boxScr300">
+                                    <ul>
+                                        <li ng-repeat="branches" onclick="viewBranch({{branches.id}},this,{{dataItem.id}})" ng-class="{active: b.selected}" class="ng-binding ng-scope {{branches.class}}">
+                                            {{branches.name}}
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="fr userTop mb15">
+                                    <strong class="ng-binding">Phân quyền</strong><span class="split">&nbsp;</span>
+                                    <!--select ng-options="r.Id as r.Name for r in roles" ng-model="dataItem.privileges.RoleId" ng-change="roleChanged(dataItem)" ng-disabled="!canUpdate" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                                    <option value="-1" class="ng-binding">--Không phân quyền--</option>
+                                     
+                                    <option label="Quản trị chi nhánh" value="1">Quản trị chi nhánh</option>
+                                    <option label="Nhân viên kho" value="2">Nhân viên kho</option>
+                                    <option label="Nhân viên thu ngân" value="3">Nhân viên thu ngân</option>
+                                    <option label="Nhân viên bếp" value="4" >Nhân viên bếp</option>
+                                    </select-->
+                                    
+                                    
+                                    <span title="" class="k-widget k-dropdown k-header ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="1ff94710-3fb3-456f-b2cc-06b27ba78482" style="/*width: 269px;*/ min-width: 170px">
+                                    <span unselectable="on" class="k-dropdown-wrap k-state-default">
+                                    <span unselectable="on" class="k-input ng-scope">--Không phân quyền--</span>
+                                    <span unselectable="on" class="k-select">
+                                    <span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+                                    </span>
+                                    </span>
+                                    <div class="k-animation-container" style="position: absolute;z-index: 112; display: none; box-sizing: content-box;min-width: 170px;"> 
+                                    <div class="k-list-container k-popup k-group k-reset"> 
+                                    <div class="k-list-scroller" unselectable="on" style="height: auto;">
+                                    <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox">
+                                     
+                                    </ul>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <select k-data-source="roles" ng-model="user.role" style="width: 269px; display: none;" k-data-text-field="'Name'" k-option-label="'--' + _l.lblPrivilegesSelectHolder + '--'" k-data-value-field="'Id'" kendo-drop-down-list="" class="ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" data-role="dropdownlist">
+                                     
+                                    </select>
+                                    </span>
+                                    <span class="split"></span>
+                                    <a ng-click="editRole(dataItem)" ng-if="dataItem.privileges.RoleId &amp;&amp; loggedInIsAdmin" kv-btn-scroll="" class="btn btn-default btn-icon ng-scope" title="Sửa vai trò"><i class="fa fa-edit"></i></a>
+                                    <!--a ng-click="copyRole(dataItem)" ng-if="dataItem.privileges.RoleId &amp;&amp; loggedInIsAdmin" class="btn btn-default btn-icon ng-scope hth-hide" title="Lưu thành vai trò mới"><i class="fa fa-paste"></i></a-->
+                                    <a ng-click="editRole()" ng-if="loggedInIsAdmin" class="btn btn-default btn-icon ng-scope" kv-btn-scroll="" title="Thêm vai trò"><i class="fa fa-plus"></i></a>
+                                </div>
+                        
+                        
+                                <div class="userList uln">
+                                    <privilege-setting kv-privileges="privileges" kv-user="dataItem" kv-on-save="onSaveSuccess" class="ng-isolate-scope"><div class="userList fs14 mb20 txtC txtB ng-binding ng-hide" ng-hide="user.privileges.RoleId">
+    Không phân quyền cho chi nhánh này
+</div> 
+  
+<article class="boxBtn ovh" ng-show="canUpdate">
+    <a href="javascript:void(0)" onclick="savePrivilege('{{dataItem.id}}')" class="kv2Btn ng-binding" ng-disabled="user.locked"><i class="fa fa-check-square"></i> Cập nhật</a>
+    <a href="javascript:void(0)" class="kv2Btn kv2BtnYellow ng-binding" onclick="cancelChange('{{dataItem.id}}')"><i class="fa fa-ban"></i> Bỏ qua</a>
+</article></privilege-setting>
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div></div>
+    </td></tr>
+            </script>
+            <kv-user-form title="Người dùng" form-name="userForm" is-profile="false" kv-width="720" class="ng-isolate-scope"><section class="addCustomer showAnimate uln ovh lbl-cl control-poup">
+    <section class="boxInfo">
+        <article class="boxForm uln fr" style="padding: 0px;">
+            <h3 class="ng-binding">Thông tin</h3>
+
+            <ul class="formBox fr">
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Tên người dùng</span>
+                        <input type="text" class="iptName ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="user.name" required="">
+                        <input type="hidden" ng-model="user.id">
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Tên đăng nhập</span>
+                        <input type="text" class="iptName ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="user.username" ng-disabled="!loggedInIsAdmin&amp;&amp;user.Id!=null" required="">
+                    </label>
+                </li>
+                <li ng-hide="user.id" class="">
+                    <label>
+                        <span class="titleFr ng-binding">Mật khẩu cũ</span>
+                        <input type="password" class="iptPhone ng-pristine ng-untouched ng-valid ng-empty" ng-model="user.oldpassword">
+                    </label>
+                </li>
+                <li >
+                    <label>
+                        <span class="titleFr ng-binding">Mật khẩu</span>
+                        <input type="password" class="iptPhone ng-pristine ng-untouched ng-valid ng-empty" ng-model="user.password">
+                    </label>
+                </li>
+                <li >
+                    <label>
+                        <span class="titleFr ng-binding" style="padding-top: 7px;">Nhập lại mật khẩu</span>
+                        <input type="password" class="iptPhone ng-pristine ng-untouched ng-valid ng-empty" ng-model="user.password2">
+                    </label>
+                </li>
+
+                <li ng-show="user.admin" class="">
+                    <label>
+                        <span class="titleFr">Admin</span>
+                        <input value="1" type="checkbox" ng-model="user.admin" ng-disabled="user.Id" style="margin-top:7px" class="ng-pristine ng-untouched ng-valid ng-empty">
+                    </label>
+                </li>
+
+                <li ng-hide="user.admin||user.id">
+                    <label>
+
+                        <span class="titleFr ng-binding">Phân quyền </span>
+                         
+                        <span title="" class="k-widget k-dropdown k-header ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="1ff94710-3fb3-456f-b2cc-06b27ba78482" style="width: 269px;">
+                        <span unselectable="on" class="k-dropdown-wrap k-state-default">
+                        <span unselectable="on" class="k-input ng-scope">--Chọn phân quyền--</span>
+                        <span unselectable="on" class="k-select">
+                        <span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+                        </span>
+                        </span>
+                        <div class="k-animation-container" style="position: absolute;z-index: 112; display: none; box-sizing: content-box;width: 269px;"> 
+                        <div class="k-list-container k-popup k-group k-reset"> 
+                        <div class="k-list-scroller" unselectable="on" style="height: auto;">
+                        <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox">
+                         
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+                        <select k-data-source="roles" ng-model="user.role" style="width: 269px; display: none;" k-data-text-field="'Name'" k-option-label="'--' + _l.lblPrivilegesSelectHolder + '--'" k-data-value-field="'Id'" kendo-drop-down-list="" class="ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" data-role="dropdownlist">
+                         
+                        </select>
+                        </span>
+                    </label>
+                </li>
+                <li ng-hide="user.admin||user.id">
+                    <label>
+                        <span class="titleFr fll ng-binding">Chi nhánh</span>
+                        <div class="k-widget k-multiselect k-header fll ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" unselectable="on" title="" style="width: 267px;">
+                        <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
+                        <ul role="listbox" unselectable="on" class="k-reset">
+                        
+                        </ul>
+                        <input class="k-input k-readonly" style="width: 25px" accesskey="" autocomplete="off" role="listbox" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="77b98413-71dd-43d9-b609-98d13edb713e">
+                        <span class="k-icon k-loading k-loading-hidden"></span>
+                        </div>
+                        <select class="fll ng-pristine ng-untouched ng-valid ng-empty ng-valid-parse" style="width: 267px; display: none;" k-data-source="branches.Data" ng-model="branchids" k-data-text-field="'Name'" k-data-value-field="'Id'" multiple="multiple" kendo-multi-select="" data-role="multiselect" aria-disabled="false" aria-readonly="false">
+                         
+                        </select>
+                        <div class="k-animation-container" style="position: absolute;z-index: 111; display: none; box-sizing: content-box;width: 269px;"> 
+                        <div class="k-list-container k-popup k-group k-reset"> 
+                        <div class="k-list-scroller" unselectable="on" style="height: auto;">
+                        <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox">
+                        
+                        </ul>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </article>
+    </section>
+
+    <article class="ovh clb addMore mb20" style="margin-top: 0;">
+        <a href="javascript:void(0)" ng-click="showMore=!showMore" kv-scroll="" class="addMoreMain ng-binding">
+            <span class="icon"><i class="fa fa-plus-square" ng-class="{'fa-plus-square':!showMore,'fa-minus-square':showMore}"></i></span>Thêm thông tin
+        </a>
+    </article>
+
+    <section class="mb10 uln ovh addMoreBox ng-hide" ng-show="showMore">
+        <section class="boxInfo">
+            <article class="boxForm uln ovh">
+                <h3 class="ng-binding">Thông tin mở rộng</h3>
+                <ul class="formBox ovh fr">
+                    <li>
+                        <label>
+                            <span class="titleFr">Email</span>
+                            <input type="text" class="iptEmail ng-pristine ng-untouched ng-valid ng-empty" ng-model="user.email">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span class="titleFr ng-binding">Điện thoại</span>
+                            <input type="text" class="iptPhone ng-pristine ng-untouched ng-valid ng-empty" ng-model="user.phone">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span class="titleFr ng-binding">Địa chỉ</span>
+                            <input type="text" class="iptAddress ng-pristine ng-untouched ng-valid ng-empty" ng-model="user.address">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span class="titleFr ng-binding">Ngày sinh</span>
+                            <span class="k-widget k-datepicker k-header">
+                            <span class="k-picker-wrap k-state-default">
+                            <input type="text" kendo-date-picker="" ng-model="user.birthday" k-format="'yyyy-MM-dd'" placeholder="dd/mm/yyyy" k-options="datePickerOptions" data-role="datepicker" class="k-input" role="combobox" aria-expanded="false" aria-disabled="false" aria-readonly="false" style="width: 100%;"><span unselectable="on" class="k-select" role="button"><span unselectable="on" class="k-icon k-i-calendar">select</span></span></span></span>
+                        </label>
+                    </li>
+                      
+
+                </ul>
+
+            </article>
+        </section>
+    </section>
+    <article class="boxForm fr" style="width:100%">
+        <ul class="formBox formBtn boxBtn txtL ovh fr">
+            <li>
+                <span class="titleFr">&nbsp;</span>
+                <a href="javascript:void();" class="kv2Btn ng-binding" onclick="saveUser()" ng-disabled="locked"><i class="fa fa-floppy-o"></i>Lưu</a>
+                <a onclick="cancel()" class="kv2Btn kv2BtnYellow ng-binding"><i class="fa fa-ban"></i>Bỏ qua</a>
+            </li>
+        </ul>
+    </article>
+</section>
+</kv-user-form>
+        </div>
+    </section>
+</section>
+
+
+    <script>
+var filters = {
+    Username:'',
+    status:0,
+}    
+    
+    
+        cpage=0
+        var userBox
+        
+        function loadTableLeft(){
+            if($('[ng-model="filters.Username"]').length==0)
+            {
+                setTimeout(function(){loadTableLeft()},500)
+                
+                return;
+            }
+            
+            if(get.Code!=undefined){
+                $('[ng-model="filters.Username"]').val(get.Code)
+                filters.Username = get.Code
+            }
+            
+            $('[ng-model="filters.Username"]').unbind('change')
+            $('[ng-model="filters.Username"]').change(function(e){
+                filters.Username = $(this).val().trim()
+                cpage=0
+                loadUsers()
+            })
+            
+            pretty('.mainLeft',function(d){
+                 
+                if($(d).attr('ng-model')=='statusFilter'){                     
+                    var oo = filters.status+0
+                    var oo2 = parseInt($('.mainLeft [ng-model="statusFilter"][checked]').attr('value'))
+                    if(oo==oo2) return false
+                    filters.status = oo2
+                    cpage=0
+                    loadUsers()
+                }
+                
+            })
+            
+            $('.mainLeft h3').unbind('click')
+            $('.mainLeft h3').click(function(){
+                i = $(this).find('i');
+                
+                //console.log($(this).next());
+                
+                
+                if(i.hasClass('fa-chevron-circle-up')){
+                    $(this).parent().find('aside').addClass('ng-hide');
+                    i.removeClass('fa-chevron-circle-up');
+                    i.addClass('fa-chevron-circle-down');
+                }else{
+                    $(this).parent().find('aside').removeClass('ng-hide');
+                    i.addClass('fa-chevron-circle-up');
+                    i.removeClass('fa-chevron-circle-down');
+                }
+            });
+        }
+         
+        if(!users) loadJsonUsers(br);
+        else br();
+        
+        function br(){
+            loadTableLeft()
+            loadUsers();
+        }
+        
+        if(!branches) loadJsonBranches();
+        
+        function reUsers(){
+            for(var i in users){
+                
+                if(i%2==1) users[i].class = 'k-alt';
+                else users[i].class = '';
+                
+                if(users[i].admin=='1') users[i].class1 = '';
+                else users[i].class1 = 'ng-hide';
+                
+                if(users[i].admin=='1') users[i].class2 = 'ng-hide';
+                else users[i].class2 = '';
+                 
+            }
+        }
+        
+        function editRole(xid){
+            var zi = -1, ro;
+            if(xid!=undefined) zi = xid
+            
+            if(xid!=undefined && zi<=0){
+                toastr.warning("Bạn chưa chọn vai trò")
+                return false
+            }
+            if(xid!=undefined){
+                //var 
+                ro = loadObject(zi,user_roles)
+                if(!ro){
+                    toastr.warning("Không tìm thấy vai trò này")
+                    return false
+                }
+                console.log(ro)
+                
+                $('.main .k-window-role .k-window-title').html('Sửa vai trò')
+            }else{
+                ro = {
+                    name:"",
+                    roles:""
+                }
+                $('.main .k-window-role .k-window-title').html('Thêm vai trò')
+            }
+             
+            $('.main .k-window-role [ng-model="role.Name"]').val(ro.name)
+            
+            var _ro = ro.roles
+            if(_ro == ""){
+                _ro = []
+            }else{
+                _ro = _ro.split(",") //JSON.parse(_ro)
+            }
+            
+            $('.main .k-window-role').show()
+            
+            $('.main>.k-overlay').css({
+                display:'block',
+                'z-index': 10004
+            })
+            $('.k-window-role .k-i-close,.k-window-role [ng-click="cancel()"]').unbind('click')
+            $('.k-window-role .k-i-close,.k-window-role [ng-click="cancel()"]').click(function(e){
+                $('.k-window-role').hide()
+                $('.main>.k-overlay').hide()
+                //$('.main>.k-window-role .k-i-close').click()
+                return false
+            })
+            
+            if(ro.id){
+                $('.k-window-role [ng-show="role.Id > 0"]').removeClass('ng-hide')
+                $('.k-window-role [ng-show="role.Id > 0"]').unbind('click')    
+                $('.k-window-role [ng-show="role.Id > 0"]').click(function(e){
+                    //ajax
+                    $.ajax('ajax.php?action=delete_user_role',{
+                        data: 'id='+ro.id,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                 
+                                $('.k-window-role .k-i-close').click()
+                                
+                                for(var k in user_roles){
+                                    if(user_roles[k].id == ro.id){
+                                        //delete user_roles[k]
+                                        user_roles.splice(k,1)
+                                        break
+                                    }
+                                }
+                                
+                                toastr.success('Xóa vai trò thành công')
+                                
+                                userBox = $('.userBox:visible')
+                                pq()
+                                PriSet(user_roles.length>0?user_roles[0].id:'-1')
+                                 
+                                saveCacheUserRoles()
+                                
+                                vkl = st()
+                            }else{
+                                toastr.warning('Có lỗi xảy ra')     
+                            } 
+                        },
+                        error: function(e){
+                            toastr.warning('Có lỗi xảy ra')
+                            console.log(e)
+                        }
+                    })
+                    return false
+                })
+            }
+                
+            else
+                $('.k-window-role [ng-show="role.Id > 0"]').addClass('ng-hide')
+            
+            $('.main .k-window-role article.flexBox').html('')
+            console.log('privileges:',privileges)
+            for(var i in privileges){ console.log('privileges i:',i,privileges[i].name)
+                var pr_tpl_ = pr_tpl
+                pr_tpl_ = pr_tpl_.replace("{{p.name}}",privileges[i].name)
+                pr_tpl_ = $(pr_tpl_)
+                var ali = pr_tpl_.find('>ul').html()
+                console.log('privileges ali:',ali) 
+                pr_tpl_.find('>ul').html('')
+                
+                console.log('privileges Functions:',privileges[i].Functions)
+                for(var j in privileges[i].Functions){ console.log('privileges j:',j)
+                    var ali2 = ali
+                    ali2 = ali2.replace("{{f.name}}",privileges[i].Functions[j].name)
+                    ali2 = $(ali2)
+                    
+                    var bli = ali2.find('>ul').html()
+                    
+                    ali2.find('>ul').html('')
+                    
+                    for(var k in privileges[i].Functions[j].Ops){
+                        var bli2 = bli
+                        bli2 = bli2.replace(new RegExp("{{o.name}}","gi"),privileges[i].Functions[j].Ops[k].name)
+                        bli2 = bli2.replace(new RegExp("{{o.id}}","gi"),privileges[i].Functions[j].Ops[k].id)
+                        bli2 = $(bli2)
+                         
+                        ali2.find('>ul').append(bli2)
+                    }
+                    
+                    pr_tpl_.find('>ul').append(ali2)
+                }
+                
+                $('.main .k-window-role article.flexBox').append(pr_tpl_)
+            }
+            
+            $('.main .k-window-role a[ng-click="f.expand=!f.expand"]').unbind('click')
+            $('.main .k-window-role a[ng-click="f.expand=!f.expand"]').click(function(e){
+                if($(this).hasClass('k-plus')){
+                    this.className = 'k-minus'
+                }else{
+                    this.className = 'k-plus'
+                }
+                $(this).siblings('ul').toggleClass('ng-hide')
+            })
+            $('.main .k-window-role label[ng-click="f.expand=!f.expand"]').unbind('click')
+            $('.main .k-window-role label[ng-click="f.expand=!f.expand"]').click(function(e){                                
+                $(this).siblings('a').click()
+            })
+            
+            $('.main .k-window-role .prettycheckbox>input+a').unbind('click')
+            $('.main .k-window-role .prettycheckbox>input+a').click(function(e){
+                $(this).toggleClass('checked')
+                
+                if($(this).next().html()!=''){
+                    var p1 = $(this).parent().parent().parent()
+                    var q1 = p1.find('.prettycheckbox>input+a').length
+                    var q2 = p1.find('.prettycheckbox>input+a.checked').length
+                     
+                    if(q1==q2){
+                        p1.prev().prev().find('>a').addClass('checked')
+                        p1.parent().removeClass('prettyShow')
+                    }else{
+                        if(q2>0){
+                            p1.parent().addClass('prettyShow')   
+                        }else{
+                            p1.parent().removeClass('prettyShow')   
+                            p1.prev().prev().find('>a').removeClass('checked')
+                        }
+                    }
+                }else{
+                    $(this).parent().parent().removeClass('prettyShow')
+                    if($(this).hasClass('checked'))
+                    //check het cac con
+                    $(this).parent().next().next().find('.prettycheckbox>input+a').addClass('checked')
+                    else
+                    $(this).parent().next().next().find('.prettycheckbox>input+a').removeClass('checked')
+                }
+            })
+            
+            $('.main .k-window-role .prettycheckbox>input+a+label').unbind('click')
+            $('.main .k-window-role .prettycheckbox>input+a+label').click(function(e){
+                if($(this).html()!='')
+                    $(this).prev('a').click()
+            })
+            
+            if(ro.id)
+            for(var i in _ro){
+                //console.log('.main .k-window-role [ng-model="role.Data[o.Id]"][value="'+_ro[i]+'"]+a')
+                $('.main .k-window-role [ng-model="role.Data[o.Id]"][value="'+_ro[i]+'"]+a').click()
+            }
+            
+            $('.main .k-window-role [ng-click="saveRole()"]').unbind('click')
+            $('.main .k-window-role [ng-click="saveRole()"]').click(function(e){
+                $('.main .k-window-role .prettycheckbox>a+label:not(:empty)').each(function(k,v){
+                    if($(v).prev().hasClass('checked')){ 
+                        $(v).prev().prev().prop('checked',true)
+                        $(v).prev().prev().attr('checked','checked')
+                    }else{
+                        $(v).prev().prev().prop('checked',false)
+                        $(v).prev().prev().removeAttr('checked')
+                    }
+                     
+                })
+                
+                var tm =(
+                    _serialize('.main .k-window-role').replace(/]/g,"") //+"&rid="+zi
+                )
+                var tm2 = parse_str(tm)
+                
+                console.log(tm2)
+                
+                if(tm2.Name == ''){
+                    toastr.warning('Bạn chưa đặt tên vai trò')
+                    return false
+                }
+                if(!tm2.Id){
+                    toastr.warning('Bạn chưa chọn quyền cho vai trò này')
+                    return false
+                }
+                //console.log(tm2.Id)
+                //return false;
+                //console.log("name="+decodeURIComponent(tm2.Name)+"&roles="+tm2.Id.join(",")+"&id="+zi)
+                //var s = "name="+decodeURIComponent(tm2.Name)+"&roles="+tm2.Id.join(",")+(zi>0?("&id="+zi):"")
+                var s = "name="+decodeURIComponent(tm2.Name)+"&roles="+tm2.Id+(zi>0?("&id="+zi):"")
+                //console.log(s);return false;
+                $.ajax('ajax.php?action=user_role',{
+                    data: s,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            ro.name = decodeURIComponent(tm2.Name)
+                            ro.roles = tm2.Id+"" //tm2.Id.join(",")
+                            $('.k-window-role .k-i-close').click()
+                            
+                            if(zi>0){
+                                toastr.success('Lưu vai trò thành công')
+                            }else{
+                                ro.id = d.id
+                                user_roles.push(ro)
+                                
+                                toastr.success('Thêm vai trò thành công')
+                                
+                                userBox = $('.userBox:visible')
+                                pq()
+                                PriSet(ro.id)
+                            }
+                            saveCacheUserRoles()
+                         
+                        }else{
+                            toastr.warning('Có lỗi xảy ra')     
+                        } 
+                    },
+                    error: function(e){
+                        toastr.warning('Có lỗi xảy ra')
+                        console.log(e)
+                    }
+                })
+                
+                
+                
+                return false
+            })
+        }
+        
+        function pq(){
+            userBox.find('.k-dropdown select').html(op.replace("{{id}}",'-1').replace("{{name}}",'--Không phân quyền--'))
+            userBox.find('.k-dropdown .k-animation-container ul').html(opp.replace("{{i}}",'0').replace("{{name}}",'--Không phân quyền--'))
+            for(var i in user_roles){
+                var op_ = op
+                op_ = op_.replace("{{id}}",user_roles[i].id)
+                op_ = op_.replace("{{name}}",user_roles[i].name)
+                userBox.find('.k-dropdown select').append(op_)
+                
+                var opp_ = opp
+                opp_ = opp_.replace("{{i}}",parseInt(i)+1)
+                opp_ = opp_.replace("{{name}}",user_roles[i].name)
+                userBox.find('.k-dropdown .k-animation-container ul').append(opp_)
+            }
+            userBox.find('.k-dropdown .k-dropdown-wrap').unbind('click')
+            userBox.find('.k-dropdown .k-dropdown-wrap').click(function(){
+                 
+                $(this).next().show();
+            });
+            userBox.find('.k-dropdown .k-animation-container ul li').unbind('hover')
+            userBox.find('.k-dropdown .k-animation-container ul li').hover(
+                function(){
+                    $(this).toggleClass('k-state-hover');
+                },function(){
+                    $(this).toggleClass('k-state-hover');
+                }
+            );
+            userBox.find('.k-dropdown .k-animation-container ul').unbind('hover')
+            userBox.find('.k-dropdown .k-animation-container ul').hover(
+                function(){
+                    //userBox.find('.k-dropdown .k-animation-container').show()
+                },function(){
+                    userBox.find('.k-dropdown .k-animation-container').hide()
+                }
+            );
+            userBox.find('.k-dropdown .k-animation-container ul li').unbind('click')
+            userBox.find('.k-dropdown .k-animation-container ul li').click(
+                function(){
+                    
+                    //console.log($(this).data('offset-index'));
+                    
+                    offset = parseInt($(this).data('offset-index'))+1;
+                    
+                    userBox.find('.k-dropdown select option').removeAttr('selected');                    
+                    userBox.find('.k-dropdown select option:nth-child('+offset+')').attr('selected','selected');
+                    
+                    userBox.find('.k-dropdown .k-dropdown-wrap .k-input').html($(this).html());
+                     
+                    userBox.find('.k-dropdown .k-animation-container').hide()
+                    
+                    var iz = parseInt(userBox.find('.k-dropdown select option:nth-child('+offset+')').attr('value'))
+                    xxx.find('.userBox .k-dropdown select').val(iz)
+                    
+                    ////??? userBox
+                    if(iz>0)
+                        userBox.find('[ng-click="editRole(dataItem)"]').removeClass('ng-hide')
+                    else
+                        userBox.find('[ng-click="editRole(dataItem)"]').addClass('ng-hide')
+                }
+            );
+        }
+        
+        var pr_tpl;
+         
+        function loadUsers(){
+            
+            console.log('loadUsers');
+            
+            if(users===null || typeof vkl=='undefined'){
+                setTimeout(function(){loadUsers()},500)
+                return false;
+            }
+            
+            templBranch = $('#templBranch').html();
+            $('#grdBranchs>.k-grid-content>table>tbody').html('');
+            
+            var counttables = 0, countTableForGroup=0;
+            
+            for(var i in users){
+                
+                usersi = users[i];
+                
+                if(filters.Username!=''){
+                    if(
+                        usersi.name.toLowerCase().indexOf(filters.Username.toLowerCase())==-1 &&
+                        usersi.username.toLowerCase().indexOf(filters.Username.toLowerCase())==-1 
+                    ) continue;
+                }
+                
+                if(filters.status>0){
+                    if(
+                        usersi.status == (filters.status==1 ? 0 : 1)
+                    ) continue;
+                }
+                
+                countTableForGroup++
+                
+                if(countTableForGroup<=cpage*record || countTableForGroup > (cpage+1)*record){
+                    continue;
+                }
+                  
+                templBranch2 = templBranch;
+                
+                
+                
+                if(i%2==1) users[i].class = 'k-alt';
+                else users[i].class = '';
+                
+                if(users[i].admin=='1') users[i].class1 = '';
+                else users[i].class1 = 'ng-hide';
+                
+                if(users[i].admin=='1') users[i].class2 = 'ng-hide';
+                else users[i].class2 = '';
+                 
+                for(var j in users[i]){
+                    if(j=='status')
+                    templBranch2 = templBranch2.replace(new RegExp("{{dataItem."+j+"}}","gi"),users[i][j]==1?'Đang hoạt động':'Ngừng hoạt động');
+                    else
+                    templBranch2 = templBranch2.replace(new RegExp("{{dataItem."+j+"}}","gi"),users[i][j]);
+                }
+                
+                
+                $('#grdBranchs>.k-grid-content>table>tbody').append(templBranch2);
+            }
+            
+            templBranchDetail = $('#templBranchDetail').html();
+            templUsersInBranch = $('#templUsersInBranch').html();
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>td:not(:first-child)').unbind('click')
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>td:not(:first-child)').click(function(){
+                console.log('loadUsers 1');
+                $(this).parent().find('>.k-hierarchy-cell>.k-icon').trigger('click');
+            });
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>.k-hierarchy-cell>.k-icon').unbind('click')
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>.k-hierarchy-cell>.k-icon').click(function(){
+                fixedfixed()
+                console.log('loadUsers 2');
+                templBranchDetail2 = templBranchDetail;
+                n2= $(this).parent().parent();
+                n = n2.next();
+                //console.log(n);
+                
+                userBox = $('.userBox:visible')
+                if($(this).hasClass('k-plus')){
+                    reUsers()
+                    //an het detail
+                    $(this).parent().parent().siblings('.k-detail-row').hide();
+                    //thay doi icon
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').removeClass('k-minus');
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').addClass('k-plus');
+                    
+                    if(n.hasClass('k-detail-row')){
+                        n.show();
+                    }else{
+                        console.log('prepare content') 
+                        //prepare content
+                        //$('#grdBranchs .k-detail-row:visible .userBox')
+                         
+                        //find uid
+                        uid = n2.attr('data-uid');
+                        b = loadUser(uid);
+                        console.log(b  ); 
+                        for(var j in b){
+                            console.log(j  ); //console.log(templBranchDetail2  ); 
+                            templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem."+j+"}}","gi"),b[j]);
+                        }
+                         
+                        xxx = $(templBranchDetail2);
+                        
+                        if(b.status==1){
+                            xxx.find('[onclick^="activeUser"]').addClass('kv2BtnDel')
+                            xxx.find('[onclick^="activeUser"] i').addClass('fa-lock').removeClass('fa-check')
+                            xxx.find('[onclick^="activeUser"]')[0].childNodes[1].nodeValue='Ngừng hoạt động'                           
+                        }                        
+                        else{
+                            xxx.find('[onclick^="activeUser"]').removeClass('kv2BtnDel')
+                            xxx.find('[onclick^="activeUser"] i').addClass('fa-check').removeClass('fa-lock')
+                            xxx.find('[onclick^="activeUser"]')[0].childNodes[1].nodeValue='Cho phép hoạt động'      
+ 
+                        }
+                        
+                        if(b.id==1){
+                            xxx.find('[onclick^="deleteUser"]').addClass('ng-hide')
+                            xxx.find('[onclick^="activeUser"]').addClass('ng-hide')
+                        }
+                        
+                        //vkl=st()
+                        //alert(JSON.stringify(vkl))
+                        if(vkl['1.1.5']){ 
+                        
+                        yyy = xxx.find('[ng-repeat="branches"]');
+                        yyy2 = yyy.clone();
+                        
+                        //console.log(yyy2);
+                        yyy2 = yyy2[0].outerHTML;
+                        
+                        zzz = yyy.parent();
+                         
+                        zzz.html('');
+                         
+                        for(var i in branches){
+                            if(!st(create,branches[i].id)['1.1.5']) continue;
+                            if((dataItem==-1 && i==0)||(dataItem>-1 && dataItem==branches[i].id)) branches[i].class = 'active';
+                            else branches[i].class = '';
+                            yyy3 = yyy2;
+                            
+                            for(var j in branches[i]){
+                            
+                                yyy3 = yyy3.replace(new RegExp("{{branches."+j+"}}","gi"),branches[i][j]);
+                            
+                            }
+                            
+                            zzz.append(yyy3);
+                        }
+                        if (dataItem==-1)
+                            dataItem = branches[0].id;
+                        
+                        userBox = xxx.find('.userBox')
+                        
+                        pq()
+                        
+                        xxx.find('[ng-click="editRole(dataItem)"]').unbind('click')
+                        xxx.find('[ng-click="editRole(dataItem)"]').click(function(e){
+                            var zi = parseInt($('#grdBranchs .k-detail-row:visible .userBox select').v())
+                             
+                            editRole(zi)
+                            
+                            return false
+                        })
+                        
+                        xxx.find('[ng-click="editRole()"]').unbind('click')
+                        xxx.find('[ng-click="editRole()"]').click(function(e){                            
+                            editRole()
+                            
+                            return false
+                        })
+                        
+                        if(st().admin)
+                            xxx.find('[ng-if="dataItem.privileges.RoleId && loggedInIsAdmin"],[ng-if="loggedInIsAdmin"]').removeClass('hth-hide')
+                        else
+                            xxx.find('[ng-if="dataItem.privileges.RoleId && loggedInIsAdmin"],[ng-if="loggedInIsAdmin"]').addClass('hth-hide')
+                        
+                        }else{
+                            xxx.find('.k-tabstrip-items .k-last').addClass('ng-hide')    
+                        }
+                        
+                        if(vkl["1.1.3"]==undefined){
+                            xxx.find('[ng-show="canUpdate && !dataItem.IsAdmin"]').addClass('ng-hide')    
+                        }
+                        if(vkl["1.1.4"]==undefined){
+                            xxx.find('[ng-show="canDelete && !dataItem.IsAdmin"]').addClass('ng-hide')   
+                        }
+                         
+                        //ins
+                        //xxx.insertAfter(n2);
+                        n2.after(xxx);
+                        
+                        console.log(n2)
+                        
+                        tabstrip();
+                        
+                        if(b.admin!='1')
+                        
+                            viewBranch(
+                                dataItem, 
+                                $('.userBox[id="'+b.id+'-2"]').find('li[onclick="viewBranch('+dataItem+',this,'+b.id+')"]'),
+                                b.id
+                            );
+                    }
+                     
+                    $(this).removeClass('k-plus');
+                    $(this).addClass('k-minus');
+                }else{
+                    
+                    n.hide();
+                    
+                    $(this).addClass('k-plus');
+                    $(this).removeClass('k-minus');
+                }
+            })
+             
+            if(vkl['1.1.1']==undefined){
+                $('#grdBranchs').addClass('ng-hide')
+            }
+             
+             
+            if(countTableForGroup==1){
+                $('#grdBranchs>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>.k-hierarchy-cell>.k-icon:nth(0)').click()
+            }
+            
+            tpage = Math.ceil(countTableForGroup/record);
+            
+            $('#grdBranchs > .paging-box .k-label').html("Hiển thị "+((cpage)*record+1)+" - "+Math.min(countTableForGroup,(cpage+1)*record)+" trên tổng số "+countTableForGroup+" người dùng");
+            
+            $('#grdBranchs > .paging-box a').removeClass('k-state-disabled');
+            
+            if(cpage==0){
+                $('#grdBranchs > .paging-box a:nth(0)').addClass('k-state-disabled');
+                $('#grdBranchs > .paging-box a:nth(1)').addClass('k-state-disabled');
+            } 
+            
+            if(cpage==tpage-1){
+                $('#grdBranchs > .paging-box a:nth(2)').addClass('k-state-disabled');
+                $('#grdBranchs > .paging-box a:nth(3)').addClass('k-state-disabled');
+            } 
+            
+            $('#grdBranchs > .paging-box .k-state-selected, #grdBranchs > .paging-box .k-current-page span').html(cpage+1);
+            $('#grdBranchs > .paging-box a:nth(0)').unbind('click')
+            //first page click
+            $('#grdBranchs > .paging-box a:nth(0)').click(function(){
+                cpage = 0;
+                loadUsers();
+            }); $('#grdBranchs > .paging-box a:nth(1)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(1)').click(function(){
+                cpage -= 1;
+                if(cpage>=0)
+                loadUsers();
+                else cpage=0
+            }); $('#grdBranchs > .paging-box a:nth(2)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(2)').click(function(){
+                cpage += 1;
+                if(cpage<tpage)
+                loadUsers();
+                else
+                cpage = tpage-1
+            }); $('#grdBranchs > .paging-box a:nth(3)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(3)').click(function(){
+                cpage = tpage-1;
+                loadUsers();
+            });
+        }
+        
+        //var privilege = {}; //uid : {bid: permission}
+        
+        function viewBranch(pid, li, iid){//,,uid
+            
+            console.log('viewBranch');
+            
+            //if(privilege[iid]==undefined) privilege[iid] = {};
+            
+            //console.log(pid);
+            //console.log(li);
+            //console.log(iid);
+            
+            userBox = $(li).parents('.userBox');
+            console.log((userBox[0].id.substr(0,userBox[0].id.length-2)));
+            //console.log(userBox.find('select'));
+             
+            if(pid != dataItem){
+                $(li).siblings().removeClass('active');
+                $(li).addClass('active');
+                /* 
+                //chuyen tab, truoc khi chuyen tab phai save privilege
+                //if(userBox[0].id.substr(0,userBox[0].id.length-2)==iid){
+                    //console.log(userBox.find('select'));
+                //}
+                privilege[iid][dataItem] = userBox.find('select').val();
+                */
+                 
+                dataItem = pid;
+            }
+            
+            
+            //console.log(userBox.attr('id').substr(0,userBox.attr('id').length-2));
+            //iid = userBox.attr('id').substr(0,userBox.attr('id').length-2);
+            
+            iid2 = loadUser(iid);
+            
+            //console.log((iid2))
+            ch = -1;
+            if(iid2.permissions){
+                ch2 = loadObject(pid, iid2.permissions, 'branch');
+                //console.log(ch2)
+                if(ch2) ch = ch2.permission;
+            }
+             
+            PriSet(ch)            
+        }
+        
+        function PriSet(ch){
+            userBox.find('select option').removeAttr('selected');
+            userBox.find('select option[value='+ch+']').attr('selected','selected');
+            userBox.find('select').val(ch);
+            
+            userBox.find('.k-dropdown .k-dropdown-wrap .k-input').html(userBox.find('select option[value="'+ch+'"]').html());
+            
+            if(ch>0)
+                userBox.find('[ng-click="editRole(dataItem)"]').removeClass('ng-hide')
+            else
+                userBox.find('[ng-click="editRole(dataItem)"]').addClass('ng-hide')
+        }
+        
+        function cancelChange(iid){
+            iid2 = loadUser(iid);
+            
+            //console.log((iid2))
+            ch = -1;
+            if(iid2.permissions){
+                ch2 = loadObject(dataItem, iid2.permissions, 'branch');
+                //console.log(ch2)
+                if(ch2) ch = ch2.permission;
+            }
+             
+            PriSet(ch)        
+        }
+        
+        function savePrivilege(pid){//uid
+            console.log('savePrivilege');
+            
+            //console.log($('.userBox[id="'+pid+'-2"] select').v());return false;
+            //console.log(pid);
+            //console.log(dataItem);
+            $.ajax('ajax.php?action=permission',{
+                data: 'permission='+$('.userBox[id="'+pid+'-2"] select').v()+'&user='+pid+'&branch='+dataItem,
+                method: "POST",
+                dataType: 'json',
+                success: function(d){
+                    console.log(d);
+                    if(d.status=='1'){
+                        
+                        //capnhat lai users va branches
+                        loadJsonUsers(reUsers);//loadUsers
+                        toastr["success"]("Cập nhật phân quyền thành công");
+                        
+                        vkl = st()
+                    }else{
+                         
+                    } 
+                }
+            });
+        }
+        
+        function labelClicked(){
+            $('kv-user-form .k-multiselect .k-multiselect-wrap li.k-button').unbind('click')
+            $('kv-user-form .k-multiselect .k-multiselect-wrap li.k-button').click(function(){
+                $(this).remove();
+                //change value select
+                //$('kv-user-form .k-multiselect select option').
+                //console.log($(this).find('>span:first-child').html())
+                hh = $(this).find('>span:first-child').html();
+                
+                //tim trong option selected
+                $('kv-user-form .k-multiselect select option[selected]').each(function(k2,v2){ //
+                    //if(v2.hasAttribute('selected') && v2.innerHTML == $(this).find('>span:first-child').html()){
+                    if(v2.innerHTML == hh){
+                        //console.log('removeAttribute selected');
+                        v2.removeAttribute('selected');
+                    }
+                })
+            });
+        }
+         
+        var doo = '', ia=false;
+        
+        function doia(){
+            if(ia){
+                $('kv-user-form [ng-hide="user.admin||user.id"]').hide();
+                $('kv-user-form [ng-model="user.admin"]').val(1);
+            }else{
+                $('kv-user-form [ng-hide="user.admin||user.id"]').show();
+                $('kv-user-form [ng-model="user.admin"]').val(0);
+            } 
+        }
+        
+        function redirectToAdd(){
+            
+            console.log('redirectToAdd');
+            
+            //showMore = false;
+            doo = 'add';
+            
+            //reset empty form
+            
+            $('kv-user-form [ng-model]').val('');
+            
+            
+             
+            $('kv-user-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 680),
+                open: function( event, ui ) {
+                    $('kv-user-form [ng-model="user.birthday"]').removeClass('hasDatepicker')
+                    $('kv-user-form [ng-model="user.birthday"]').datepicker()
+                    $('kv-user-form [ng-model="user.birthday"]+span').click(function(){
+                        $(this).prev().focus()
+                    })
+            
+                    sm();
+                    loadBr();
+                    //labelClicked();
+                     
+                    $('kv-user-form [ng-hide="user.id"]').hide();
+                    
+                    $('kv-user-form [ng-show="user.admin"]').show();
+                    $('kv-user-form [ng-hide="user.admin||user.id"]').show();
+                },
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                }
+                
+            });
+        }
+        
+        function loadBr(){
+            
+            console.log('loadBr');
+            
+            sl = $('kv-user-form .k-multiselect select');
+            
+            //console.log(sl);
+            
+            sl.html('');
+            
+            //da move dong nay sang branches.html
+            //op = '<option value="{{id}}">{{name}}</option>';
+            
+            for(var i in branches){
+                op2 = op;
+                op2 = op2.replace(/\{\{id\}\}/,branches[i].id);
+                op2 = op2.replace(/\{\{name\}\}/,branches[i].name);
+                sl.append(op2);
+            }
+            
+            //da move dong nay sang branches.html
+            //opp = '<li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="{{i}}">{{name}}</li>';
+            
+            $('kv-user-form .k-multiselect .k-animation-container').hide();
+            
+            oppp = '<li class="k-button ng-scope" unselectable="on"><span unselectable="on">{{name}}</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-close">delete</span></span></li>';
+            
+            //set label chi nhanh = '' va value select = -1
+            $('kv-user-form .k-dropdown .k-dropdown-wrap .k-input').html(
+                '--Chọn phân quyền--'
+            );   
+            //$('kv-user-form .k-dropdown select').val('-1');  
+            $('kv-user-form .k-dropdown select option').removeAttr('selected');   
+            
+            //set label phanquyen = '.....' va value select = ''
+            $('kv-user-form .k-multiselect .k-multiselect-wrap ul').html('');
+             
+            $('kv-user-form .k-multiselect select option').removeAttr('selected');
+            
+            //////
+            doia();
+            
+            $('[ng-model="user.admin"]').unbind('change')        
+            $('[ng-model="user.admin"]').change(function(){
+                //console.log($(this).is(':checked'));
+                ia = $(this).is(':checked');
+                doia();
+            });
+        }
+        
+        function editUser(pid){
+            doo = 'edit';
+            
+            //set value field
+            user = loadUser(pid);
+            
+            $('kv-user-form [ng-model]').each(function(k,v){
+                if ($(this).attr('type')!='password'){
+                    if($(this).attr('ng-model')=="user.birthday")
+                        $(this).val(ydate(user.birthday));
+                    else
+                        $(this).val(user[getname($(this).attr('ng-model'))]);
+                }
+                    
+            });
+             
+            $('kv-user-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 680),
+                open: function( event, ui ) {
+                    $('kv-user-form [ng-model="user.birthday"]').removeClass('hasDatepicker')
+                    $('kv-user-form [ng-model="user.birthday"]').datepicker()
+                    $('kv-user-form [ng-model="user.birthday"]+span').click(function(){
+                        $(this).prev().focus()
+                    })
+                    
+                    sm();
+                    loadBr();
+                     
+                    $('kv-user-form [ng-hide="user.id"]').show();
+                     
+                    $('kv-user-form [ng-show="user.admin"]').hide();
+                    $('kv-user-form [ng-hide="user.admin||user.id"]').hide();
+                  
+                },
+                 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                }
+            });
+        }
+        
+        function cancel(){
+            $('kv-user-form').dialog('close');
+        }
+        
+        var showMore = false;
+        
+        function sm(){
+            $('kv-user-form .addMoreMain').unbind('click')
+            $('kv-user-form .addMoreMain').click(function(){
+                //console.log(showMore)
+                if(!showMore){
+                    $(this).find('i').removeClass('fa-plus-square');
+                    $(this).find('i').addClass('fa-minus-square');
+                }else{
+                    $(this).find('i').removeClass('fa-minus-square');
+                    $(this).find('i').addClass('fa-plus-square');
+                }
+                showMore = !showMore;
+                $('kv-user-form .addMoreBox').toggleClass('ng-hide');
+            });
+            
+            $('kv-user-form .k-dropdown select').html(op.replace("{{id}}",'-1').replace("{{name}}",'--Chọn phân quyền--'))
+            $('kv-user-form .k-dropdown .k-animation-container ul').html(opp.replace("{{i}}",'0').replace("{{name}}",'--Chọn phân quyền--'))
+            for(var i in user_roles){
+                var op_ = op
+                op_ = op_.replace("{{id}}",user_roles[i].id)
+                op_ = op_.replace("{{name}}",user_roles[i].name)
+                $('kv-user-form .k-dropdown select').append(op_)
+                
+                var opp_ = opp
+                opp_ = opp_.replace("{{i}}",parseInt(i)+1)
+                opp_ = opp_.replace("{{name}}",user_roles[i].name)
+                $('kv-user-form .k-dropdown .k-animation-container ul').append(opp_)
+            }
+            
+            $('kv-user-form .k-dropdown .k-dropdown-wrap').unbind('click')
+            $('kv-user-form .k-dropdown .k-dropdown-wrap').click(function(){
+                //alert('1')
+                $(this).next().show();
+            });
+            $('kv-user-form .k-dropdown .k-animation-container ul li').unbind('hover')
+            $('kv-user-form .k-dropdown .k-animation-container ul li').hover(
+                function(){
+                    $(this).toggleClass('k-state-hover');
+                },function(){
+                    $(this).toggleClass('k-state-hover');
+                }
+            );
+            $('kv-user-form .k-dropdown .k-animation-container ul').unbind('hover')
+            $('kv-user-form .k-dropdown .k-animation-container ul').hover(
+                function(){
+                    //$('kv-user-form .k-dropdown .k-animation-container').show()
+                },function(){
+                    $('kv-user-form .k-dropdown .k-animation-container').hide()
+                }
+            );
+            $('kv-user-form .k-dropdown .k-animation-container ul li').unbind('click')
+            $('kv-user-form .k-dropdown .k-animation-container ul li').click(
+                function(){
+                    
+                    //console.log($(this).data('offset-index'));
+                    
+                    offset = parseInt($(this).data('offset-index'))+1;
+                    
+                    $('kv-user-form .k-dropdown select option').removeAttr('selected');                    
+                    $('kv-user-form .k-dropdown select option:nth-child('+offset+')').attr('selected','selected');
+                    
+                    $('kv-user-form .k-dropdown .k-dropdown-wrap .k-input').html($(this).html());
+                     
+                    $('kv-user-form .k-dropdown .k-animation-container').hide()
+                }
+            );
+            $('kv-user-form .k-multiselect .k-multiselect-wrap .k-input').unbind('focus')
+            $('kv-user-form .k-multiselect .k-multiselect-wrap .k-input').focus(function(){
+                multiple_find('',this);
+            });
+            $('kv-user-form .k-multiselect .k-multiselect-wrap .k-input').unbind('blur')
+            $('kv-user-form .k-multiselect .k-multiselect-wrap .k-input').blur(function(){
+                $(this).val('');
+                //reset size
+                $(this).width(25);
+            });
+            $('kv-user-form .k-multiselect .k-multiselect-wrap .k-input').unbind('keyup')
+            $('kv-user-form .k-multiselect .k-multiselect-wrap .k-input').keyup(function(){
+                
+                //set size
+                //console.log($(this).val().width('13.333px arial'));
+                //cho gian ra 2ky tu de khoi nhay?
+                /*
+                ww = 5;
+                $('kv-user-form .k-multiselect-wrap>ul.k-reset>li').each(function(){
+                    ww += $(this).width();
+                })
+                $(this).width(Math.min(Math.max(25,267-ww),Math.max(25, ($(this).val()+"ab").width('13.333px arial')+2)));
+                */
+                vv = $(this).val();
+                $(this).width(Math.min(267,Math.max(25, (vv + "ab").width('13.333px arial')+2)));
+                
+                //find
+                //console.log($(this).parent().next());
+                //sl = $(this).parent().next();
+                multiple_find(vv, this);
+            });
+        }
+         
+        function multiple_find(v, inp){
+            
+            console.log('multiple_find');
+            
+            sl = $(inp).parent().next();
+            v2 = {};
+            sl.find('option').each(function(k1,v1){
+            //sl.find('option:not([selected])').each(function(k1,v1){
+                if(!v1.hasAttribute('selected')){
+                    //console.log(v1);
+                    if(v=='')
+                        v2[k1] = v1.innerHTML;
+                    else if(v1.innerHTML.match(new RegExp(v,"gi"))){
+                        v2[k1] = v1.innerHTML;
+                    }
+                }
+            });
+            console.log(v2);
+            sl = $('kv-user-form .k-multiselect .k-animation-container ul');
+            //console.log(sl);
+            sl.html('');
+            
+            if(v2){
+                for(var j in v2){
+                    opp2 = opp;
+                    opp2 = opp2.replace(/\{\{i\}\}/,j);
+                    opp2 = opp2.replace(/\{\{name\}\}/,v2[j]);
+                    sl.append(opp2);
+                }
+                $('kv-user-form .k-multiselect .k-animation-container').show();
+                
+                
+                $('kv-user-form .k-multiselect .k-animation-container').hover(
+                    function(){
+                        //$('kv-user-form .k-multiselect .k-animation-container').show();
+                    },
+                    function(){
+                        $('kv-user-form .k-multiselect .k-animation-container').hide();
+                    }
+                )
+                $('kv-user-form .k-multiselect .k-animation-container ul li').unbind('click')
+                $('kv-user-form .k-multiselect .k-animation-container ul li').click(
+                    function(){
+                        
+                        //console.log($(this).data('offset-index'));
+                        
+                        offset = parseInt($(this).data('offset-index'))+1;
+                        
+                        //$('kv-user-form .k-multiselect select option').removeAttr('selected');                    
+                        $('kv-user-form .k-multiselect select option:nth-child('+offset+')').attr('selected','selected');
+                        
+                        //$('kv-user-form .k-dropdown .k-dropdown-wrap .k-input').html($(this).html());
+                        //add .....
+                        //console.log($(this).html());
+                        
+                        oppp2 = oppp.replace(/\{\{name\}\}/,$(this).html());
+                        
+                        $('kv-user-form .k-multiselect .k-multiselect-wrap ul').append(oppp2);
+                        labelClicked();
+                         
+                        $('kv-user-form .k-multiselect .k-animation-container').hide()
+                    }
+                );
+                
+                $('kv-user-form .k-multiselect .k-animation-container ul li').hover(
+                    function(){
+                        $(this).toggleClass('k-state-hover');
+                    },function(){
+                        $(this).toggleClass('k-state-hover');
+                    }
+                );
+            }else{
+                $('kv-user-form .k-multiselect .k-animation-container').hide();
+            }
+            
+            
+        }
+        
+        function saveUser(){
+            
+            if(doo == 'add'){
+            
+                s = _serialize('kv-user-form',[0,2,4,5]);
+                if(s){
+                    //check password
+                    if($('kv-user-form [ng-model="user.password"]').val()!=$('kv-user-form [ng-model="user.password2"]').val()){
+                        toastr["error"]("Điền mật khẩu nhập lại không khớp");
+                        return;
+                    }//else{
+                        
+                    //check username k trung
+                    for(var k in users){
+                        if($('kv-user-form [ng-model="user.username"]').val()==users[k].username){
+                            toastr["error"]("Tên đăng nhập đã tồn tại");
+                            return;
+                        }
+                    }
+                    
+                    //return;
+                    
+                    //check birthday format
+                    if($('kv-user-form [ng-model="user.birthday"]').val()==''){
+                        $('kv-user-form [ng-model="user.birthday"]').val('1970-01-01');
+                    }else{
+                        if(!$('kv-user-form [ng-model="user.birthday"]').val().match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)){
+                            toastr["error"]("Điền đúng định dạng ngày tháng");
+                            return;
+                        }
+                    }
+                    
+                    //return;
+                    
+                    $.ajax('ajax.php?action=user',{
+                        data: s,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                cancel();
+                                loadJsonUsers(loadUsers);
+                                
+                             
+                            }else{
+                                 
+                            } 
+                        }
+                    })
+                    
+                    //}
+                }else{
+                    toastr["error"]("Điền tên đăng nhập, tên người dùng, mật khẩu, mật khẩu nhập lại");
+                }
+            
+            }else if(doo == "edit"){
+                s = _serialize('kv-user-form',[0,2]);
+                
+                console.log(s);
+                //return;
+                
+                if(s){
+                    //check old pass
+                    
+                    //check password
+                    if($('kv-user-form [ng-model="user.oldpassword"]').val()!=''){
+                        
+                        //console.log(loadUser($('kv-user-form [ng-model="user.id"]').val()));
+                        uu = loadUser($('kv-user-form [ng-model="user.id"]').val());
+                        if(uu.password != $.md5($('kv-user-form [ng-model="user.oldpassword"]').val())){
+                            toastr["error"]("Điền mật khẩu cũ sai");
+                            return;
+                        }
+                        
+                        if(!$('kv-user-form [ng-model="user.password"]').val() || !$('kv-user-form [ng-model="user.password2"]').val()){
+                            toastr["error"]("Điền mật khẩu và mật khẩu nhập lại");
+                            return;
+                        }
+                        
+                        if($('kv-user-form [ng-model="user.password"]').val()!=$('kv-user-form [ng-model="user.password2"]').val()){
+                            toastr["error"]("Điền mật khẩu nhập lại không khớp");
+                            return;
+                        }
+                    }
+                    //return;
+                    
+                    //check username k trung
+                    for(var k in users){
+                        if($('kv-user-form [ng-model="user.id"]').val()!=users[k].id &&
+                           $('kv-user-form [ng-model="user.username"]').val()==users[k].username){
+                            toastr["error"]("Tên đăng nhập đã tồn tại");
+                            return;
+                        }
+                    }
+                    
+                    //return;
+                    
+                    $.ajax('ajax.php?action=user',{
+                        data: s,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                cancel();
+                                loadJsonUsers(loadUsers);
+                                
+                             
+                            }else{
+                                 
+                            } 
+                        }
+                    })
+                }else{
+                    toastr["error"]("Điền tên đăng nhập, tên người dùng")
+                     
+                }
+            }
+        }
+        
+        function activeUser(pid){
+            var ob = loadUser(pid)
+            
+            //hien bang popup
+            $('.main>.k-overlay').css({
+                'z-index':1003
+            }).show()
+            $('.main>.k-window-alert').show()
+            $('.main>.k-window-alert').css({
+                top: ($(window).height()-$('.main>.k-window-alert').height())/2+window.scrollY,
+                left: ($(window).width()-$('.main>.k-window-alert').width())/2,
+                'z-index':1004
+            })
+            $('.main>.k-window-alert .k-window-title').html('Xác nhận')
+            $('.main>.k-window-alert .confirm-message').html(ob.status==1?'Bạn có chắc chắn muốn ngừng hoạt động nhân viên này? Thông tin và giao dịch của nhân viên vẫn sẽ được giữ.':'Bạn có chắc chắn muốn nhân viên này hoạt động trở lại?')
+            
+            $('.main>.k-window-alert .k-i-close,.main>.k-window-alert [ng-enter="onCancel()"]').unbind('click')
+            $('.main>.k-window-alert .k-i-close,.main>.k-window-alert [ng-enter="onCancel()"]').click(function(e){
+                $('.main>.k-window-alert').hide()
+                $('.main>.k-overlay').hide()
+                return false
+            })
+            $('.main>.k-window-alert [ng-enter="onConfirm()"]').unbind('click')
+            $('.main>.k-window-alert [ng-enter="onConfirm()"]').click(function(e){
+                $.ajax('ajax.php?action=activeuser',{
+                    data: 'id='+pid,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            $('.main>.k-window-alert .k-i-close').click()
+                            loadJsonUsers(loadUsers);
+                        }else{
+                            toastr.warning('Có lỗi xảy ra') 
+                        } 
+                    },
+                    error: function(e){
+                        console.log(e);
+                        toastr.warning('Có lỗi xảy ra')
+                    }
+                })
+                return false
+            })
+             
+            return false
+        }
+        console.log('htmk 2:')
+        function deleteUser(pid){
+            //hien bang popup
+            $('.main>.k-overlay').css({
+                'z-index':1003
+            }).show()
+            $('.main>.k-window-alert').show()
+            $('.main>.k-window-alert').css({
+                top: ($(window).height()-$('.main>.k-window-alert').height())/2+window.scrollY,
+                left: ($(window).width()-$('.main>.k-window-alert').width())/2,
+                'z-index':1004
+            })
+            $('.main>.k-window-alert .k-window-title').html('Xóa người dùng')
+            $('.main>.k-window-alert .confirm-message').html('Bạn có chắc chắn muốn xóa người dùng này không?')
+            
+            $('.main>.k-window-alert .k-i-close,.main>.k-window-alert [ng-enter="onCancel()"]').unbind('click')
+            $('.main>.k-window-alert .k-i-close,.main>.k-window-alert [ng-enter="onCancel()"]').click(function(e){
+                $('.main>.k-window-alert').hide()
+                $('.main>.k-overlay').hide()
+                return false
+            })
+            $('.main>.k-window-alert [ng-enter="onConfirm()"]').unbind('click')
+            $('.main>.k-window-alert [ng-enter="onConfirm()"]').click(function(e){
+                $.ajax('ajax.php?action=deleteuser',{
+                    data: 'id='+pid,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            $('.main>.k-window-alert .k-i-close').click()
+                            loadJsonUsers(loadUsers);
+                        }else{
+                            toastr.warning('Có lỗi xảy ra') 
+                        } 
+                    },
+                    error: function(e){
+                        console.log(e);
+                        toastr.warning('Có lỗi xảy ra')
+                    }
+                })
+                return false
+            })
+            //if(confirm('Bạn có chắc chắn xóa người dùng này?')){
+            
+            //}
+            
+            return false
+        }
+        console.log('htmk:')
+        $(document).ready(function(){ 
+            pr_tpl = $('#pr_tpl').html()
+            setTitle(loadBranch(cb).name+' - Người dùng')
+            if(st()["1.1.2"]==undefined)
+                $('[ng-show="rights.canAdd"]').addClass('ng-hide')
+        })
+           
+    </script>
+
+<style>
+.boxForm .formBox {
+    margin: 10px 20px 10px;
+}
+.userBox .k-dropdown ul{
+    padding: 0px!important;
+}
+.userBox .k-dropdown ul li + li{
+    margin-left: 0px!important;
+}
+.userList {
+    padding-top: 10px;
+}
+
+.flexBox {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.flexBox > div {
+    width: 33.33%;
+    margin-bottom: 10px;
+}
+.k-window-role .flexBox > div {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px){
+    .flexBox > div {
+        width: 50%;
+    }
+}
+@media (max-width: 666px){
+    .flexBox > div {
+        width: 100%;
+    }
+}
+
+.k-picker-wrap:before {
+    content: none;
+}
+
+@media (max-width: 992px){
+    kv-user-form .k-multiselect-wrap .k-input {         
+        display: block!important;
+    }
+}
+</style>
+<div class="k-overlay" style="display: none; z-index: 10006; opacity: 0.5;"></div>
+<div class="k-widget k-window k-window-fix k-window-poup k-window-role kv-window" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 780px; display: none; position: fixed; touch-action: pan-y; z-index: 10029; opacity: 1; transform: scale(1); left: 289px; top: 0px;">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Sửa vai trò</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div kendo-window="myKendoWindow" k-options="options" modal-render="true" role="dialog" uib-modal-window="modal-window" index="7" animate="animate" class="ng-isolate-scope k-window-content k-content" data-role="window" tabindex="-1">
+    <div uib-modal-transclude="">
+      <kv-role-form form-name="roleForm" privileges="privileges" roles="roles" role-id="roleId" on-save="onSave(data)" on-cancel="onCancel()" class="ng-scope ng-isolate-scope">
+        <section class="uln userBox">
+          <div class="roleTitle fr"><strong class="ng-binding">Vai trò</strong><span class="split">&nbsp;</span>
+            <input type="text" ng-model="role.Name" class="iptFocus ng-pristine ng-valid ng-not-empty ng-touched">
+          </div>
+          <div class="userList uln">
+            <article class="ovh flexBox">
+               
+               
+            </article>
+          </div>
+          <div class="kv-window-footer"><a href="" class="kv2Btn ng-binding" ng-click="saveRole()" ng-disabled="locked"><i class="fa fa-floppy-o"></i>Lưu</a> <a ng-click="cancel()" class="kv2Btn kv2BtnYellow ng-binding"><i class="fa fa-ban"></i>Bỏ qua</a> <a href="" ng-click="delete()"
+            class="kv2Btn kv2BtnDel ng-binding" ng-show="role.Id > 0"><i class="fa fa-trash"></i>Xóa</a></div>
+        </section>
+      </kv-role-form>
+    </div>
+  </div>
+</div>
+<script id="pr_tpl" type="html/x-tpl">
+<div ng-repeat="p in privileges" class="ng-scope">
+  <h3 class="ng-binding">{{p.name}}</h3>
+  <ul>
+     
+    <li ng-repeat="f in p.Functions | orderBy:'NumberOrder'" ng-class="{'prettyShow':role.grey[f.Id]}" class="ng-scope has-pretty-child">
+      <a ng-class="{'k-plus':!f.expand, 'k-minus':f.expand}" ng-click="f.expand=!f.expand" class="k-plus"></a>
+      <div class="clearfix prettycheckbox labelright  blue">
+        <input type="checkbox" kv-pretty-check="" ng-model="role.securedFunc[f.Id]" ng-checked="role.securedFunc[f.Id]" kv-disabled="!canUpdate" ng-change="toggle(role, f)" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" style="display: none;">
+        <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+        <label for="undefined" class=""></label>
+      </div>
+      <label ng-click="f.expand=!f.expand" class="ng-binding">{{f.name}}</label>
+      <ul ng-show="f.expand && f.Ops.length >1" class="ng-hide">
+         
+        <li ng-repeat="o in f.Ops" class="ng-scope has-pretty-child">
+          <div class="clearfix prettycheckbox labelright  blue">
+            <input type="checkbox" kv-pretty-check="" ng-model="role.Data[o.Id]" ng-change="itemCheckChanged(role, f)" kv-disabled="!canUpdate" kv-data-label="o.Name" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="{{o.name}}"
+            style="display: none;" value="{{o.id}}">
+            <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+            <label for="undefined" class="">{{o.name}}</label>
+          </div>
+        </li>
+         
+      </ul>
+    </li>
+       
+  </ul>
+</div>
+
+</script>
+<div class="k-widget k-window k-window-poup k-window-masstel k-window-alert kv-window kv-close-popup window-error" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 500px; display: none; top: 325.5px; left: 429px; touch-action: pan-y; z-index: 10021; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Xóa người dùng</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div data-role="window" class="k-window-content k-content" tabindex="0">
+    <div class="form-wrapper">
+      <div class="form-group">
+        <p class="confirm-message">Bạn có chắc chắn muốn xóa người dùng này không?</p>
+      </div>
+    </div>
+    <div class="kv-window-footer">
+      <button class="btn-confirm kv2Btn" ng-enter="onConfirm()" ng-hide="noYes"><i class="fa fa-check"></i>Đồng ý</button>
+      <button class="btn-cancel kv2Btn kv2BtnYellow" ng-enter="onCancel()"><i class="fa fa-ban"></i>Bỏ qua</button>
+    </div>
+  </div>
+</div>

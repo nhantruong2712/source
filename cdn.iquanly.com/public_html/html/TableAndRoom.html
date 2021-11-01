@@ -1,0 +1,1012 @@
+<style>
+@media (max-width: 768px){
+    .boxForm .formBox {       
+        float: none;
+    }  
+    .boxForm .fr textarea {     
+        width: 100%;
+    }    
+}
+
+</style>
+
+<section class="mainLeft proLeft fll ng-scope">
+    <kv-table-filter><article class="boxLeft uln sortTime proGroup sortView pdb10 posR">
+
+    <h3 class="leftTitle ng-binding">Nhóm</h3>
+    <a onclick="AddGroup(0)" href="javascript:void(0)" class="showhideicon" title="Thêm nhóm phòng/bàn" ng-show="rights.canCreate"><i class="fa fa-plus-circle"></i></a>
+    <aside class="boxLeftC ">
+        <span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="70316d1e-9e6a-4089-98de-027789b99b40" style="">
+        <span unselectable="on" class="k-dropdown-wrap k-state-default">
+        <span unselectable="on" class="k-input ng-scope">---Tất cả---</span>
+        <span unselectable="on" class="k-select">
+        <span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+        </span>
+        </span>
+        <div class="k-animation-container" style="position: absolute;z-index: 112; display: none; box-sizing: content-box;width: 195px;"> 
+        <div class="k-list-container k-popup k-group k-reset"> 
+            <div class="k-list-scroller" unselectable="on" style="height: auto;">
+            <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox">
+             
+            </ul>
+            </div>
+            </div>
+        </div>
+        <select kendo-drop-down-list="ddlSelectGroup" k-ng-model="selectedGroupId" class="" k-options="comboGroup" data-role="dropdownlist" style="display: none;">
+        <option value="0" selected="selected">---Tất cả---</option>
+        </select>
+        </span>
+        &nbsp;
+        <a class="editIcon ng-hide" onclick="EditGroup()" title="Sửa nhóm phòng/bàn" ng-show="rights.canUpdate &amp;&amp; selectedGroupId"></a>
+    </aside>
+</article>
+<article class="boxLeft uln leftStatus hth-hide">
+    <h3 class="leftTitle ng-binding">Tìm kiếm</h3>
+    <aside class="boxLeftC fr">
+        <input type="text" ng-model="keywordParam" placeholder="Theo tên phòng/bàn" class="w99 ng-pristine ng-untouched ng-valid ng-empty" kv-select-text="" ng-blur="filterbyKeyword()" ng-keyup="$event.keyCode == 13 ? filterbyKeyword() : null">
+    </aside>
+</article>
+
+
+<article class="boxLeft uln sortTime sortView">
+
+    <h3 class="leftTitle ng-binding">Số bản ghi</h3>
+    <aside class="boxLeftC">
+         
+        <aside ng-show="viewtype == typeList">
+            <span title="" class="k-widget k-dropdown k-header ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="mainView_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="00a8c082-44b5-49c4-a531-48bbc6208f9b" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">10</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span></span><select id="mainView" ng-model="pageSize" k-on-change="refresh()" k-data-source="pageSizes" kendo-drop-down-list="" class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" data-role="dropdownlist" style="display: none;"><option value="10" selected="selected">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option></select></span>
+        </aside>
+    </aside>
+</article>
+</kv-table-filter>
+  <div class="wrap-button-footer">
+    <button kv-mobile="" type="button" class="kv2Btn">Hoàn tất</button>
+  </div>
+</section>
+
+<section class="mainRight ng-scope">
+    <section class="mainWrap fll w100" style="position: relative; top: auto; bottom: auto; width: auto;">
+        <article class="headerContent uln fll w100">
+            <h1><a href="javascript:void(0);" class="mobileIcon" kv-mobile=""></a><span class="ng-binding">Phòng/Bàn</span></h1>
+            
+            <aside class="flr">
+                <a href="javascript:void(0)" onclick="redirectToAdd()" class="kv2Btn ng-binding" ng-show="rights.canAdd"><i class="fa fa-plus"></i> Phòng/Bàn</a>
+                <div id="columnSelection" kv-column-selection="" class="columnView k-widget k-reset k-header k-menu k-menu-horizontal hth-hide" binded-grid="bindedGrid" data-role="menu" tabindex="0" role="menubar"><li class="k-item k-state-default k-first k-last" role="menuitem" aria-haspopup="true"><span class="k-link"><span class="k-icon k-i-arrow-s"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Name"><span></span>Tên chi nhánh</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="Address"><span></span>Địa chỉ</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="ContactNumber"><span></span>Điện thoại</label></span></li><li class="k-item k-state-default k-last" role="menuitem"><span class="k-link"><label class="quickaction_chk dpb"><input type="checkbox" checked="checked" class="check_row" data-field="TotalUser"><span></span>SL người dùng</label></span></li></ul></li></div>
+            </aside>
+
+        </article>
+        <article class="clb k-gridNone k-grid-Scroll">
+            <div id="grdBranchs" kendo-grid="" k-data-source="branches" k-sortable="true" k-resizable="true" k-selectable="true"  kv-grid-expan-row="" k-data-bound="emptyGridFix" k-data-binding="grvdataBinding" data-title="branch_Paging" k-detail-template="detailTemplate" k-detail-init="grvDetailInit" k-detail-expand="grvDetailExpand" data-role="grid" class="k-grid k-widget">
+            <div class="k-grid-header" style="padding-right: 17px;">
+            <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
+            <table role="grid">
+            <colgroup>
+            <col class="k-hierarchy-col"><col><col><col></colgroup>
+            <thead role="rowgroup">
+            <tr role="row">
+            <th class="k-hierarchy-cell k-header ng-scope" scope="col">&nbsp;</th>
+            <th scope="col" role="columnheader" data-field="Name" rowspan="1" data-title="Tên phòng/bàn" data-index="0" id="e7e15aa7-161b-4807-9721-da9a9abb94b7" class="tdBranch k-header ng-scope" data-role="columnsorter">
+            <a class="k-link" href="javascript:void(0);">Tên phòng/bàn</a></th>
+            <th scope="col" role="columnheader" data-field="Address" rowspan="1" data-title="Ghi chú" data-index="1" id="c563cae7-3a18-4aba-a53d-621035a98943" class="tdMin k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Ghi chú</a></th>
+            
+            <th scope="col" role="columnheader" data-field="ContactNumber" rowspan="1" data-title="Nhóm" data-index="2" id="8977b66a-0c78-45b4-bdb5-91403756d56a" class="tdCode k-header ng-scope" data-role="columnsorter"><a class="k-link" href="javascript:void(0);">Nhóm</a></th>
+             
+            </tr>
+            
+            </thead>
+            </table>
+            </div></div>
+            <div class="k-grid-content k-auto-scrollable">
+            <table role="treegrid" data-role="selectable" class="k-selectable">
+            <colgroup><col class="k-hierarchy-col"><col><col><col></colgroup>
+            <tbody role="rowgroup">
+             
+            </tbody></table></div>
+            <div class="paging-box" style="display: block;">
+            <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
+            <a href="javascript:void(0);" title="Trang đầu" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1">
+            <span class="k-icon k-i-seek-w">Trang đầu</span></a>
+            <a href="javascript:void(0);" title="Trang trước" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+            <span class="k-icon k-i-arrow-w">Trang trước</span></a>
+            
+            <ul class="k-pager-numbers k-reset">
+            <li class="k-current-page"><span class="k-link k-pager-nav">1</span></li>
+            <li><span class="k-state-selected">1</span></li>
+            </ul>
+            
+            <a href="javascript:void(0);" title="Trang sau" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+            <span class="k-icon k-i-arrow-e">Trang sau</span></a>
+            
+            <a href="javascript:void(0);" title="Trang cuối" class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1" tabindex="-1">
+            <span class="k-icon k-i-seek-e">Trang cuối</span></a>
+            
+            <span class="k-pager-info k-label">Hiển thị 0 - 0 trên tổng số 0 phòng/bàn</span>
+            </div>
+            </div>
+            </div>
+        </article>
+        <div style="display: none">
+        
+        <script type="text/x-kendo-template" id="templUsersInBranch">
+        <tr class="{{dataItem.class}}" data-uid="{{dataItem.class}}" role="row">
+                                <td class="" role="gridcell"><a href="/#/Users?Code={{dataItem.username}}" target="_blank">{{dataItem.name}}</a></td>
+                                <td class="tdBranch" role="gridcell">{{dataItem.username}}</td>
+                                <td class="tdBranch" role="gridcell">{{dataItem.role}}</td>
+                                </tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranch">
+        <tr class="{{dataItem.class}} k-master-row ng-scope" data-uid="{{dataItem.id}}" role="row">
+            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="javascript:void(0);" tabindex="-1"></a></td>
+            <td class="tdBranch" role="gridcell"><span ng-bind="dataItem.name" class="ng-binding">{{dataItem.name}}</span></td>
+            <td class="tdMin" role="gridcell"><span ng-bind="dataItem.address" class="ng-binding">{{dataItem.note}}</span></td>
+            <td class="tdCode" role="gridcell"><span ng-bind="dataItem.phone" class="ng-binding">{{dataItem.group}}</span></td>
+             </tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranchDetail">
+              <tr class="k-detail-row ng-scope"><td class="k-hierarchy-cell"></td><td class="k-detail-cell" colspan="4">
+            <div class="k-tabstrip-wrapper" style="width: 100%;"><div class="tabstrip k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" data-role="tabstrip" tabindex="0" role="tablist">
+                <ul class="k-tabstrip-items k-reset">
+                    <li class="ng-binding k-item k-state-default k-first k-tab-on-top k-state-active" role="tab" aria-controls="94d774af-95d8-4e54-8236-90c4197cd28b-1" aria-selected="true"><span class="k-loading k-complete"></span><span class="k-link">Thông tin</span></li>
+                    <li id="tabInventory" class="ng-binding k-item k-state-default k-last k-state-hover hth-hide" role="tab" aria-controls="94d774af-95d8-4e54-8236-90c4197cd28b-2"><span class="k-loading k-complete"></span><span class="k-link">Lịch sử giao dịch</span></li></ul>
+                <div class="k-content k-state-active" id="94d774af-95d8-4e54-8236-90c4197cd28b-1" role="tabpanel" aria-expanded="true" style="display: block;">
+                    <div class="clb">
+                        <article class="clb ovh mb20 tblBox">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody><tr>
+                                        <td class="lblCode ng-binding">Tên phòng/bàn:</td>
+                                        <td><strong class="ng-binding">{{dataItem.name}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ng-binding">Ghi chú:</td>
+                                        <td class="ng-binding">{{dataItem.note}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ng-binding">Nhóm:</td>
+                                        <td class="ng-binding">{{dataItem.group}}</td>
+                                    </tr>
+                                </tbody></table>
+                            </div>
+                        </article>
+
+                        <article class="clb boxBtn ovh">
+                            <!--<a ng-href="#/{{viewUrl.tableList + '/' + dataItem.Id}}"  class="kv2Btn" ng-show="rights.canUpdate"><i class="fa fa-check-square"></i> {{_l.update}}</a>-->
+                            <a href="javascript:void(0);" onclick="EditTable({{dataItem.id}})" class="kv2Btn ng-binding" ng-show="rights.canUpdate" kv-btn-scroll=""><i class="fa fa-check-square"></i> Cập nhật</a>
+                            <a href="javascript:void(0);" onclick="deleteTable({{dataItem.id}})" class="kv2Btn kv2BtnDel ng-binding" ng-show="rights.canDelete"><i class="fa fa-trash"></i> Xóa</a>
+                        </article>
+                    </div>
+                </div>
+                <div class="k-content" id="94d774af-95d8-4e54-8236-90c4197cd28b-2" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                    <div class="clb tableInvoiceList k-grid k-widget" data-role="grid"><div class="k-grid-header" style="padding-right: 17px;"><div class="k-grid-header-wrap k-auto-scrollable"><table role="grid"><colgroup><col><col><col><col></colgroup><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" data-field="Code" rowspan="1" data-title="Mã hóa đơn" data-index="0" id="c2c1e521-bb6e-490c-a2bf-44096d163c0b" class="tdCode k-header">Mã hóa đơn</th><th scope="col" role="columnheader" data-field="PurchaseDate" rowspan="1" data-title="Thời gian" data-index="1" id="dbb0c07b-8517-44d4-822a-8926a5caa76f" class="tdDateTime k-header">Thời gian</th><th scope="col" role="columnheader" data-field="SoldBy.GivenName" rowspan="1" data-title="Người tạo" data-index="2" id="be076b9e-12c2-4755-b365-b55b747dce09" class="k-header">Người tạo</th><th scope="col" role="columnheader" data-field="Total" rowspan="1" data-title="Tổng cộng" data-index="3" id="09e57cd4-9254-4170-b4ce-124a14fe6ffa" class="tdTotal k-header">Tổng cộng</th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable k-grid-content-ac"><table role="grid"><colgroup><col><col><col><col></colgroup><tbody role="rowgroup"><tr data-uid="84b398d9-a029-4075-a495-caf2862b3486" role="row"><td class="tdCode" role="gridcell"><a href="#/Invoices?Code=HD000040" target="_blank" class="invoiceCode" data-code="HD000040" data-id="48873636">HD000040</a></td><td class="tdDateTime" role="gridcell">03/05/2016</td><td role="gridcell">Hoàng - Kinh Doanh</td><td class="tdTotal" role="gridcell">90,000</td></tr><tr class="k-alt" data-uid="e58f43f8-cd49-4c22-9e3e-1c3f8fa0d1d2" role="row"><td class="tdCode" role="gridcell"><a href="#/Invoices?Code=HD000033" target="_blank" class="invoiceCode" data-code="HD000033" data-id="48873629">HD000033</a></td><td class="tdDateTime" role="gridcell">26/04/2016</td><td role="gridcell">Phan Đắc Huân</td><td class="tdTotal" role="gridcell">570,000</td></tr><tr data-uid="cce6a087-9791-4fe2-8c96-a59fa9221bd0" role="row"><td class="tdCode" role="gridcell"><a href="#/Invoices?Code=HD000028" target="_blank" class="invoiceCode" data-code="HD000028" data-id="48873624">HD000028</a></td><td class="tdDateTime" role="gridcell">21/04/2016</td><td role="gridcell">Hương - Kế Toán</td><td class="tdTotal" role="gridcell">270,000</td></tr><tr class="k-alt" data-uid="fa9b5aac-bca8-4114-888d-32cbf82be27a" role="row"><td class="tdCode" role="gridcell"><a href="#/Invoices?Code=HD000012" target="_blank" class="invoiceCode" data-code="HD000012" data-id="48873608">HD000012</a></td><td class="tdDateTime" role="gridcell">05/04/2016</td><td role="gridcell">Hương - Kế Toán</td><td class="tdTotal" role="gridcell">0</td></tr></tbody></table></div><div class="paging-box" style="display: none;"><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><a href="javascript:void(0);" title="Go to the first page" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-w">Go to the first page</span></a><a href="javascript:void(0);" title="Go to the previous page" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-w">Go to the previous page</span></a><ul class="k-pager-numbers k-reset"><li class="k-current-page"><span class="k-link k-pager-nav">1</span></li><li><span class="k-state-selected">1</span></li></ul><a href="javascript:void(0);" title="Go to the next page" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-arrow-e">Go to the next page</span></a><a href="javascript:void(0);" title="Go to the last page" class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1" tabindex="-1"><span class="k-icon k-i-seek-e">Go to the last page</span></a><span class="k-pager-info k-label">Hiển thị 1 - 4 trên tổng số 4 lịch sử bán hàng</span></div></div></div>
+                </div>
+
+
+            </div></div>
+
+        </td></tr>
+
+
+            </script>
+<kv-table-form form-name="tableForm" kv-width="720" class="ng-isolate-scope">
+ 
+    <section class="boxInfo uln">
+        <article class="boxForm uln ovh">
+            <h3 style="color: #37b7e5; font-size: 20px;" class="ng-binding">Thông tin</h3>
+            <ul class="formBox ovh fr">
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Tên phòng/bàn</span>
+                        <input type="text" class="iptName ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="table.name" required="" />
+                        <input type="hidden" ng-model="table.id" />
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <span class="titleFr mb10 nowrap ng-binding">Ghi chú</span>
+                        <textarea style=" height: 80px; margin-left:0;" ng-model="table.note" class="ng-pristine ng-untouched ng-valid ng-empty"></textarea>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <span class="titleFr ng-binding">Nhóm</span>
+                        <span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="3" aria-owns="" aria-disabled="false" aria-readonly="false" style="width: 232px;" aria-busy="false" aria-activedescendant="1a747348-06df-466d-9a9a-994214559821">
+                        <span unselectable="on" class="k-dropdown-wrap k-state-default">
+                        <span unselectable="on" class="k-input ng-scope">------ Lựa chọn ------</span>
+                        <span unselectable="on" class="k-select">
+                        <span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+                        </span>
+                        </span>
+                        <div class="k-animation-container" style="position: absolute; bottom: 0; z-index: 112; box-sizing: content-box; width: 230px; display: none;"> 
+        <div class="k-list-container k-popup k-group k-reset"> 
+            <div class="k-list-scroller" unselectable="on" style="height: auto;">
+            <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="off" data-role="staticlist" role="listbox"><li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="0">---Tất cả---</li><li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="1">Tang 1</li><li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="2">Tang 2</li></ul>
+            </div>
+            </div>
+        </div>
+                        <select kendo-drop-down-list="ddlSelectGroup" k-options="dropdownGroup" ng-model="table.group" style="width: 232px; display: none;" data-role="dropdownlist">
+                         
+                        </select>
+                        </span>
+                        <a onclick="AddGroup(0)" href="javascript:void(0)" class="icon add" title="Thêm nhóm"><i class="fa fa-plus"></i></a>
+                    </label>
+                </li>
+                 
+            </ul>
+        </article>
+        <ul class="formBox formBtn ovh fr">
+            <li class="boxBtn txtL" style="margin-top: 0; padding-left: 22px;">
+                <span class="titleFr"></span>
+                <a href="javascript:void(0);" class="kv2Btn ng-binding" onclick="saveTable()" ng-disabled="saving"><i class="fa fa-floppy-o"></i>Lưu</a>
+                
+                <a href="javascript:void(0);" onclick="cancel()" class="kv2Btn kv2BtnYellow ng-binding"><i class="fa fa-ban"></i>Bỏ qua</a>
+            </li>
+        </ul>
+    </section>
+
+ 
+</kv-table-form>
+
+<kv-table-group-form  title="Sửa nhóm phòng/bàn" kv-name="tableGroupForm" class="ng-isolate-scope"><section class="tableGroup uln ovh control-poup lbl-cl">
+    <ul class="formBox ovh fr tableGroup">
+        <li>
+            <label>
+                <span class="titleFr ng-binding">Tên nhóm</span>
+                <input type="text" class="iptEmail ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="group.name" required="">
+                <input type="hidden"   ng-model="group.id" >
+            </label>
+        </li>
+        <li>
+            <label>
+                <span class="titleFr veaT ng-binding">Ghi chú:</span>
+                <textarea ng-model="group.note" rows="5" cols="50" class="frDes frDes2 ng-pristine ng-untouched ng-valid ng-empty"></textarea>
+            </label>
+        </li>
+        <li class="boxBtn txtL" style="margin-top: 20px;">
+            <span class="titleFr">&nbsp;</span>
+            <a href="javascript:void();" class="kv2Btn ng-binding" onclick="saveGroup()" ng-show="canUpdate"><i class="fa fa-floppy-o"></i>Lưu</a>
+            <a href="javascript:void();" class="kv2Btn kv2BtnYellow ng-binding" onclick="cancelGroup()"><i class="fa fa-ban"></i>Bỏ qua</a>
+            <a href="javascript:void();" class="kv2Btn kv2BtnDel ng-binding ng-hide" ng-show="canDelete" onclick="deleteGroup()"><i class="fa fa-trash"></i>Xóa</a>
+        </li>
+    </ul>
+</section>
+
+
+<!--<div kendo-window="tableGroupWindow" k-title="" k-visible="false" k-resizable="false" k-draggable="true" k-pinned="true" k-width="500" k-modal="true">
+
+</div>--></kv-table-group-form>
+
+        </div>
+    </section>
+</section>
+
+
+    <script>
+        cpage=0
+        
+        
+        if(!users) loadJsonUsers(br);
+        else br();
+        
+        //tables = null;
+        //if(!tables) 
+        loadJsonTables(loadTables)
+        
+        function br(){
+            //if(!branches) loadJsonBranches(loadTables);
+            //else loadTables();
+            
+            if(!branches) loadJsonBranches(loadTableLeft);
+            else loadTableLeft();
+        }
+        
+        function loadPC(){
+            console.log('loadPC')
+            
+            sl = $('.mainLeft .k-dropdown:nth(0) select');
+            sl.html('');
+            
+            op2 = op;
+            op2 = op2.replace(/\{\{id\}\}/,'0');
+            op2 = op2.replace(/\{\{name\}\}/,'---Tất cả---');
+            sl.append(op2);
+            
+            for(var i in table_groups){
+                op2 = op;
+                op2 = op2.replace(/\{\{id\}\}/,table_groups[i].id);
+                op2 = op2.replace(/\{\{name\}\}/,table_groups[i].name);
+                sl.append(op2);
+            }
+            $('.mainLeft .k-dropdown:nth(0) .k-dropdown-wrap').unbind('click')
+            $('.mainLeft .k-dropdown:nth(0) .k-dropdown-wrap').click(function(){
+                $(this).next().show();
+            });
+            
+            sl = $('.mainLeft .k-dropdown:nth(0) .k-animation-container ul');
+             
+            sl.html('');
+            
+            opp2 = opp;
+            opp2 = opp2.replace(/\{\{i\}\}/,0);
+            opp2 = opp2.replace(/\{\{name\}\}/,'---Tất cả---');
+            sl.append(opp2);
+            
+            for(var j in table_groups){
+                opp2 = opp;
+                opp2 = opp2.replace(/\{\{i\}\}/,parseInt(j)+1);
+                opp2 = opp2.replace(/\{\{name\}\}/,table_groups[j].name);
+                sl.append(opp2);
+            }
+            
+            if(ctg!='0' && ctg!=null) {
+                $('.boxLeft .editIcon').removeClass('ng-hide');
+                br = loadTableGroup(ctg);
+                
+                console.log(br);
+            
+            }else{
+                br = {id:0, name:'---Tất cả---'};
+                $('.boxLeft .editIcon').addClass('ng-hide');
+            }
+            
+            $('.mainLeft .k-dropdown:nth(0) .k-dropdown-wrap .k-input').html(br.name);
+            $('.mainLeft .k-dropdown:nth(0) select option[value="'+br.id+'"]').attr('selected','selected');
+            
+            
+            //set hover
+            $('.mainLeft .k-dropdown:nth(0) .k-animation-container').hover(
+                function(){
+                    //$('.mainLeft .k-dropdown:nth(0) .k-animation-container').show();
+                },
+                function(){
+                    $('.mainLeft .k-dropdown:nth(0) .k-animation-container').hide();
+                }
+            );
+            
+            $('.mainLeft .k-dropdown:nth(0) .k-animation-container ul li').hover(
+                function(){
+                    $(this).toggleClass('k-state-hover');
+                },function(){
+                    $(this).toggleClass('k-state-hover');
+                }
+            );
+            $('.mainLeft .k-dropdown:nth(0) .k-animation-container ul li').unbind('click')
+            //set click
+            $('.mainLeft .k-dropdown:nth(0) .k-animation-container ul li').click(
+                function(){
+                    
+                    //console.log($(this).data('offset-index'));
+                    
+                    offset = parseInt($(this).data('offset-index'))+1;
+                    
+                    $('.mainLeft .k-dropdown:nth(0) select option').removeAttr('selected');                    
+                    $('.mainLeft .k-dropdown:nth(0) select option:nth-child('+offset+')').attr('selected','selected');
+                    
+                    $('.mainLeft .k-dropdown:nth(0) .k-dropdown-wrap .k-input').html($(this).html());
+                     
+                    $('.mainLeft .k-dropdown:nth(0) .k-animation-container').hide();
+                    
+                    //set ctg
+                    ctg = $('.mainLeft .k-dropdown:nth(0) select option:nth-child('+offset+')').attr('value');
+                    
+                    if(ctg!='0') {
+                        $('.boxLeft .editIcon').removeClass('ng-hide');
+                         
+                    }else{
+                         
+                        $('.boxLeft .editIcon').addClass('ng-hide');
+                    }
+                    
+                    //console.log($('.mainLeft .k-dropdown:nth(0) select').val());
+                    //ctg = $('.mainLeft .k-dropdown:nth(0) select').val();
+                    savectg();
+                    
+                    cpage = 0;
+                    loadTables();
+                }
+            );
+        }
+        
+        function loadTableLeft(){
+            console.log('loadTableLeft');
+            
+            if(tables==null || table_groups ==null){
+                setTimeout(function(){loadTableLeft()},500)
+                return
+            }
+              
+            loadPC()
+            
+            loadTables(); 
+        }
+        
+        function loadGroupPopup(x){
+            
+            console.log('loadGroupPopup');
+             
+            sl = $('kv-table-form .k-dropdown select');
+            
+            //console.log(sl);
+             
+            sl.html('');
+            
+            op2 = op;
+            op2 = op2.replace(/\{\{id\}\}/,'0');
+            op2 = op2.replace(/\{\{name\}\}/,'---Lựa chọn---');
+            sl.append(op2);
+            
+            for(var i in table_groups){
+                op2 = op;
+                op2 = op2.replace(/\{\{id\}\}/,table_groups[i].id);
+                op2 = op2.replace(/\{\{name\}\}/,table_groups[i].name);
+                sl.append(op2);
+            }
+            $('kv-table-form .k-dropdown .k-dropdown-wrap').unbind('click')
+            $('kv-table-form .k-dropdown .k-dropdown-wrap').click(function(){
+                $(this).next().show();
+            });
+            
+            sl = $('kv-table-form .k-dropdown .k-animation-container ul');
+             
+            sl.html('');
+            
+            opp2 = opp;
+            opp2 = opp2.replace(/\{\{i\}\}/,0);
+            opp2 = opp2.replace(/\{\{name\}\}/,'---Lựa chọn---');
+            sl.append(opp2);
+            
+            for(var j in table_groups){
+                opp2 = opp;
+                opp2 = opp2.replace(/\{\{i\}\}/,parseInt(j)+1);
+                opp2 = opp2.replace(/\{\{name\}\}/,table_groups[j].name);
+                sl.append(opp2);
+            }
+            
+            //set hover
+            $('kv-table-form .k-dropdown .k-animation-container').hover(
+                function(){
+                    //$('kv-table-form .k-dropdown .k-animation-container').show();
+                },
+                function(){
+                    $('kv-table-form .k-dropdown .k-animation-container').hide();
+                }
+            );
+            
+            $('kv-table-form .k-dropdown .k-animation-container ul li').hover(
+                function(){
+                    $(this).toggleClass('k-state-hover');
+                },function(){
+                    $(this).toggleClass('k-state-hover');
+                }
+            );
+            $('kv-table-form .k-dropdown .k-animation-container ul li').unbind('click')
+            //set click
+            $('kv-table-form .k-dropdown .k-animation-container ul li').click(
+                function(){
+                    
+                    //console.log($(this).data('offset-index'));
+                    
+                    offset = parseInt($(this).data('offset-index'))+1;
+                    
+                    $('kv-table-form .k-dropdown select option').removeAttr('selected');                    
+                    $('kv-table-form .k-dropdown select option:nth-child('+offset+')').attr('selected','selected');
+                    
+                    $('kv-table-form .k-dropdown .k-dropdown-wrap .k-input').html($(this).html());
+                     
+                    $('kv-table-form .k-dropdown .k-animation-container').hide();
+                     
+                     
+                }
+            );
+            
+            if(x!=undefined){
+                //change k-input va select
+                $('kv-table-form .k-dropdown select option[selected]').removeAttr('selected');
+                 
+                $('kv-table-form .k-dropdown select option[value="'+x+'"]').attr('selected','selected');
+                 
+                $('kv-table-form .k-dropdown .k-dropdown-wrap .k-input').html(
+                    $('kv-table-form .k-dropdown select option[value="'+x+'"]').html()
+                );                
+            } 
+        }
+        
+         
+        function loadTables(){
+            
+            console.log('loadTables');
+            
+            if(tables===null || !vkl){
+                setTimeout(function(){loadTables()},500)
+                return false;
+            }
+            
+            if(vkl['7.1.1']==undefined){
+                $('#grdBranchs').addClass('ng-hide')
+            }
+            if(vkl['7.1.2']==undefined)
+                $('[ng-show="rights.canAdd"],[ng-show="rights.canCreate"]').addClass('ng-hide')
+            
+            templBranch = $('#templBranch').html();
+            
+            $('#grdBranchs>.k-grid-content>table>tbody').html('');
+            
+            var counttables = 0, countTableForGroup=0;
+            
+            for(var i in tables){
+                if(tables[i].id<0) continue;
+                
+                if(ctg>0){if(tables[i].group==ctg) countTableForGroup++;}
+                else countTableForGroup++;
+                
+                if(countTableForGroup>cpage*record && countTableForGroup <= (cpage+1)*record){
+                
+                if(ctg>0 &&  tables[i].group!=ctg) continue;
+                 
+                tables[i].group_object = loadTableGroup(tables[i].group);
+                 
+                templBranch2 = templBranch;
+                if(i%2==1) tables[i].class = 'k-alt';
+                else tables[i].class = '';
+                
+                
+                for(var j in tables[i]){
+                    if(j=='group') continue;
+                    if(j=='group_object'){
+                        if(tables[i][j].name!=undefined) templBranch2 = templBranch2.replace(new RegExp("{{dataItem.group}}","gi"),tables[i][j].name);
+                        else templBranch2 = templBranch2.replace(new RegExp("{{dataItem.group}}","gi"),'');
+                    }
+                        
+                    else
+                        templBranch2 = templBranch2.replace(new RegExp("{{dataItem."+j+"}}","gi"),tables[i][j]);
+                }
+                
+                
+                $('#grdBranchs>.k-grid-content>table>tbody').append(templBranch2);
+                
+                }
+            }
+            
+            //if(ctg==0) countTableForGroup=tables.length;
+            
+            templBranchDetail = $('#templBranchDetail').html();
+            templUsersInBranch = $('#templUsersInBranch').html();
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>td:not(:first-child)').unbind('click')
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>td:not(:first-child)').click(function(){
+                $(this).parent().find('>.k-hierarchy-cell>.k-icon').trigger('click');
+            });
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>.k-hierarchy-cell>.k-icon').unbind('click')
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>.k-hierarchy-cell>.k-icon').click(function(){
+                fixedfixed()
+                templBranchDetail2 = templBranchDetail;
+                n2= $(this).parent().parent();
+                n = n2.next();
+                //console.log(n);
+                
+                if($(this).hasClass('k-plus')){
+                    //an het detail
+                    $(this).parent().parent().siblings('.k-detail-row').hide();
+                    //thay doi icon
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').removeClass('k-minus');
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').addClass('k-plus');
+                    
+                    if(n.hasClass('k-detail-row')){
+                        n.show();
+                    }else{
+                         
+                        //prepare content
+                        //find uid
+                        uid = n2.attr('data-uid'); console.log(uid) 
+                        b = loadTable(uid); 
+                         
+                        console.log(b) 
+                        
+                        for(var j in b){
+                            if(j=='group') continue;
+                            if(j=='group_object'){
+                                if(b[j].name!=undefined)
+                                    templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem.group}}","gi"),b[j].name); 
+                                else
+                                   templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem.group}}","gi"),'');
+                            } 
+                            else
+                            templBranchDetail2 = templBranchDetail2.replace(new RegExp("{{dataItem."+j+"}}","gi"),b[j]);
+                        }
+                        
+                        
+                        //bo ngo cho phan hoa don lam sau
+                        
+                        
+                         
+                        templBranchDetail2 = $(templBranchDetail2)
+                        if(vkl['7.1.3']==undefined)
+                            templBranchDetail2.find('[ng-show="rights.canUpdate"]').addClass('ng-hide')
+                        if(vkl['7.1.4']==undefined)
+                            templBranchDetail2.find('[ng-show="rights.canDelete"]').addClass('ng-hide')     
+                        //ins
+                        //$(templBranchDetail2).insertAfter(n2);
+                        n2.after(templBranchDetail2);
+                        tabstrip();
+                    }
+                     
+                    $(this).removeClass('k-plus');
+                    $(this).addClass('k-minus');
+                }else{
+                    
+                    n.hide();
+                    
+                    $(this).addClass('k-plus');
+                    $(this).removeClass('k-minus');
+                }
+            });
+            
+            tpage = Math.ceil(countTableForGroup/record);
+            
+            $('#grdBranchs > .paging-box .k-label').html("Hiển thị "+((cpage)*record+1)+" - "+Math.min(countTableForGroup,(cpage+1)*record)+" trên tổng số "+countTableForGroup+" phòng/bàn");
+            
+            $('#grdBranchs > .paging-box a').removeClass('k-state-disabled');
+            
+            if(cpage==0){
+                $('#grdBranchs > .paging-box a:nth(0)').addClass('k-state-disabled');
+                $('#grdBranchs > .paging-box a:nth(1)').addClass('k-state-disabled');
+            } 
+            
+            if(cpage==tpage-1){
+                $('#grdBranchs > .paging-box a:nth(2)').addClass('k-state-disabled');
+                $('#grdBranchs > .paging-box a:nth(3)').addClass('k-state-disabled');
+            } 
+            
+            $('#grdBranchs > .paging-box .k-state-selected, #grdBranchs > .paging-box .k-current-page span').html(cpage+1);
+            $('#grdBranchs > .paging-box a:nth(0)').unbind('click')
+            //first page click
+            $('#grdBranchs > .paging-box a:nth(0)').click(function(){
+                cpage = 0;
+                loadTables();
+            }); $('#grdBranchs > .paging-box a:nth(1)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(1)').click(function(){
+                cpage -= 1;
+                if(cpage>=0)
+                loadTables();
+                else cpage=0
+            }); $('#grdBranchs > .paging-box a:nth(2)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(2)').click(function(){
+                cpage += 1;
+                if(cpage<tpage)
+                loadTables();
+                else
+                cpage = tpage-1
+            }); $('#grdBranchs > .paging-box a:nth(3)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(3)').click(function(){
+                cpage = tpage-1;
+                loadTables();
+            });
+        }
+        
+        function EditGroup(){
+            
+            $('[onclick="deleteGroup()"]').removeClass('ng-hide');
+            
+            tableGroup = loadTableGroup(ctg);
+            
+            //console.log(tableGroup)
+            
+            $('kv-table-group-form [ng-model]').each(function(){
+                //console.log($(this).attr('ng-model'))
+                $(this).val(tableGroup[getname($(this).attr('ng-model'))]);
+            })
+            
+            $('kv-table-group-form').dialog({
+                modal: true,
+                width: 500,
+                title: "Sửa nhóm phòng/bàn"
+                
+            });
+        }
+        
+        function AddGroup(){
+            
+            $('[onclick="deleteGroup()"]').addClass('ng-hide');
+            
+             
+            $('kv-table-group-form [ng-model]').each(function(){
+                 
+                $(this).val('');
+            })
+            
+            $('kv-table-group-form').dialog({
+                modal: true,
+                width: 500,
+                title: "Thêm nhóm phòng/bàn"
+                ,
+                 
+                close: function( event, ui ) {
+                    //$('.ui-dialog.ui-widget.ui-widget-content').remove();
+                },
+                open: function( event, ui ){
+                    $('[kv-name="tableGroupForm"]').siblings().find('.ui-dialog-titlebar-close').unbind('click')
+                    $('[kv-name="tableGroupForm"]').siblings().find('.ui-dialog-titlebar-close').click(function(){
+                         
+                        cancelGroup()
+                        return false
+                    })
+                }
+            });
+        }
+        
+        function saveGroup(){
+            
+            //validate
+            //if($('kv-table-group-form [ng-model="group.name"]').val() == '') alert('Điền tên nhóm');
+            
+            //else{
+                s = _serialize('kv-table-group-form',[0]);
+                
+                if(s!=''){
+                     
+                    $.ajax('ajax.php?action=tablegroup',{
+                        data: s+"&branch="+cb,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                cancelGroup();
+                                loadJsonTableGroups(function(){
+                                    var s2 = parse_str(s)
+                                    if(s2.id == ""){
+                                        //is add
+                                        if($('kv-table-form').is(':visible')){
+                                            loadGroupPopup(d.id)
+                                        }
+                                    }
+                                    loadPC()
+                                    //loadTableLeft()
+                                });
+                                 
+                            }else{
+                                 
+                            } 
+                        }
+                    });
+                    
+                }else alert('Điền tên nhóm');
+                
+            //}
+            
+        }
+        
+        
+        function cancelGroup(){
+            $('kv-table-group-form').dialog('close');
+        }
+         
+         
+        var doo = '';
+        
+        function redirectToAdd(){
+            doo = 'add';
+            
+            //reset empty form
+            
+            $('kv-table-form [ng-model]').val('');
+            
+            loadGroupPopup();
+            
+            
+            $('kv-table-form .k-dropdown select option').removeAttr('selected');
+            $('kv-table-form .k-dropdown .k-dropdown-wrap .k-input').html($('kv-table-form .k-dropdown select option:nth(0)').html());
+                
+            
+             
+            $('kv-table-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 720),
+                title: 'Thêm phòng/bàn', 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                }
+            });
+        }
+        
+        function EditTable(pid){
+            doo = 'edit';
+            
+            //set value field
+            branch = loadTable(pid);
+            
+            loadGroupPopup();
+            
+            $('kv-table-form [ng-model]').each(function(k,v){
+                 $(this).val(branch[getname($(this).attr('ng-model'))]);
+            });
+            
+            //change k-input va select
+            
+             
+            $('kv-table-form .k-dropdown select option[value="'+branch.group+'"]').attr('selected','selected');
+            $('kv-table-form .k-dropdown .k-dropdown-wrap .k-input').html($('kv-table-form .k-dropdown select option[value="'+branch.group+'"]').html());
+            
+            
+            $('kv-table-form').dialog({
+                modal: true,
+                width: Math.min($('body').width()-5, 720),
+                 
+                close: function( event, ui ) {
+                    $('.ui-dialog.ui-widget.ui-widget-content').remove();
+                }
+            });
+        }
+        
+        function cancel(){
+            $('kv-table-form').dialog('close');
+        }
+        
+        function saveTable(){
+            
+            if(doo == 'add'){
+            
+                s = _serialize('kv-table-form',[0]);
+                 
+                if(s){
+                    $.ajax('ajax.php?action=table',{
+                        data: s+"&branch="+cb,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                cancel();
+                                loadJsonTables(loadTables);
+                                
+                             
+                            }else{
+                                 
+                            } 
+                        }
+                    })
+                }else{
+                     
+                    toastr["error"]("Điền tên Phòng/bàn")
+                }  
+            
+            }else if(doo == "edit"){
+                s = _serialize('kv-table-form',[0]);
+                 
+                if(s){
+                    $.ajax('ajax.php?action=table',{
+                        data: s+"&branch="+cb,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                cancel();
+                                loadJsonTables(loadTables);
+                                
+                             
+                            }else{
+                                 
+                            } 
+                        }
+                    })
+                }else{
+                    toastr["error"]("Điền tên Phòng/bàn")
+                     
+                }  
+            }
+        }
+        
+        function deleteGroup(){
+            if(table_groups.length<=1) 
+                toastr.warning('Chỉ còn một nhóm duy nhất, bạn không thể xóa');
+            else{
+                
+                //hien bang popup
+                $('.main>.k-overlay').css({
+                    'z-index':1003
+                }).show()
+                $('.main>.k-window-alert').show()
+                $('.main>.k-window-alert').css({
+                    top: ($(window).height()-$('.main>.k-window-alert').height())/2+window.scrollY,
+                    left: ($(window).width()-$('.main>.k-window-alert').width())/2,
+                    'z-index':1004
+                })
+                $('.main>.k-window-alert .k-window-title').html('Xác nhận')
+                $('.main>.k-window-alert .confirm-message').html('Bạn có chắc chắn muốn xóa nhóm phòng/bàn này?')
+                
+                $('.main>.k-window-alert .k-i-close,.main>.k-window-alert [ng-enter="onCancel()"]').unbind('click')
+                $('.main>.k-window-alert .k-i-close,.main>.k-window-alert [ng-enter="onCancel()"]').click(function(e){
+                    $('.main>.k-window-alert').hide()
+                    $('.main>.k-overlay').hide()
+                    return false
+                })
+                
+                $('.main>.k-window-alert [ng-enter="onConfirm()"]').unbind('click')
+                $('.main>.k-window-alert [ng-enter="onConfirm()"]').click(function(e){
+                    $('.main>.k-window-alert .k-i-close').click()
+                        
+                //if(confirm('Bạn có chắc chắn xóa nhóm này?')){
+                    $.ajax('ajax.php?action=deletetablegroup',{
+                        data: 'id='+ctg,
+                        method: "POST",
+                        dataType: 'json',
+                        success: function(d){
+                            console.log(d);
+                            if(d.status=='1'){
+                                
+                                cancelGroup();
+                                
+                                //edit and save ctg
+                                
+                                for(var i in table_groups){
+                                    if(table_groups[i].id!=ctg){
+                                        ctg = table_groups[i].id;
+                                        break;
+                                    }
+                                }
+                                
+                                savectg();
+                                 
+                                loadJsonTableGroups(loadTableLeft);
+                                 
+                            }else{
+                                toastr.warning('Có lỗi xảy ra')  
+                            } 
+                        },
+                        error: function(e){
+                            console.log(e);
+                            toastr.warning('Có lỗi xảy ra')
+                        }
+                    });
+                //}
+                 
+                    return false
+                })  
+                
+                
+            }
+        }
+        
+        function deleteTable(pid){
+            if(confirm('Bạn có chắc chắn xóa phòng/bàn này?')){
+                $.ajax('ajax.php?action=deletetable',{
+                    data: 'id='+pid,
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(d){
+                        console.log(d);
+                        if(d.status=='1'){
+                            
+                             
+                            loadJsonTables(loadTables);
+                            
+                         
+                        }else{
+                             
+                        } 
+                    }
+                })
+            }
+        }
+        setTitle(loadBranch(cb).name+' - Phòng bàn')  
+    </script>
+<div class="k-overlay" style="display: none; z-index: 10006; opacity: 0.5;"></div>    
+<div class="k-widget k-window k-window-poup k-window-masstel k-window-alert kv-window kv-close-popup window-error" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 500px; display: none; top: 325.5px; left: 429px; touch-action: pan-y; z-index: 10021; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Xóa nhóm phòng/bàn</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div data-role="window" class="k-window-content k-content" tabindex="0">
+    <div class="form-wrapper">
+      <div class="form-group">
+        <p class="confirm-message">Bạn có chắc chắn muốn xóa nhóm này không?</p>
+      </div>
+    </div>
+    <div class="kv-window-footer">
+      <button class="btn-confirm kv2Btn" ng-enter="onConfirm()" ng-hide="noYes"><i class="fa fa-check"></i>Đồng ý</button>
+      <button class="btn-cancel kv2Btn kv2BtnYellow" ng-enter="onCancel()"><i class="fa fa-ban"></i>Bỏ qua</button>
+    </div>
+  </div>
+</div>
+    

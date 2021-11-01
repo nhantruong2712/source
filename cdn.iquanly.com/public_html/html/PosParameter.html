@@ -1,0 +1,2263 @@
+<style>
+.settingBox .row.form-wrapper {
+    padding-top: 40px;
+}
+
+.wp-seating-new .kvTabs > ul {
+    border-bottom: none;
+    position: absolute;
+    top: -34px;
+    left: 320px;
+    padding: 0px!important;
+}
+.wp-seating-new .bg-a{
+    width: 100%;
+}
+.autocomplete input {
+    
+    width: 100%;
+ 
+}
+.custom-file-input::before {
+    width: 100%;
+    left: 0px;
+}
+.wp-seating-new .wp-st-logo img {
+    width: 90%;
+    margin: 5%;
+}
+.wp-seating-new .wp-st-logo ul {
+     
+    margin: 0!important;
+     
+    width: 100%;
+     
+}
+
+.autocomplete ul {     
+    padding: 0px!important;
+}
+
+
+
+.wp-tltn .settingPop{
+    display: none;
+}
+.wp-tltn.active .settingPop{
+    display: block;
+}
+.setting-return input[type=text] {
+    
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    padding: 0 8px;
+    vertical-align: middle;
+    height: 30px;
+    line-height: 30px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-weight: 400;
+    
+    width: 55px;
+    text-align: right;
+    margin: 0 5px 0 20px;
+}
+
+.k-window-settingPop .k-window-content{
+    min-height: 120px;
+}
+
+
+.box-set-features{
+    padding-top: 40px;
+}
+</style> 
+  <section class="mainWrap settingPage ng-scope">
+    <article class="headerContent uln ovh">
+      <h1><span class="ng-binding">Thiết lập cửa hàng</span></h1></article>
+    <kv-tabs ng-model="tabs" class="wp-seating-new ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty">
+      <div class="kvTabs clearfix ulN">
+        <ul class="mr-bg">
+          <!-- ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_0" onclick="select(this, false, 0)" class="tabBut_0  tabbut_new active" ng-class="{'active':pane.selected}">Thông tin cửa hàng</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_1" onclick="select(this, false, 1)" class="tabBut_1  tabbut_new" ng-class="{'active':pane.selected}">Thiết lập tính năng</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_2" onclick="select(this, false, 2)" class="tabBut_2  tabbut_new" ng-class="{'active':pane.selected}">Thiết Lập Kết Nối API</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_4" onclick="select(this, false, 4)" class="tabBut_4  tabbut_new" ng-class="{'active':pane.selected}">Ngôn ngữ</a></li>
+          <!-- end ngRepeat: pane in panes -->
+          <li ng-repeat="pane in panes" class="ng-scope"><a skip-disable="" tabindex="-1" kv-focus-item="tabBut_3" onclick="select(this, false, 3)" class="tabBut_3  tabbut_new" ng-class="{'active':pane.selected}">Thiết Lập Business</a></li>
+        </ul>
+        <div class="tabBg"></div>
+        <div ng-transclude="">
+          <kv-tab-pane title="_l.baseRetailerInfo" class="ng-scope ng-isolate-scope">
+            <div ng-show="selected" ng-transclude="" class="">
+              <section class="settingBox ng-scope" title="">
+                <div class="container-fluid">
+                  <div class="row form-wrapper">
+                    <div class="col-md-5 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-label control-label ng-binding">Địa chỉ truy cập:</label>
+                        <div class="form-wrap"><a href="https://" class="bg-a ng-binding" target="_blank">https://</a></div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label control-label ng-binding">Hạn sử dụng:</label>
+                        <div class="form-wrap"><span class="txtError bg-a ng-binding"></span></div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label control-label ng-binding">Tên cửa hàng:</label>
+                        <div class="form-wrap">
+                          <input type="text" class="form-control ng-pristine ng-untouched ng-not-empty ng-valid ng-valid-required" required="" ng-model="retailer.CompanyName">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label control-label">Địa chỉ:</label>
+                        <div class="form-wrap">
+                          <input type="text" class="form-control ng-pristine ng-untouched ng-valid-maxlength ng-not-empty ng-valid ng-valid-required" required="" ng-model="retailer.CompanyAddress" maxlength="255">
+                        </div>
+                      </div>
+                      <kv-search-location kv-model="retailer" class="ng-isolate-scope">
+                        <div class="form-group">
+                          <label class="form-label control-label ng-binding">Khu vực</label>
+                          <div class="form-wrap loc ">
+                            <div class="loc" ng-show="!kvModel.disabled &amp;&amp; !kvModel.hasIssued" ng-disabled="kvModel.disabled || kvModel.hasIssued">
+                              <autocomplete ng-model="kvModel.LocationName" attr-placeholder="Chọn Tỉnh/TP - Quận/Huyện" template-id="locationItemTempl" attr-inputid="locationSearchInput" data="locations" on-type="locationTermChanged" on-select="selectLocation"
+                              class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty">
+                                <div class="autocomplete " id="">
+                                  <input autocomplete="nope" type="text" ng-model="searchParam" placeholder="Chọn Tỉnh/TP - Quận/Huyện" class="ng-not-empty form-control" id="locationSearchInput" tabindex="" ng-disabled="kvDisable" kv-select-text="">
+                                  <div ng-show="completing" class="output-complete ng-hide">
+                                    <ul>
+                                      <!-- ngRepeat: suggestion in suggestions track by $index -->
+                                    </ul>
+                                    <div class="autoNotFound ng-hide" ng-show="searchParam &amp;&amp; suggestions.length == 0">Không tìm thấy kết quả nào phù hợp</div>
+                                  </div>
+                                </div>
+                              </autocomplete>
+                            </div><span ng-show="kvModel.disabled || kvModel.hasIssued" class="ng-binding ng-hide">Hà Tĩnh - Thị xã Hồng Lĩnh</span></div>
+                        </div>
+                        <div class="form-group mb10 hth-hide">
+                          <label class="form-label control-label ng-binding">Phường xã</label>
+                          <div class="form-wrap ">
+                            <div class="w" ng-show="!kvModel.disabled &amp;&amp; !kvModel.hasIssued" ng-disabled="kvModel.disabled || kvModel.hasIssued">
+                              <autocomplete ng-model="kvModel.WardName" attr-placeholder="Chọn Phường/Xã" template-id="wardItemTempl" attr-inputid="wardSearchInput" data="wards" on-type="wardTermChanged" on-select="selectWard" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty">
+                                <div class="autocomplete " id="">
+                                  <input type="text" ng-model="searchParam" placeholder="Chọn Phường/Xã" class="ng-empty" id="wardSearchInput" tabindex="" ng-disabled="kvDisable" kv-select-text="">
+                                  <div ng-show="completing" class="output-complete ng-hide">
+                                    <ul>
+                                      <!-- ngRepeat: suggestion in suggestions track by $index -->
+                                    </ul>
+                                    <div class="autoNotFound ng-hide" ng-show="searchParam &amp;&amp; suggestions.length == 0">Không tìm thấy kết quả nào phù hợp</div>
+                                  </div>
+                                </div>
+                              </autocomplete>
+                            </div><span ng-show="kvModel.disabled || kvModel.hasIssued" class="ng-binding ng-hide"></span></div>
+                        </div>
+                      </kv-search-location>
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-label control-label ng-binding">Điện thoại:</label>
+                        <div class="form-wrap">
+                          <input type="text" class="iptPhone form-control ng-pristine ng-untouched ng-not-empty ng-valid ng-valid-required" required="" ng-model="retailer.Phone">
+                        </div>
+                      </div>
+                      <div class="form-group hth-hide">
+                        <label class="form-label control-label ng-binding">Ngôn ngữ:</label>
+                        <div class="form-wrap">
+                          <select id="language" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="retailer.Language">
+                            <option value="" class="ng-binding"></option>
+                            <option value="vi-VN">Tiếng Việt</option>
+                            <option value="en-US">Tiếng Anh</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label control-label ng-binding">Logo:</label>
+                        <div class="form-wrap wp-ip-file">
+                            <input name="logo" ng-model="retailer.logo" type="hidden" value="" />
+                          <input type="file" id="logo" class="custom-file-input" onchange="ChangeImage(this)" title="" accept="image/*" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-wrap nt-st">
+                          <p>Lưu ý: Ảnh không vượt quá 2MB</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12 wp-st-logo">
+                      <ul>
+                        <li title=""><img id="yourlogo" src="/home/img/logo.png" /></li>
+                      </ul>
+                      <p>Logo cửa hàng</p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 text-right">
+                      <button class="kv2Btn kv2BtnSetting ng-binding" ng-click="uploadLogo()"><i class="fa fa-floppy-o"></i>Lưu</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </kv-tab-pane>
+          <kv-tab-pane title="_l.setting_function" class="ng-scope ng-isolate-scope">
+            <div ng-show="selected" ng-transclude="" class="ng-hide">
+              <section class="settingBox settingBox-tltn ng-scope" title="">
+                <div class="container-fluid">
+                  <article class="ovh clb uln k-gridNone box-set-features">
+                    <div class="formBox ovh fr">
+                      <div class="wp-col">
+                        <!-- ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseAvgCost active hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Giá vốn trung bình" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Giá vốn trung bình'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Giá vốn trung bình" style="display: none;" checked="checked"><a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+<label for="undefined" class="checked">Giá vốn trung bình</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseVariants active hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Sản phẩm nhiều thuộc tính" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sản phẩm nhiều thuộc tính'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Sản phẩm nhiều thuộc tính" style="display: none;" checked="checked"><a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+<label for="undefined" class="checked">Sản phẩm nhiều thuộc tính</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseMultiUnit active hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Sản phẩm nhiều đơn vị" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sản phẩm nhiều đơn vị'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Sản phẩm nhiều đơn vị" style="display: none;" checked="checked"><a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+<label for="undefined" class="checked">Sản phẩm nhiều đơn vị</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseManufacturing hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Sử dụng tính năng Sản xuất hàng hóa" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sử dụng tính năng Sản xuất hàng hóa'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Sử dụng tính năng Sản xuất hàng hóa" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Sử dụng tính năng Sản xuất hàng hóa</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseCod active" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Tính năng giao hàng" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Tính năng giao hàng'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Tính năng giao hàng" style="display: none;" checked="checked"><a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+<label for="undefined" class="checked">Tính năng giao hàng</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Tính năng này giúp người sử dụng quản lý các trạng thái giao dịch giao hàng, các khoản phí giao hàng, khoản cần thu hộ với từng đối tác giao hàng."><i class="fa fa-info-circle"></i></a> <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true --><a href="javascript:void(0)" tabindex="0" ng-if="m.Key == 'UseCod' &amp;&amp; settings[m.Key] == true" ng-click="detailSettingCod(m)" class="settingPop ng-scope hth-hide">Chi tiết</a><!-- end ngIf: m.Key == 'UseCod' && settings[m.Key] == true --> <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true --> <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true --> <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true --> <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true --> <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true --> <!-- ngIf: m.Key == 'BookClosing' && settings[m.Key] == true --></div>
+                        
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseElectronicScales hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Sử dụng cân điện tử" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sử dụng cân điện tử'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Sử dụng cân điện tử" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Sử dụng cân điện tử</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn SellAllowOrder" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Cho phép đặt hàng" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Cho phép đặt hàng'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Cho phép đặt hàng" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Cho phép đặt hàng</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Cho phép đặt hàng"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                          <!-- a href="javascript:void(0)" tabindex="0" ng-if="m.Key == 'SellAllowOrder' &amp;&amp; settings[m.Key] == true" ng-click="detailSettingSellAllowOrder(m)" class="settingPop ng-scope hth-hide">Chi tiết</a-->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn AllowOrderWhenOutStock" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Cho phép đặt hàng khi hết tồn kho" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Cho phép đặt hàng khi hết tồn kho'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Cho phép đặt hàng khi hết tồn kho" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Cho phép đặt hàng khi hết tồn kho</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Khi hết tồn kho, hệ thống vẫn cho phép đặt hàng. Nếu bỏ tùy chọn này, số lượng Đặt hàng không được vượt quá Tồn kho trừ lượng Đặt hàng trước đó của sản phẩm."><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn AllowSellWhenOutStock hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Cho phép bán hàng khi hết tồn kho" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Cho phép bán hàng khi hết tồn kho'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Cho phép bán hàng khi hết tồn kho" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Cho phép bán hàng khi hết tồn kho</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseSurcharge hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Hỗ trợ các khoản thu khác khi bán hàng" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Hỗ trợ các khoản thu khác khi bán hàng'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Hỗ trợ các khoản thu khác khi bán hàng" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Hỗ trợ các khoản thu khác khi bán hàng</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn AllowSellWhenOrderOutStock active" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Cho phép Bán hàng, Chuyển kho khi sản phẩm đã được Đặt hàng" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Cho phép Bán hàng, Chuyển kho khi sản phẩm đã được Đặt hàng'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Cho phép Bán hàng, Chuyển kho khi sản phẩm đã được Đặt hàng" style="display: none;" checked="checked"><a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+<label for="undefined" class="checked">Cho phép Bán hàng, Chuyển kho khi sản phẩm đã được Đặt hàng</label></div></aside></span>
+                          <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Nếu bỏ tùy chọn này thì khi Bán hàng hoặc Chuyển hàng hệ thống sẽ kiểm tra nếu số lượng cần Bán hoặc Chuyển vượt quá Tồn kho trừ Đặt hàng của sản phẩm thì sẽ không cho phép thực hiện giao dịch."><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn NotAllowModifyPurchaseDate active hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Không cho phép thay đổi thời gian bán hàng" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Không cho phép thay đổi thời gian bán hàng'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Không cho phép thay đổi thời gian bán hàng" style="display: none;" checked="checked"><a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+<label for="undefined" class="checked">Không cho phép thay đổi thời gian bán hàng</label></div></aside></span>
+                          <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseTotalQuantity hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Hiển thị tổng số lượng hàng hóa trên chứng từ" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Hiển thị tổng số lượng hàng hóa trên chứng từ'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Hiển thị tổng số lượng hàng hóa trên chứng từ" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Hiển thị tổng số lượng hàng hóa trên chứng từ</label></div></aside></span>
+                          <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn PrintPreview active hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Không cho phép in báo giá khi bán hàng" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Không cho phép in báo giá khi bán hàng'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Không cho phép in báo giá khi bán hàng" style="display: none;" checked="checked"><a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+<label for="undefined" class="checked">Không cho phép in báo giá khi bán hàng</label></div></aside></span>
+                          <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn RewardPoint" ng-class="settings[m.Key] == true ? 'active' : ''">
+                            <span kv-setting-input="Boolean" kv-label="Sử dụng tính năng tích điểm" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding">
+                            <aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child">
+                                <div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sử dụng tính năng tích điểm'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Sử dụng tính năng tích điểm" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Sử dụng tính năng tích điểm</label></div>
+                            </aside></span> 
+                            <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Tích điểm thưởng cho khách hàng khi mua hàng, quy đổi điểm thưởng để thanh toán đơn hàng hoặc sử dụng điểm thưởng để chia nhóm khách hàng."><i class="fa fa-info-circle"></i></a>
+                            <a href="javascript:void(0)" tabindex="0" ng-if="m.Key == 'RewardPoint' &amp;&amp; settings[m.Key] == true" ng-click="blockSettingPop(m)" class="settingPop ng-scope">Chi tiết</a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn SMSEmailMarketing hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Sử dụng tính năng gửi SMS - Email" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sử dụng tính năng gửi SMS - Email'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Sử dụng tính năng gửi SMS - Email" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Sử dụng tính năng gửi SMS - Email</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseLimitTimeToReturn hth-hide" ng-class="settings[m.Key] == true ? 'active' : ''"><span kv-setting-input="Boolean" kv-label="Giới hạn thời gian trả hàng" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding"><aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child"><div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Giới hạn thời gian trả hàng'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Giới hạn thời gian trả hàng" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+<label for="undefined" class="">Giới hạn thời gian trả hàng</label></div></aside></span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)"><i class="fa fa-info-circle"></i></a>
+                          <!-- ngIf: m.Key == 'UseCod' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UsePromotion' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key == 'UseElectronicScales' && settings[m.Key] == true -->
+                          <!-- ngIf: m.Key === 'SMSEmailMarketing' && settings[m.Key] == true && isSettingSMS -->
+                          <!-- ngIf: m.Key === 'RewardPoint' && settings[m.Key] == true && isSettingPoint -->
+                          <!-- ngIf: m.Key == 'UseLimitTimeToReturn' && settings[m.Key] == true -->
+                        </div>
+                        <!-- end ngRepeat: m in metaShowUp -->
+                        
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseBed" ng-class="settings[m.Key] == true ? 'active' : ''">
+                            <span kv-setting-input="Boolean" kv-label="Chức năng sử dụng cho khách sạn" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding">
+                                <aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child">
+                                    <div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Chức năng sử dụng cho khách sạn'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Chức năng sử dụng cho khách sạn" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                                    <label for="undefined" class="">Chức năng sử dụng cho khách sạn</label>
+                                    </div>
+                                </aside>
+                            </span> 
+                            <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Chức năng sử dụng cho khách sạn: phòng sạch, bẩn ..."><i class="fa fa-info-circle"></i></a>                          
+                        </div>
+                        
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseExpireTime" ng-class="settings[m.Key] == true ? 'active' : ''">
+                            <span kv-setting-input="Boolean" kv-label="Sử dụng ngày hết hạn sản phẩm" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding">
+                                <aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child">
+                                    <div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sử dụng ngày hết hạn sản phẩm'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Sử dụng ngày hết hạn sản phẩm" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                                    <label for="undefined" class="">Sử dụng ngày hết hạn sản phẩm</label>
+                                    </div>
+                                </aside>
+                            </span> 
+                            <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Tính năng sử dụng ngày hết hạn sản phẩm có thể được áp dụng cho nhà thuốc"><i class="fa fa-info-circle"></i></a>                          
+                        </div>
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn UseBlockTimeUnit active" ng-class="settings[m.Key] == true ? 'active' : ''">
+                            <span kv-setting-input="Boolean" kv-label="Tùy chỉnh Block tính giờ tự động" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding">
+                                <aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child">
+                                    <div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Tùy chỉnh Block tính giờ tự động'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Tùy chỉnh Block tính giờ tự động" style="display: none;" checked="checked"><a href="javascript:void(0)" tabindex="0" class="checked"></a>
+                                    <label for="undefined" class="checked">Tùy chỉnh Block tính giờ tự động</label>
+                                    </div>
+                                </aside>
+                            </span> 
+                            <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="- Số lượng thời gian sử dụng sẽ được tự động làm tròn lên theo block.\n- Block tính giờ mặc định là 1 phút"><i class="fa fa-info-circle"></i></a>
+                            <a href="javascript:void(0)" tabindex="0" ng-if="m.Key == 'UseBlockTimeUnit' &amp;&amp; settings[m.Key] == true" ng-click="blockSettingPop(m)" class="settingPop ng-scope">Chi tiết</a>
+                          
+                        </div>
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn PrintBarCode" ng-class="settings[m.Key] == true ? 'active' : ''">
+                            <span kv-setting-input="Boolean" kv-label="In thêm mã vạch khi thanh toán" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding">
+                                <aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child">
+                                    <div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sử dụng ngày hết hạn sản phẩm'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="In thêm mã vạch khi thanh toán" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                                    <label for="undefined" class="">In thêm mã vạch khi thanh toán</label>
+                                    </div>
+                                </aside>
+                            </span> 
+                            <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Khi thanh toán, sẽ in cả mã vạch và hóa đơn bán hàng, áp dụng cho quán trà sữa..."><i class="fa fa-info-circle"></i></a>
+                            <a href="javascript:void(0)" tabindex="0" ng-if="m.Key == 'PrintBarCode' &amp;&amp; settings[m.Key] == true" ng-click="blockSettingPop(m)" class="settingPop ng-scope">Chi tiết</a>                          
+                        </div>
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn BHS" ng-class="settings[m.Key] == true ? 'active' : ''">
+                            <span kv-setting-input="Boolean" kv-label="Tích hợp Bảo Hành Số" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding">
+                                <aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child">
+                                    <div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Sử dụng ngày hết hạn sản phẩm'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Tích hợp Bảo Hành Số" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                                    <label for="undefined" class="">Tích hợp Bảo Hành Số</label>
+                                    </div>
+                                </aside>
+                            </span> 
+                            <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Các chức năng như QRCODE, nhật ký điện tử..."><i class="fa fa-info-circle"></i></a>
+                                                       
+                        </div>
+                        <div ng-repeat="m in metaShowUp" class="col-md-15 wp-tltn BookClosing" ng-class="settings[m.Key] == true ? 'active' : ''">
+                            <span kv-setting-input="Boolean" kv-label="Khóa sổ" kv-model="settings[m.Key]" kv-change="toggleSetting(m)" kv-disabled="m.disabled" class="ng-binding">
+                                <aside class="frRadioCheck frRadioCheckNormal ng-scope has-pretty-child">
+                                    <div class="clearfix prettycheckbox labelright  blue"><input type="checkbox" kv-pretty-check="" kv-data-label="'Khóa sổ'" ng-model="settings[m.Key]" ng-change="toggleSetting(m)" ng-checked="settings[m.Key]" kv-disabled="m.disabled" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Khóa sổ" style="display: none;"><a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                                    <label for="undefined" class="">Chức năng khóa sổ</label>
+                                    </div>
+                                </aside>
+                            </span> 
+                            <a href="javascript:void(0)" tabindex="0" class="help icon" kv-placement="topright" kv-popup-anchor="posSettingHelp" ng-click="helpClick(m)" data-help="Không cho phép thay đổi thông tin của những giao dịch có thời gian trước ngày khóa sổ (trừ các giao dịch đặt hàng và giao dịch đặt hàng nhập).
+Không cho phép chuyển thời gian của giao dịch về trước ngày khóa sổ (trừ các giao dịch đặt hàng và giao dịch đặt hàng nhập)."><i class="fa fa-info-circle"></i></a>
+                            <a href="javascript:void(0)" tabindex="0" ng-if="m.Key == 'BookClosing' &amp;&amp; settings[m.Key] == true" ng-click="blockSettingPop(m)" class="settingPop ng-scope">Chi tiết</a>                          
+                        </div>
+<style>                 
+
+
+.wp-tltn.active:before {
+    color: #2e94da;
+}
+.UseBlockTimeUnit.active:before, .UseLimitTimeToReturn.active:before, .BHS.active:before {
+    background-color: #2e94da;
+}
+
+.UseExpireTime::before {
+    content: "\f073"; /**/
+}
+.UseBed::before {
+    content: "\f236"  ;        /* ""*/
+}    
+.PrintBarCode::before {
+    content: "\f02a"  ;        /* ""*/
+}    
+.BookClosing::before {
+    content: "\f023";
+} 
+.UseBlockTimeUnit:before {
+    top: 2px;
+    content: '';
+    width: 32px;
+    height: 32px;
+    background-color: #a3a3a3;
+    -webkit-mask: url(/assets/images/time-block.svg) no-repeat 50% 50%; /*https://cdn-app.kiotviet.vn/fnb/bundles/20193211643/time-block.svg*/
+    mask: url(/assets/images/time-block.svg) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.BHS:before {
+    top: 2px;
+    content: '';
+    width: 32px;
+    height: 32px;
+    background-color: #a3a3a3;
+    -webkit-mask: url(/assets/images/bhs.png) no-repeat 50% 50%;  
+    mask: url(/assets/images/bhs.png) no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+ 
+.form-group .form-wrap {
+    margin-left: 120px;
+    position: relative;
+}
+.settingBox .pos-setting-shop .kv2BtnGray {
+    cursor: pointer;
+    color: #333!important;
+    position: absolute;
+    height: 32px;
+    line-height: 32px;
+    top: -1px;
+    left: 103%;
+    padding: 0 30px;
+}
+</style>
+                      </div>
+                      <div class="clb ovh"></div>
+                      <div class="kv-group-btn">
+                        <button ng-click="updatePosSetting()" class="kv2Btn kv2BtnSetting ng-binding" ng-disabled="locked"><i class="fa fa-floppy-o"></i>Lưu</button>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </kv-tab-pane>
+          <kv-tab-pane title="_l.clientAPITitle" class="ng-scope ng-isolate-scope">
+            <div ng-show="selected" ng-transclude="" class="ng-hide">
+              <section class="settingBox settingBox-tltn ng-scope" title="">
+                <div class="container-fluid pos-setting-shop">
+                  <article class="ovh clb uln k-gridNone box-set-features">
+                    <div class="formBox ovh fr">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-8"> 
+                          <div class="form-wrapper form-labels-120">
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Tên Kết Nối</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="client.ClientName">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label">ClientId</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="ClientId Auto generate" disabled="" ng-model="client.ClientId">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Mã Bảo Mật</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Click button generate" disabled="" ng-model="client.ClientSecret"> <a href="" ng-click="generate()" class="kv2Btn kv2BtnGray ng-binding">Genarate</a></div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Hoạt Động</label>
+                              <div class="form-wrap">
+                                <aside class="frRadioCheck has-pretty-child">
+                                  <div class="clearfix prettyradio labelright  blue">
+                                    <input type="radio" ng-model="client.Enabled" name="api" value="1" checked kv-pretty-check="" kv-data-label="'Hoạt Động'" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="{{_l.activeClientAPI}}" style="display: none;">
+                                    <a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+                                    <label for="undefined" class="">Hoạt Động</label>
+                                  </div>
+                                </aside>
+                                <aside class="frRadioCheck has-pretty-child">
+                                  <div class="clearfix prettyradio labelright  blue">
+                                    <input type="radio" ng-model="client.Enabled" name="api" value="0" kv-pretty-check="" kv-data-label="'Ngừng Hoạt Động'" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="{{_l.inActiveClientAPI}}"
+                                    style="display: none;">
+                                    <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                                    <label for="undefined" class="">Ngừng Hoạt Động</label>
+                                  </div>
+                                </aside>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="kv-window-footer"><a href="" class="kv2Btn ng-binding" ng-click="save()" ng-disabled="locked"><i class="fa fa-floppy-o"></i>Lưu</a></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </kv-tab-pane>
+          
+          <kv-tab-pane title="_l.settingsBusiness" class="ng-scope ng-isolate-scope">
+            <div ng-show="selected" ng-transclude="" class="ng-hide">
+              <section class="settingBox settingBox-tltn ng-scope" title="">
+                <div class="container-fluid pos-setting-shop">
+                  <article class="ovh clb uln k-gridNone box-set-features">
+                    <div class="formBox ovh fr">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-8"> 
+                          <div class="form-wrapper form-labels-120">
+                          
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Chọn giao diện</label>
+                              <div class="form-wrap">
+                                <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="business.theme">
+                                    <option value="book">Bán hàng 1</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Tiêu đề</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="business.title">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Hotline</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="business.hotline">
+                              </div>
+                            </div>
+                             
+                             
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-8"> 
+                          <div class="form-wrapper form-labels-120">
+                             
+                            <div class="form-group">
+                              <label class="form-label control-label">Email</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="business.email" />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Facebook</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="business.facebook" /> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Map</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="business.map" /> 
+                                </div>
+                            </div> 
+                          </div>
+                      </div>
+                      <div class="col-lg-12 col-md-8"> 
+                        <div class="form-wrapper form-labels-120">
+                             
+                            <div class="form-group">  
+                                <label class="form-label control-label">Chọn tông màu chủ đạo</label>
+                                <div class="form-wrap">
+                                    <input type="hidden" ng-model="business.color" /> 
+                                    <span class="box-color color1"></span>
+                                    <span class="box-color color2"></span>
+                                    <span class="box-color color3"></span>
+                                    <span class="box-color color4"></span>
+                                    <span class="box-color color5"></span>
+                                    <span class="box-color color6"></span>
+                                    <span class="box-color color7"></span>
+                                    <span class="box-color color8"></span>
+                                    <span class="box-color color9"></span>
+                                </div>
+                            </div>
+                        </div>    
+                      </div>
+                      <div class="col-lg-12 col-md-8"> 
+                          <div class="form-wrapper form-labels-120">
+                             
+                            <div class="form-group">
+                              <label class="form-label control-label">Footer 1</label>
+                              <div class="form-wrap">
+                                <textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="business.footer1"></textarea>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Footer 2</label>
+                              <div class="form-wrap">
+                                <textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="business.footer2"></textarea> 
+                                </div>
+                            </div>
+                             
+                          </div>
+                      </div>
+                      </div>
+                      <div class="kv-window-footer"><a href="" class="kv2Btn ng-binding" ng-click="saveBusiness()" ng-disabled="locked"><i class="fa fa-floppy-o"></i>Lưu</a></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </kv-tab-pane>
+          
+          <kv-tab-pane title="_l.settingsBusiness" class="ng-scope ng-isolate-scope">
+            <div ng-show="selected" ng-transclude="" class="ng-hide">
+              <section class="settingBox settingBox-tltn ng-scope" title="">
+                <div class="container-fluid pos-setting-shop">
+                  <article class="ovh clb uln k-gridNone box-set-features">
+                    <div class="formBox ovh fr">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-8"> 
+                          <div class="form-wrapper form-labels-120">
+                          
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Phòng bàn</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="language.room" required />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Bếp</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="language.kitchen" required />
+                              </div>
+                            </div>
+                            <div class="form-wrapper form-labels-120">
+                             
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Thực đơn</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="language.menu" required />
+                              </div>
+                            </div>
+                          </div>
+                             
+                             
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-8"> 
+                          <div class="form-wrapper form-labels-120">
+                             
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Chờ chế biến</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="language.kitchenwait" required />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-wrapper form-labels-120">
+                             
+                            <div class="form-group">
+                              <label class="form-label control-label ng-binding">Đã xong/chờ cung ứng</label>
+                              <div class="form-wrap">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="language.kitchendone" required />
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      
+                      </div>
+                      <div class="kv-window-footer"><a href="" class="kv2Btn ng-binding" ng-click="saveLanguage()" ng-disabled="locked"><i class="fa fa-floppy-o"></i>Lưu</a></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </kv-tab-pane>
+        </div>
+      </div>
+    </kv-tabs>
+  </section>
+  <kv-popup id="posSettingHelp" class="ng-scope ng-isolate-scope popupWrapper">
+    <div class="kv2Pop pop popArrow" ng-transclude=""><span class="ng-binding ng-scope"></span></div>
+  </kv-popup>
+  <script type="text/x-angular-template" id="userSearchItemTempl" class="ng-scope">
+    <li suggestion ng-repeat="suggestion in suggestions track by $index" index="{{$index}}" val="{{name}}" ng-class="{active:($index == selectedIndex)}" ng-click="itemClicked(suggestion)">
+      <p>{{suggestion.GivenName}}</p> {{suggestion.Id}} </li>
+  </script>
+
+<script type="text/x-angular-template" id="locationItemTempl"><li suggestion ng-repeat="suggestion in suggestions track by $index" index="{{$index}}" val="{{name}}" ng-class="{active:($index == selectedIndex)}" ng-click="itemClicked(suggestion)"> <span class="">{{name}}</span> </li></script>
+ 
+<script>
+if(!customer_groups) loadJsonCustomerGroups();
+
+var dim;
+var cfs_PointSetting_def = {
+    "Type": '0',
+    "Product_IsMoneyPerPoint": true,
+    "ForAllCustomer": 'true',
+    "ForAllProduct": true,
+    
+    "MoneyPerPoint": 10000,
+     PointToMoney  : 0,
+     MoneyToPoint : 0, 
+     InvoiceCount : 0,
+}, cfs_PointSetting;
+
+$(document).ready(zzz=function(){
+    if(typeof vkl=="undefined"){
+        setTimeout(zzz,500)
+        return;
+    }
+    /*$('.settingBox .form-group:nth(0)').html(
+        $('.settingBox .form-group:nth(0)').html().replace(/www/g,cfs.subdomain)
+    )*/
+    $('.settingBox .form-group:nth(0) a').html('https://'+cfs.subdomain+'.'+maindomain)
+    $('.settingBox .form-group:nth(0) a').attr('href','https://'+cfs.subdomain+'.'+maindomain)
+    
+    if(cfs.trial==1){
+        //het han
+        var a=new Date(cfs.createdate)
+        a.setDate(a.getDate()+14)
+        $('.settingBox .form-group:nth(1) .txtError').html(nCode2(a,false))
+    }else{
+        $('.settingBox .form-group:nth(1)').remove()
+    }
+    
+    var footer1,footer2;
+    
+    if(cfs.business==undefined || cfs.bussiness=='0'){
+        $('[kv-focus-item="tabBut_3"]').addClass('ng-hide')
+    }else{
+         
+        $('[ng-model="business.footer1"]').attr('id','_footer1')
+        footer1 = CKEDITOR.replace( '_footer1', cko() );
+        
+        footer1.on('change',function(){
+            $('[ng-model="business.footer1"]').val(footer1.getData())
+        });
+        
+        $('[ng-model="business.footer2"]').attr('id','_footer2')
+        footer2 = CKEDITOR.replace( '_footer2', cko() );
+        
+        footer2.on('change',function(){
+            $('[ng-model="business.footer2"]').val(footer2.getData())
+        });
+        
+        if(cfs.business_footer1)
+        footer1.setData(cfs.business_footer1)
+        
+        if(cfs.business_footer2)
+        footer2.setData(cfs.business_footer2)
+        
+        if(cfs.business_title)
+        $('[ng-model="business.title"]').val(cfs.business_title)
+        
+        if(cfs.business_hotline)
+        $('[ng-model="business.hotline"]').val(cfs.business_hotline)
+        
+        if(cfs.business_map)
+        $('[ng-model="business.map"]').val(cfs.business_map)
+        
+        if(cfs.business_email)
+        $('[ng-model="business.email"]').val(cfs.business_email)
+        
+        if(cfs.business_facebook)
+        $('[ng-model="business.facebook"]').val(cfs.business_facebook)
+        
+        if(cfs.business_theme)
+        $('[ng-model="business.theme"]').val(cfs.business_theme)
+        
+        if(cfs.business_color){
+            $('[ng-model="business.color"]').val(cfs.business_color)
+            $('.box-color.color'+cfs.business_color).addClass('active')
+        }
+    }
+    
+    //ng-model="settings['BlockNumber']"
+    if(cfs.BlockNumber==undefined){
+        cfs.BlockNumber=1        
+    }
+    $('[ng-model="settings[\'BlockNumber\']"]').val(cfs.BlockNumber)
+    $('[ng-model="settings[\'BlockNumber\']"]').change(function(){
+        var v = $(this).val(), v2 = v
+        if(v>0){
+            v = parseInt(v)             
+            $(this).val(v)                        
+        }else{
+            toastr.warning('Giá trị nhập vào phải >0')
+            $(this).val(cfs.BlockNumber)      
+        }
+    })
+    
+    /*if(cfs.PrintBarCodeWidth==undefined){
+        cfs.PrintBarCodeWidth=188        
+    }*/
+    cfs = $.extend({},defautPrintBarCode,cfs)
+    for(var dd in defautPrintBarCode){
+        $('[ng-model="settings[\''+dd+'\']"]').val(cfs[dd])
+        $('[ng-model="settings[\''+dd+'\']"]').change(function(){
+            var v = $(this).val(), v2 = v
+            var dd = $(this).attr('ng-model').slice(10,-2)
+            if((dd=='PrintBarCodeDistanceColumn'||dd=='PrintBarCodeDistanceRow')){
+                if(v>=0){
+                    v = parseInt(v)             
+                    $(this).val(v)                        
+                }else{
+                    toastr.warning('Giá trị nhập vào phải >=0')                    
+                    $(this).val(cfs[dd])      
+                }
+            }else{
+                if(v>0){
+                    v = parseInt(v)             
+                    $(this).val(v)                        
+                }else{
+                    toastr.warning('Giá trị nhập vào phải >0')                    
+                    $(this).val(cfs[dd])      
+                }
+            }
+        })
+    }
+    
+    $('[ng-model="retailer.CompanyName"]').val(cfs.namesite)
+    $('[ng-model="retailer.CompanyAddress"]').val(cfs.address)
+    $('[ng-model="retailer.Phone"]').val(cfs.phone)
+    if(cfs.logo){
+        $('[ng-model="retailer.logo"]').val(cfs.logo)   
+        $('#yourlogo').attr('src',cfs.logo)   
+    }
+         
+    if(cfs.zone)
+        $('#locationSearchInput').val(cfs.zone)  
+    
+ 
+    $('.col-md-15.wp-tltn:not(.hth-hide)').each(function(i,v){
+        var m = this.className.replace("col-md-15 wp-tltn ","").replace(" active","")
+        //alert(m)
+        if(cfs[m]){
+            $(this).addClass('active')
+            
+            $(this).find('a,label').addClass('checked')
+             
+            $(this).find('input').attr('checked','checked')
+            $(this).find('input').prop('checked',true)
+           
+        }else{
+            $(this).removeClass('active')
+            
+            $(this).find('a,label').removeClass('checked')
+             
+            $(this).find('input').removeAttr('checked' )
+            $(this).find('input').prop('checked',false)
+        }
+    })
+        
+      
+    $('[ng-click="updatePosSetting()"]').click(function(){
+        var sz = {}
+        $('.col-md-15.wp-tltn:visible').each(function(i,v){
+            var m = this.className.replace("col-md-15 wp-tltn","").replace("active","").trim()
+            sz[m] = $(this).hasClass('active') ? 1:0;
+        })
+        
+        var mo = ['BlockNumber',
+            'PointSetting',
+            'business',
+            'BookClosingDate',//added 05/02/2020
+            'client_Enabled','client_ClientSecret','client_ClientId','client_ClientName',
+            'business_theme','business_title','business_hotline','business_email','business_facebook',
+                'business_map','business_color','business_footer1','business_footer2']
+        for(var i in mo){
+            if(cfs[mo[i]])
+                sz[mo[i]] = cfs[mo[i]]
+        }
+         
+        if(cfs.PrintBarCode)
+        for(var i in defautPrintBarCode){
+            sz[i] = cfs[i]
+        }
+        
+        console.log(sz);  //alert('xxx'); return;
+        
+        //ve tinh nang tich diem:
+        if(sz.RewardPoint){ //cfs.RewardPoint||
+            
+            if(cfs.PointSetting==undefined){
+                toastr.warning('Bạn chưa thiết lập tính năng tích điểm')
+                return;
+            }
+            
+        }
+        if(sz.BookClosing){
+            if(!cfs.BookClosingDate || !cfs.BookClosingDate.match(/^\d{2}\/\d{2}\/\d{4}$/)){
+                toastr.warning('Bạn chưa thiết lập ngày khóa sổ')
+                return false;
+            }
+        }
+        $.ajax({
+               url : 'ajax.php?action=updatePosSetting',
+               type : 'POST',
+               data : "id="+cfs.id+"&settings="+encodeURIComponent(JSON.stringify(sz)), //$.extend({id:cfs.id},sz),
+                
+               dataType: 'json',
+               success : function(data) {
+                   if(data.error==''){                     
+                         
+                        document.location.reload()
+                   }else alert(data.error);
+               }
+        }); 
+        
+        return false
+    })
+    
+    /*  
+    CompanyName:  namesite
+    CompanyAddress address
+    Phone phone
+    logo logo
+    
+    locationSearchInput zone
+    searchParam[0]
+
+    */  
+    $('[ng-click="uploadLogo()"]').click(function(){
+        var v3 = _serialize('[title="_l.baseRetailerInfo"]',[0])
+        //"CompanyName=Nh%C3%A0%20h%C3%A0ng%20B%E1%BA%BFp%20Vi%E1%BB%87t&CompanyAddress=02%20Ham%20Nghi&LocationName=&searchParam=An%20Giang%20-%20Huy%E1%BB%87n%20T%C3%A2n%20Ch%C3%A2u&WardName=&searchParam=&Phone=0916863033&Language=&logo=http%3A%2F%2Fquanlytot.com%2Fhome%2Fimg%2Flogo.png"
+        if(v3==''){
+            toastr.warning("Bạn chưa nhập tên cửa hàng")
+            return false
+        }
+        
+        var v4 = parse_str(v3)
+        
+        var data = {
+            namesite: decodeURIComponent(v4.CompanyName),
+            address: decodeURIComponent(v4.CompanyAddress),
+            phone: decodeURIComponent(v4.Phone),
+            logo : decodeURIComponent(v4.logo),
+            zone: decodeURIComponent(v4.searchParam[0]),
+        }
+        
+        console.log(data)
+        
+        $.ajax({
+               url : 'ajax.php?action=uploadlogo',
+               type : 'POST',
+               data : $.extend({id:cfs.id},data),
+                
+               dataType: 'json',
+               success : function(data) {
+                   if(data.error==''){                     
+                        //cfs = $.extend(cfs,data)
+                        document.location.reload()
+                   }else alert(data.error);
+               }
+        }); 
+        
+        return false
+    })
+    
+    $('[ng-click="save()"]').click(function(e){
+        var newCFS = {},check = true;
+        e.preventDefault()
+        $('[ng-model^="client."]').each(function(){
+            if(this.type=='radio'){
+                if(this.checked) newCFS.client_Enabled = this.value
+            }else{
+                if(this.value==''){
+                    toastr.warning('Giá trị ô '+$(this).parent().prev().html()+' không được trống')
+                    this.focus()
+                    check = false;
+                    return false;
+                }
+                var m = this.attributes['ng-model'].value.replace('.','_')
+                newCFS[m] = this.value
+            }
+        })
+        
+        if(check){
+            //console.log(newCFS);alert(newCFS)
+            $.ajax({
+                   url : 'ajax.php?action=updatePosSetting',
+                   type : 'POST',
+                   data : "id="+cfs.id+"&settings="+encodeURIComponent(JSON.stringify($.extend({},cfs,newCFS))), 
+                    
+                   dataType: 'json',
+                   success : function(data) {
+                       if(data.error==''){                     
+                             
+                            document.location.reload()
+                       }else alert(data.error);
+                   }
+            }); 
+        }        
+        
+        return false;
+    })
+    
+    $('[ng-click="saveBusiness()"]').click(function(e){
+        var newCFS = {},check = true;
+        e.preventDefault()
+        $('[ng-model^="business."]').each(function(){
+             
+            if(this.required && this.value==''){
+                toastr.warning('Giá trị ô '+$(this).parent().prev().html()+' không được trống')
+                this.focus()
+                check = false;
+                return false;
+            }
+            var m = this.attributes['ng-model'].value.replace('.','_')
+            newCFS[m] = this.value
+             
+        })
+        if(check){
+            //console.log(newCFS);alert(newCFS);return;
+            /*
+business_email: "nhasach@gamil.com"
+business_facebook: "https://facebook.com/pagibigfundofficialpage"
+business_footer1: "<p>2</p>↵"
+business_footer2: ""
+business_hotline: "0912345678"
+business_theme: "book"
+business_title: "Nhà sách Duy Dung"            
+            */
+            
+            $.ajax({
+                   url : 'ajax.php?action=updatePosSetting',
+                   type : 'POST',
+                   data : "id="+cfs.id+"&settings="+encodeURIComponent(JSON.stringify($.extend({},cfs,newCFS))), 
+                    
+                   dataType: 'json',
+                   success : function(data) {
+                       if(data.error==''){                     
+                             
+                            document.location.reload()
+                       }else alert(data.error);
+                   }
+            }); 
+        }        
+        
+        return false;
+    })
+    
+    //03/19/2021
+    $('[ng-click="saveLanguage()"]').click(function(e){
+        var newCFS = {},check = true;
+        e.preventDefault()
+        $('[ng-model^="language."]').each(function(){
+             
+            if(this.required && this.value==''){
+                toastr.warning('Giá trị ô '+$(this).parent().prev().html()+' không được trống')
+                this.focus()
+                check = false;
+                return false;
+            }
+            var m = this.attributes['ng-model'].value.replace('.','_')
+            newCFS[m] = this.value
+             
+        })
+        if(check){
+            //console.log(newCFS);alert(newCFS);return;
+            /*
+language_kitchen: "Bếp"
+language_menu: "Thực đơn"
+language_room: "Phòng bàn"       
+            */
+            
+            $.ajax({
+                   url : 'ajax.php?action=updatePosSetting',
+                   type : 'POST',
+                   data : "id="+cfs.id+"&settings="+encodeURIComponent(JSON.stringify($.extend({},cfs,newCFS))), 
+                    
+                   dataType: 'json',
+                   success : function(data) {
+                       if(data.error==''){                     
+                             
+                            document.location.reload()
+                       }else alert(data.error);
+                   }
+            }); 
+        }        
+        
+        return false;
+    })      
+    if(cfs.language_room)
+        $('[ng-model="language.room"]').val(cfs.language_room)
+    if(cfs.language_kitchen)
+        $('[ng-model="language.kitchen"]').val(cfs.language_kitchen)
+    if(cfs.language_menu)
+        $('[ng-model="language.menu"]').val(cfs.language_menu)        
+    
+    pretty('.pos-setting-shop')
+    //[ng-model="client.ClientId"]
+    
+    if(cfs.client_ClientId==undefined){
+        $('[ng-model="client.ClientId"]').val(generateClientId())//uuidv4
+    }else{
+        $('[ng-model="client.ClientId"]').val(cfs.client_ClientId)
+    }
+    
+    if(cfs.client_ClientSecret!=undefined){
+        $('[ng-model="client.ClientSecret"]').val(cfs.client_ClientSecret)
+        $('.settingBox .pos-setting-shop .kv2BtnGray').hide()
+    }else{
+        $('.settingBox .pos-setting-shop .kv2BtnGray').click(function(e){
+            $('[ng-model="client.ClientSecret"]').val(generateClientSecret())
+            e.preventDefault()
+            return false;
+        })
+    }
+    if(cfs.client_ClientName!=undefined){
+        $('[ng-model="client.ClientName"]').val(cfs.client_ClientName)         
+    }
+    if(cfs.client_Enabled!=undefined){
+        $('[ng-model="client.Enabled"][value="'+cfs.client_Enabled+'"]+a').click()         
+    }
+     
+    if(!(vkl.admin==1)){
+        $('[kv-focus-item="tabBut_2"]').parent().remove()
+    }
+    
+    $('[ng-click="helpClick(m)"]').click(function(){
+        var that = $(this)
+        //alert($(this).data('help'))
+        
+        if($('#posSettingHelp').hasClass('popping')){
+            $('#posSettingHelp').removeClass('popping')
+        }else{
+            var z = that.data('help').replace('\\n','<br />')
+            $('#posSettingHelp .ng-binding').html(z) 
+            
+            $('#posSettingHelp').addClass('popping')
+            $('#posSettingHelp>div').css({
+                left: that.offset().left - $('#posSettingHelp>div').width()+29,
+                top: that.offset().top - $('#posSettingHelp>div').height()- 22
+            }).addClass('arrow-top-right') 
+             
+        }
+        
+    })
+    
+    
+    
+    $('[ng-click="blockSettingPop(m)"]').click(blockSettingPop=function(){
+        console.log('xyz-2')
+        var that = $(this)
+        var na = that.parent()[0].className.replace('col-md-15 wp-tltn','').replace('active','').trim()
+        
+        $('.k-window.kv-window-'+na).show()
+        $('.k-overlay').show()
+        
+        $('.k-window.kv-window-'+na+' .k-window-action,.k-window.kv-window-'+na+' .kv-window-footer .kv2BtnYellow').unbind('click')
+        $('.k-window.kv-window-'+na+' .k-window-action,.k-window.kv-window-'+na+' .kv-window-footer .kv2BtnYellow').click(function(){
+            $('.k-window.kv-window-'+na).hide()
+            $('.k-overlay').hide()
+            return false;
+        })
+        console.log('xyz-1')
+        switch(na){
+            case "UseBlockTimeUnit":
+                $('.k-window.kv-window-'+na+' [ng-click="closeBlockSettingWindow()"]').unbind('click')
+                $('.k-window.kv-window-'+na+' [ng-click="closeBlockSettingWindow()"]').click(function(){
+                    var v = $('[ng-model="settings[\'BlockNumber\']"]').val()
+                    cfs.BlockNumber = parseInt(v)
+                    $('.k-window.kv-window-'+na).hide()
+                    return false;
+                })
+                
+                $('.k-window.kv-window-'+na+' [ng-click="rejectBlockSetting()"]').click(function(){
+                    $('[ng-model="settings[\'BlockNumber\']"]').val(cfs.BlockNumber)                                         
+                    $('.k-window.kv-window-'+na).hide()
+                    return false;
+                })
+            break;
+            case 'BookClosing':
+                if(!$('[ng-model="settings[\'BookClosingDate\']"]').hasClass('hasDatepicker'))
+                    $('[ng-model="settings[\'BookClosingDate\']"]').datepicker({
+                      dateFormat: "dd/mm/yy",
+                      maxDate: new Date(),
+                    })
+                
+                if(!cfs.BookClosingDate)
+                    cfs.BookClosingDate = '';
+                
+                $('.k-window.kv-window-'+na+' [ng-click="closeBlockSettingWindow()"]').unbind('click')
+                $('.k-window.kv-window-'+na+' [ng-click="closeBlockSettingWindow()"]').click(function(){
+                     
+                    cfs.BookClosingDate = $('[ng-model="settings[\'BookClosingDate\']"]').val()
+                    
+                    if(!cfs.BookClosingDate || !cfs.BookClosingDate.match(/^\d{2}\/\d{2}\/\d{4}$/)){
+                        toastr.warning('Bạn phải nhập ngày khóa sổ')
+                        return false;
+                    }
+                    
+                    $('.k-window.kv-window-'+na).hide()
+                    $('.k-overlay').hide()
+                    return false;
+                })
+                
+                $('.k-window.kv-window-'+na+' [ng-click="rejectBlockSetting()"]').click(function(){                     
+                    
+                    $('[ng-model="settings[\'BookClosingDate\']"]').val(cfs.BookClosingDate)
+                                   
+                    $('.k-window.kv-window-'+na).hide()
+                    return false;
+                })
+            break;
+            case "PrintBarCode":
+                $('.k-window.kv-window-'+na+' [ng-click="closeBlockSettingWindow()"]').unbind('click')
+                $('.k-window.kv-window-'+na+' [ng-click="closeBlockSettingWindow()"]').click(function(){
+                     
+                    for(var dd in defautPrintBarCode){
+                        var v = $('[ng-model="settings[\''+dd+'\']"]').val()
+                        cfs[dd] = parseInt(v)
+                    }   
+                    $('.k-window.kv-window-'+na).hide()
+                    return false;
+                })
+                
+                $('.k-window.kv-window-'+na+' [ng-click="rejectBlockSetting()"]').click(function(){                     
+                    for(var dd in defautPrintBarCode){
+                        $('[ng-model="settings[\''+dd+'\']"]').val(cfs[dd])    
+                    }                  
+                    $('.k-window.kv-window-'+na).hide()
+                    return false;
+                })
+            break;
+            case "RewardPoint": console.log('xyz0')
+                if(customer_groups===undefined){
+                    setTimeout(blockSettingPop,500)
+                    return;
+                }
+                console.log('xyz01')
+                if(cfs.PointSetting==undefined){ console.log('xyz011')
+                    cfs_PointSetting = cfs_PointSetting_def
+                    $('[ng-if="!PointSetting.HasProductPoint"]').removeClass('ng-hide')
+                    $('[ng-if="PointSetting.HasProductPoint"]').addClass('ng-hide')
+                }else{ console.log('xyz012')
+                    cfs_PointSetting = cfs.PointSetting
+                    if(cfs_PointSetting.CustomerGroup){
+                        if(cfs_PointSetting.CustomerGroup.split)
+                            cfs_PointSetting.CustomerGroup = cfs_PointSetting.CustomerGroup.split(",")
+                    }
+                        
+                    else
+                        cfs_PointSetting.CustomerGroup = []
+                        
+                    $('[ng-if="!PointSetting.HasProductPoint"]').addClass('ng-hide')
+                    if(cfs_PointSetting.Type==1){
+                        $('[ng-if="PointSetting.HasProductPoint"]').removeClass('ng-hide')
+                    }else{
+                        $('[ng-if="PointSetting.HasProductPoint"]').addClass('ng-hide')
+                    }
+                }
+                console.log('xyz1')
+                $('[ng-click="savePointSetting()"]').unbind('click')
+                $('[ng-click="savePointSetting()"]').click(function(e){
+                    var z = parse_str(_serialize('kv-point-setting'))
+                    /*
+RewardPoint_CustomerGroup: "8,9"
+RewardPoint_ForAllCustomer: "false"
+RewardPoint_ForAllProduct: "on"
+RewardPoint_InvoiceCount: "0"
+RewardPoint_MoneyPerPoint: "10000"
+RewardPoint_MoneyToPoint: "0"
+RewardPoint_PointToMoney: "0"
+RewardPoint_Product_IsMoneyPerPoint: "on"
+RewardPoint_Type: "0"                    
+                    */
+                    cfs_PointSetting = replaceObjectKeys(z,'RewardPoint_','')
+                    
+                    if(!(cfs_PointSetting.MoneyPerPoint>0)){
+                        toastr.warning('Tỷ lệ quy đổi điểm thưởng chưa đúng. Số tiền quy đổi sang 1 điểm thưởng phải lớn hơn 0.')
+                        return;
+                    }
+                     
+                    if(cfs_PointSetting.IsPointToMoney){
+                        if(!(cfs_PointSetting.PointToMoney>0)){
+                            toastr.warning('Tỷ lệ thanh toán bằng điểm chưa đúng. Số điểm quy đổi phải lớn hơn 0.')
+                            return;
+                        }
+                        if(!(cfs_PointSetting.MoneyToPoint>0)){
+                            toastr.warning('Tỷ lệ thanh toán bằng điểm chưa đúng. Số tiền quy đổi phải lớn hơn 0.')
+                            return;
+                        }
+                    }
+                    if(cfs_PointSetting.CustomerGroup=='null') 
+                        cfs_PointSetting.CustomerGroup=''; 
+                    if(cfs_PointSetting.ForAllCustomer=='false' && (!cfs_PointSetting.CustomerGroup)){
+                        toastr.warning('Bạn chưa chọn nhóm khách hàng để áp dụng tích điểm.')
+                        return;
+                    } 
+                    
+                    for(var l in cfs_PointSetting){
+                        if(cfs_PointSetting[l]=='on') cfs_PointSetting[l]=true
+                    }
+                    
+                    /*
+                    $.ajax({
+                        url: '/ajax.php?action=savePointSetting',
+                        type: 'POST',
+                        data: cfs_PointSetting,
+                        success: function(data){                             
+                        } 
+                    })*/
+                    toastr.info('Bắt đầu thiết lập tích điểm')
+                    $.ajax({
+                       url : '/ajax.php?action=savePointSetting',//updatePosSetting
+                       type : 'POST',
+                       data : "id="+cfs.id+"&settings="+encodeURIComponent(JSON.stringify($.extend({},cfs,{
+                           'PointSetting': cfs_PointSetting,
+                           'RewardPoint': 1  
+                       }))), 
+                        
+                       dataType: 'json',
+                       success : function(data) {
+                           if(data.error==''){    
+                                if(cfs_PointSetting.ForAllProduct||cfs_PointSetting.UpdateAllProduct){
+                                    //reload Products
+                                    toastr.info('Hoàn thành thiết lập tích điểm. Đang tải lại dữ liệu sản phẩm')
+                                    loadJsonProducts(function(){
+                                        toastr.info('Hoàn thành tải lại dữ liệu sản phẩm')
+                                        document.location.reload()
+                                    }) 
+                                }else{
+                                    toastr.info('Hoàn thành thiết lập tích điểm.')
+                                }
+                                 
+                           }else alert(data.error);
+                       },
+                        error: function(){
+                            toastr.warning('Có lỗi xảy ra, không thể lưu thiết lập tích điểm.')
+                        }
+                    }); 
+                })
+                console.log('xyz2')
+                $('.k-window.kv-window-'+na+' [ng-model="PointSetting.RewardPoint_Type"]').unbind('change')
+                $('.k-window.kv-window-'+na+' [ng-model="PointSetting.RewardPoint_Type"]').change(function(){
+                    var v = $(this).val()
+                    //alert(v)
+                    if(v==1){
+                        $('[ng-if="PointSetting.RewardPoint_Type == _rewardPointType.Invoice"]').addClass('ng-hide')
+                        $('[ng-if="PointSetting.RewardPoint_Type == _rewardPointType.Product"]').removeClass('ng-hide')
+                        
+                        if(cfs.RewardPoint!=undefined){
+                            $('[ng-if="PointSetting.HasProductPoint"]').removeClass('ng-hide')
+                        }
+                    }else{
+                        $('[ng-if="PointSetting.RewardPoint_Type == _rewardPointType.Invoice"]').removeClass('ng-hide')
+                        $('[ng-if="PointSetting.RewardPoint_Type == _rewardPointType.Product"]').addClass('ng-hide')
+                        
+                        if(cfs.RewardPoint!=undefined){
+                            $('[ng-if="PointSetting.HasProductPoint"]').addClass('ng-hide')
+                        }
+                    }
+                })
+                console.log('xyz3')
+                $('.k-window.kv-window-'+na+' [ng-model="PointSetting.RewardPoint_IsPointToMoney"]').unbind('change')
+                $('.k-window.kv-window-'+na+' [ng-model="PointSetting.RewardPoint_IsPointToMoney"]').change(function(){
+                    var v = $(this).is(':checked')
+                    //alert(v)
+                    if(v){
+                        $('[ng-disabled="!PointSetting.RewardPoint_IsPointToMoney"]').removeAttr('disabled')
+                    }else{
+                        $('[ng-disabled="!PointSetting.RewardPoint_IsPointToMoney"]').attr('disabled','disabled')
+                    }
+                })
+                console.log('xyz4')
+                $('.k-window.kv-window-'+na+' .k-widget.k-multiselect.k-header.form-control-kv input').attr('placeholder','Chọn nhóm khách hàng...')
+                
+                $('.k-window.kv-window-'+na+' [ng-model="PointSetting.RewardPoint_ForAllCustomer"]').unbind('change')
+                $('.k-window.kv-window-'+na+' [ng-model="PointSetting.RewardPoint_ForAllCustomer"]').change(function(){
+                    var v = $(this).val()
+                    if(v=='true'){
+                        $('.k-window.kv-window-'+na+' .k-widget.k-multiselect.k-header.form-control-kv').addClass('k-state-disabled')
+                        $('.k-window.kv-window-'+na+' .k-widget.k-multiselect.k-header.form-control-kv input').attr('disabled','disabled')
+                    }else{
+                        $('.k-window.kv-window-'+na+' .k-widget.k-multiselect.k-header.form-control-kv').removeClass('k-state-disabled')
+                        $('.k-window.kv-window-'+na+' .k-widget.k-multiselect.k-header.form-control-kv input').removeAttr('disabled')
+                    }
+                })
+                console.log('xyz5')
+                for(var i in cfs_PointSetting){
+                    if(typeof cfs_PointSetting[i] == 'boolean'){
+                        if(cfs_PointSetting[i]){
+                            $('[ng-model="PointSetting.RewardPoint_'+i+'"]').prop('checked',true).trigger('change')
+                            
+                        }
+                        
+                    }
+                    
+                    else{
+                        var q = $('[ng-model="PointSetting.RewardPoint_'+i+'"]')
+                        if(q.attr('type')=='radio' || q.attr('type')=='checkbox'){
+                            q.each(function(){
+                                if($(this).is('[value="'+cfs_PointSetting[i]+'"]')){
+                                    $(this).prop('checked',true).trigger('change')
+                                     
+                                } 
+                            })
+                        }else{
+                            q.val(cfs_PointSetting[i])
+                        }
+                    }
+                    
+                }
+                console.log('xyz6')
+                if(typeof dim=='undefined'){
+                    dim = $('body>.k-animation-container ul').html()
+                }//cfs_PointSetting
+                
+                if(cfs_PointSetting.CustomerGroup==undefined) 
+                    cfs_PointSetting.CustomerGroup = []
+                    
+                $('[k-ng-model="PointSetting.RewardPoint_CustomerGroup"]').html('')
+                for(var i in customer_groups){
+                    $('[k-ng-model="PointSetting.RewardPoint_CustomerGroup"]').append('<option value="'+
+                        customer_groups[i].id+'"'+
+                        (cfs_PointSetting.CustomerGroup.indexOf(customer_groups[i].id)>=0?' selected="selected"':'')+
+                        '>'+customer_groups[i].name+'</option>')
+                }
+                console.log('xyz7')
+                //cfs_PointSetting.CustomerGroup
+                var dim2 = '<li class="k-button ng-scope" unselectable="on"><span unselectable="on">...</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-close">delete</span></span></li>';
+                var docz = function(cz,cz2){
+                    cz.find('span:first-child').html(cz2.name)
+                    cz.attr('data-id',cz2.id)
+                    cz.find('.k-i-close').click(function(){
+                        var mm=$(this).parents('li').attr('data-id')
+                        for(var j in cfs_PointSetting.CustomerGroup){
+                            if(cfs_PointSetting.CustomerGroup[j]==mm){
+                                cfs_PointSetting.CustomerGroup.splice(j,1)
+                                break;
+                            }
+                        }
+                        //change select option
+                        $('[k-ng-model="PointSetting.RewardPoint_CustomerGroup"] option[value="'+mm+'"]').removeAttr('selected')
+                        $(this).parent().parent().remove()
+                        
+                    })
+                    return cz;
+                }
+                
+                $('.k-widget.k-multiselect.k-header.form-control-kv .k-multiselect-wrap ul').html('')
+                for(var i in cfs_PointSetting.CustomerGroup){
+                    var cz = $(dim2), cz2 = loadCustomerGroup(cfs_PointSetting.CustomerGroup[i])
+                    cz = docz(cz,cz2)
+                    $('.k-widget.k-multiselect.k-header.form-control-kv .k-multiselect-wrap ul').append(cz)
+                }
+                console.log('xyz8') 
+                //multiselect
+                
+                $('.k-widget.k-multiselect.k-header.form-control-kv input').unbind('keydown')
+                $('.k-widget.k-multiselect.k-header.form-control-kv input').keydown(function(e){
+                    
+                })
+                
+                $('.k-widget.k-multiselect.k-header.form-control-kv input').unbind('focus')
+                $('.k-widget.k-multiselect.k-header.form-control-kv input').focus(function(e){
+                    
+                    $('body>.k-animation-container ul').html('')
+                    $('[k-ng-model="PointSetting.RewardPoint_CustomerGroup"] option:not([selected])').each(function(){
+                        var cq = $(dim)
+                        cq.html($(this).html())
+                        cq.attr('data-offset-index',$(this).attr('value'))
+                        cq.hover(function(e){
+                            $(this).addClass('k-state-hover')
+                        },function(e){
+                            $(this).removeClass('k-state-hover')
+                        })  
+                        //cq.hover(function(){
+                            //k-state-focused
+                        //}) 
+                        cq.click(function(e){
+                            $('.k-widget.k-multiselect.k-header.form-control-kv input').val('')
+                            var io = $(this).attr('data-offset-index'); //alert(io);console.log(loadCustomerGroup(io))
+                            if(cfs_PointSetting.CustomerGroup.indexOf(io)==-1){
+                                cfs_PointSetting.CustomerGroup.push(io)
+                                var cz = $(dim2),cz2 = loadCustomerGroup(io)
+                                cz = docz(cz,cz2)
+                                $('.k-widget.k-multiselect.k-header.form-control-kv .k-multiselect-wrap ul').append(cz)
+                                //change select option
+                                $('[k-ng-model="PointSetting.RewardPoint_CustomerGroup"] option[value="'+io+'"]').attr('selected','selected')
+                            }
+                            $('body>.k-animation-container').hide()
+                        })
+                        $('body>.k-animation-container ul').append(cq)    
+                    })
+                    
+                    $('.k-widget.k-multiselect.k-header.form-control-kv').addClass('k-state-focused k-state-border-down')
+                    var _w=0;
+                    $('.k-widget.k-multiselect.k-header.form-control-kv .k-multiselect-wrap ul li').each(function(){
+                        _w += $(this).width()
+                    })
+                    $('body>.k-animation-container').show().css({
+                        left: $(this).offset().left,
+                        top: $(this).offset().top + 33,
+                        width: $('.k-widget.k-multiselect.k-header.form-control-kv .k-multiselect-wrap').width()-_w                              
+                    })
+                    $('body>.k-animation-container>div').css({
+                        display: 'block',
+                        transform: 'none'
+                    })
+                    
+                    $('body>.k-animation-container ul').unbind('hover')
+                    $('body>.k-animation-container ul').hover(function(e){
+                            
+                    },function(e){
+                        $('body>.k-animation-container').hide() 
+                    })
+                })
+                $('.k-widget.k-multiselect.k-header.form-control-kv input').unbind('blur')
+                $('.k-widget.k-multiselect.k-header.form-control-kv input').blur(function(e){
+                    $('.k-widget.k-multiselect.k-header.form-control-kv').removeClass('k-state-focused k-state-border-down')
+                    
+                })
+                console.log('xyz9') 
+            break;
+        }
+    })
+ 
+    $('.prettycheckbox>label').click(function(e){
+        if($(this).hasClass('checked')) {
+            $(this).removeClass('checked')
+            $(this).siblings('a').removeClass('checked')
+            $(this).parent().parent().parent().parent().removeClass('active')    
+            
+            $(this).siblings('input').removeAttr('checked' )
+            $(this).siblings('input').prop('checked',false)
+        }else{
+            $(this).addClass('checked')
+            $(this).siblings('a').addClass('checked')
+            $(this).parent().parent().parent().parent().addClass('active')
+            
+            $(this).siblings('input').attr('checked','checked')
+            $(this).siblings('input').prop('checked',true)
+        }
+    })
+    
+    searching = false;
+    locationItemTempl = $('#locationItemTempl').html();
+    $('#locationSearchInput').unbind('keyup')
+    $('#locationSearchInput').keyup(function(e){
+        var name = $(this).val()
+        if(name.length>1 && !searching){
+            searching = true;
+            /*
+            $.ajax(cdn.replace('cdn.','')+'/api.php',{//$.ajax('ajax.php?action=suggestzone',{
+                data: 'zone='+name,//data: 'kw='+name,
+                method: "POST",
+                dataType: 'json',
+                success: function(d){
+                    console.log(d);
+                    if(d.status=='1'){
+                        
+                        //console.log(d);
+                        
+                        $('kv-search-location .autocomplete > div ul').html('');
+                        
+                        if(d.data.length>0){
+                            
+                            for(var i in d.data){
+                                locationItemTempl2 = locationItemTempl;
+                                
+                                //console.log(d.data[i].name);
+                                
+                                locationItemTempl2 = locationItemTempl2.replace(/\{\{name\}\}/g,d.data[i].province+' - '+/ *d.data[i].description+' '+* /d.data[i].name );
+                                locationItemTempl2 = locationItemTempl2.replace(/\{\{\$index\}\}/g,i);
+                                
+                                $('kv-search-location .autocomplete > div ul').append(locationItemTempl2);
+                            }
+                            
+                            $('kv-search-location .autocomplete > div ').removeClass('ng-hide');
+                            
+                            //hover
+                            $('kv-search-location .autocomplete > div').unbind('hover')
+                            $('kv-search-location .autocomplete > div').hover(
+                                function(){
+                                    //$('kv-search-location .autocomplete > div').removeClass('ng-hide');
+                                },
+                                function(){
+                                    $('kv-search-location .autocomplete > div').addClass('ng-hide');
+                                }
+                            );
+                            $('kv-search-location .autocomplete > div ul li').unbind('hover')
+                            $('kv-search-location .autocomplete > div ul li').hover(
+                                function(){
+                                    $(this).toggleClass('k-state-hover');
+                                },function(){
+                                    $(this).toggleClass('k-state-hover');
+                                }
+                            );
+                            //click
+                            $('kv-search-location .autocomplete > div ul li').unbind('click')
+                            $('kv-search-location .autocomplete > div ul li').click(
+                                function(){
+                                     
+                                    $('#locationSearchInput').val($(this).attr('val'));
+                                     
+                                    $('kv-search-location .autocomplete > div').addClass('ng-hide');//.hide();
+                                     
+                                     
+                                }
+                            );
+                            
+                        }
+                         
+                    }else{
+                         //alert(d.error);
+                         toastr["error"](d.error);
+                    } 
+                    searching = false;
+                }
+            });
+            */
+            db.Locations.filter(function(a){return a.Name.toLowerCase().indexOf(name.toLowerCase())>=0})
+            .toArray()                                 
+            .then(function(data){ //console.log('data:',data)
+                $('kv-search-location .autocomplete > div ul').html('');
+                if(data.length>0){
+                        
+                    for(var i in data){
+                        locationItemTempl2 = locationItemTempl;
+                        
+                        //console.log(d.data[i].name);
+                        
+                        locationItemTempl2 = locationItemTempl2.replace(/\{\{name\}\}/g,data[i].Name );
+                        locationItemTempl2 = locationItemTempl2.replace(/\{\{\$index\}\}/g,data[i].Id);
+                        
+                        $('kv-search-location .autocomplete > div ul').append(locationItemTempl2);
+                        
+                        if(i>=30) break;
+                    }
+                    
+                    $('kv-search-location .autocomplete > div').removeClass('ng-hide');
+                    
+                    //hover
+                    $('kv-search-location .autocomplete > div').hover(
+                        function(){
+                            //$('kv-customer-form kv-search-location .autocomplete > div').removeClass('ng-hide');
+                        },
+                        function(){
+                            $('kv-search-location .autocomplete > div').addClass('ng-hide');
+                        }
+                    );
+                    
+                    $('kv-search-location .autocomplete > div ul li').hover(
+                        function(){
+                            $(this).toggleClass('k-state-hover');
+                        },function(){
+                            $(this).toggleClass('k-state-hover');
+                        }
+                    );
+                    $('kv-search-location .autocomplete > div ul li').unbind('click')
+                    //click
+                    $('kv-search-location .autocomplete > div ul li').click(
+                        function(){
+                             
+                            $('#locationSearchInput').val($(this).attr('val'));
+                             
+                            $('kv-search-location .autocomplete > div').addClass('ng-hide')//.hide(); 06-30-2017
+                             
+                             
+                        }
+                    );
+                    
+                }
+                searching = false;
+            })
+            
+        }
+    })    
+    
+    $('#yourlogo').unbind('click')  
+    $('#yourlogo').click(function(){
+        //ajax delete image
+        
+        
+        $('[ng-model="retailer.logo"]').val('');
+        $('#yourlogo').attr('src',cdn.replace('cdn.','')+'/home/img/logo.png');
+        
+        
+    });
+    
+    $('[data-toggle="tooltip"]').tooltip()
+    
+    $('.box-color').click(function(){
+        $(this).siblings().removeClass('active')
+        $('[ng-model="business.color"]').val(this.className.slice(15))
+        $(this).addClass('active')        
+    })
+})
+
+function ChangeImage(that){
+    if(that.files[0].size>2*1024*1024){
+        alert('File ảnh không được lớn hơn 2Mb')
+        return false
+    }
+    
+    var formData = new FormData();
+    formData.append('files', that.files[0]);
+     
+    $.ajax({
+           url : cdn+'/ajax.php?action=uploadimage',
+           type : 'POST',
+           data : formData,
+           processData: false,   
+           contentType: false,   
+           dataType: 'json',
+           success : function(data) {
+               if(data.error==''){                     
+                    $('#yourlogo').attr('src',data.image);
+                    $('[ng-model="retailer.logo"]').val(data.image);
+               }else alert(data.error);
+           }
+    }); 
+    
+    this.value = '';
+}
+</script>
+
+<div class="k-widget k-window k-window-poup k-window-masstel k-window-settingPop kv-window-UseBlockTimeUnit" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 460px; display: none; top: 219px; left: 449px; position: fixed; touch-action: pan-y; z-index: 10005; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Tùy chỉnh Block tính giờ tự động</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div kendo-window="DetailSettingBlock" k-visible="false" k-resizable="false" k-draggable="true" k-pinned="true" k-width="460" k-modal="true" k-on-close="onCloseBlockSetting()" class="ng-scope k-window-content k-content" data-role="window" tabindex="0" style="">
+    <div class="form-wrapper setting-return">
+      <div class="form-group"><span class="">Thời gian sử dụng làm tròn lên theo block</span> <input type="text" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" ng-model="settings['BlockNumber']" class="ng-pristine ng-valid ng-not-empty ng-touched">        phút.</div>
+      <div class="kv-window-footer"><a href="" class="kv2Btn" ng-click="closeBlockSettingWindow()"><i class="fa fa-check-square"></i>Xong</a> <a href="" class="kv2Btn kv2BtnYellow ng-binding" ng-click="rejectBlockSetting()"><i class="fa fa-ban"></i>Bỏ qua</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="k-widget k-window k-window-poup k-window-masstel k-window-settingPop kv-window-PrintBarCode" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 460px; display: none; top: 20px; left: 449px; position: fixed; touch-action: pan-y; z-index: 10005; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Tùy chỉnh in tem</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div kendo-window="DetailSettingBlock" k-visible="false" k-resizable="false" k-draggable="true" k-pinned="true" k-width="460" k-modal="true" k-on-close="onCloseBlockSetting()" class="ng-scope k-window-content k-content" data-role="window" tabindex="0" style="">
+    <div class="form-wrapper setting-return">
+      <div class="form-group">
+        <span class="">Rộng tem</span> 
+        <input type="text" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" ng-model="settings['PrintBarCodeWidth']" class="ng-pristine ng-valid ng-not-empty ng-touched">
+      </div>
+      <div class="form-group">
+        <span class="">Cao tem</span> 
+        <input type="text" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" ng-model="settings['PrintBarCodeHeight']" class="ng-pristine ng-valid ng-not-empty ng-touched">
+      </div>
+      <div class="form-group">
+        <span class="">Số Cột</span> 
+        <input type="text" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" ng-model="settings['PrintBarCodeColumns']" class="ng-pristine ng-valid ng-not-empty ng-touched">
+      </div>
+      <div class="form-group">
+        <span class="">Khoảng cách Cột</span> 
+        <input type="text" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" ng-model="settings['PrintBarCodeDistanceColumn']" class="ng-pristine ng-valid ng-not-empty ng-touched">
+      </div>
+      <div class="form-group">
+        <span class="">Khoảng cách Dòng</span> 
+        <input type="text" onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57" ng-model="settings['PrintBarCodeDistanceRow']" class="ng-pristine ng-valid ng-not-empty ng-touched">
+      </div>
+      <div class="kv-window-footer"><a href="" class="kv2Btn" ng-click="closeBlockSettingWindow()"><i class="fa fa-check-square"></i>Xong</a> <a href="" class="kv2Btn kv2BtnYellow ng-binding" ng-click="rejectBlockSetting()"><i class="fa fa-ban"></i>Bỏ qua</a></div>
+    </div>
+  </div>
+</div>
+<style>
+.kv-window-PrintBarCode .form-group span {
+    width: 110px;
+    display: inline-block;
+}
+</style>
+<div class="k-widget k-window k-window-poup k-window-fix k-window-settingPoint kv-window kv-window-RewardPoint" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 660px; display: none; top: 0px; left: 353px; position: fixed; touch-action: pan-y; z-index: 10003; transform: scale(1); opacity: 1;">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Thiết lập tích điểm</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div kendo-window="pointSettingPopup" k-visible="false" k-resizable="false" k-draggable="true" k-pinned="true" k-width="660" k-modal="true" data-role="window" class="k-window-content k-content" tabindex="0" style="">
+    <kv-point-setting form-name="pointSettingForm" kv-width="660" class="ng-isolate-scope">
+      <div class="form-wrapper">
+        <div class="points-setting">
+          <div class="form-space">
+            <label class="radio-inline">
+                <input type="radio" name="rewardPointType" ng-model="PointSetting.RewardPoint_Type" ng-value="_rewardPointType.Invoice" class="ng-valid ng-dirty ng-touched ng-not-empty" value="0"> <span class="ng-binding">Hóa đơn</span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Hệ thống tính điểm dựa trên Tổng tiền hàng đã trừ giảm giá của hóa đơn."><i class="fas fa-info-circle"></i></a>
+            </label> 
+            <label class="radio-inline">
+                <input type="radio" name="rewardPointType" ng-model="PointSetting.RewardPoint_Type" ng-value="_rewardPointType.Product" class="ng-valid ng-dirty ng-touched ng-not-empty" value="1"> <span class="ng-binding">Hàng hóa</span> <a href="javascript:void(0)" tabindex="0" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Hệ thống tính điểm dựa trên điểm của từng hàng hóa trên hóa đơn."><i class="fas fa-info-circle"></i></a>
+            </label>
+          </div>
+          <div class="form-space form-space-special">
+            <div class="form-group">
+              <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+              <label class="control-label form-label ng-binding ng-scope" ng-if="PointSetting.RewardPoint_Type == _rewardPointType.Invoice">Tỷ lệ quy đổi điểm thưởng</label><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+              <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product -->
+              <label class="checkbox-inline form-label ng-scope ng-hide" ng-if="PointSetting.RewardPoint_Type == _rewardPointType.Product"><input type="checkbox" ng-model="PointSetting.RewardPoint_Product_IsMoneyPerPoint" class="ng-pristine ng-untouched ng-valid ng-empty"> <span class="ng-binding">Tỷ lệ quy đổi mặc định</span></label>
+              <div class="form-wrap">
+                <div class="input-group">
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <input type="text" class="form-control-kv text-right ng-pristine ng-untouched ng-valid ng-scope ng-not-empty" ng-model="PointSetting.RewardPoint_MoneyPerPoint" kv-auto-numeric="{mDec:0}">
+                  <!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product -->
+                  <div class="input-group-text"><span class="badge badge-success">VNĐ</span></div>
+                  <div class="input-group-text"><span>=</span></div>
+                  <div class="input-group-text ng-binding"><span class="">1&nbsp;</span>điểm thưởng</div>
+                </div>
+                <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                <a ng-if="PointSetting.RewardPoint_Type == _rewardPointType.Invoice" href="javascript:void(0)" tabindex="0" class="help icon ng-scope" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Quy định số tiền mua hàng để đổi lấy 1 điểm thưởng."><i class="fas fa-info-circle"></i></a><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product -->
+                <a ng-if="PointSetting.RewardPoint_Type == _rewardPointType.Product" href="javascript:void(0)" tabindex="0" class="help icon ng-scope ng-hide" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Hệ thống sẽ gợi ý <i>Điểm thưởng</i> cho từng hàng hóa theo tỷ lệ này nếu được chọn." data-html="true"><i class="fas fa-info-circle"></i></a>
+              </div>
+            </div>
+            <div class="form-group"><label class="checkbox-inline form-label">
+                <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                <input type="checkbox" ng-model="PointSetting.RewardPoint_IsPointToMoney" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty">
+                <!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product --> 
+                
+                <span class="ng-binding">Cho phép thanh toán bằng điểm</span></label>
+              <div class="form-wrap">
+                <div class="input-group">
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <input type="text" class="form-control-kv text-right ng-pristine ng-untouched ng-valid ng-scope ng-not-empty" ng-model="PointSetting.RewardPoint_PointToMoney" ng-disabled="!PointSetting.RewardPoint_IsPointToMoney" kv-auto-numeric="{mDec:0}" disabled="disabled">
+                  <!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product -->
+                  
+                  <div class="input-group-text"><span class="badge badge-warning ng-binding">Điểm</span></div>
+                  <div class="input-group-text"><span>=</span></div>
+                </div>
+                <div class="input-group">
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <input type="text" class="form-control-kv text-right ng-pristine ng-untouched ng-valid ng-scope ng-not-empty" ng-model="PointSetting.RewardPoint_MoneyToPoint" ng-disabled="!PointSetting.RewardPoint_IsPointToMoney" kv-auto-numeric="{mDec:0}" disabled="disabled">
+                  <!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product -->
+                  
+                  <div class="input-group-text"><span class="badge badge-success">VNĐ</span></div>
+                </div>
+                <a href="javascript:void(0)" tabindex="0" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Quy định số tiền mua hàng để đổi lấy 1 điểm thưởng."><i class="fas fa-info-circle"></i></a>
+                
+              </div>
+            </div>
+            <div class="form-group"><label class="control-label form-label ng-binding">Thanh toán bằng điểm sau</label>
+              <div class="form-wrap input-group payPoint">
+                <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                <input type="text" class="form-control-kv text-right ng-pristine ng-untouched ng-valid ng-scope ng-not-empty" ng-model="PointSetting.RewardPoint_InvoiceCount" ng-disabled="!PointSetting.RewardPoint_IsPointToMoney" kv-auto-numeric="{mDec:0}" disabled="disabled">
+                <!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product -->
+                
+                <div class="input-group-text ng-binding">lần mua</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-space">
+            <div class="form-group wrap-check">
+              <div class="checkbox"><label>
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice --><input type="checkbox" ng-model="PointSetting.RewardPoint_ForDiscountProduct" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty"><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product --> <span class="ng-binding">Không tích điểm cho sản phẩm giảm giá</span></label></div>
+              <div class="checkbox"><label>
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice --><input type="checkbox" ng-model="PointSetting.RewardPoint_ForDiscountInvoice" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty"><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product --> <span class="ng-binding">Không tích điểm cho hóa đơn giảm giá</span></label></div>
+              <div class="checkbox"><label>
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice --><input type="checkbox" ng-model="PointSetting.RewardPoint_ForInvoiceUsingRewardPoint" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty"><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product --> <span class="ng-binding">Không tích điểm cho hóa đơn thanh toán bằng điểm thưởng</span></label></div>
+              <div class="checkbox"><label>
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice --><input type="checkbox" ng-model="PointSetting.RewardPoint_ForInvoiceUsingVoucher" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty"><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product --> <span class="ng-binding">Không tích điểm cho hóa đơn thanh toán bằng voucher</span></label></div>
+            </div>
+          </div>
+          <div class="form-space">
+            <div class="form-line-top form-labels-150">
+              <div class="form-group"><label class="radio-inline form-label">
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice --><input type="radio" name="pointCustomer" ng-value="true" ng-model="PointSetting.RewardPoint_ForAllCustomer" ng-checked="PointSetting.RewardPoint_ForAllCustomer" class="ng-pristine ng-untouched ng-valid ng-scope ng-not-empty" value="true"><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product --> <span class="ng-binding">Toàn bộ khách hàng</span></label></div>
+              <div class="form-group"><label class="radio-inline form-label">
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice --><input type="radio" name="pointCustomer" ng-value="false" ng-model="PointSetting.RewardPoint_ForAllCustomer" ng-checked="!PointSetting.RewardPoint_ForAllCustomer" class="ng-pristine ng-untouched ng-valid ng-scope ng-not-empty" value="false"><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                  <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product --> <span class="ng-binding">Nhóm khách hàng</span></label><!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                <div class="form-wrap ng-scope">
+                  <div class="k-widget k-multiselect k-header form-control-kv k-state-disabled" unselectable="on" title="" style="">
+                    <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
+                      <ul role="listbox" unselectable="on" class="k-reset"></ul>
+                      <input class="k-input k-readonly" style="width: 182px;" accesskey="" autocomplete="off" role="listbox" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="true" aria-readonly="false" disabled="disabled" aria-busy="false">
+                      <span class="k-icon k-loading k-loading-hidden"></span>
+                    </div>
+                    <select class="form-control-kv" kendo-multi-select="" k-options="groups" k-ng-model="PointSetting.RewardPoint_CustomerGroup" ng-disabled="PointSetting.RewardPoint_ForAllCustomer" data-role="multiselect" multiple="multiple" aria-disabled="true" aria-readonly="false" disabled="disabled" style="display: none;"></select>
+                    <span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;">Chọn nhóm khách hàng...</span>
+                  </div>
+                </div><!-- end ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Invoice -->
+                <!-- ngIf: PointSetting.RewardPoint_Type == _rewardPointType.Product -->
+              </div>
+            </div><!-- ngIf: !PointSetting.HasProductPoint -->
+            <div class="form-line-top form-group ng-scope" ng-if="!PointSetting.HasProductPoint">
+                <label class="checkbox-inline"><input type="checkbox" ng-checked="PointSetting.RewardPoint_ForAllProduct" ng-model="PointSetting.RewardPoint_ForAllProduct" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">Khởi tạo tích điểm cho toàn bộ hàng hóa</span></label> 
+                <a href="javascript:void(0)" tabindex="2" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Khởi tạo với tất cả hàng hóa trong gian hàng của bạn sẽ đều được tích điểm. Bạn có thể thiết lập riêng cho từng hàng hóa nếu muốn."><i class="fas fa-info-circle"></i></a>
+            </div><!-- end ngIf: !PointSetting.HasProductPoint -->
+            <div class="form-line-top form-group ng-scope" ng-if="PointSetting.HasProductPoint">
+                <label class="checkbox-inline"><input type="checkbox" ng-checked="PointSetting.RewardPoint_UpdateAllProduct" ng-model="PointSetting.RewardPoint_UpdateAllProduct" class="ng-pristine ng-untouched ng-valid ng-not-empty"> <span class="ng-binding">Cập nhật điểm thưởng cho toàn bộ hàng hóa</span></label> 
+                <a href="javascript:void(0)" tabindex="2" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Cập nhật điểm thưởng cho toàn bộ hàng hóa với tỷ lệ quy đổi này"><i class="fas fa-info-circle"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kv-window-footer"><a ng-click="savePointSetting()" ng-enter="savePointSetting()" class="kv2Btn ng-binding" kv-taga-disabled="saving" tabindex="1000009" ng-keydown="$event.keyCode == 27 &amp;&amp; cancel()"><i class="fa fa-floppy-o"></i>Lưu</a> <a ng-click="cancel()" ng-enter="cancel()" class="kv2Btn kv2BtnYellow ng-binding" tabindex="1000010" ng-keydown="$event.keyCode == 27 &amp;&amp; cancel()"><i class="fa fa-ban"></i>Bỏ qua</a></div>
+    </kv-point-setting>
+  </div>
+</div>
+<style>
+.form-space+.form-space {
+    margin-top: 30px;
+}
+.points-setting>.form-space.form-space-special .form-group .form-label {
+    width: 235px;
+    font-weight: 400;
+    padding-left: 25px;
+}
+.points-setting>.form-space.form-space-special .form-group .form-wrap {
+    margin-left: 235px;
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: flex;
+}
+.points-setting>.form-space.form-space-special .form-group .form-wrap .form-control-kv {
+    width: 90px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 90px;
+    flex: 0 0 90px;
+}
+.points-setting .input-group {
+    display: flex;
+}
+.points-setting .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.points-setting .radio-inline, .points-setting .checkbox-inline {
+     
+    display: inline;
+     
+}
+.points-setting .form-group .form-label {
+    /*width: auto;*/
+     
+}
+
+@media (max-width: 992px){
+    .points-setting .k-multiselect-wrap .k-input{
+        display: block!important;
+    }
+}
+
+.form-wrapper .form-labels-150 .form-label {
+    width: 150px;
+}
+.form-wrapper .form-labels-150 .form-wrap {
+    margin-left: 150px;
+}
+.k-widget.form-control-kv:not(.k-input) .k-dropdown-wrap, .k-widget.form-control-kv:not(.k-input) .k-multiselect-wrap, .k-widget.form-control-kv:not(.k-input) .k-picker-wrap {
+    border-radius: 0;
+    border: solid #ccc;
+    border-width: 0 0 1px;
+}
+.points-setting .k-widget{
+    border-style: none;
+}
+.points-setting .form-group .form-label.checkbox-inline, .points-setting .form-group .form-label.radio-inline {
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.points-setting label.checkbox-inline>input {
+    display: none;
+}
+.points-setting .checkbox input[type=checkbox], 
+.points-setting .checkbox-inline input[type=checkbox], 
+.points-setting .radio input[type=radio], 
+.points-setting .radio-inline input[type=radio] {
+    position: absolute;
+    margin-left: -25px;
+    margin-top: 4px\9;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.points-setting input:focus{
+    outline: none;
+    border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.points-setting .checkbox input[type=checkbox]+span:before, 
+.points-setting .checkbox-inline input[type=checkbox]+span:before, 
+.points-setting .radio input[type=radio]+span:before, 
+.points-setting .radio-inline input[type=radio]+span:before {
+    content: "\f096";
+    position: absolute;
+    -webkit-box-shadow: 0 0 0 0 transparent;
+    box-shadow: 0 0 0 0 transparent;
+    border-radius: 100%;
+    -webkit-transition: box-shadow .2s ease-out;
+    -webkit-transition: -webkit-box-shadow .2s ease-out;
+    transition: -webkit-box-shadow .2s ease-out;
+    transition: box-shadow .2s ease-out;
+    transition: box-shadow .2s ease-out,-webkit-box-shadow .2s ease-out;
+    color: #666;
+    left: -5px;
+    top: 0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: FontAwesome;     
+    font-size: 16px;
+}
+
+
+.points-setting .checkbox input[type=checkbox]:checked+span:before, 
+.points-setting .checkbox-inline input[type=checkbox]:checked+span:before{
+    content: "\f046";
+}
+.points-setting .radio input[type=radio]+span:before, 
+.points-setting .radio-inline input[type=radio]+span:before{
+    content: "\f10c";
+}
+.points-setting .radio input[type=radio]:checked+span:before, 
+.points-setting .radio-inline input[type=radio]:checked+span:before{
+    content: "\f192";
+}
+
+.form-control-kv:not(.k-input) {
+    display: block;
+    width: 100%;
+    font-size: 13px;
+    line-height: 18px;
+    color: #121212;
+    background-color: #fff;
+    background-image: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+.form-control-kv:not(.k-input):not(.k-widget) {
+    height: 32px;
+    padding: 7px;
+    border: solid #ccc;
+    border-width: 0 0 1px;
+    font-size: inherit;
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 0 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s .2s linear;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s .2s linear;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s .2s linear;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s .2s linear;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s .2s linear,-webkit-box-shadow ease-in-out .15s .2s linear;
+}
+.input-group, .input-group-append, .input-group-prepend, .input-group-text {
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: flex;
+}
+
+.input-group-text {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 7px;
+    line-height: 18px;
+}
+.input-group-text .badge {
+    height: 24px;
+    line-height: 24px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.badge-warning {
+    background-color: #f0ad4e;
+}
+.points-setting>.form-space.form-space-special .form-group .form-wrap .badge {
+    min-width: 43px;
+}
+
+.form-control-kv:not(.k-input)[disabled], fieldset[disabled] .form-control-kv:not(.k-input) {
+    cursor: not-allowed;
+}
+.form-control-kv:not(.k-input)[disabled], .form-control-kv:not(.k-input)[readonly], fieldset[disabled] .form-control-kv:not(.k-input) {
+    background-color: #f1f2f2;
+    opacity: 1;
+}
+
+
+.k-state-border-down .k-multiselect-wrap{
+    border-color: #509D02!important;
+    border-bottom-width: 2px!important;
+}
+
+.box-color {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    margin-right: 14px;
+    margin-bottom: 15px;
+    display: inline-flex;
+}
+.box-color:hover, .box-color.active {
+    -moz-box-shadow: inset 0 0 5px rgba(0,1,1,.3);
+    -webkit-box-shadow: inset 0 0 5px rgba(0,1,1,.3);
+    box-shadow: inset 0 0 5px rgba(0,1,1,.3);
+}
+.box-color.active:before {
+    content: "\f00c";
+    position: absolute;
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #fff;
+    margin-left: 10px;
+    margin-top: 9px;
+}
+.box-color.color1{
+    background-color: #d7498c;
+}
+.box-color.color2{
+    background-color: #e67e2e;
+}
+.box-color.color3{
+    background-color: #4a6480;
+}
+.box-color.color4{
+    background-color: #47a185;
+}
+
+.box-color.color5{
+    background-color: #51ae61;
+}
+.box-color.color6{
+    background-color: #47b8e6;
+}
+.box-color.color7{
+    background-color: #9b59b6;
+}
+.box-color.color8{
+    background-color: #6e9992;
+}
+.box-color.color9{
+    background-color: #d54457;
+}
+</style>
+
+<div class="k-widget k-window k-window-poup k-window-masstel k-window-settingPop kv-window-BookClosing" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 460px; display: none; top: 20px; left: 449px; position: fixed; touch-action: pan-y; z-index: 10005; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Thiết lập ngày khóa sổ</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div kendo-window="DetailSettingBlock" k-visible="false" k-resizable="false" k-draggable="true" k-pinned="true" k-width="460" k-modal="true" k-on-close="onCloseBlockSetting()" class="ng-scope k-window-content k-content" data-role="window" tabindex="0" style="">
+    <div class="form-wrapper setting-return">
+    
+      <div class="form-group">
+        <span class="">Ngày khóa sổ</span> 
+        <input type="text" ng-model="settings['BookClosingDate']" style="width: 100px;" class="ng-pristine ng-valid ng-not-empty ng-touched" />
+      </div>
+       
+      <div class="kv-window-footer"><a href="" class="kv2Btn" ng-click="closeBlockSettingWindow()"><i class="fa fa-check-square"></i>Xong</a> <a href="" class="kv2Btn kv2BtnYellow ng-binding" ng-click="rejectBlockSetting()"><i class="fa fa-ban"></i>Bỏ qua</a></div>
+    </div>
+  </div>
+</div>
+<style>
+.kv-window-BookClosing .form-group span {
+    width: 150px;
+    display: inline-block;
+}
+</style>

@@ -1,0 +1,836 @@
+<style>
+.dashboardLeft {
+    float: left;
+    /*width: calc(100% - 320px);*/
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.dashboardRight {
+    float: right;
+    width: 300px;
+}
+
+@media (max-width: 992px){
+    .dashboardLeft {
+        margin-bottom: 20px;
+    }
+     
+    .dashboardLeft, .dashboardRight {
+        float: none;
+        width: 100%;
+    }
+    
+    .dashboardRight, .dashboardStatistic {
+        float: none!important;
+        width: auto!important;
+        margin-left: 0!important;
+    }
+}
+
+.dashboardStatistic ul li {
+    max-width: calc(100% / 4);
+}
+.dashboardStatistic ul li {
+    position: relative;
+    color: #999;
+    font-size: 12px;
+    padding: 6px 0 6px 67px;
+    text-align: left;
+    display: inline-block;
+    height: auto;
+    vertical-align: middle;
+    min-height: 72px;
+    white-space: nowrap;
+    margin: 4px 25px 8px 0;
+    max-width: calc(100% / 5);
+}
+
+.dashboardStatistic ul li.total .dash_icon {
+    background: #0094da;
+}
+.dashboardStatistic ul li .dash_icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    position: absolute;
+    top: 14px;
+    left: 25px;
+    background: #4bac4d;
+    text-align: center;
+    border-radius: 100%;
+    color: #fff;
+    line-height: 32px;
+}
+
+.dashboardStatistic ul li .dash_title {
+    font-weight: 700;
+    color: #666;
+    margin: 0 0 0 2px;
+}
+
+.dashboardStatistic ul li.total span.number {
+    color: #0094da;
+}
+.dashboardStatistic ul li span.number {
+    display: block;
+    font-size: 22px;
+    line-height: 28px;
+}
+.dashboardStatistic ul li span.yesterday {
+    display: block;
+    margin: 0 0 0 2px;
+}
+
+.dashboardStatistic .dashboardTitle {
+    padding-top: 19px;
+    margin-bottom: 5px;
+    padding-bottom: 6px;
+}
+.dashboardTitle {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 10px 10px 20px;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.dashboardStatistic {
+    position: relative;
+}
+.dashboardBox {
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+.pd0 {
+    padding: 0!important;
+}
+
+.dashboardStatistic ul li span {
+     
+    font-size: inherit;
+     
+}
+
+.dashboardStatistic {
+    padding: 0px;
+}
+
+.dashboardStatistic ul {
+    padding-left: 0px;
+}
+
+
+
+.chartdiv {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}	
+.saleReport .report_purchaseDate .overlay_chart {
+    top: auto;
+    bottom: 0;
+    height: 480px;
+}
+ 
+.overlay_chart {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    text-align: center;
+    display: none;
+}	
+</style>
+
+<div class="wrap-dashboard dashboard-custom ng-scope">
+  <div class="dashboardLeft" ng-show="hasDashboardPermission">
+    <div class="dashboardBox dashboardStatistic ovh dashboard-top">
+      <div class="dashboardTitle ng-binding">Kết quả bán hàng hôm nay</div>
+      <div class="uln ovh pd0">
+        <ul>
+          <li class="total"><label class="dash_icon"><i class="fa fa-usd"></i></label> <label class="dash_title ng-binding">0 Hóa đơn</label> <span class="number"><span class="txt ng-binding">0,000</span></span> <span class="yesterday ng-binding">Doanh thu</span></li>
+          <li
+            class="return"><label class="dash_icon"><i class="fa fa-reply-all"></i></label> <label class="dash_title ng-binding">0 phiếu</label> <span class="number"><span class="txt ng-binding">0,000</span></span> <span class="yesterday ng-binding">Trả hàng</span></li>
+        <li
+          class="customer ng-hide" ng-class="{up: (stats.saleYesterday > 0), down: (stats.saleYesterday <0)}" ng-show="stats.saleYesterday"><label class="dash_title">&nbsp;</label> <label class="dash_icon"><i class="fa" ng-class="{'fa-arrow-up': (stats.saleYesterday > 0), 'fa-arrow-down': (stats.saleYesterday <0)}"></i></label> <span class="number"><span class="txt ng-binding">%</span></span>
+          <span class="yesterday ng-binding">So với hôm qua</span></li>
+          <li class="customer down hth-hide" ng-class="{up: (stats.saleLastMonth > 0), down: (stats.saleLastMonth <0)}" ng-show="stats.saleLastMonth"><label class="dash_title">&nbsp;</label> <label class="dash_icon"><i class="fa fa-arrow-down" ng-class="{'fa-arrow-up': (stats.saleLastMonth > 0), 'fa-arrow-down': (stats.saleLastMonth <0)}"></i></label> <span class="number"><span class="txt ng-binding">-86.59%</span></span>
+            <span class="yesterday ng-binding">So với cùng kỳ tháng trước</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dashboardBox">
+      <div class="dashboardTitle mb0 ovh">
+        <div class="posR fll"><span id="RevenueTitle">Doanh thu Tháng này</span><span class="split"></span> <i class="fa fa-arrow-circle-right"></i> <span id="TotalValue7" class="txtBlue fs14">0,000</span></div>
+        <div class="flr fs12 txtTN hth-hide"><span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="b07cde20-bbd0-438b-8261-729e32fb7907"
+            style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">Tháng này</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+          </span><select k-ng-model="revenueTime" k-change="refreshRevenueChart" k-value-primitive="true" k-data-source="RevenueOptions" k-data-text-field="'text'" k-data-value-field="'value'" kendo-drop-down-list="" data-role="dropdownlist" style="display: none;"><option value="today">Hôm nay</option><option value="yesterday">Hôm qua</option><option value="7day">7 ngày qua</option><option value="month" selected="selected">Tháng này</option><option value="lastmonth">Tháng trước</option></select></span>
+        </div>
+      </div>
+      <div class="pd12 ">
+        
+        <div id="chart_PurchaseDate" class="k-chart chartdiv" style="height: 368px; margin-left: 8px; position: relative; touch-action: pan-y;"></div>
+        <div
+          class="overlay_chart nochart_sale" style="display: none;">
+          <div class="ng-binding">Không có dữ liệu</div>
+      </div>
+    </div>
+  </div>
+  <div class="dashboardBox dashboardBranch ng-hide" ng-show="totalActiveBranch>1">
+    <div class="dashboardTitle mb0 ovh">
+      <div class="posR fll"><span id="RevenueBranchTitle"></span><span class="split"></span> <i class="fa fa-arrow-circle-right"></i> <span id="TotalValueBranch" class="txtBlue fs14"></span></div>
+      <div class="flr fs12 txtTN"><span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="aecb23b5-bd48-432e-afb2-c3b7853c13eb"
+          style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">Tháng này</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+        </span><select k-ng-model="revenueBranchTime" k-change="refreshRevenueBranchChart" k-value-primitive="true" k-data-source="RevenueOptions" k-data-text-field="'text'" k-data-value-field="'value'" kendo-drop-down-list="" data-role="dropdownlist" style="display: none;"><option value="today">Hôm nay</option><option value="yesterday">Hôm qua</option><option value="7day">7 ngày qua</option><option value="month" selected="selected">Tháng này</option><option value="lastmonth">Tháng trước</option></select></span>
+      </div>
+    </div>
+    <div class="pd12 dashboardStatistic chart7day">
+      <div kendo-chart="branchPieChart" k-options="branchPie" style="height: 400px; position: relative; touch-action: pan-y;" data-role="chart" class="k-chart"><svg style="width: 100%; height: 100%; overflow: hidden;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><defs></defs><g><path d="M0 0 L 936 0 936 400 0 400Z" stroke="none" fill="none"></path><path d="M5 5 L 931 5 931 395 5 395Z" stroke="none" fill="#fff" fill-opacity="0"></path><g><g></g></g><g><g></g></g></g></svg></div>
+      <div
+        class="overlay_chart nochart_branch">
+        <div class="ng-binding">Không có dữ liệu</div>
+    </div>
+  </div>
+</div>
+<div class="dashboardBox">
+  <div class="dashboardTitle ovh">
+    <div class="posR fll"><span id="topProductTitle">Top 10 hàng hóa bán chạy Tháng này</span></div><span title="" class="k-widget k-dropdown k-header topProductType hth-hide" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false"
+      aria-readonly="false" aria-busy="false" aria-activedescendant="5994a3b7-8ffa-4e1d-9d44-6067a6d37bcb" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">Theo doanh thu</span>
+    <span
+      unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+      </span><select k-ng-model="topProductType" class="topProductType" k-change="refreshTopProductChart" k-value-primitive="true" k-data-source="RevenueTypeOptions" k-data-text-field="'text'" k-data-value-field="'value'" kendo-drop-down-list="" data-role="dropdownlist"
+        style="display: none;"><option value="byrevenue" selected="selected">Theo doanh thu</option><option value="bycount">Theo số lượng</option></select></span>
+      <div class="flr fs12 txtTN hth-hide"><span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="1e40faa0-69ba-4bcc-adb8-639581c6b9ba"
+          style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">Tháng này</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+        </span><select k-ng-model="topProductTime" k-change="refreshTopProductChart" k-value-primitive="true" k-data-source="RevenueOptions" k-data-text-field="'text'" k-data-value-field="'value'" kendo-drop-down-list="" data-role="dropdownlist" style="display: none;"><option value="today">Hôm nay</option><option value="yesterday">Hôm qua</option><option value="7day">7 ngày qua</option><option value="month" selected="selected">Tháng này</option><option value="lastmonth">Tháng trước</option></select></span>
+      </div>
+  </div>
+  <div class="pd12 ">
+    <div id="chart_PurchaseDate2" class="k-chart chartdiv" style="height: 368px; margin-left: 8px; position: relative; touch-action: pan-y;"></div>
+  <div
+    class="overlay_chart nochart_product" style="display: none;">
+    <div class="ng-binding">Không có dữ liệu</div>
+</div>
+</div>
+    <div class="pd12 ">
+    <div id="chart_PurchaseDate3" class="k-chart chartdiv" style="height: 368px; margin-left: 8px; position: relative; touch-action: pan-y;"></div>
+  <div
+    class="overlay_chart nochart_product" style="display: none;">
+    <div class="ng-binding">Không có dữ liệu</div>
+</div>
+</div>
+
+</div>
+</div>
+<div class="dashboardRight uln hth-hide">
+  <div class="dashboard-img posR mb20" ng-hide="_setting.HideKVAd">
+    <div ng-bind-html="AdsArticle" class="adsArticle ng-binding">
+      <p><a href="http://" target="_blank"><img alt="banner-app-tang-500k-1" class="aligncenter size-full wp-image-31299" height="130" src="/wp-content/uploads/2013/09/banner-app-tang-500k-1.jpg" title="" width="300"></a></p>
+    </div>
+  </div>
+  <div class="dashboard-right dashboard-noPie">
+    <!-- ngIf: presentBirthday > 0 -->
+    <div class="dashboardTitle ng-binding">Các hoạt động gần đây</div>
+    <div class="dashboard-list">
+      <ul>
+        <!-- ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HD000049" class="ng-binding" href="#/Invoices?Code=HD000049">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HD000049" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HD000049</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HD000049</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">30,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">30,000</span></span> <span class="dpb fs11 txtI date ng-binding">13 giờ trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Returns" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns'"><i class="fa fa-reply-all"></i></span>
+          <!-- end ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Returns?Code=TH000005" class="ng-binding" href="#/Returns?Code=TH000005">nhận trả hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=TH000005" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">TH000005</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">TH000005</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">nhận trả hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">12,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">12,000</span></span> <span class="dpb fs11 txtI date ng-binding">một ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HD000048" class="ng-binding" href="#/Invoices?Code=HD000048">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HD000048" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HD000048</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HD000048</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">75,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">75,000</span></span> <span class="dpb fs11 txtI date ng-binding">2 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HD000047" class="ng-binding" href="#/Invoices?Code=HD000047">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HD000047" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HD000047</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HD000047</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">30,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">30,000</span></span> <span class="dpb fs11 txtI date ng-binding">2 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Returns" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns'"><i class="fa fa-reply-all"></i></span>
+          <!-- end ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Returns?Code=TH000004" class="ng-binding" href="#/Returns?Code=TH000004">nhận trả hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=TH000004" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">TH000004</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">TH000004</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">nhận trả hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">25,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">25,000</span></span> <span class="dpb fs11 txtI date ng-binding">4 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HDD_TH000003" class="ng-binding" href="#/Invoices?Code=HDD_TH000003">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HDD_TH000003" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HDD_TH000003</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code="
+            class="ng-binding"></a> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HDD_TH000003</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a>
+          <span
+            class="content_long ng-binding" style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+              href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+              class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">56,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">56,000</span></span> <span class="dpb fs11 txtI date ng-binding">4 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Returns" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns'"><i class="fa fa-reply-all"></i></span>
+          <!-- end ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Returns?Code=TH000003" class="ng-binding" href="#/Returns?Code=TH000003">nhận trả hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=TH000003" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">TH000003</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">TH000003</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">nhận trả hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">120,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">120,000</span></span> <span class="dpb fs11 txtI date ng-binding">4 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HDD_TH000002" class="ng-binding" href="#/Invoices?Code=HDD_TH000002">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HDD_TH000002" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HDD_TH000002</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code="
+            class="ng-binding"></a> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HDD_TH000002</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a>
+          <span
+            class="content_long ng-binding" style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+              href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+              class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">90,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">90,000</span></span> <span class="dpb fs11 txtI date ng-binding">4 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Returns" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns'"><i class="fa fa-reply-all"></i></span>
+          <!-- end ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Returns?Code=TH000002" class="ng-binding" href="#/Returns?Code=TH000002">nhận trả hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=TH000002" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">TH000002</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">TH000002</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">nhận trả hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">20,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">20,000</span></span> <span class="dpb fs11 txtI date ng-binding">4 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HDD_TH000001" class="ng-binding" href="#/Invoices?Code=HDD_TH000001">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HDD_TH000001" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HDD_TH000001</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code="
+            class="ng-binding"></a> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HDD_TH000001</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a>
+          <span
+            class="content_long ng-binding" style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+              href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+              class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">20,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">20,000</span></span> <span class="dpb fs11 txtI date ng-binding">4 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Returns" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns'"><i class="fa fa-reply-all"></i></span>
+          <!-- end ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Returns?Code=TH000001" class="ng-binding" href="#/Returns?Code=TH000001">nhận trả hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=TH000001" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">TH000001</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">TH000001</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">nhận trả hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">39,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">39,000</span></span> <span class="dpb fs11 txtI date ng-binding">4 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Hương - Kế Toán</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HD000046" class="ng-binding" href="#/Invoices?Code=HD000046">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HD000046" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HD000046</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hương - Kế Toán</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Hương - Kế Toán</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HD000046</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">355,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">355,000</span></span> <span class="dpb fs11 txtI date ng-binding">11 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-PurchaseOrder" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier'"><i class="fa fa-share-square-o"></i></span>
+          <!-- end ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Hương - Kế Toán</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/PurchaseOrder?Code=PN000046" class="ng-binding" href="#/PurchaseOrder?Code=PN000046">nhập hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=PN000046" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">PN000046</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hương - Kế Toán</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Hương - Kế Toán</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">PN000046</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">nhập hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">0</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">0</span></span> <span class="dpb fs11 txtI date ng-binding">11 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Hoàng - Kinh Doanh</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HD000045" class="ng-binding" href="#/Invoices?Code=HD000045">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HD000045" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HD000045</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hoàng - Kinh Doanh</a>
+          <p ng-show="act.SubjectType=='Announce'"
+            class="ng-binding ng-hide">Hoàng - Kinh Doanh</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HD000045</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a>
+          <span
+            class="content_long ng-binding" style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+              href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+              class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">188,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">188,000</span></span> <span class="dpb fs11 txtI date ng-binding">12 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-PurchaseOrder" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier'"><i class="fa fa-share-square-o"></i></span>
+          <!-- end ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Hoàng - Kinh Doanh</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/PurchaseOrder?Code=PN000045" class="ng-binding" href="#/PurchaseOrder?Code=PN000045">nhập hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=PN000045" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">PN000045</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hoàng - Kinh Doanh</a>
+          <p ng-show="act.SubjectType=='Announce'"
+            class="ng-binding ng-hide">Hoàng - Kinh Doanh</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">PN000045</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a>
+          <span
+            class="content_long ng-binding" style="display:none">nhập hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+              href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+              class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">0</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">0</span></span> <span class="dpb fs11 txtI date ng-binding">12 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Hoàng - Kinh Doanh</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HD000044" class="ng-binding" href="#/Invoices?Code=HD000044">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HD000044" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HD000044</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hoàng - Kinh Doanh</a>
+          <p ng-show="act.SubjectType=='Announce'"
+            class="ng-binding ng-hide">Hoàng - Kinh Doanh</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HD000044</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a>
+          <span
+            class="content_long ng-binding" style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+              href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+              class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">182,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">182,000</span></span> <span class="dpb fs11 txtI date ng-binding">13 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-PurchaseOrder" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier'"><i class="fa fa-share-square-o"></i></span>
+          <!-- end ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Hoàng - Kinh Doanh</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/PurchaseOrder?Code=PN000044" class="ng-binding" href="#/PurchaseOrder?Code=PN000044">nhập hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=PN000044" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">PN000044</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hoàng - Kinh Doanh</a>
+          <p ng-show="act.SubjectType=='Announce'"
+            class="ng-binding ng-hide">Hoàng - Kinh Doanh</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">PN000044</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a>
+          <span
+            class="content_long ng-binding" style="display:none">nhập hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+              href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+              class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">0</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">0</span></span> <span class="dpb fs11 txtI date ng-binding">13 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <li ng-repeat="act in activities" class="dashboard-Invoices" ng-if="$index < 18">
+          <!-- ngIf: act.SubjectType=='StockTakes' -->
+          <!-- ngIf: act.SubjectType=='Returns' || act.SubjectType=='PurchaseReturns' -->
+          <!-- ngIf: act.SubjectType=='PurchaseOrder' || act.SubjectType=='OrderSupplier' -->
+          <!-- ngIf: act.SubjectType=='Invoices' --><span class="dash_icon ng-scope" ng-if="act.SubjectType=='Invoices'"><i class="fa fa-clipboard"></i></span>
+          <!-- end ngIf: act.SubjectType=='Invoices' -->
+          <!-- ngIf: act.SubjectType=='Orders' -->
+          <!-- ngIf: act.SubjectType=='Transfers' -->
+          <!-- ngIf: act.SubjectType=='User' -->
+          <!-- ngIf: act.SubjectType=='DamageItems' -->
+          <!-- ngIf: act.SubjectType=='Announce' -->
+          <!-- ngIf: act.SubjectType=='Delivery' --><a href="" ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" ng-click="viewEmployee(act.UserId)" class="ng-binding">Trinh Cong Son</a> <span ng-hide="act.SubjectType=='Announce' || act.SubjectType=='Delivery'" class="ng-binding">vừa</span>          <a ng-hide="act.SubjectType=='Announce'|| act.SubjectType=='Delivery'" ng-href="#/Invoices?Code=HD000043" class="ng-binding" href="#/Invoices?Code=HD000043">bán đơn hàng</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">Vận đơn</span>          <a href="#/Invoices?DeliveryKey=HD000043" ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide">HD000043</a> <span ng-show="act.SubjectType=='Delivery'" class="ng-binding ng-hide"></span> <a href="#/PartnerDelivery?Code=" class="ng-binding"></a>          <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 4" class="ng-binding ng-hide">đang được chuyển hoàn</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.Status == 6" class="ng-binding ng-hide">đã bị hủy</span>          <span ng-show="act.SubjectType=='Delivery'&amp;&amp; act.Status == 6" class="ng-binding ng-hide">bởi</span> <span ng-show="act.SubjectType=='Delivery' &amp;&amp; act.IsVoidByCarrier === 1 &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Hãng vận chuyển</span>          <a href="" ng-click="viewEmployee(act.UserId)" ng-show="act.SubjectType=='Delivery' &amp;&amp; !(act.IsVoidByCarrier === 1) &amp;&amp; act.Status == 6" class="ng-binding ng-hide">Trinh Cong Son</a>
+          <p ng-show="act.SubjectType=='Announce'" class="ng-binding ng-hide">Trinh Cong Son</p><span ng-show="act.SubjectType=='Announce'" class="dashboard_newsdes ng-hide"><span class="content_short ng-binding">HD000043</span><a class="viewMore ng-binding ng-hide" ng-show="act.UserId == 2">... Xem thêm</a> <span class="content_long ng-binding"
+            style="display:none">bán đơn hàng <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null" href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <a ng-show="act.SubjectType=='Announce' &amp;&amp; act.Action != null &amp;&amp; act.UserId == 1"
+            href="vừa" target="_blank" class="ng-binding ng-hide">Chi tiết</a></span> <span ng-show="(act.SubjectType=='Orders'|| act.SubjectType=='Returns'|| act.SubjectType=='PurchaseOrder'|| act.SubjectType=='OrderSupplier'|| act.SubjectType=='PurchaseReturns'|| act.SubjectType=='Transfers'|| act.SubjectType=='DamageItems') &amp;&amp; viewPrice &amp;&amp; productCost"
+            class="ng-binding ng-hide">với giá trị <span class="txtB fs12 ng-binding">263,000</span></span> <span ng-show="act.SubjectType=='Invoices'" class="ng-binding">với giá trị <span class="txtB fs12 ng-binding">263,000</span></span> <span class="dpb fs11 txtI date ng-binding">14 ngày trước</span></li>
+        <!-- end ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+        <!-- ngIf: $index < 18 -->
+        <!-- end ngRepeat: act in activities -->
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+
+var filter = {
+    range: 'month',
+    ViewType: 'PurchaseDate',
+    
+    top10: 'turnover',
+    range2: 'month',    
+    Mode: 'chart',
+    ViewType2: 'ProductBySale'
+}
+
+function labelF ( value, valueText, valueAxis ) {
+  var m = String(value)  
+   
+  return m.replace(/[0]{6}$/,"tr").replace(/[0]{3}$/,"k")
+          .replace(/([1-9])[0]{5}$/,".$1tr").replace(/([1-9])[0]{2}$/,".$1k")
+ 
+}
+
+function labelFX ( value, valueText, valueAxis ) {
+  var m = String(value)  
+   
+  return m.replace(/([0-9]+)-([0-9]+)$/,"$2/$1")
+ 
+}
+
+function _g(){
+    
+    if(!cb){
+        setTimeout(function(){_g()},500)
+        return
+    }
+    
+    //
+    $.ajax({
+        url: 'ajax.php?action=dashboardnow&branch='+cb,
+        dataType: 'json',
+        success: function(data){
+            //alert(data)
+            $('.total .dash_title').html((data[0]+ ' Hóa đơn'))
+            $('.total .number').html(formatCurrency(data[1]))
+            $('.return .dash_title').html((data[2]+ ' Phiếu'))
+            $('.return .number').html(formatCurrency(data[3]))
+        }
+    })
+    
+    //ajax.php?action=turnover&range=thisweek&ViewType=PurchaseDate&branch=1
+    $.getJSON( "ajax.php?action=turnover&range="+filter.range+"&ViewType="+filter.ViewType+"&branch="+cb, function( data ) {
+        dataProvider = []
+        var alf = 0
+        for(var i in data){
+            dataProvider.push({                 
+                "date": data[i].d,
+                "visits": data[i].turnover
+            } )
+            alf -= -data[i].turnover
+        } 
+        $('#TotalValue7').html(formatCurrency(alf)) 
+        var opz = {
+            "titles": [
+        		{
+        			"text": ("Doanh thu thuần ")+rngs[filter.range],
+        			"size": 15
+        		}
+        	],
+          "type": "serial",
+          "theme": "none",
+          "dataProvider": dataProvider,
+          "gridAboveGraphs": true,
+          "startDuration": 1,
+          "graphs": [ {
+            "balloonText": "[[category]]: <b>[[value]]</b>",
+            "fillAlphas": 0.8,
+            "lineAlpha": 0.2,
+            "type": "column",
+            "valueField": "visits"
+          } ],
+          "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+          },
+          "categoryField": "date",
+          "categoryAxis": {
+            "gridPosition": "start",
+            "gridAlpha": 0,
+            "tickPosition": "start",
+            "tickLength": 20
+          },
+          "export": {
+            "enabled": true
+          }
+        
+        }
+        
+        if(filter.ViewType=='PurchaseDate'){
+            opz.valueAxes = [{
+                labelFunction: labelF
+              }]
+            opz.categoryAxis.labelFunction = labelFX
+        } 
+        
+        var chart = AmCharts.makeChart( "chart_PurchaseDate", opz );             
+    });
+}
+
+
+function _g2(){
+    
+    if(!cb || products==null){
+        setTimeout(function(){_g2()},500)
+        return
+    }
+    
+     
+    
+    cdata = {}
+              
+    $.getJSON( "ajax.php?action=reportproduct&range="+filter.range2+"&Mode="+filter.Mode+
+        "&ViewType="+filter.ViewType2+
+        "&ProductKey="+ 
+        "&ProductType="+ 
+        "&ProductCategory="+ 
+        "&branch="+cb, function( data ) {
+        cdata = $.extend({}, data)
+        
+        dataProvider3 = []
+        for(var i in cdata.charts[0]){
+            dataProvider3.push( {                 
+                "date": loadProduct(cdata.charts[0][i].product).name,
+                "visits": cdata.charts[0][i].turnover
+            } )
+        }   console.log(JSON.stringify(dataProvider3 ))	
+         opz3 = {
+            "titles": [
+        		{
+        			"text": "Top 10 sản phẩm doanh số cao nhất "+rngs[filter.range],
+        			"size": 15
+        		}
+        	],
+          "type": "serial",
+          "theme": "none",
+          "dataProvider":  dataProvider3  ,
+          "gridAboveGraphs": true,
+          "startDuration": 1,
+          "graphs": [ {
+            "balloonText": "[[category]]: <b>[[value]]</b>",
+            "fillAlphas": 0.8,
+            "lineAlpha": 0.2,
+            "type": "column",
+            "valueField": "visits"
+          } ],
+          "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+          },
+          "categoryField": "date",
+          "categoryAxis": {
+            "gridPosition": "start",
+            "gridAlpha": 0,
+            "tickPosition": "start",
+            "tickLength": 20
+          },
+          "export": {
+            "enabled": true
+          }
+        
+        }
+         
+        opz3.rotate = true
+        opz3.categoryAxis= {
+            "gridPosition": "start",
+            "position": "left"
+          }
+        opz3.valueAxes = [{
+            "id": "ValueAxis-1",
+            "position": "bottom",
+            "axisAlpha": 0,
+            labelFunction: labelF
+          }]
+         
+        //console.log(JSON.stringify(opz))
+        //_chart = AmCharts.makeChart( "chart_PurchaseDate", opz );     
+        
+        var dataProvider2 = []
+         opz2 = $.extend(true,{},opz3); 
+        for(var i in cdata.charts[1]){
+            dataProvider2.push( {                 
+                "date": loadProduct(cdata.charts[1][i].product).name,
+                "visits": cdata.charts[1][i].turnover
+            } )
+        }  //gff = 1
+        console.log(JSON.stringify(dataProvider2))	;//alert(gff++)
+        opz2.dataProvider   = dataProvider2   ;//alert(gff++)
+        opz2.valueAxes = [{
+            "id": "ValueAxis-2",
+            "position": "bottom",
+            "axisAlpha": 0 ,
+             
+            "integersOnly": true
+          }]  //;alert(gff++)
+          
+          opz2.titles = [
+        		{
+        			"text": "Top 10 sản phẩm bán chạy theo số lượng "+rngs[filter.range],
+        			"size": 15
+        		}
+        	]  //;alert(gff++)
+        //console.log(JSON.stringify(opz2))	;alert(gff++)	 
+         // _chart2 = AmCharts.makeChart( "chart_PurchaseDate2", opz2 );     
+         //AmCharts.ready(function () {
+            AmCharts.makeChart( "chart_PurchaseDate2", opz3 );     
+            AmCharts.makeChart( "chart_PurchaseDate3", opz2 );     
+         //   })
+    });
+    
+    
+}
+
+$(function(){
+    _g()
+    
+    _g2()
+    
+    setTitle(loadBranch(cb).name+' - Tổng quan') 
+})
+</script>

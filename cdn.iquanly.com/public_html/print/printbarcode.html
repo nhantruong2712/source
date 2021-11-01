@@ -1,0 +1,52 @@
+<!-- print1 -->
+<div id="printbarcode" style="display: none;">
+<div class="he">    
+    <div class="he1">
+        <p>{{ten_chi_nhanh}}</p>
+        <p>{{dien_thoai_chi_nhanh}}</p>
+    </div>    
+    <div class="he2"><img src="https://cdn.ehome247.com/images/2019/04/1554775228-tungcha.jpg" width="70%" /></div>
+</div>
+<div class="he3">{{ma_hoa_don}}</div>
+<hr />
+<style>
+@media print{
+  >*{
+    font-size: 13px;
+  }
+}
+.he{
+    display: inline-block;
+}
+.he1,.he2{
+    display: inline-block;
+    float: left;
+    width: 50%;
+}
+
+.he3{
+    font-weight: bold;
+    font-size: 0.9em; 
+    margin-top:0px;
+    margin-bottom: 0px;
+}
+.he5{
+    font-style: italic;
+}
+hr,p{
+    margin: 0px;
+}
+
+.he4 p{
+    font-size: 0.8em;
+    font-style: italic;
+}
+</style> 
+
+<div class="he4">{{hang_hoa}}</div>
+<div class="he5">{{ghi_chu_hang_hoa}}</div>
+
+<hr />
+<div class="he6">{{gia_hang_hoa}}</div>
+</div>
+ 

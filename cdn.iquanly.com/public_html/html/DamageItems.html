@@ -1,0 +1,1452 @@
+<style>
+.k-block, .k-button, .k-textbox, .k-drag-clue, .k-touch-scrollbar, .k-window, .k-window-titleless .k-window-content, .k-window-action, .k-inline-block, .k-grid .k-filter-options, .k-grouping-header .k-group-indicator, .k-autocomplete, .k-multiselect, .k-combobox, .k-dropdown, .k-dropdown-wrap, .k-datepicker, .k-timepicker, .k-colorpicker, .k-datetimepicker, .k-numerictextbox, .k-picker-wrap, .k-numeric-wrap, .k-colorpicker, .k-list-container, .k-calendar-container, .k-calendar td, .k-calendar .k-link, .k-treeview .k-in, .k-editor-inline, .k-tooltip, .k-tile, .k-slider-track, .k-slider-selection, .k-upload {
+    -moz-border-radius: 3px!important;
+    -webkit-border-radius: 3px!important;
+    -khtml-border-radius: 3px!important;
+    border-radius: 3px!important;
+}
+.k-autocomplete, .k-button, .k-draghandle, .k-dropdown-wrap, .k-grid-header, .k-grouping-header, .k-header, .k-numeric-wrap, .k-pager-wrap, .k-panelbar .k-tabstrip-items .k-item, .k-picker-wrap, .k-progressbar, .k-state-highlight, .k-tabstrip-items .k-item, .k-textbox, .k-toolbar, .km-pane-wrapper>.km-pane>.km-view>.km-content {
+    background-image: url(textures/highlight.png);
+    background-image: none,-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,.6)),to(rgba(255,255,255,0)));
+    background-image: none,-webkit-linear-gradient(top,rgba(255,255,255,.6) 0,rgba(255,255,255,0) 100%);
+    background-image: none,linear-gradient(to bottom,rgba(255,255,255,.6) 0,rgba(255,255,255,0) 100%);
+    background-position: 50% 50%;
+    background-color: #eae8e8;
+}
+input[type="text"]:disabled, input[type="password"]:disabled, input[type="email"]:disabled, input[type="number"]:disabled, select:disabled, textarea:disabled, button:disabled, a:disabled
+ input[disabled], textarea[disabled], select[disabled='disabled'] {
+    background: #ececec!important;
+    color: #7d7d7d!important;
+    -webkit-text-fill-color: #7d7d7d!important;
+    opacity: 1!important;
+    -webkit-opacity: 1;
+    cursor: not-allowed!important;
+    box-shadow: none!important;
+}
+ 
+.k-dropdown-wrap .k-input, .k-picker-wrap .k-input:not(.k-textbox), .k-numeric-wrap .k-input .tblBox .k-picker-wrap .k-input {
+    padding: 5px 8px;
+    background: none;
+    min-height: 18px;
+    height: 18px;
+    box-sizing: content-box;
+    text-indent: 0;
+}
+.k-gantt-toolbar .k-state-default, .k-grid .k-grouping-header, .k-grid-header, .k-grid-header-wrap, .k-grouping-header .k-group-indicator, .k-header, .k-pager-wrap, .k-pager-wrap .k-link, .k-pager-wrap .k-textbox {
+    border-color: #c5c5c5;
+}
+.form-group .form-label {
+    width: 120px;
+    float: left;
+    font-weight: bold;
+}
+.form-group .control-label {
+    padding: 8px 5px 0;
+    line-height: 17px;
+    color: #111;
+    margin: 0;
+}
+.sortView .boxLeftC aside .k-header {    
+    margin-top: 0px;
+}
+.form-wrapper.form-labels-90 .form-wrap, .form-wrapper .form-labels-90 .form-wrap {
+    margin-left: 90px;
+}
+ 
+.form-group .form-wrap.form-control-static {
+    padding: 9px 0 5px;
+    min-height: 32px;
+}
+.form-wrapper *:not(th):not(td):not(.paging-box):not([class*="k-"]) {
+    box-sizing: border-box;
+}
+.form-wrapper.form-labels-90 .form-label, .form-wrapper .form-labels-90 .form-label {
+    width: 90px;
+}
+.content-list div[class*="col-md-"] .form-group .form-label {
+    font-weight: normal;
+}
+.content-list .k-widget {
+    max-width: 100%;
+}
+.k-datetimepicker {
+     
+    background: #ececec!important;
+ 
+}
+input[data-role="datetimepicker"]{
+    font-size: 13px!important;
+    padding-top: 8px!important;
+}
+textarea.tblBox_Des2 {
+    height: 80px;
+    pointer-events: all!important;
+    cursor: default!important;
+}
+ 
+textarea.tblBox_Des {
+    font-style: italic;
+    border: none;
+    border-left: 1px solid #eee;
+    padding: 0 0 0 15px;
+    height: 67px;
+    overflow-y: auto;
+    color: #999;
+    line-height: 18px;
+    width: 100%;
+}
+.kv-window-footer, .kv-group-btn {
+    padding: 0;
+    text-align: right;
+    clear: both;
+}
+.content-list div[class*="col-md-"] .form-group {
+    border-top: 1px solid #eee;
+    margin: 0;
+}
+.content-list div[class*="col-md-"].description-detail .form-group, .content-list div[class*="col-md-"]:not(.description-detail):not(.col-md-12) .form-group:first-child {
+    border-top: none;
+}
+.form-wrapper .form-group {
+    min-height: 24px;
+    clear: both;
+}
+
+@media (min-width: 992px){
+ 
+    .content-list div[class*="col-md-"] .form-group {
+        padding: 3px 0;
+    }
+}
+
+
+.sortDateTimeOtherBox [kendo-calendar]{
+    width: 19.2721348em;
+}
+
+.sortDateTimeOtherBox{
+    width: 515px;
+}
+</style>
+<section class="mainLeft fll ng-scope">
+  <div class="filter-report">
+    <article class="boxLeft uln leftStatus">
+      <h3 class="leftTitle cursor ng-binding" ng-click="showOrderSearch = !showOrderSearch">Tìm kiếm <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+      <aside class="boxLeftC fr">
+        <input type="text" ng-model="filterName" class="w100 ng-pristine ng-untouched ng-valid mb10 ng-empty" placeholder="Theo mã xuất hủy" ng-class="{'mb10': !showOrderSearch}" kv-select-text="" ng-blur="filterbyName()" ng-keyup="$event.keyCode == 13 ? filterbyName() : null">
+        <aside ng-hide="showOrderSearch">
+          <input type="text" ng-model="filterProduct" placeholder="Theo mã, tên hàng" class="w100 mb10 ng-pristine ng-untouched ng-valid ng-empty" kv-select-text="" ng-blur="refresh()" ng-keyup="$event.keyCode == 13 ? refresh() : null">
+          <input ng-show="settings.UseImei" ng-keyup="$event.keyCode == 13 ? refresh() : null" class="w100 mb10 ng-pristine ng-untouched ng-valid ng-empty ng-hide" type="text" ng-model="filterSerial" placeholder="Theo Serial/IMEI" kv-select-text="">
+          <input ng-keyup="$event.keyCode == 13 ? refresh() : null" class="w100 mb10 ng-pristine ng-untouched ng-valid ng-empty" type="text" ng-model="filterUserName" placeholder="Theo người xuất hủy">
+          <input ng-show="!user.IsLimitedByTrans" ng-keyup="$event.keyCode == 13 ? refresh() : null" class="w100 mb10 ng-pristine ng-untouched ng-valid ng-empty" type="text" ng-model="filterUserNameCreated" placeholder="Theo người tạo">
+          <input class="w100 ng-pristine ng-untouched ng-valid ng-empty" type="text" ng-model="filterNote" placeholder="Theo ghi chú">
+        </aside>
+      </aside>
+    </article>
+    <article class="boxLeft uln sortBranch ng-hide" ng-show="branches.Data.length>1">
+      <h3 class="leftTitle cursor ng-binding" ng-click="showOrderBranch = !showOrderBranch">Chi nhánh <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+      <aside class="boxLeftC" ng-hide="showOrderBranch">
+        <div class="k-widget k-multiselect k-header" unselectable="on" title="" style="">
+          <div class="k-multiselect-wrap k-floatwrap" unselectable="on">
+            <ul role="listbox" unselectable="on" class="k-reset" id="sortBranch_taglist">
+              <li class="k-button ng-scope" unselectable="on"><span unselectable="on">Chi nhánh trung tâm</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-close">delete</span></span>
+              </li>
+            </ul>
+            <input class="k-input" style="width: 25px;" accesskey="" autocomplete="off" role="listbox" aria-expanded="false" tabindex="0" aria-owns="sortBranch_taglist sortBranch_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false" aria-activedescendant="e62a4489-7fb2-4f86-afee-55747be0b39a"><span class="k-icon k-loading k-loading-hidden"></span></div>
+          <select k-data-source="branches.Data" k-filter="'contains'" data-placeholder="_l.lblBranchFilterHolder" k-data-text-field="'Name'" k-data-value-field="'Id'" k-on-change="filterbyBranch()"
+          k-ng-model="branchids" k-value-primitive="true" id="sortBranch" kendo-multi-select="" data-role="multiselect" multiple="multiple" aria-disabled="false" aria-readonly="false" style="display: none;">
+            <option value="42295" selected="selected">Chi nhánh trung tâm</option>
+          </select><span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-stretch: normal; font-style: normal; font-weight: normal; letter-spacing: normal; text-transform: none; line-height: 17.03px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;"></span></div>
+      </aside>
+    </article>
+    <article class="boxLeft uln reportsortTime sortTime">
+      <h3 class="leftTitle cursor ng-binding" ng-click="showSortTime = !showSortTime">Thời gian <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+      <kv-report-time-filter kv-model="dateFilter" kv-change="filterbyDate" ng-hide="showSortTime" kv-alltime="true" class="ng-isolate-scope">
+        <aside class="boxLeftC posR">
+          <ul id="">
+            <li class="reportsort reportsortDateTime has-pretty-child" ng-hide="kvChooseDate">
+              <div class="clearfix prettyradio labelright  blue">
+                <input type="radio" kv-pretty-check="" name="stime_" id="reportsortDateTimeIpt" value="range" ng-model="kvModel.typeDate" kv-change="filterTimeChangeType" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" style="display: none;"
+                checked="checked">
+                <a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+                <label for="reportsortDateTimeIpt" class="checked"></label>
+              </div>
+              <aside class="sortTime">
+                <label class="sortTimeLbl ng-binding" id="reportsortDateTimeLbl" ng-click="sortTimeType('.reportsortDateTime')">Toàn thời gian</label>
+                <aside class="sortTimeHeight sortTimeList">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                      <h3>Theo ngày và tuần</h3>
+                      <ul>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('today')" class="ng-binding">Hôm nay</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('yesterday')" class="ng-binding">Hôm qua</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('thisweek')" class="ng-binding">Tuần này</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('lastweek')" class="ng-binding">Tuần trước</a></li>
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('7day')" class="ng-binding">7 ngày qua</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                      </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <h3>Theo tháng và quý</h3>
+                      <ul>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('month')" class="ng-binding">Tháng này</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('lastmonth')" class="ng-binding">Tháng trước</a></li>
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('monthlunar')" class="ng-binding">Tháng này (Âm lịch)</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('lastmonthlunar')" class="ng-binding">Tháng trước (Âm lịch)</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('30day')" class="ng-binding">30 ngày qua</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('quarter')" class="ng-binding">Quý này</a></li>
+                        <li><a href="javascript:void(0);" ng-click="filterbyRange('lastquarter')" class="ng-binding">Quý trước</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <h3>Theo năm</h3>
+                      <ul>
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('year')" class="ng-binding">Năm này</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('lastyear')" class="ng-binding">Năm trước</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('yearlunar')" class="ng-binding">Năm này (Âm lịch)</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: !kvBirthday -->
+                        <li ng-if="!kvBirthday" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('lastyearlunar')" class="ng-binding">Năm trước (Âm lịch)</a></li>
+                        <!-- end ngIf: !kvBirthday -->
+                        <!-- ngIf: kvModel.typeFilter && kvModel.typeFilter == 'common' && (kvAlltime || kvBirthday) -->
+                        <li ng-if="kvModel.typeFilter &amp;&amp; kvModel.typeFilter == 'common' &amp;&amp; (kvAlltime || kvBirthday)" class="ng-scope"><a href="javascript:void(0);" ng-click="filterbyRange('alltime')" class="ng-binding">Toàn thời gian</a></li>
+                        <!-- end ngIf: kvModel.typeFilter && kvModel.typeFilter == 'common' && (kvAlltime || kvBirthday) -->
+                      </ul>
+                    </div>
+                  </div>
+                </aside>
+              </aside>
+            </li>
+            <li class="reportsort reportsortDateTime reportsortDate has-pretty-child ng-hide" ng-show="kvChooseDate">
+              <div class="clearfix prettyradio labelright  blue">
+                <input type="radio" kv-pretty-check="" name="stime_" id="chooseDate" value="choose" ng-model="kvModel.typeDate" kv-change="filterTimeChangeType" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" style="display: none;">
+                <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                <label for="chooseDate" class=""></label>
+              </div>
+              <label class="sortTimeLbl ng-binding" id="reportsortDateTimeLbl" ng-click="sortTimeType('.reportsortDateTime')">Chọn ngày</label>
+              <aside class="sortTimeHeight sortDateTimeOtherBox fr">
+                <div class="row mb5">
+                  <div class="col-md-12">
+                    <h6 class="ng-binding">Chọn ngày: <span class="ng-binding">17/09/2017</span></h6>
+                    <div kendo-calendar="" id="transDate" required="required" kv-max="EndDate" k-max="EndDate" k-rebind="EndDate" k-ng-model="kvModel.TransDate" ng-click="filterByChooseDate()" data-role="calendar" class="k-widget k-calendar">
+                       
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </li>
+            <li class="reportsort reportsortOther has-pretty-child">
+              <div class="clearfix prettyradio labelright  blue">
+                <input type="radio" kv-pretty-check="" name="stime_" value="other" id="sortTime" ng-model="kvModel.typeDate" kv-data-label="" kv-change="filterTimeChangeType" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" style="display: none;">
+                <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+                <label for="sortTime" class=""></label>
+              </div>
+              <label class="sortTimeLbl ng-binding" id="reportsortOtherLbl" ng-click="sortTimeType('.reportsortOther')">Lựa chọn khác </label>
+              <aside class="sortTimeHeight sortDateTimeOtherBox fr">
+                <div class="row mb5">
+                  <div class="col-md-6 col-sm-6">
+                    <h6 class="ng-binding">Từ ngày: <!-- ngIf: !kvBirthday --><span ng-if="!kvBirthday" class="ng-binding ng-scope">17/09/2017</span><!-- end ngIf: !kvBirthday --><!-- ngIf: kvBirthday --></h6>
+                    <div kendo-calendar="" id="fromDate" required="required" kv-max="EndDate" k-max="EndDate" k-rebind="EndDate" k-ng-model="StartDate" data-role="calendar" class="k-widget k-calendar">
+                       
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <h6 class="ng-binding">Đến ngày: <!-- ngIf: !kvBirthday --><span ng-if="!kvBirthday" class="ng-binding ng-scope">17/09/2017</span><!-- end ngIf: !kvBirthday --><!-- ngIf: kvBirthday --></h6>
+                    <div kendo-calendar="" id="toDate" required="required" kv-min="StartDate" k-min="StartDate" k-rebind="StartDate" k-ng-model="EndDate" data-role="calendar" class="k-widget k-calendar">
+                       
+                    </div>
+                  </div>
+                </div>
+                <div class="boxBtn mb15 txtR"><a ng-click="filterByDateRange()" class="kv2Btn ng-binding"><i class="fa fa-filter"></i>Tìm kiếm</a></div>
+              </aside>
+            </li>
+          </ul>
+        </aside>
+      </kv-report-time-filter>
+    </article>
+    <article class="boxLeft uln leftStatus">
+      <h3 class="leftTitle cursor ng-binding" ng-click="showStatus = !showStatus">Trạng thái <a class="showhideicon"><i class="fa fa-chevron-circle-up"></i></a></h3>
+      <aside class="boxLeftC" ng-hide="showStatus">
+        <ul class="pretty-checkbox-mobile">
+          <!-- ngRepeat: item in orderStatus -->
+          <li ng-repeat="item in orderStatus" class="ng-scope has-pretty-child">
+            <div class="clearfix prettycheckbox labelright  blue">
+              <input value="0" type="checkbox" ng-model="item.checked" kv-change="filterbyStatus" kv-pretty-check="" kv-data-label="item.value" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Phiếu tạm" style="display: none;" checked="checked">
+              <a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+              <label for="undefined" class="checked">Phiếu tạm</label>
+            </div>
+          </li>
+          <!-- end ngRepeat: item in orderStatus -->
+          <li ng-repeat="item in orderStatus" class="ng-scope has-pretty-child">
+            <div class="clearfix prettycheckbox labelright  blue">
+              <input value="1" type="checkbox" ng-model="item.checked" kv-change="filterbyStatus" kv-pretty-check="" kv-data-label="item.value" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty" data-label="Hoàn thành" style="display: none;"
+              checked="checked">
+              <a href="javascript:void(0)" tabindex="1000007" class="checked"></a>
+              <label for="undefined" class="checked">Hoàn thành</label>
+            </div>
+          </li>
+          <!-- end ngRepeat: item in orderStatus -->
+          <li ng-repeat="item in orderStatus" class="ng-scope has-pretty-child">
+            <div class="clearfix prettycheckbox labelright  blue">
+              <input value="2" type="checkbox" ng-model="item.checked" kv-change="filterbyStatus" kv-pretty-check="" kv-data-label="item.value" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" data-label="Đã hủy" style="display: none;">
+              <a href="javascript:void(0)" tabindex="1000007" class=""></a>
+              <label for="undefined" class="">Đã hủy</label>
+            </div>
+          </li>
+          <!-- end ngRepeat: item in orderStatus -->
+        </ul>
+      </aside>
+    </article>
+    <article class="boxLeft reportHide uln sortTime sortView">
+      <h3 class="leftTitle cursor ng-binding">Lựa chọn hiển thị</h3>
+      <aside class="boxLeftC">
+        <aside ng-show="viewtype == typeList" class="ng-binding">Số bản ghi:<span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="mainView_listbox" aria-disabled="false" aria-readonly="false" aria-busy="false"
+          aria-activedescendant="137d7b62-b0ed-411c-a294-601bfc2cd312" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input ng-scope">10</span><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+          </span>
+          <select id="mainView" k-ng-model="pageSize" k-change="refresh" k-data-source="pageSizes" k-value-primitive="true" kendo-drop-down-list="" data-role="dropdownlist" style="display: none;">
+            <option value="10" selected="selected">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+          </select>
+          </span>
+        </aside>
+      </aside>
+    </article>
+  </div>
+  <div class="wrap-button-footer">
+    <button kv-mobile="" type="button" class="kv2Btn">Hoàn tất</button>
+  </div>
+</section>
+
+
+ 
+<section class="mainRight ng-scope">
+    <section class="mainWrap fll w100" style="position: relative; top: auto; bottom: auto; width: auto;">
+        <article class="headerContent uln fll w100">
+            <h1><a href="javascript:void(0);" class="mobileIcon" kv-mobile=""></a><span class="ng-binding">Phiếu xuất hủy</span></h1>
+            
+            <aside class="flr">
+                <a href="#/DamageItems/new" class="kv2Btn ng-binding" ng-show="rights.canAdd"><i class="fa fa-plus"></i> Tạo phiếu</a>
+                <div class="addProductBtn hide-mobile-tablet"><a class="kv2Btn kv2BtnExport ng-binding" title="Xuất  file"><i class="fa fa-sign-out"></i> Xuất  file <i class="fa fa-caret-down"></i></a><ul><li><a kv-taga-disabled="invoices.total()==0" ng-click="export()" class="ng-binding"><i class="fa fa-share"></i> File tổng quan</a></li><li><a kv-taga-disabled="invoices.total()==0" ng-click="exportDetail()" class="ng-binding"><i class="fa fa-share-square-o"></i> File chi tiết</a></li></ul></div>
+                <div id="columnSelection" kv-column-selection="" class="columnView k-widget k-reset k-header k-menu k-menu-horizontal" binded-grid="bindedGrid" title="Tùy chọn" data-role="menu" tabindex="0" role="menubar" aria-activedescendant="columnSelection_mn_active"><li class="k-item k-state-default k-first k-last" role="menuitem" aria-haspopup="true" id="columnSelection_mn_active"><span class="k-link"><span class="k-icon k-i-arrow-s"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="Code"><span></span>Mã nhập hàng</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="PurchaseDate"><span></span>Thời gian</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="ModifiedDate"><span></span>Ngày cập nhật</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="Supplier.Name"><span></span>Nhà cung cấp</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="Branch.Name"><span></span>Chi nhánh</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="User.GivenName"><span></span>Người nhập</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="User1.GivenName"><span></span>Người tạo</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="SubTotal"><span></span>Tổng tiền hàng</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="Discount"><span></span>Giảm giá</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="Total"><span></span>Tổng cộng</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="PaidAmount"><span></span>Tiền đã trả NCC</label></span></li><li class="k-item k-state-default" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="ShortDescription"><span></span>Ghi chú</label></span></li><li class="k-item k-state-default k-last" role="menuitem"><span class="k-link"><label title=" " class="quickaction_chk dpb undefined"><input type="checkbox" checked="checked" class="check_row" data-field="Status"><span></span>Trạng thái</label></span></li></ul></li></div>
+            </aside>
+
+        </article>
+        <article class="clb k-gridNone k-grid-Scroll">
+            <div id="grdBranchs" kendo-grid="" k-data-source="branches" k-sortable="true" k-resizable="true" k-selectable="true"  kv-grid-expan-row="" k-data-bound="emptyGridFix" k-data-binding="grvdataBinding" data-title="branch_Paging" k-detail-template="detailTemplate" k-detail-init="grvDetailInit" k-detail-expand="grvDetailExpand" data-role="grid" class="k-grid k-widget">
+            <div class="k-grid-header" style="padding-right: 17px;">
+            <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
+            <table role="grid">
+            <colgroup>
+            <col class="k-hierarchy-col"><col><col><col><col><col> </colgroup>
+            <thead role="rowgroup">
+            <tr role="row">
+            <th class="k-hierarchy-cell k-header ng-scope" scope="col">&nbsp;</th>
+            <th scope="col" role="columnheader" data-field="Name" rowspan="1" data-title="Mã xuất hủy" data-index="0" id="e7e15aa7-161b-4807-9721-da9a9abb94b7" class="tdCode18 k-header ng-scope" data-role="columnsorter">
+            <a class="k-link" href="javascript:void(0);">Mã xuất hủy</a></th>
+            <th scope="col" role="columnheader" data-field="Address" rowspan="1" data-title="Thời gian" data-index="1" id="c563cae7-3a18-4aba-a53d-621035a98943" class="tdDateTime k-header ng-scope" data-role="columnsorter">
+            <a class="k-link" href="javascript:void(0);">Thời gian</a></th>            
+            <th scope="col" role="columnheader" data-field="ContactNumber" rowspan="1" data-title="Ghi chú" data-index="2" id="8977b66a-0c78-45b4-bdb5-91403756d56a" class="tdMin k-header ng-scope" data-role="columnsorter">
+            <a class="k-link" href="javascript:void(0);">Ghi chú</a></th>
+            
+            <th scope="col" role="columnheader" data-field="ContactNumber" rowspan="1" data-title="Tổng cộng" data-index="3" class="tdCode16 k-header ng-scope" data-role="columnsorter">
+            <a class="k-link" href="javascript:void(0);">Tổng cộng</a></th> 
+            <th scope="col" role="columnheader" data-field="ContactNumber" rowspan="1" data-title="Trạng thái" data-index="4" class="tdStatus k-header ng-scope" data-role="columnsorter">
+            <a class="k-link" href="javascript:void(0);">Trạng thái</a></th> 
+             
+            </tr>
+            
+            </thead>
+            </table>
+            </div></div>
+            <div class="k-grid-content k-auto-scrollable">
+            <table role="treegrid" data-role="selectable" class="k-selectable">
+            <colgroup><col class="k-hierarchy-col"><col><col><col><col><col></colgroup>
+            <tbody role="rowgroup">
+             
+            </tbody></table></div>
+            <div class="paging-box" style="display: block;">
+            <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
+            <a href="javascript:void(0);" title="Trang đầu" class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1">
+            <span class="k-icon k-i-seek-w">Trang đầu</span></a>
+            <a href="javascript:void(0);" title="Trang trước" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+            <span class="k-icon k-i-arrow-w">Trang trước</span></a>
+            
+            <ul class="k-pager-numbers k-reset">
+            <li class="k-current-page"><span class="k-link k-pager-nav">1</span></li>
+            <li><span class="k-state-selected">1</span></li>
+            </ul>
+            
+            <a href="javascript:void(0);" title="Trang sau" class="k-link k-pager-nav  k-state-disabled" data-page="1" tabindex="-1">
+            <span class="k-icon k-i-arrow-e">Trang sau</span></a>
+            
+            <a href="javascript:void(0);" title="Trang cuối" class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="1" tabindex="-1">
+            <span class="k-icon k-i-seek-e">Trang cuối</span></a>
+            
+            <span class="k-pager-info k-label">Hiển thị 1 - 2 trên tổng số 2 phiếu xuất hủy</span>
+            </div>
+            </div>
+            </div>
+        </article>
+        <div style="display: none">
+        
+        <script type="text/x-kendo-template" id="templUsersInBranch">
+        <tr class="{{dataItem.class}}" data-uid="{{dataItem.class}}" role="row">
+                                <td class="" role="gridcell"><a href="/#/Users?Code={{dataItem.username}}" target="_blank">{{dataItem.name}}</a></td>
+                                <td class="tdBranch" role="gridcell">{{dataItem.username}}</td>
+                                <td class="tdBranch" role="gridcell">{{dataItem.role}}</td>
+                                </tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranch">
+        <tr class="{{dataItem.class}} k-master-row ng-scope" data-uid="{{dataItem.id}}" role="row">
+            <td class="k-hierarchy-cell"><a class="k-icon k-plus" href="javascript:void(0);" tabindex="-1"></a></td>
+            <td class="tdCode18" role="gridcell"><span ng-bind="dataItem.code" class="ng-binding">{{dataItem.code}}</span></td>
+            <td class="tdDateTime" role="gridcell"><span ng-bind="dataItem.date" class="ng-binding">{{dataItem.date|xdate}}</span></td>
+            <td class="tdMin" role="gridcell"><span ng-bind="dataItem.customer" class="ng-binding">{{dataItem.note}}</span></td>
+            <td class="tdCode16" role="gridcell"><span ng-bind="dataItem.price" class="ng-binding">{{dataItem.price}}</span></td>
+            <td class="tdStatus" role="gridcell"><span ng-bind="dataItem.discount" class="ng-binding">{{dataItem.status==1?'Hoàn thành':(dataItem.status==2?'Đã hủy':'Phiếu tạm')}}</span></td>
+             
+        </tr>
+        </script>
+        <script type="text/x-kendo-template" id="templProductInvoice">
+        <tr class="{{$i%2==1?'k-alt':''}}" data-uid="48d7cae0-e12d-4216-9e1e-bc378e3abc0e" role="row">
+          <td class="tdCode" role="gridcell">{{loadProduct(row.product).code}}</td>
+          <td class="tdNone" role="gridcell">{{loadProduct(row.product).name}}<span class="txtN txtI dpb fs11 txtGray">{{loadProduct(row.product).uname}}</span></td>
+          <td class="tdSLB txtR" role="gridcell">{{row.quantity}}</td>
+          <td class="tdPrice" role="gridcell">{{row.price|formatCurrency}}</td>
+           
+          <td class="tdTotal txtB" role="gridcell">{{(row.price)*row.quantity|formatCurrency}}</td>
+        </tr>
+        </script>
+        <script type="text/x-kendo-template" id="templBranchDetail">
+              <tr class="k-detail-row ng-scope"><td class="k-hierarchy-cell"></td><td class="k-detail-cell" colspan="5">
+            <div class="k-tabstrip-wrapper" style="width: 100%;"><div class="tabstrip k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" data-role="tabstrip" tabindex="0" role="tablist">
+                <ul class="k-tabstrip-items k-reset"><li class="ng-binding k-item k-state-default k-first k-tab-on-top k-state-active" role="tab" aria-controls="94d774af-95d8-4e54-8236-90c4197cd28b-1" aria-selected="true"><span class="k-loading k-complete"></span><span class="k-link">Thông tin</span></li>
+                <li id="tabInventory" class="ng-binding k-item k-state-default k-last k-state-hover hth-hide" role="tab" aria-controls="94d774af-95d8-4e54-8236-90c4197cd28b-2"><span class="k-loading k-complete"></span><span class="k-link">Lịch sử thanh toán</span></li></ul>
+                <div class="k-content k-state-active" id="94d774af-95d8-4e54-8236-90c4197cd28b-1" role="tabpanel" aria-expanded="true" style="display: block;">
+            <invoice-form kv-data-item="dataItem" kv-on-save="refresh" kv-surcharges="surcharges" class="ng-isolate-scope">
+              <div class="form-wrapper form-labels-90 content-list">
+                <div class="row row-padding-15">
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label control-label ng-binding">Mã xuất hủy:</label>
+                      <div class="form-wrap form-control-static"><strong class="ng-binding">{{dataItem.code}}</strong></div>
+                    </div>
+                     
+                    <div class="form-group">
+                      <label class="form-label control-label ng-binding">Thời gian:<a ng-show="isBarCafe" tabindex="-1" class="help icon" kv-tooltip="" data-toggle="tooltip" data-placement="right" data-original-title="Giờ đi"><i class="fa fa-info-circle"></i></a></label>
+                      <div class="form-wrap" ng-show="!disabled"><span class="k-widget k-datetimepicker k-header"><span class="k-picker-wrap"><input kendo-date-time-picker="" k-ng-model="dataItem.PurchaseDate" k-format="'dd/MM/yyyy HH:mm'" k-time-format="'HH:mm'" ng-disabled="disabled || settings.NotAllowModifyPurchaseDate" k-on-change="purchaseDateChanged()" data-role="datetimepicker" type="text" class="k-input" role="combobox" aria-expanded="false" aria-disabled="true" aria-readonly="false" style="width: 100%;"><span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-calendar" role="button">select</span>
+                        <span
+                        unselectable="on" class="k-icon k-i-clock" role="button">select</span>
+                          </span>
+                          </span>
+                          </span>
+                      </div>
+                      <div class="form-wrap form-control-static ng-binding ng-hide" ng-show="disabled">11/07/2017 16:02</div>
+                    </div>
+                     
+                    <div class="form-group">
+                      <label class="form-label control-label ng-binding">Người tạo:</label>
+                      <div class="form-wrap form-control-static ng-binding">{{loadUser(dataItem.create).name}}</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label control-label ng-binding">Trạng thái:</label>
+                       
+                      <div class="form-wrap form-control-static ng-binding" ng-show="disabled || hasIssued">{{dataItem.status==1?'Hoàn thành':(dataItem.status==2?'Đã hủy':'Phiếu tạm')}}</div>
+                    </div>
+                     
+                    <div class="form-group">
+                      <label class="form-label control-label ng-binding">Chi nhánh:</label>
+                      <div class="form-wrap form-control-static"><span ng-bind="dataItem.BranchName" class="txtBranch ng-binding">{{loadBranch(dataItem.branch).name}}</span></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label control-label ng-binding">Người hủy:</label>
+                      <div class="form-wrap ">
+                      <span title="" class="k-widget k-dropdown k-header" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false" style="" aria-activedescendant="0713b957-ecfa-4c11-a072-e07fc67b14e9">
+                        <span unselectable="on" class="k-dropdown-wrap k-state-default">
+                            <span unselectable="on" class="k-input ng-scope">trần đình đàn</span>
+                            <span unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span>
+                        </span>
+                      </span>
+                          <select k-data-source="sellers.Data" k-data-text-field="'GivenName'" k-data-value-field="'Id'" k-ng-model="createUser" ng-show="!disabled" ng-disabled="lockSeller" k-on-change="changeStatusAction(dataItem.StatusValue)" k-filter="'contains'"
+                          kendo-drop-down-list="" data-role="dropdownlist" style="display: none;">
+                            <option value="60513" selected="selected">trần đình đàn</option>
+                             
+                          </select>
+                          </span><span ng-show="disabled" class="ng-binding ng-hide">trần đình đàn</span></div>
+                    </div>
+                    
+                  </div>
+                  <div class="col-md-4 col-sm-12">
+                    <div ng-modal="dataItem.Description" ng-bind="dataItem.Description?dataItem.Description:'Ghi chú...'" ng-show="disabled" class="tblBox_Des tblBox_Des2 ng-binding ng-hide">Ghi chú...</div>
+                    <textarea maxlength="4000" ng-model="dataItem.Description" placeholder="Ghi chú..." ng-show="!disabled" ng-disabled="disabled" class="tblBox_Des tblBox_Des2 ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" kv-textarea-enter="">{{dataItem.note}}</textarea>
+                  </div>
+                </div>
+              </div>
+               
+          <div class="form-wrapper k-noscroll">
+            <div class="invoiceDetail k-grid k-widget" data-role="grid">
+              <div class="k-grid-header" style="padding-right: 8px;">
+                <div class="k-grid-header-wrap k-auto-scrollable">
+                  <table role="grid">
+                    <colgroup>
+                      <col>
+                        <col>
+                          <col>
+                            <col>
+                              <col>
+                                 
+                    </colgroup>
+                    <thead role="rowgroup">
+                      <tr role="row">
+                        <th scope="col" role="columnheader" data-field="ProductCode" rowspan="1" data-title="Mã hàng hóa" data-index="0" id="aae889a6-d99c-4a7b-9145-951518f2d3c6" class="tdCode k-header">Mã hàng hóa</th>
+                        <th scope="col" role="columnheader" data-field="ProductName" rowspan="1" data-title="Tên hàng" data-index="1" id="291045d4-6705-44d1-ab93-d484729a76c2" class="tdNone k-header">Tên hàng</th>
+                        <th scope="col" role="columnheader" data-field="Quantity" rowspan="1" data-title="Số lượng" data-index="2" id="6911412a-8490-4f1e-82cb-ba60dd3fabf2" class="tdSLB txtR k-header">Số lượng</th>
+                        <th scope="col" role="columnheader" data-field="Price" rowspan="1" data-title="Giá vốn" data-index="3" id="24362dcb-36b9-47fc-be02-28f514a7146b" class="tdPrice k-header">Giá vốn</th>
+                         
+                        <th scope="col" role="columnheader" data-field="SubTotal" rowspan="1" data-title="Thành tiền" data-index="5" id="ab1a1fda-ee50-4dbe-8039-512fd2f986fe" class="tdTotal k-header">Thành tiền</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+              <div class="k-grid-content k-auto-scrollable k-grid-content-ac">
+                <table role="grid">
+                  <colgroup>
+                    <col>
+                      <col>
+                        <col>
+                          <col>
+                            <col>
+                               
+                  </colgroup>
+                  <tbody role="rowgroup">
+                    <tr data-uid="ebf29b72-03f5-47f6-b54c-20a0e4c3a32a" role="row">
+                      <td class="tdCode" role="gridcell">SP000005</td>
+                      <td class="tdNone" role="gridcell">BLOODY MARY<span class="txtN txtI dpb fs11 txtGray"></span></td>
+                      <td class="tdSLB txtR" role="gridcell">1</td>
+                      <td class="tdPrice" role="gridcell">30,000</td>
+                       
+                      <td class="tdTotal txtB" role="gridcell">30,000</td>
+                    </tr>
+                     
+                  </tbody>
+                </table><span class="line" style="height: 643px; top: 72px;"></span><span class="line line2" style="height: 643px; top: 72px;"></span></div>
+            </div>
+          </div>
+          <div class="form-wrapper">
+            <aside class="flr txtR tblTotal tblBox">
+              <div class="table-responsive">
+                <table class="">
+                  <tbody>
+                    <tr ng-show="settings.UseTotalQuantity">
+                      <td class="ng-binding">Tổng số lượng:</td>
+                      <td class="txtB tdDateTime ng-binding">0</td>
+                    </tr>
+                    <tr>
+                      <td class="ng-binding">Tổng giá trị hủy:</td>
+                      <td class="txtB nowrap ng-binding">0</td>
+                    </tr>
+                     
+                  </tbody>
+                   
+                </table>
+              </div>
+            </aside>
+          </div>
+          <div class="kv-group-btn">
+          <span ng-show="!noteditable">
+          <a href="" kv-taga-disabled="invoiceFrm.$invalid" ng-click="update()" class="kv2Btn ng-binding" ng-hide="disabled"><i class="fa fa-floppy-o"></i> Lưu</a> 
+              
+          <a ng-click="edit()" ng-show="hasFinish" class="kv2Btn ng-binding"><i class="fa fa-share"></i> Mở phiếu</a>
+          <a ng-click="printContent()" class="kv2Btn kv2BtnYellow ng-binding"><i class="fa fa-print"></i> In</a> 
+          <a ng-click="exportDetail()" class="kv2Btn kv2BtnYellow kv2BtnExport ng-binding"><i class="fa fa-sign-out"></i> Xuất  file</a> 
+          <a ng-click="cloneInvoice()" class="kv2Btn ng-binding ng-hide" ng-show="showCopy"><i class="fa fa-clone"></i>Sao chép</a> 
+          <a href="" ng-click="cancel()" class="kv2Btn kv2BtnDel ng-binding" ng-show="hasVoid"><i class="fa fa-close"></i> Hủy bỏ</a></span>  <a ng-show="noteditable" ng-href="#/Invoices?Code=HD000047" target="_blank" class="kv2Btn ng-binding ng-hide" href="#/Invoices?Code=HD000047"><i class="fa fa-share"></i> Mở phiếu</a></div>
+             
+            <kv-payment-method-form form-name="paymentMethodForm" class="ng-isolate-scope"></kv-payment-method-form>
+
+        </invoice-form>
+
+                </div>
+                <div class="k-content" id="94d774af-95d8-4e54-8236-90c4197cd28b-2" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                    <article class="clb ovh mb20"> <div class="paymentList k-grid k-widget" data-title="invoice_paymentHistory" data-role="grid"><div class="k-grid-header" style="padding-right: 8px;"><div class="k-grid-header-wrap k-auto-scrollable"><table role="grid"><colgroup><col><col><col><col><col><col></colgroup><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" data-field="Code" rowspan="1" data-title="Mã phiếu" data-index="0" id="7226e770-de2f-48b9-baa3-694d574ba861" class="tdCode18 k-header">Mã phiếu</th><th scope="col" role="columnheader" data-field="TransDate" rowspan="1" data-title="Thời gian" data-index="1" id="4976cf60-6737-41df-80b6-01123f841582" class="tdDateTime k-header">Thời gian</th><th scope="col" role="columnheader" data-field="User" rowspan="1" data-title="Người bán" data-index="2" id="ddc1fe19-7c1b-49f8-9d51-1ea4588c33b6" class="tdNone k-header">Người bán</th><th scope="col" role="columnheader" data-field="Method" rowspan="1" data-title="Phương thức" data-index="3" id="4f6ca90c-f005-4d81-9cfb-ee18a7710487" class="tdCodeTT k-header">Phương thức</th><th scope="col" role="columnheader" data-field="Status" rowspan="1" data-title="Trạng thái" data-index="4" id="b66485a5-8921-4a1f-a248-f0ab35002e7e" class="tdStatus k-header">Trạng thái</th><th scope="col" role="columnheader" data-field="Amount" rowspan="1" data-title="Tiền thu" data-index="5" id="8a9f8b4f-a5d8-46ed-91f7-695b868ff7a5" class="txtR tdPrice k-header">Tiền thu</th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable k-grid-content-ac"><table role="grid"><colgroup><col><col><col><col><col><col></colgroup><tbody role="rowgroup"><tr data-uid="0f438ebe-ee16-4660-82be-b1549776b620" role="row"><td class="tdCode18" role="gridcell"><a href="javascript:void(0)" name="paymentItem" data="TTHD000047">TTHD000047</a></td><td class="tdDateTime" role="gridcell">11/07/2017 16:02</td><td class="tdNone" role="gridcell">trần đình đàn</td><td class="tdCodeTT" role="gridcell">Tiền mặt</td><td class="tdStatus" role="gridcell">Đã thanh toán</td><td class="txtR tdPrice" role="gridcell">150,000</td></tr></tbody></table><span class="line" style="height: 222px; top: 72px;"></span><span class="line line2" style="height: 222px; top: 72px;"></span></div></div> </article>
+                </div>
+
+
+            </div></div>
+
+        </td></tr>
+
+
+            </script>
+  
+
+        </div>
+    </section>
+</section>
+
+
+    <script>
+ 
+
+ 
+    var filter = {
+        status : [0,1],
+        Name: '',
+        Product: '',
+        UserNameCreated: '',
+        UserName: '' ,
+        range: '',
+        Note: ''
+    }
+        cpage=0
+        var invoices = cache_invoices.getItem("damageItems");
+    
+        function loadJsonInvoices(lo){
+            console.log('loadJsonInvoices');
+            
+            if(!cb){
+                setTimeout(function(){loadJsonInvoices(lo)},500)
+                return
+            }
+            
+            $.getJSON( "ajax.php?action=damages&branch="+cb, function( data ) {
+                  invoices = data;
+                  saveCacheInvoiceDamage(data)
+                   if(lo!=undefined) lo.call();
+                });
+        }  
+        function saveCacheInvoiceDamage(data){
+			try{
+            cache_invoices.setItem("damageItems",data,{expirationAbsolute: null,
+             expirationSliding: 3600,
+             priority: Cache.Priority.HIGH,
+             callback: function(k, v) { console.log('Cache removed: ' + k); }
+            });
+			}catch(e){console.log('Save cache error')}
+        }  
+
+
+        function loadInvoice(pid){
+            return loadObject(pid, invoices);
+        }
+        
+        loadJsonInvoices(br)
+        
+        if(!users) loadJsonUsers( );
+         
+        
+        if(!tables) loadJsonTables()
+        
+        function br(){
+            loadTableLeft();
+        }
+         
+        function oBlur(d){
+            var i = $(d).attr('ng-model').slice(6)
+            filter[i] = $(d).val().trim()
+            cpage = 0
+            loadTables()
+        }
+        
+        
+        function filterByDateRange(){ //alert(_range)
+            
+            filter.range = _range.join('-')
+            $('#reportsortOtherLbl').html(filter.range)
+            cpage = 0
+            loadTables()
+            
+            hide2()
+        }
+        
+        var _range = []
+         
+         
+        function loadTableLeft(){
+            
+            for(var i in filter){if(i.match(/^[A-Z]/)){
+                //console.log(i)
+                $('.mainLeft [ng-model="filter'+i+'"]').unbind('blur')
+                $('.mainLeft [ng-model="filter'+i+'"]').blur(function(e){
+                    oBlur(this)
+                })
+                
+                $('.mainLeft [ng-model="filter'+i+'"]').unbind('keyup')
+                $('.mainLeft [ng-model="filter'+i+'"]').keyup(function(e){
+                    if(e.which==13)
+                        oBlur(this)
+                })
+            }}
+            
+            pretty('.mainLeft',function(d){
+                if($(d).attr('ng-model')=='item.checked'){                     
+                    filter.status = []
+                    $('.mainLeft [ng-model="item.checked"]').each(function(i,v){
+                        if($(this).is('[checked]'))
+                            filter.status.push(parseInt($(this).attr('value')))    
+                    })                     
+                    cpage=0
+                    loadTables(); 
+                }else if($(d).attr('ng-model')=='kvModel.typeDate'){
+                    //alert(1)
+                    var rf;
+                    $('.mainLeft [ng-model="kvModel.typeDate"]').each(function(i,v){
+                        if($(this).is('[checked]')){
+                            rf = ($(this).attr('value'))
+                        }                             
+                    }) 
+                    if(rf=='range'){
+                        $('#reportsortDateTimeLbl').click()
+                        var crange = findRangeByLabel($('#reportsortDateTimeLbl').html())
+                        filterbyRange(crange)
+                    } else {
+                        $('#reportsortOtherLbl').click()
+                    }
+                    
+                    cpage=0
+                    loadTables()
+                }
+            })
+ 
+            console.log('loadTableLeft');
+            
+            $('.mainLeft h3').unbind('click')
+            $('.mainLeft h3').click(function(){
+                i = $(this).find('i');
+                
+                //console.log($(this).next());
+                
+                
+                if(i.hasClass('fa-chevron-circle-up')){
+                    $(this).parent().find('aside').addClass('ng-hide');
+                    i.removeClass('fa-chevron-circle-up');
+                    i.addClass('fa-chevron-circle-down');
+                }else{
+                    $(this).parent().find('aside').removeClass('ng-hide');
+                    i.addClass('fa-chevron-circle-up');
+                    i.removeClass('fa-chevron-circle-down');
+                }
+            });
+            
+            //$('.boxLeftC label.sortTimeLbl')
+            $('#reportsortDateTimeLbl').unbind('click')
+            $('#reportsortDateTimeLbl').click(function(e){
+                if(e.pageX!=undefined) return;
+                /*$(this).next().css({
+                    visibility: 'visible',
+                    opacity: 1 
+                })*/
+                if($('aside.sortTimeList').css('visibility')=="hidden")
+                    show1()
+                else
+                    hide1()
+                    
+                if($('aside.sortDateTimeOtherBox').css('visibility')!="hidden")                 
+                    hide2()    
+            })
+            
+            $('aside.sortTimeList li>a[ng-click]').unbind('click')
+            $('aside.sortTimeList li>a[ng-click]').click(function(e){
+                var x = $(this).attr('ng-click');
+                //alert(x)
+                eval(x);
+                hide1();
+            })
+            
+            $('[ng-click="filterByDateRange()"]').click(function(e){
+                filterByDateRange()
+            })
+            
+            $('#reportsortOtherLbl').click(function(e){
+                if(e.pageX!=undefined) return;
+                
+                if(filter.range==''){
+                    filter.range = moment().format('DD/MM/YYYY')
+                    filter.range +='-'+filter.range
+                    
+                    _range = filter.range.split('-')
+                }
+                
+                var xr = filter.range.split('-');
+                $('span[ng-if="!kvBirthday"]:nth(0)').html(xr[0])
+                $('span[ng-if="!kvBirthday"]:nth(1)').html(xr[1])
+                $( "#fromDate" ).datepicker(
+                    'option', 'defaultDate', xr[0]
+                );
+                $( "#toDate" ).datepicker(
+                    'option', 'defaultDate', xr[1]
+                );
+                
+                $( "#toDate" ).datepicker(
+                    'option', 'minDate', $( "#fromDate" ).datepicker('getDate')
+                );
+                
+                if($('aside.sortDateTimeOtherBox').css('visibility')=="hidden")
+                    show2()
+                else
+                    hide2()
+                    
+                if($('aside.sortTimeList').css('visibility')!="hidden")                    
+                    hide1()    
+            })
+            
+            $( "#fromDate" ).datepicker({
+                maxDate: new Date(),
+                onSelect: function(val,$target){                       
+                    $( "#toDate" ).datepicker(
+                        'option', 'minDate', $(this).datepicker('getDate')
+                    );
+                    
+                    $('span[ng-if="!kvBirthday"]:nth(0)').html(val)
+                    
+                    _range = filter.range.split('-')
+                    _range[0] = val 
+                     
+                }
+            });
+            $( "#toDate" ).datepicker({
+                maxDate: new Date(),
+                onSelect: function(val,$target){                                            
+                    $('span[ng-if="!kvBirthday"]:nth(1)').html(val)
+                     
+                    _range[1] = val 
+                }
+            });
+             
+            loadTables(); 
+        }
+        
+        function show1(){
+            $('aside.sortTimeList').css({
+                visibility: 'visible',
+                opacity: 1 
+            })
+        }
+        
+        function show2(){
+            $('aside.sortDateTimeOtherBox').css({
+                visibility: 'visible',
+                opacity: 1 
+            })
+        }
+        
+        function hide1(){
+            $('aside.sortTimeList').css({
+                visibility: 'hidden',
+                opacity: 0 
+            })
+        }
+        
+        function hide2(){
+            $('aside.sortDateTimeOtherBox').css({
+                visibility: 'hidden',
+                opacity: 0 
+            })
+        }
+        
+        function filterbyRange(range){
+            //alert(range)
+            
+            var yu = function(x){
+                filter.range = x;
+                cpage=0;
+                loadTables();
+            }
+            
+            if(range=='alltime'||range==''){
+                yu('')
+            }else{
+             
+                $.ajax({
+                    url: '/ajax.php?action=rangeNameToRange&range='+range,
+                    success: yu
+                })
+            
+            }
+            
+            $('#reportsortDateTimeLbl').html(rngs[range])
+        }
+            
+                 
+        function afterSearch(se,se2,dataItem,that){
+            $('.main>.k-animation-container>.k-list-container ul').html('')
+            var z = $('[k-data-source="sellers.Data"]')
+            for(var i in users){
+                var check = true
+                if(se!=''){
+                    check = users[i].name.toLowerCase().indexOf(se.toLowerCase())>=0
+                }
+                if(check){
+                    var lk = $('<li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope '+
+                        (users[i].id==z.val()?'k-state-selected k-state-focused':'')+'" data-offset-index="'+
+                        i+'" id="'+users[i].id+'">'+users[i].name+'</li>');
+                    lk.hover(function(e){
+                        $(this).addClass('k-state-hover')
+                    },function(e){
+                        $(this).removeClass('k-state-hover')
+                    })
+                    lk.click(function(e){
+                        //alert($(this).attr('data-offset-index'))
+                        dataItem.user = $(this).attr('id')
+                        z.val(dataItem.user)
+                        z.prev().find('span.k-input').html(loadUser(dataItem.user).name)
+                        $(this).siblings().removeClass('k-state-selected k-state-focused')
+                        $(this).addClass('k-state-selected k-state-focused')
+                        
+                        $('.main>.k-animation-container,.main>.k-animation-container>.k-list-container').hide()
+                    })
+                    $('.main>.k-animation-container>.k-list-container ul').append(lk)
+                }
+            }
+        }
+        
+        
+         
+        function loadTables(){
+            
+            console.log('loadTables');
+            
+            if(invoices===null || !vkl ||suppliers==null){
+                setTimeout(function(){loadTables()},500)
+                return false;
+            }
+            
+            if(vkl['3.4.1']==undefined){
+                $('#grdBranchs').addClass('ng-hide')
+            }
+            if(vkl['3.4.2']==undefined)
+                $('[ng-show="rights.canAdd"]').addClass('ng-hide')
+            
+            templBranch = $('#templBranch').html();
+            templProductInvoice = $('#templProductInvoice').html()
+            
+            $('#grdBranchs>.k-grid-content>table>tbody').html('');
+            
+            var counttables = 0, countTableForGroup=0;
+            
+            for(var i in invoices){
+                
+                if(filter.Name!=''){
+                    if(invoices[i].code.toLowerCase().indexOf(filter.Name.toLowerCase())==-1) 
+                        continue;
+                }
+                if(filter.Product!=''){
+                    var z = false
+                    for(var m in invoices[i].products){
+                        var v = loadProduct(invoices[i].products[m].product)
+                        if(v.code.toLowerCase().indexOf(filter.Product.toLowerCase())>-1||
+                        v.name.toLowerCase().indexOf(filter.Product.toLowerCase())>-1) 
+                        {
+                            z = true
+                            break;
+                        }
+                    }
+                    if(!z) continue
+                }
+                 
+                if(filter.UserName!=''){
+                    var z = false
+                    if(invoices[i].user>0) {
+                        var v = loadUser(invoices[i].user)
+                        if(v.username.toLowerCase().indexOf(filter.UserName.toLowerCase())>-1||
+                        v.name.toLowerCase().indexOf(filter.UserName.toLowerCase())>-1||
+                        v.phone.toLowerCase().indexOf(filter.UserName.toLowerCase())>-1)
+                        {
+                            z = true
+                             
+                        }
+                    } 
+                    if(!z) continue
+                }
+                
+                if(filter.UserNameCreated!=''){
+                    var z = false
+                    if(invoices[i].user>0) {
+                        var v = loadUser(invoices[i].create)
+                        if(v.username.toLowerCase().indexOf(filter.UserNameCreated.toLowerCase())>-1||
+                        v.name.toLowerCase().indexOf(filter.UserNameCreated.toLowerCase())>-1||
+                        v.phone.toLowerCase().indexOf(filter.UserNameCreated.toLowerCase())>-1)
+                        {
+                            z = true
+                             
+                        }
+                    } 
+                    if(!z) continue
+                }
+                
+                //03/14/2020
+                if(filter.Note!=''){
+                    var z = false
+                    if(invoices[i].note.indexOf(filter.Note)>=0) {                         
+                        z = true                         
+                    } 
+                    if(!z) continue
+                }
+                 
+                
+                if(filter.status.indexOf(parseInt(invoices[i].status))==-1) continue;
+                
+                //2019 filter by range
+                if(filter.range){
+                    var filterrange = filter.range.split('-')
+                    var date2 = moment(new Date(invoices[i].date)).format('YYYY-MM-DD')
+                    
+                    filterrange[0] = moment(filterrange[0],'DD/MM/YYYY').format('YYYY-MM-DD')
+                    filterrange[1] = moment(filterrange[1],'DD/MM/YYYY').format('YYYY-MM-DD')
+                    
+                    if(date2<filterrange[0] || date2>filterrange[1]) continue;
+                    
+                }
+                
+                countTableForGroup++;
+                
+                if(countTableForGroup>cpage*record && countTableForGroup <= (cpage+1)*record){
+                 
+                    templBranch2 = templBranch+"";
+                    
+                    var dataItem = $.extend({},invoices[i])
+                    var ret2x = {}
+                    //var $index = i
+                    
+                    if(i%2==1) dataItem.class = 'k-alt';
+                    else dataItem.class = '';
+                    
+                    
+                     
+                    var mx = templBranch2.match(/\{\{([^\}]+)\}\}/g)
+                    for(var k=0;k<mx.length;k++){
+                         
+                        var rt = mx[k].substr(2,mx[k].length-4)
+                        if(rt.match(/\|/) && !rt.match(/\|\|/)){
+                            var tr = rt.split('|')
+                            if(tr[1].match(/\:/)){
+                                var tr1 = tr[1].split(':')
+                                var tr11 = tr1.shift()
+                                rt = tr11+"("+tr[0]+","+tr1.join(',')+")"
+                            }else{
+                                rt = tr[1]+"("+tr[0]+")"
+                            }
+                        }
+                        //console.log(rt)
+                        ret2x[mx[k]] = eval(rt)
+                        templBranch2 = templBranch2.replace(mx[k],ret2x[mx[k]]==null?'':ret2x[mx[k]])
+                    } 
+                    //console.log(ret2x)
+                    var ll = $(templBranch2)
+                     
+                    
+                    $('#grdBranchs>.k-grid-content>table>tbody').append(ll);
+                
+                }
+            }
+             
+            templBranchDetail = $('#templBranchDetail').html();
+            templUsersInBranch = $('#templUsersInBranch').html();
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>td:not(:first-child)').unbind('click')
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>td:not(:first-child)').click(function(){
+                $(this).parent().find('>.k-hierarchy-cell>.k-icon').trigger('click');
+            });
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>.k-hierarchy-cell>.k-icon').unbind('click')
+            $('#grdBranchs>.k-grid-content>table>tbody>tr>.k-hierarchy-cell>.k-icon').click(function(){
+                fixedfixed()
+                templBranchDetail2 = templBranchDetail+"";
+                n2= $(this).parent().parent();
+                n = n2.next();
+                //console.log(n);
+                
+                if($(this).hasClass('k-plus')){
+                    //an het detail
+                    $(this).parent().parent().siblings('.k-detail-row').hide();
+                    //thay doi icon
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').removeClass('k-minus');
+                    $(this).parent().parent().parent().find('>tr>.k-hierarchy-cell>.k-icon').addClass('k-plus');
+                    
+                    if(n.hasClass('k-detail-row')){
+                        n.show();
+                    }else{
+                         
+                        //prepare content
+                        //find uid
+                        uid = n2.attr('data-uid');
+                        b = loadInvoice(uid); 
+                         
+                        //console.log(b) 
+                        
+                        var dataItem = $.extend({},b)
+                        
+                        if(dataItem.supplier){ 
+                            dataItem.customerobject = loadSupplier(dataItem.supplier)
+                            console.log(dataItem.customerobject) 
+                        }else{
+                            dataItem.customerobject = {name:'',code:''}
+                        }
+                         
+                        var ret2x = {}
+                        //var $index = i
+                         
+                        var mx = templBranchDetail2.match(/\{\{([^\}]+)\}\}/g)
+                        for(var k=0;k<mx.length;k++){
+                             
+                            var rt = mx[k].substr(2,mx[k].length-4)
+                            if(rt.match(/\|/) && !rt.match(/\|\|/)){
+                                var tr = rt.split('|')
+                                if(tr[1].match(/\:/)){
+                                    var tr1 = tr[1].split(':')
+                                    var tr11 = tr1.shift()
+                                    rt = tr11+"("+tr[0]+","+tr1.join(',')+")"
+                                }else{
+                                    rt = tr[1]+"("+tr[0]+")"
+                                }
+                            }
+                            console.log(rt)
+                            ret2x[mx[k]] = eval(rt)
+                            templBranchDetail2 = templBranchDetail2.replace(mx[k],ret2x[mx[k]]==null?'':ret2x[mx[k]])
+                        } 
+                        //console.log(ret2x)
+                        var ll = $(templBranchDetail2)
+                        
+                        if(site_type==1)
+                            ll.find('[ng-show="isBarCafe"]').addClass('ng-hide')
+                         
+                        ll.find('[ng-model="dataItem.Description"]').change(function(e){
+                            dataItem.note = $(this).val()
+                        })
+                        if(dataItem.status>=1){//if(dataItem.status==1){
+                            ll.find('[ng-show="hasFinish"]').addClass('ng-hide')
+                            ll.find('[ng-hide="hasFinish"]').removeClass('ng-hide')
+                        }else{
+                            ll.find('[ng-show="hasFinish"]').removeClass('ng-hide')
+                            ll.find('[ng-hide="hasFinish"]').addClass('ng-hide')
+                            ll.find('[ng-click="edit()"]').click(function(e){
+                                document.location.href='/#/DamageItems/edit?Code='+dataItem.code
+                            })
+                        }
+                         
+                        ll.find('[k-ng-model="dataItem.PurchaseDate"]').val(xdate(dataItem.date))
+                        ll.find('[k-ng-model="dataItem.PurchaseDate"]').datetimepicker({
+                            format:'d/m/Y H:i'
+                        })
+                        ll.find('[k-ng-model="dataItem.PurchaseDate"]').change(function(e){
+                            dataItem.date = xdate2( $(this).val() )                           
+                        })
+                        ll.find('[k-ng-model="dataItem.PurchaseDate"]+span>span').click(function(){
+                            $(this).parent().prev().datetimepicker('show'); //support hide,show and destroy command
+                        });
+                         
+                        ll.find('[k-data-source="sellers.Data"]').prev().find('span.k-input').html(loadUser(dataItem.user).name)
+                        
+                        ll.find('[k-data-source="sellers.Data"]').html('')
+                        for(var i in users){
+                            ll.find('[k-data-source="sellers.Data"]').append($('<option value="'+users[i].id+'" '+(dataItem.user==users[i].id?'selected="selected"':'')+'>'+users[i].name+'</option>'))
+                        }
+                        
+                        ll.find('[k-data-source="sellers.Data"]').prev().click(function(e){
+                            var se2 = $('.main>.k-animation-container>.k-list-container .k-textbox')
+                            var se = se2.val()
+                            var that = $(this)
+                            
+                            se2.unbind('keyup')
+                            se2.keyup(function(e){
+                                //alert(se2.val())
+                                se = se2.val()
+                                afterSearch(se,se2,dataItem,that)
+                            })
+                            
+                            afterSearch(se,se2,dataItem,that)
+                            
+                            $('.main>.k-animation-container').hover(function(e){},function(e){
+                                $('.main>.k-animation-container,.main>.k-animation-container>.k-list-container').hide()
+                            })
+                            
+                            $('.main>.k-animation-container,.main>.k-animation-container>.k-list-container').show()
+                            
+                            console.log(that.offset(),that.position())
+                            //vkl = that
+                            
+                            $('.main>.k-animation-container').css({
+                                left: that.offset().left,
+                                top: that.offset().top + that.height() //+ ($(window).width()<=768?getScrollY():0)
+                                 
+                            })
+                            
+                            se2.focus()
+                            
+                            $('.main>.k-animation-container>.k-list-container').css({
+                                 
+                                transform: 'translateY(0px)' 
+                            })
+                             
+                        })
+                        ll.find('[ng-click="exportDetail()"]').click(function(e){
+                            toastr.info("Chức năng đang phát triển")
+                        })
+                        ll.find('[ng-click="printContent()"]').click(function(e){
+                            inhoadon(dataItem)
+                        })
+                        ll.find('[ng-click="cancel()"]').click(function(e){
+                            //toastr.warning("Chức năng này tạm khóa")
+                            //return false;
+                            
+                            //khi huy phieu xuat huy
+                            //set status = 2
+                            //cong so luong hang da huy
+                            // may man la type=2 nen chi can cong truc tiep so luong
+                             
+                            $('.main>.k-overlay').show()
+                            $('.main>.k-window-alert').show()
+                            $('.main>.k-window-alert').css({
+                                top: ($(window).height()-$('.main>.k-window-alert').height())/2+window.scrollY,
+                                left: ($(window).width()-$('.main>.k-window-alert').width())/2
+                            })
+                            
+                            $('.main>.k-window-alert .k-window-title').html('Hủy phiếu xuất hủy')
+                            $('.main>.k-window-alert .confirm-message').html('Bạn có chắc chắn muốn hủy phiếu xuất hủy <strong>'+dataItem.code+'</strong> này không?')
+                            
+                            $('.main>.k-window-alert .k-i-close').unbind('click')
+                            $('.main>.k-window-alert .k-i-close').click(function(e){
+                                $('.main>.k-window-alert').hide()
+                                $('.k-overlay').hide()
+                                return false
+                            })
+                            $('.main>.k-window-alert [ng-enter="onCancel()"]').unbind('click')
+                            $('.main>.k-window-alert [ng-enter="onCancel()"]').click(function(e){
+                                $('.main>.k-window-alert .k-i-close').click()
+                                return false
+                            })
+                            
+                            $('.main>.k-window-alert [ng-enter="onConfirm()"]').unbind('click')
+                            $('.main>.k-window-alert [ng-enter="onConfirm()"]').click(function(e){
+                                 
+                                $.ajax('ajax.php?action=delete_damage',{
+                                    data: "id="+dataItem.id,
+                                    method: "POST",
+                                    dataType: 'json',
+                                    success: function(d){
+                                        console.log(d);
+                                        if(d.status=='1'){
+                                            $('.main>.k-window-alert .k-i-close').click()
+                                            var dataItem_id = dataItem.id-0
+                                             
+                                            b.status = 2
+                                            saveCacheInvoiceDamage(invoices)
+                                            toastr.success("Hủy phiếu xuất hủy thành công")
+                                            //loadTableLeft()
+                                            $('.k-detail-row:visible').prev().find('td:last-child span').html('Đã hủy')
+                                            $('.k-detail-row:visible div.ng-binding:nth(2)').html('Đã hủy')
+                                            $('.k-detail-row:visible [ng-click="cancel()"]').hide()
+                                            
+                                             
+                                            loadJsonProducts()
+                                             
+                                        }else{
+                                            toastr.warning("Hủy phiếu xuất hủy lỗi") 
+                                        } 
+                                    },
+                                    error: function(e){
+                                        toastr.warning("Hủy phiếu xuất hủy lỗi") 
+                                        console.log(e)
+                                    }
+                                }); 
+                                return false
+                            })
+                            
+                            return false;
+                        })
+                        
+                        ll.find('[ng-click="update()"]').click(function(e){
+                            //alert(dataItem.note)
+                            //alert(dataItem.user)
+                            var s = 'note='+dataItem.note+'&user='+dataItem.user+'&id='+dataItem.id+'&date='+dataItem.date
+                            //alert(s)
+                            //return false
+                            
+                            $.ajax('ajax.php?action=doeditdamage',{
+                                data: s+"&branch="+cb,
+                                method: "POST",
+                                dataType: 'json',
+                                success: function(d){
+                                    console.log(d);
+                                    if(d.status=='1'){
+                                        
+                                        b.note = dataItem.note
+                                        b.user = dataItem.user
+                                        b.date = dataItem.date
+                                        saveCacheInvoiceDamage(invoices)
+                                        toastr.success("Sửa phiếu xuất hủy thành công")
+                                         
+                                    }else{
+                                        toastr.warning("Sửa phiếu xuất hủy lỗi") 
+                                    } 
+                                }
+                            });                            
+                            return false;
+                        })
+                        //den phan san pham
+                        //var tongtienhang = 0
+                        var tongsoluong=0
+                        ll.find('.invoiceDetail .k-grid-content table tbody').html('')
+                        for(var i in dataItem.products){
+
+                            var _templProductInvoice = templProductInvoice+''
+                            var row = dataItem.products[i]
+                            
+                            //tongtienhang += (row.price-row.discount)*row.quantity
+                            tongsoluong -= -row.quantity
+                            
+                            var ret2xx = {}
+                            var $i = i
+                             
+                            var mxx = _templProductInvoice.match(/\{\{([^\}]+)\}\}/g)
+                            for(var k=0;k<mxx.length;k++){
+                                 
+                                var rt = mxx[k].substr(2,mxx[k].length-4)
+                                if(rt.match(/\|/) && !rt.match(/\|\|/)){
+                                    var tr = rt.split('|')
+                                    if(tr[1].match(/\:/)){
+                                        var tr1 = tr[1].split(':')
+                                        var tr11 = tr1.shift()
+                                        rt = tr11+"("+tr[0]+","+tr1.join(',')+")"
+                                    }else{
+                                        rt = tr[1]+"("+tr[0]+")"
+                                    }
+                                }
+                                console.log(rt)
+                                ret2xx[mxx[k]] = eval(rt)
+                                _templProductInvoice = _templProductInvoice.replace(mxx[k],ret2xx[mxx[k]]==null?'':ret2xx[mxx[k]])
+                            } 
+                          
+                            var ll2 = $(_templProductInvoice)
+                            ll.find('.invoiceDetail .k-grid-content table tbody').append(ll2)
+                        }
+                        //phan price o duoi cung cua invoice
+                        //tongtienhang
+                        ll.find('.tblTotal table tbody:nth(0) tr:nth(1) td:last-child').html(formatCurrency(dataItem.price))
+                        
+                        ll.find('.tblTotal table tbody:nth(0) tr:nth(0) td:last-child').html(tongsoluong)
+                         
+                        if(vkl['3.4.3']==undefined)
+                            ll.find('[ng-click="update()"]').addClass('ng-hide')
+                        if(vkl['3.4.4']==undefined || dataItem.status==2)
+                            ll.find('[ng-show="hasVoid"]').addClass('ng-hide')     
+                        n2.after(ll);
+                        tabstrip();
+                    }
+                    
+                     
+                    $(this).removeClass('k-plus');
+                    $(this).addClass('k-minus');
+                }else{
+                    
+                    n.hide();
+                    
+                    $(this).addClass('k-plus');
+                    $(this).removeClass('k-minus');
+                }
+            });
+            
+            if(countTableForGroup==1){
+                $('#grdBranchs>.k-grid-content>table>tbody>tr:not(.cssSummaryRow)>.k-hierarchy-cell>.k-icon:nth(0)').click()
+            }
+            
+            tpage = Math.ceil(countTableForGroup/record);
+            
+            $('#grdBranchs > .paging-box .k-label').html("Hiển thị "+((cpage)*record+1)+" - "+Math.min(countTableForGroup,(cpage+1)*record)+" trên tổng số "+countTableForGroup+" phiếu xuất hủy");
+            
+            $('#grdBranchs > .paging-box a').removeClass('k-state-disabled');
+            
+            if(cpage==0){
+                $('#grdBranchs > .paging-box a:nth(0)').addClass('k-state-disabled');
+                $('#grdBranchs > .paging-box a:nth(1)').addClass('k-state-disabled');
+            } 
+            
+            if(cpage==tpage-1){
+                $('#grdBranchs > .paging-box a:nth(2)').addClass('k-state-disabled');
+                $('#grdBranchs > .paging-box a:nth(3)').addClass('k-state-disabled');
+            } 
+            
+            $('#grdBranchs > .paging-box .k-state-selected, #grdBranchs > .paging-box .k-current-page span').html(cpage+1);
+            $('#grdBranchs > .paging-box a:nth(0)').unbind('click')
+            //first page click
+            $('#grdBranchs > .paging-box a:nth(0)').click(function(){
+                cpage = 0;
+                loadTables();
+            }); $('#grdBranchs > .paging-box a:nth(1)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(1)').click(function(){
+                cpage -= 1;
+                if(cpage>=0)
+                loadTables();
+                else cpage=0
+            }); $('#grdBranchs > .paging-box a:nth(2)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(2)').click(function(){
+                cpage += 1;
+                if(cpage<tpage)
+                loadTables();
+                else
+                cpage = tpage-1
+            }); $('#grdBranchs > .paging-box a:nth(3)').unbind('click')
+            $('#grdBranchs > .paging-box a:nth(3)').click(function(){
+                cpage = tpage-1;
+                loadTables();
+            });
+        }
+         
+        $(document).ready(function(){
+            $('.addProductBtn [ng-click="export()"],.addProductBtn [ng-click="exportDetail()"]').click(function(e){
+                toastr.info("Chức năng này đang phát triển")
+            })
+            
+            setTitle(loadBranch(cb).name+' - Xuất hủy') 
+        })
+         
+    </script>
+
+
+<div class="k-animation-container" style="width: 206px; height: 116px; margin-left: 0px; padding-left: 0px; padding-right: 0px; padding-bottom: 0px; display: none; box-sizing: content-box; overflow: hidden; position: absolute; top: 471px; z-index: 10002; left: 735.984px;">
+  <div class="k-list-container k-popup k-group k-reset" data-role="popup" style="position: absolute; font-size: 13px; font-family: Arial, Helvetica, sans-serif; font-stretch: normal; font-style: normal; font-weight: normal; line-height: normal; width: 203.984px; height: auto; display: none; transform: translateY(-116px);"><span class="k-list-filter"><input class="k-textbox" role="listbox" aria-haspopup="true" aria-expanded="false" aria-owns="" tabindex="0" aria-disabled="false" aria-readonly="false" aria-activedescendant="6c5ce9a1-429a-43fd-a0ac-1057fb2516c9"><span unselectable="on" class="k-icon k-i-search">select</span></span>
+    <div
+    class="k-group-header" style="display:none"></div>
+  <div class="k-list-scroller" unselectable="on" style="height: auto;">
+    <ul unselectable="on" class="k-list k-reset" tabindex="-1" aria-hidden="true" aria-live="polite" data-role="staticlist" role="listbox">
+      <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope k-state-selected k-state-focused" data-offset-index="0" id="6c5ce9a1-429a-43fd-a0ac-1057fb2516c9">trần đình đàn</li>
+      <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="1">Hoàng - Kinh Doanh</li>
+      <li tabindex="-1" role="option" unselectable="on" class="k-item ng-scope" data-offset-index="2">Hương - Kế Toán</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="k-overlay" style="display: none; z-index: 10002; opacity: 0.5;"></div>
+<div class="k-widget k-window k-window-poup k-window-masstel k-window-alert kv-window kv-close-popup window-error" data-role="draggable" style="padding-top: 42px; min-width: 90px; min-height: 50px; width: 500px; display: none; top: 1175px; left: 429px; touch-action: pan-y; z-index: 10003; opacity: 1; transform: scale(1);">
+  <div class="k-window-titlebar k-header" style="margin-top: -42px;">&nbsp;<span class="k-window-title">Hủy hóa đơn</span>
+    <div class="k-window-actions"><a role="button" href="#" class="k-window-action k-link"><span role="presentation" class="k-icon k-i-close">Close</span></a></div>
+  </div>
+  <div data-role="window" class="k-window-content k-content" tabindex="0">
+    <div class="form-wrapper">
+      <div class="form-group">
+        <p class="confirm-message">Bạn có chắc chắn muốn hủy hóa đơn <strong>HD000036</strong> này không?</p>
+      </div>
+    </div>
+    <div class="kv-window-footer">
+      <button class="btn-confirm kv2Btn" ng-enter="onConfirm()" ng-hide="noYes"><i class="fa fa-check"></i>Đồng ý</button>
+      <button class="btn-cancel kv2Btn kv2BtnYellow" ng-enter="onCancel()"><i class="fa fa-ban"></i>Bỏ qua</button>
+    </div>
+  </div>
+</div>

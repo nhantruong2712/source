@@ -1,0 +1,107 @@
+<!-- print1 -->
+<div id="printpurchase" style="display: none;">
+<div class="he">
+    <div>{{ten_cua_hang}}</div>
+    <div>Chi nhánh: <span>{{ten_chi_nhanh}}</span></div>
+    <div>Điện thoại: <span>{{dien_thoai_chi_nhanh}}</span></div>
+</div>
+<hr />
+<div class="hd">
+Ngày nhập: <span>{{ngay_ban}}</span>
+</div>
+<center>
+    <div class="he1">HOÁ ĐƠN NHẬP HÀNG</div>
+    <div class="he2">{{ma_hoa_don}}</div>
+</center>
+<div class="he3">
+<div>Nhà cung cấp: <span>{{ten_ncc}}</span></div>
+<div>Địa chỉ: <span>{{dia_chi_ncc}}</span></div>
+ 
+<div>Điện thoại: <span>{{dien_thoai_ncc}}</span></div>
+</div>
+<div class="he3">Người tạo: <span>{{nguoi_ban}}</span></div>
+<style>
+table.print3{
+    width: 100%;
+    border-top: dashed 1px black;
+    border-bottom: dashed 1px black;
+}
+
+.print3 tr td {
+    text-align: center;
+}
+ 
+.print3 tfoot tr td:nth-child(2){
+    text-align: right!important;
+}
+
+.he3{
+    margin-top:10px;
+    margin-bottom: 5px;
+}
+
+.fo{
+    font-weight: bold;
+    text-align: center;
+}
+
+.fo>div{
+    float:left;
+    width: 50%;
+}
+</style>
+<table class="print3">
+<thead>
+<th>Mã hàng</th>
+<th>Tên hàng</th>
+<th>Đơn giá</th>
+<th>Chiết khấu</th>
+<th>SL</th>
+<th>Thành tiền</th>  
+</thead>
+<tbody>
+<tr>
+<td>{{ma_hang_hoa}}</td>
+<td>{{ten_hang_hoa}}</td>
+<td>{{gia_hang_hoa}}</td>
+<td>{{chiet_khau_hang_hoa}}</td>
+<td>{{so_luong}}</td>
+<td>{{tong_tien}}</td>
+</tr>
+<tr>
+</tbody>
+<tfoot>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+ 
+<td>Tổng tiền hàng:</td>
+<td>{{tong_tien_hang}}</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+ 
+<td>Chiết khấu:</td>
+<td>{{chiet_khau}}</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+ 
+<td></td>
+<td>Tổng cộng:</td>
+<td>{{tong_cong}}</td>
+</tr></tfoot>
+</table>
+<div class="nt">
+Ghi chú: <span>{{ghi_chu}}</span>
+</div>
+<div class="fo"><div>Nhà cung cấp</div><div>Người lập</div></div>
+</div>
+ 
